@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import Section from '@/components/ui/Sectiton';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 
 type OrgType = 'Academic' | 'Non-Academic';
+type FilterValue = 'All' | string;
 
 type BrowserOrg = {
   slug: string;
@@ -23,21 +24,18 @@ type BrowserOrg = {
   category: string;
 };
 
-function normalize(text?: string) {
-  return (text ?? '').toLowerCase();
+// ==================== Data Processing ====================
+
+function normalize(text?: string): string {
+  return (text ?? '').toLowerCase().trim();
 }
 
-function getUniqueOrgKey(org: Pick<BrowserOrg, 'slug' | 'org'>) {
-  const slug = normalize(org.slug).trim();
-  if (slug) {
-    return `slug:${slug}`;
-  }
-
-  return `org:${normalize(org.org).trim()}`;
+function getUniqueOrgKey(org: { slug: string; org: string }): string {
+  return org.slug ? `slug:${normalize(org.slug)}` : `org:${normalize(org.org)}`;
 }
 
-function getCompletenessScore(org: BrowserOrg) {
-  return [
+function getCompletenessScore(org: BrowserOrg): number {
+  const fields = [
     org.description,
     org.program,
     org.logo,
@@ -46,111 +44,121 @@ function getCompletenessScore(org: BrowserOrg) {
     org.contact.instagram,
     org.contact.tiktok,
     org.contact.x,
-  ].filter(Boolean).length;
+  ];
+  return fields.filter(Boolean).length;
 }
 
-export default function OrgBrowser() {
-  const allOrgs = useMemo<BrowserOrg[]>(() => {
-    const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
-      orgs.map(org => ({
+function buildOrgIndex(): BrowserOrg[] {
+  const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
+    orgs.map((org) => ({ ...org, type: 'Academic' as const, category }))
+  );
+
+  const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
+    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category }))
+  );
+
+  const uniqueMap = new Map<string, BrowserOrg>();
+
+  [...academic, ...nonAcademic].forEach((org) => {
+    const key = getUniqueOrgKey(org);
+    const existing = uniqueMap.get(key);
+
+    if (!existing || getCompletenessScore(org) > getCompletenessScore(existing)) {
+      uniqueMap.set(key, {
+        ...existing,
         ...org,
-        type: 'Academic' as const,
-        category,
-      })),
-    );
-
-    const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
-      orgs.map(org => ({
-        ...org,
-        type: 'Non-Academic' as const,
-        category,
-      })),
-    );
-
-    const uniqueMap = new Map<string, BrowserOrg>();
-
-    for (const org of [...academic, ...nonAcademic]) {
-      const key = getUniqueOrgKey(org);
-      const existing = uniqueMap.get(key);
-
-      if (!existing) {
-        uniqueMap.set(key, org);
-        continue;
-      }
-
-      const existingScore = getCompletenessScore(existing);
-      const incomingScore = getCompletenessScore(org);
-
-      if (incomingScore > existingScore) {
-        uniqueMap.set(key, {
-          ...existing,
-          ...org,
-          contact: {
-            ...existing.contact,
-            ...org.contact,
-          },
-        });
-      }
+        contact: { ...existing?.contact, ...org.contact },
+      });
     }
+  });
 
-    return Array.from(uniqueMap.values()).sort((a, b) => a.org.localeCompare(b.org));
-  }, []);
+  return Array.from(uniqueMap.values()).sort((a, b) => a.org.localeCompare(b.org));
+}
+
+// ==================== Main Component ====================
+
+export default function OrgBrowser() {
+  const allOrgs = useMemo(() => buildOrgIndex(), []);
 
   const [query, setQuery] = useState('');
-  const [orgType, setOrgType] = useState<'All' | OrgType>('All');
-  const [category, setCategory] = useState<'All' | string>('All');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [orgType, setOrgType] = useState<FilterValue>('All');
+  const [category, setCategory] = useState<FilterValue>('All');
 
+  // Debounced search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  // Unique categories
   const categories = useMemo(() => {
-    return ['All', ...new Set(allOrgs.map(org => org.category))];
+    const unique = Array.from(new Set(allOrgs.map((org) => org.category)));
+    return ['All', ...unique.sort()];
   }, [allOrgs]);
 
+  // Filtered organizations (uses debounced query)
   const filteredOrgs = useMemo(() => {
-    const q = normalize(query).trim();
+    const normalizedQuery = normalize(debouncedQuery);
 
-    return allOrgs.filter(org => {
-      const byType = orgType === 'All' || org.type === orgType;
-      const byCategory = category === 'All' || org.category === category;
+    return allOrgs.filter((org) => {
+      const matchesType = orgType === 'All' || org.type === orgType;
+      const matchesCategory = category === 'All' || org.category === category;
 
-      if (!q) {
-        return byType && byCategory;
-      }
+      if (!matchesType || !matchesCategory) return false;
 
-      const haystack = [
-        org.org,
-        org.description,
-        org.program,
-        org.slug,
-        org.category,
-        org.type,
-      ]
-        .map(value => normalize(value))
-        .join(' ');
+      if (!normalizedQuery) return true;
 
-      return byType && byCategory && haystack.includes(q);
+      const haystack = normalize(
+        [org.org, org.description, org.program, org.slug, org.category, org.type].join(' ')
+      );
+
+      return haystack.includes(normalizedQuery);
     });
-  }, [allOrgs, category, orgType, query]);
+  }, [allOrgs, debouncedQuery, orgType, category]);
+
+  // Handlers
+  const handleQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  }, []);
+
+  const handleTypeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setOrgType(e.target.value as FilterValue);
+  }, []);
+
+  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value as FilterValue);
+  }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-10">
       <Section>
-        <h1 className="text-3xl font-bold mb-4">Organization Browser</h1>
-        <p className="text-lg text-neutral-600 mb-6">
-          Search and filter student organizations by type and category.
-        </p>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold tracking-tight text-black mb-2">
+            Organization Browser
+          </h1>
+          <p className="text-lg text-neutral-600">
+            Discover and explore student organizations across campus.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Filters - No rounded corners */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <input
             type="text"
             value={query}
-            onChange={event => setQuery(event.target.value)}
+            onChange={handleQueryChange}
             placeholder="Search organizations..."
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-black"
+            className="w-full border border-neutral-300 px-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
           />
 
           <select
             value={orgType}
-            onChange={event => setOrgType(event.target.value as 'All' | OrgType)}
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-black"
+            onChange={handleTypeChange}
+            className="w-full border border-neutral-300 px-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
           >
             <option value="All">All Types</option>
             <option value="Academic">Academic</option>
@@ -159,31 +167,37 @@ export default function OrgBrowser() {
 
           <select
             value={category}
-            onChange={event => setCategory(event.target.value as 'All' | string)}
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-black"
+            onChange={handleCategoryChange}
+            className="w-full border border-neutral-300 px-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
           >
-            {categories.map(item => (
-              <option key={item} value={item}>
-                {item === 'All' ? 'All Categories' : item}
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat === 'All' ? 'All Categories' : cat}
               </option>
             ))}
           </select>
         </div>
       </Section>
 
-      <div className="mb-4 text-sm text-neutral-600">
-        Showing {filteredOrgs.length} of {allOrgs.length} organizations
+      {/* Results Header */}
+      <div className="flex justify-between items-center mb-6 text-sm text-neutral-600">
+        <p>
+          Showing <span className="font-medium text-black">{filteredOrgs.length}</span> of{' '}
+          <span className="font-medium text-black">{allOrgs.length}</span> organizations
+        </p>
       </div>
 
+      {/* Results */}
       {filteredOrgs.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center text-neutral-600">
-          No organizations found. Try changing your search or filters.
+        <div className="border border-dashed border-neutral-300 bg-neutral-50 py-16 text-center">
+          <p className="text-neutral-600">No organizations match your current filters.</p>
+          <p className="text-neutral-500 text-sm mt-1">Try adjusting your search or filters.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredOrgs.map(org => (
+          {filteredOrgs.map((org) => (
             <OrganizationCard
-              key={`${org.type}-${org.slug}`}
+              key={org.slug || org.org}
               slug={org.slug}
               org={org.org}
               program={org.program}

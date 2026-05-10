@@ -1,0 +1,89 @@
+[
+  {
+    "slug": "samakom",
+    "program": "Bachelor of Arts in Communication",
+    "org": "SAMAKOM - Samahan ng mga Mag-aaral sa Komunikasyon",
+    "contact": {
+      "email": "samakom.cvsu@gmail.com",
+      "facebook": "https://www.facebook.com/cvsusamakom",
+      "instagram": "https://www.instagram.com/samakom_cvsu/",
+      "tiktok": "https://www.tiktok.com/@samakomcvsu"
+    }
+  },
+  {
+    "slug": "pragmaticus",
+	"logo": "./public/cas/pragmaticus.jpg",
+    "program": "Bachelor of Arts in English Language Studies",
+    "org": "PRAGMATICUS",
+    "contact": {
+      "email": "cas.pragmaticus@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/pragmaticus.cvsu"
+    }
+  },
+  {
+    "slug": "utopia",
+    "program": "Bachelor of Arts in Political Science",
+    "org": "UTOPIA - CvSU Political Science Society",
+    "contact": {
+      "email": "cas.utopia@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/utopiacvsu"
+    }
+  },
+  {
+    "slug": "journalism-guild",
+    "program": "Bachelor of Arts in Journalism",
+    "org": "Journalism Guild",
+    "contact": {
+      "email": "cas.journalismguild@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/CvSUJournGuildOfficial"
+    }
+  },
+  {
+    "slug": "radicands",
+    "program": "Bachelor of Science in Applied Mathematics",
+    "org": "RADICANDS - CvSU Cluster of Applied Mathematics Students",
+    "contact": {
+      "email": "cas.radicands@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/bsam.radicands"
+    }
+  },
+  {
+    "slug": "mitochondrion-society",
+    "program": "Bachelor of Science in Biology",
+    "org": "Mitochondrion Society",
+    "contact": {
+      "email": "cas.mitosoc@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/CvSUMitochondrion"
+    }
+  },
+  {
+    "slug": "development-communication-society",
+    "program": "Bachelor of Science in Development Communication",
+    "org": "Development Communication Society",
+    "contact": {
+      "email": "dvcatalysts@gmail.com",
+      "facebook": "https://www.facebook.com/cvsudvca"
+    }
+  },
+  {
+    "slug": "psychology-circle",
+    "program": "Bachelor of Science in Psychology",
+    "org": "Psychology Circle",
+    "contact": {
+	  "email": "cas.psychcircle@cvsu.edu.ph",
+	  "facebook": "https://www.facebook.com/PsychCircleCvSUMain"
+	}
+  },
+  {
+    "slug": "jswap-cvsu",
+	"logo": "./public/cas/jswap.jpg",
+    "program": "Bachelor of Science in Social Work",
+    "org": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
+    "contact": {
+	  "email": "cas.jswap@cvsu.edu.ph",
+	  "facebook": "https://www.facebook.com/jswap.cvsumain",
+	  "instagram": "https://www.instagram.com/tahanang_jswap",
+	  "x": "https://www.x.com/TahanangJSWAP"
+	}
+  }
+]

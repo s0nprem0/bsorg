@@ -1,1 +1,82 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+
+  --color-primary-50: #f2fff6;
+  --color-primary-100: #ddfce7;
+  --color-primary-200: #bbf7cf;
+  --color-primary-300: #99f0b7;
+  --color-primary-400: #77e898;
+  --color-primary-500: #55e080;
+  --color-primary-600: #33d969;
+  --color-primary-700: #11d151;
+  --color-primary-800: #0ebc4a;
+  --color-primary-900: #0a9c3b;
+
+  --color-secondary-50: #f3fbff;
+  --color-secondary-100: #d9f3ff;
+  --color-secondary-200: #bff0ff;
+  --color-secondary-300: #a5e8ff;
+  --color-secondary-400: #8be0ff;
+  --color-secondary-500: #71d8ff;
+  --color-secondary-600: #57d0ff;
+  --color-secondary-700: #3dd8ff;
+  --color-secondary-800: #23c0e6;
+  --color-secondary-900: #09a8cc;
+
+  --color-accent-50: #fff5f2;
+  --color-accent-100: #ffe0d9;
+  --color-accent-200: #ffccbf;
+  --color-accent-300: #ffb7a5;
+  --color-accent-400: #ffa18b;
+  --color-accent-500: #ff8c71;
+  --color-accent-600: #ff7718;
+  --color-accent-700: #ff5c00;
+  --color-accent-800: #e64400;
+  --color-accent-900: #cc2d00;
+
+  --color-success-50: #e6f7ef;
+  --color-success-100: #ccefdf;
+  --color-success-200: #99dfbf;
+  --color-success-300: #66cf9f;
+  --color-success-400: #33bf7f;
+  --color-success-500: #00af5f;
+  --color-success-600: #008c4c;
+  --color-success-700: #006939;
+  --color-success-800: #004626;
+  --color-success-900: #002313;
+
+  --color-warning-50: #fff8e6;
+  --color-warning-100: #fff1cc;
+  --color-warning-200: #ffe399;
+  --color-warning-300: #ffd566;
+  --color-warning-400: #ffc733;
+  --color-warning-500: #ffb900;
+  --color-warning-600: #cc9400;
+  --color-warning-700: #996f00;
+  --color-warning-800: #664a00;
+  --color-warning-900: #332500;
+
+  --color-error-50: #fceaea;
+  --color-error-100: #f9d5d5;
+  --color-error-200: #f3abab;
+  --color-error-300: #ed8282;
+  --color-error-400: #e75858;
+  --color-error-500: #e12e2e;
+  --color-error-600: #b42525;
+  --color-error-700: #871c1c;
+  --color-error-800: #5a1212;
+  --color-error-900: #2d0909;
+
+  --color-gray-50: #f8f9fa;
+  --color-gray-100: #f1f3f5;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #868e96;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
+}

@@ -10,7 +10,7 @@ import NavBar from '@/components/layout/Navbar';
 function App() {
   return (
     <Router>
-      <div className='min-h-screen flex flex-col'>
+      <div className='min-h-screen flex flex-col bg-neutral-700'>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />

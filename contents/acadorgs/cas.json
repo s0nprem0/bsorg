@@ -1,5 +1,15 @@
 [
   {
+    "slug": "cas-sc",
+    "logo": "/public/cas/cas-sc.jpg",
+    "org": "CAS Student Council",
+    "contact": {
+      "email": "cvsu.cassc@gmail.com",
+      "facebook": "https://www.facebook.com/CvSUCAS",
+      "instagram": "cas.sc@cvsu.edu.ph"
+    }
+  },
+  {
     "slug": "samakom",
     "program": "Bachelor of Arts in Communication",
     "org": "SAMAKOM - Samahan ng mga Mag-aaral sa Komunikasyon",
@@ -12,7 +22,7 @@
   },
   {
     "slug": "pragmaticus",
-	"logo": "./public/cas/pragmaticus.jpg",
+    "logo": "./public/cas/pragmaticus.jpg",
     "program": "Bachelor of Arts in English Language Studies",
     "org": "PRAGMATICUS",
     "contact": {
@@ -70,20 +80,20 @@
     "program": "Bachelor of Science in Psychology",
     "org": "Psychology Circle",
     "contact": {
-	  "email": "cas.psychcircle@cvsu.edu.ph",
-	  "facebook": "https://www.facebook.com/PsychCircleCvSUMain"
-	}
+      "email": "cas.psychcircle@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/PsychCircleCvSUMain"
+    }
   },
   {
     "slug": "jswap-cvsu",
-	"logo": "./public/cas/jswap.jpg",
+    "logo": "./public/cas/jswap.jpg",
     "program": "Bachelor of Science in Social Work",
     "org": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
     "contact": {
-	  "email": "cas.jswap@cvsu.edu.ph",
-	  "facebook": "https://www.facebook.com/jswap.cvsumain",
-	  "instagram": "https://www.instagram.com/tahanang_jswap",
-	  "x": "https://www.x.com/TahanangJSWAP"
-	}
+      "email": "cas.jswap@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/jswap.cvsumain",
+      "instagram": "https://www.instagram.com/tahanang_jswap",
+      "x": "https://www.x.com/TahanangJSWAP"
+    }
   }
 ]

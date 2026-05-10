@@ -1,10 +1,16 @@
+import Section from '@/components/ui/Sectiton';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 
 export default function AcademicOrg() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-6">Academic Organizations</h2>
+      <Section>
+        <h1 className="text-3xl font-bold mb-4">Academic Organizations</h1>
+        <p className="text-lg text-neutral-600">
+          Explore the diverse range of academic organizations at Cavite State University. Connect with like-minded peers, enhance your skills, and make the most of your university experience!
+        </p>
+      </Section>
       {Object.entries(academicOrgsByCategory).map(([category, orgs]) => {
         const sortedOrgs = [...orgs].sort((a, b) => a.org.localeCompare(b.org));
         return (

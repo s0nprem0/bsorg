@@ -5,10 +5,12 @@ import NonAcademicOrg from './pages/NonAcademicOrg';
 import College from './pages/College';
 import Pag from './pages/Pag';
 import OrganizationProfile from './pages/OrganizationProfile';
+import NavBar from './components/layout/NavBar';
 
 function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/acadorg" element={<AcademicOrg />} />

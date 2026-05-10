@@ -22,9 +22,10 @@
   },
   {
     "slug": "pragmaticus",
-    "logo": "./public/cas/pragmaticus.jpg",
+    "logo": "/cas/pragmaticus.jpg",
     "program": "Bachelor of Arts in English Language Studies",
     "org": "PRAGMATICUS",
+    "description": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus.",
     "contact": {
       "email": "cas.pragmaticus@cvsu.edu.ph",
       "facebook": "https://www.facebook.com/pragmaticus.cvsu"

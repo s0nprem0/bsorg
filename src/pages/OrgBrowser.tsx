@@ -27,6 +27,28 @@ function normalize(text?: string) {
   return (text ?? '').toLowerCase();
 }
 
+function getUniqueOrgKey(org: Pick<BrowserOrg, 'slug' | 'org'>) {
+  const slug = normalize(org.slug).trim();
+  if (slug) {
+    return `slug:${slug}`;
+  }
+
+  return `org:${normalize(org.org).trim()}`;
+}
+
+function getCompletenessScore(org: BrowserOrg) {
+  return [
+    org.description,
+    org.program,
+    org.logo,
+    org.contact.email,
+    org.contact.facebook,
+    org.contact.instagram,
+    org.contact.tiktok,
+    org.contact.x,
+  ].filter(Boolean).length;
+}
+
 export default function OrgBrowser() {
   const allOrgs = useMemo<BrowserOrg[]>(() => {
     const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
@@ -45,7 +67,33 @@ export default function OrgBrowser() {
       })),
     );
 
-    return [...academic, ...nonAcademic].sort((a, b) => a.org.localeCompare(b.org));
+    const uniqueMap = new Map<string, BrowserOrg>();
+
+    for (const org of [...academic, ...nonAcademic]) {
+      const key = getUniqueOrgKey(org);
+      const existing = uniqueMap.get(key);
+
+      if (!existing) {
+        uniqueMap.set(key, org);
+        continue;
+      }
+
+      const existingScore = getCompletenessScore(existing);
+      const incomingScore = getCompletenessScore(org);
+
+      if (incomingScore > existingScore) {
+        uniqueMap.set(key, {
+          ...existing,
+          ...org,
+          contact: {
+            ...existing.contact,
+            ...org.contact,
+          },
+        });
+      }
+    }
+
+    return Array.from(uniqueMap.values()).sort((a, b) => a.org.localeCompare(b.org));
   }, []);
 
   const [query, setQuery] = useState('');

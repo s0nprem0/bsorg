@@ -6,7 +6,7 @@ import { Mail } from 'lucide-react';
 type OrganizationCardProps = {
   slug: string;
   org: string;
-  program: string;
+  program?: string;
   contact: {
     email?: string;
     facebook?: string;
@@ -15,6 +15,7 @@ type OrganizationCardProps = {
     x?: string;
   };
   logo?: string; // optional logo URL
+  large?: boolean; // for student council highlight
 };
 
 const OrganizationCard: React.FC<OrganizationCardProps> = ({
@@ -23,27 +24,35 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
   program,
   contact,
   logo,
+  large = false,
 }) => {
   return (
-    <div className="flex items-center gap-4 border border-neutral-200 bg-secondary-50 p-4 shadow-sm transition hover:shadow-md min-h-24 h-full w-full">
+    <div
+      className={[
+        'flex items-center gap-4 border border-neutral-200 bg-secondary-50 shadow-sm transition hover:shadow-md w-full',
+        large ? 'p-8 min-h-32 text-lg bg-yellow-50 border-yellow-300 shadow-lg' : 'p-4 min-h-24',
+      ].join(' ')}
+    >
       {logo ? (
         <img
           src={logo}
           alt={org + ' logo'}
-          className="h-16 w-16 rounded-lg object-contain bg-neutral-100"
+          className={large ? 'h-24 w-24 rounded-xl object-contain bg-neutral-100' : 'h-16 w-16 rounded-lg object-contain bg-neutral-100'}
         />
       ) : (
-        <div className="h-16 w-16 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-400 text-xl font-bold">
+        <div className={large ? 'h-24 w-24 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-400 text-3xl font-bold' : 'h-16 w-16 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-400 text-xl font-bold'}>
           {org.charAt(0)}
         </div>
       )}
       <div className="flex flex-col flex-1 min-w-0">
-          <h3 className="text-base font-semibold text-black truncate">
-            <Link to={`/organization/${slug}`} className="hover:underline focus:underline">
-              {org}
-            </Link>
-          </h3>
-        <p className="text-sm text-neutral-600 mt-1 line-clamp-3">{program}</p>
+        <h3 className={large ? 'text-xl font-bold text-black truncate' : 'text-base font-semibold text-black truncate'}>
+          <Link to={`/organization/${slug}`} className="hover:underline focus:underline">
+            {org}
+          </Link>
+        </h3>
+        {program && (
+          <p className="text-sm text-neutral-600 mt-1 line-clamp-3">{program}</p>
+        )}
         <div className="flex flex-wrap gap-3 mt-2 items-center">
           {contact.email && (
             <a
@@ -51,7 +60,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               title="Email"
               className="text-blue-600 hover:text-blue-800"
             >
-              <Mail size={18} />
+              <Mail size={large ? 24 : 18} />
             </a>
           )}
           {contact.facebook && (
@@ -62,7 +71,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800"
             >
-              <FaFacebook size={18} />
+              <FaFacebook size={large ? 24 : 18} />
             </a>
           )}
           {contact.instagram && (
@@ -73,7 +82,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               rel="noopener noreferrer"
               className="text-pink-500 hover:text-pink-700"
             >
-              <FaInstagram size={18} />
+              <FaInstagram size={large ? 24 : 18} />
             </a>
           )}
           {contact.tiktok && (
@@ -84,7 +93,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               rel="noopener noreferrer"
               className="text-black hover:text-neutral-700"
             >
-              <FaTiktok size={18} />
+              <FaTiktok size={large ? 24 : 18} />
             </a>
           )}
           {contact.x && (
@@ -95,7 +104,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-600"
             >
-              <FaXTwitter size={18} />
+              <FaXTwitter size={large ? 24 : 18} />
             </a>
           )}
         </div>

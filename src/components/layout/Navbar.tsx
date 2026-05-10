@@ -78,6 +78,10 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     {
+      label: 'Browse',
+      href: '/browse',
+    },
+    {
       label: 'Academic',
       href: '/acadorg',
     },
@@ -154,9 +158,12 @@ const Navbar: React.FC = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <button className="rounded-2xl bg-black px-5 py-2 text-sm font-medium text-white transition hover:scale-[1.02] hover:bg-neutral-800 active:scale-[0.98]">
+          <Link
+            to="/browse"
+            className="inline-block rounded-2xl bg-black px-5 py-2 text-sm font-medium text-white transition hover:scale-[1.02] hover:bg-neutral-800 active:scale-[0.98]"
+          >
             Explore
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -217,9 +224,13 @@ const Navbar: React.FC = () => {
               </NavLink>
             ))}
 
-            <button className="mt-4 rounded-2xl bg-black px-4 py-3 text-sm font-medium text-white transition hover:bg-neutral-800">
+            <Link
+              to="/browse"
+              onClick={closeMenu}
+              className="mt-4 rounded-2xl bg-black px-4 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+            >
               Explore Organizations
-            </button>
+            </Link>
           </div>
         </div>
       </div>

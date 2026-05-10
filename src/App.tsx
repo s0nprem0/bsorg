@@ -5,12 +5,13 @@ import NonAcademicOrg from '@/pages/NonAcademicOrg';
 import College from '@/pages/College';
 import Pag from '@/pages/Pag';
 import OrganizationProfile from '@/pages/OrganizationProfile';
+import OrgBrowser from '@/pages/OrgBrowser';
 import NavBar from '@/components/layout/Navbar';
 
 function App() {
   return (
     <Router>
-      <div className='min-h-screen flex flex-col bg-neutral-700'>
+      <div className='min-h-screen flex flex-col'>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,6 +19,7 @@ function App() {
           <Route path="/non-acadorg" element={<NonAcademicOrg />} />
           <Route path="/college" element={<College />} />
           <Route path="/pag" element={<Pag />} />
+          <Route path="/browse" element={<OrgBrowser />} />
           <Route path="/organization/:slug" element={<OrganizationProfile />} />
         </Routes>
       </div>

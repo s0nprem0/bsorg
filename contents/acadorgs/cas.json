@@ -11,6 +11,7 @@
   },
   {
     "slug": "samakom",
+    "logo": "/cas/samakom.jpg",
     "program": "Bachelor of Arts in Communication",
     "org": "SAMAKOM - Samahan ng mga Mag-aaral sa Komunikasyon",
     "contact": {
@@ -33,6 +34,7 @@
   },
   {
     "slug": "utopia",
+    "logo": "/cas/utopia.jpg",
     "program": "Bachelor of Arts in Political Science",
     "org": "UTOPIA - CvSU Political Science Society",
     "contact": {
@@ -42,6 +44,7 @@
   },
   {
     "slug": "journalism-guild",
+    "logo": "/cas/journguild.jpg",
     "program": "Bachelor of Arts in Journalism",
     "org": "Journalism Guild",
     "contact": {
@@ -51,6 +54,7 @@
   },
   {
     "slug": "radicands",
+    "logo": "/cas/radicands.jpg",
     "program": "Bachelor of Science in Applied Mathematics",
     "org": "RADICANDS - CvSU Cluster of Applied Mathematics Students",
     "contact": {
@@ -60,6 +64,7 @@
   },
   {
     "slug": "mitochondrion-society",
+    "logo": "/cas/mitosoc.jpg",
     "program": "Bachelor of Science in Biology",
     "org": "Mitochondrion Society",
     "contact": {
@@ -69,6 +74,7 @@
   },
   {
     "slug": "development-communication-society",
+    "logo": "/cas/dvca.jpg",
     "program": "Bachelor of Science in Development Communication",
     "org": "Development Communication Society",
     "contact": {
@@ -78,6 +84,7 @@
   },
   {
     "slug": "psychology-circle",
+    "logo": "/cas/psychcircle.jpg",
     "program": "Bachelor of Science in Psychology",
     "org": "Psychology Circle",
     "contact": {
@@ -87,7 +94,7 @@
   },
   {
     "slug": "jswap-cvsu",
-    "logo": "./public/cas/jswap.jpg",
+    "logo": "/cas/jswap.jpg",
     "program": "Bachelor of Science in Social Work",
     "org": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
     "contact": {

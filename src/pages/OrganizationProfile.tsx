@@ -60,7 +60,7 @@ export default function OrganizationProfile() {
           The organization you're looking for doesn't exist or may have been moved.
         </p>
         <Link
-          to="/organizations"
+          to="/organization"
           className="inline-flex items-center gap-2 border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors"
         >
           ← Back to Organizations
@@ -73,7 +73,7 @@ export default function OrganizationProfile() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       {/* Back Button */}
       <Link
-        to="/browse"
+        to="/organization"
         className="inline-flex items-center gap-2 text-neutral-600 hover:text-black transition-colors mb-8"
       >
         <ArrowLeft size={20} />
@@ -82,7 +82,7 @@ export default function OrganizationProfile() {
 
       <div className="flex flex-col md:flex-row gap-10">
         {/* Left Column - Logo & Basic Info */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <div className="w-56 h-56 bg-white border border-neutral-200 overflow-hidden flex items-center justify-center">
             {org.logo ? (
               <>
@@ -92,7 +92,7 @@ export default function OrganizationProfile() {
                   className="h-full w-full object-contain p-6"
                 />
                 {/* Gradient Mask */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-black/5 via-transparent to-black/30 pointer-events-none" />
               </>
             ) : (
               <div className="text-8xl font-bold text-neutral-300">

@@ -15,11 +15,11 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/acadorg" element={<AcademicOrg />} />
-          <Route path="/non-acadorg" element={<NonAcademicOrg />} />
+          <Route path="/organization/acad-org" element={<AcademicOrg />} />
+          <Route path="/organization/non-acadorg" element={<NonAcademicOrg />} />
           <Route path="/college" element={<College />} />
           <Route path="/pag" element={<Pag />} />
-          <Route path="/browse" element={<OrgBrowser />} />
+          <Route path="/organization" element={<OrgBrowser />} />
           <Route path="/organization/:slug" element={<OrganizationProfile />} />
         </Routes>
       </div>

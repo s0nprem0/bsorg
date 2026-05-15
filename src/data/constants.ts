@@ -345,3 +345,24 @@ export const CAMPUSES = [
     slug: "main",
   },
 ];
+
+// Contact Icons and Colors
+import React, { type JSX } from 'react';
+import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import { Mail } from 'lucide-react';
+
+export const CONTACT_ICONS: Record<string, (large: boolean) => JSX.Element> = {
+  email: (large: boolean) => React.createElement(Mail, { size: large ? 24 : 18 }),
+  facebook: (large: boolean) => React.createElement(FaFacebook, { size: large ? 24 : 18 }),
+  instagram: (large: boolean) => React.createElement(FaInstagram, { size: large ? 24 : 18 }),
+  tiktok: (large: boolean) => React.createElement(FaTiktok, { size: large ? 24 : 18 }),
+  x: (large: boolean) => React.createElement(FaXTwitter, { size: large ? 24 : 18 }),
+};
+
+export const CONTACT_COLORS: Record<string, string> = {
+  email: 'text-blue-600 hover:text-blue-800',
+  facebook: 'text-blue-600 hover:text-blue-800',
+  instagram: 'text-pink-500 hover:text-pink-700',
+  tiktok: 'text-black hover:text-neutral-700',
+  x: 'text-blue-400 hover:text-blue-600',
+};

@@ -5,6 +5,7 @@ import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
 
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
+import { COLLEGES } from '@/data/constants';
 
 type BrowserOrg = {
   slug: string;
@@ -29,10 +30,13 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   const normalizedSlug = slug.toLowerCase().trim();
 
   // Search in academic organizations
-  for (const [category, orgs] of Object.entries(academicOrgsByCategory)) {
-    const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
-    if (found) {
-      return { ...found, type: 'Academic', category };
+  for (const college of COLLEGES) {
+    const orgs = academicOrgsByCategory[college.name];
+    if (orgs) {
+      const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
+      if (found) {
+        return { ...found, type: 'Academic', category: college.name };
+      }
     }
   }
 

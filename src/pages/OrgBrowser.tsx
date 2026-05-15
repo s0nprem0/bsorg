@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import Section from '@/components/ui/Sectiton';
+import Section from '@/components/ui/Section';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';

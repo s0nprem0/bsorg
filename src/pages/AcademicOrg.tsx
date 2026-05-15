@@ -1,5 +1,4 @@
-
-import Section from '@/components/ui/Sectiton';
+import Section from '@/components/ui/Section';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import type { AcademicOrg } from '@/data/academicOrgs';

@@ -1,5 +1,5 @@
 import Hero from "@/components/sections/Hero";
-import Section from "@/components/ui/Sectiton";
+import Section from "@/components/ui/Section";
 import { Link } from "react-router-dom";
 
 export default function Home() {

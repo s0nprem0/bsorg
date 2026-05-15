@@ -2,6 +2,7 @@
 
 import cas from '@/../contents/acadorgs/cas.json';
 import ceit from '@/../contents/acadorgs/ceit.json';
+import cemds from '@/../contents/acadorgs/cemds.json';
 
 
 export type AcademicOrg = {
@@ -23,5 +24,6 @@ export type AcademicOrg = {
 export const academicOrgsByCategory: Record<string, AcademicOrg[]> = {
   "College of Arts and Sciences": cas,
   "College of Engineering and Information Technology": ceit,
+  "College of Economics, Management,and Development Studies": cemds,
   // Add other colleges/categories here as you add more JSON files
 };

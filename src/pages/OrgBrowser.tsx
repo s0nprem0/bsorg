@@ -1,8 +1,9 @@
-import { useMemo, useState, useCallback, useEffect } from 'react';
+import { useMemo, useReducer, useEffect, useCallback } from 'react';
 import Section from '@/components/ui/Section';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
+import { normalize } from '@/lib/utils';
 
 type OrgType = 'Academic' | 'Non-Academic';
 type FilterValue = 'All' | string;
@@ -25,9 +26,6 @@ type BrowserOrg = {
 };
 
 // ==================== Utility Functions ====================
-function normalize(text?: string): string {
-  return (text ?? '').toLowerCase().trim();
-}
 
 function getUniqueOrgKey(org: { slug: string; org: string }): string {
   return org.slug ? `slug:${normalize(org.slug)}` : `org:${normalize(org.org)}`;
@@ -97,20 +95,48 @@ function filterOrganizations(orgs: BrowserOrg[], query: string, orgType: FilterV
   });
 }
 
+// ==================== Reducer ====================
+const initialState = {
+  query: '',
+  debouncedQuery: '',
+  orgType: 'All' as FilterValue,
+  category: 'All' as FilterValue,
+};
+
+type State = typeof initialState;
+type Action =
+  | { type: 'SET_QUERY'; payload: string }
+  | { type: 'SET_DEBOUNCED_QUERY'; payload: string }
+  | { type: 'SET_ORG_TYPE'; payload: FilterValue }
+  | { type: 'SET_CATEGORY'; payload: FilterValue };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'SET_QUERY':
+      return { ...state, query: action.payload };
+    case 'SET_DEBOUNCED_QUERY':
+      return { ...state, debouncedQuery: action.payload };
+    case 'SET_ORG_TYPE':
+      return { ...state, orgType: action.payload };
+    case 'SET_CATEGORY':
+      return { ...state, category: action.payload };
+    default:
+      return state;
+  }
+}
+
 // ==================== Main Component ====================
 
 export default function OrgBrowser() {
   const allOrgs = useMemo(() => buildOrgIndex(), []);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState('');
-  const [orgType, setOrgType] = useState<FilterValue>('All');
-  const [category, setCategory] = useState<FilterValue>('All');
+  const { query, debouncedQuery, orgType, category } = state;
 
   // Debounced search
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDebouncedQuery(query);
+      dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: query });
     }, 300);
 
     return () => clearTimeout(timer);
@@ -132,15 +158,15 @@ export default function OrgBrowser() {
 
   // Handlers
   const handleQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    dispatch({ type: 'SET_QUERY', payload: e.target.value });
   }, []);
 
   const handleTypeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setOrgType(e.target.value as FilterValue);
+    dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value as FilterValue });
   }, []);
 
   const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value as FilterValue);
+    dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterValue });
   }, []);
 
   return (

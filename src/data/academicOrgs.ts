@@ -1,9 +1,9 @@
 // This file provides a utility to load academic orgs by college/category
 
-import cas from '@/../contents/acadorgs/cas.json';
-import ceit from '@/../contents/acadorgs/ceit.json';
-import cemds from '@/../contents/acadorgs/cemds.json';
-
+import cas from '@/../contents/colleges/cas.json';
+import ceit from '@/../contents/colleges/ceit.json';
+import cemds from '@/../contents/colleges/cemds.json';
+import { COLLEGES } from './constants';
 
 export type AcademicOrg = {
   slug: string;
@@ -20,10 +20,20 @@ export type AcademicOrg = {
   logo?: string;
 };
 
-
-export const academicOrgsByCategory: Record<string, AcademicOrg[]> = {
-  "College of Arts and Sciences": cas,
-  "College of Engineering and Information Technology": ceit,
-  "College of Economics, Management,and Development Studies": cemds,
-  // Add other colleges/categories here as you add more JSON files
+const academicOrgData: Record<string, AcademicOrg[]> = {
+  cas,
+  ceit,
+  cemds,
 };
+
+export const academicOrgsByCategory: Record<string, AcademicOrg[]> =
+  COLLEGES.reduce(
+    (acc, college) => {
+      const orgs = academicOrgData[college.slug];
+      if (orgs) {
+        acc[college.name] = orgs;
+      }
+      return acc;
+    },
+    {} as Record<string, AcademicOrg[]>
+  );

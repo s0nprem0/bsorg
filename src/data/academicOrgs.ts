@@ -10,8 +10,8 @@ export type AcademicOrg = {
   org: string;
   description?: string;
   contact: {
-    email: string;
-    facebook: string;
+    email?: string;
+    facebook?: string;
     instagram?: string;
     tiktok?: string;
     x?: string;
@@ -21,16 +21,16 @@ export type AcademicOrg = {
 };
 
 const academicOrgData: Record<string, AcademicOrg[]> = {
-  cas,
-  ceit,
-  cemds,
+  cas: cas as AcademicOrg[],
+  ceit: ceit as AcademicOrg[],
+  cemds: cemds as AcademicOrg[],
 };
 
 export const academicOrgsByCategory: Record<string, AcademicOrg[]> =
   COLLEGES.reduce(
     (acc, college) => {
       const orgs = academicOrgData[college.slug];
-      if (orgs) {
+      if (orgs && orgs.length > 0) {
         acc[college.name] = orgs;
       }
       return acc;

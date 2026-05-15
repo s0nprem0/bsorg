@@ -24,8 +24,7 @@ type BrowserOrg = {
   category: string;
 };
 
-// ==================== Data Processing ====================
-
+// ==================== Utility Functions ====================
 function normalize(text?: string): string {
   return (text ?? '').toLowerCase().trim();
 }
@@ -48,18 +47,10 @@ function getCompletenessScore(org: BrowserOrg): number {
   return fields.filter(Boolean).length;
 }
 
-function buildOrgIndex(): BrowserOrg[] {
-  const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Academic' as const, category }))
-  );
-
-  const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category }))
-  );
-
+function mergeOrganizations(orgs: BrowserOrg[]): BrowserOrg[] {
   const uniqueMap = new Map<string, BrowserOrg>();
 
-  [...academic, ...nonAcademic].forEach((org) => {
+  orgs.forEach((org) => {
     const key = getUniqueOrgKey(org);
     const existing = uniqueMap.get(key);
 
@@ -73,6 +64,37 @@ function buildOrgIndex(): BrowserOrg[] {
   });
 
   return Array.from(uniqueMap.values()).sort((a, b) => a.org.localeCompare(b.org));
+}
+
+function buildOrgIndex(): BrowserOrg[] {
+  const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
+    orgs.map((org) => ({ ...org, type: 'Academic' as const, category }))
+  );
+
+  const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
+    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category }))
+  );
+
+  return mergeOrganizations([...academic, ...nonAcademic]);
+}
+
+function filterOrganizations(orgs: BrowserOrg[], query: string, orgType: FilterValue, category: FilterValue): BrowserOrg[] {
+  const normalizedQuery = normalize(query);
+
+  return orgs.filter((org) => {
+    const matchesType = orgType === 'All' || org.type === orgType;
+    const matchesCategory = category === 'All' || org.category === category;
+
+    if (!matchesType || !matchesCategory) return false;
+
+    if (!normalizedQuery) return true;
+
+    const haystack = normalize(
+      [org.org, org.description, org.program, org.slug, org.category, org.type].join(' ')
+    );
+
+    return haystack.includes(normalizedQuery);
+  });
 }
 
 // ==================== Main Component ====================
@@ -101,24 +123,12 @@ export default function OrgBrowser() {
   }, [allOrgs]);
 
   // Filtered organizations (uses debounced query)
-  const filteredOrgs = useMemo(() => {
-    const normalizedQuery = normalize(debouncedQuery);
-
-    return allOrgs.filter((org) => {
-      const matchesType = orgType === 'All' || org.type === orgType;
-      const matchesCategory = category === 'All' || org.category === category;
-
-      if (!matchesType || !matchesCategory) return false;
-
-      if (!normalizedQuery) return true;
-
-      const haystack = normalize(
-        [org.org, org.description, org.program, org.slug, org.category, org.type].join(' ')
-      );
-
-      return haystack.includes(normalizedQuery);
-    });
-  }, [allOrgs, debouncedQuery, orgType, category]);
+  const filteredOrgs = useMemo(() => filterOrganizations(allOrgs, debouncedQuery, orgType, category), [
+    allOrgs,
+    debouncedQuery,
+    orgType,
+    category,
+  ]);
 
   // Handlers
   const handleQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

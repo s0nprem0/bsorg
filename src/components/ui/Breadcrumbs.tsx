@@ -2,23 +2,23 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 
-interface BreadcrumbItem {
+interface BreadCrumbItem {
   label: string;
   href?: string;
 }
 
-interface BreadcrumbsProps {
-  items?: BreadcrumbItem[];
+interface BreadCrumbsProps {
+  items?: BreadCrumbItem[];
   className?: string;
 }
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' }) => {
+const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
   const location = useLocation();
 
-  // Generate breadcrumbs from current path if no items provided
-  const generateBreadcrumbs = (): BreadcrumbItem[] => {
+  // Generate BreadCrumbs from current path if no items provided
+  const generateBreadCrumbs = (): BreadCrumbItem[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    const breadcrumbs: BreadcrumbItem[] = [{ label: 'Home', href: '/' }];
+    const BreadCrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
 
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
@@ -31,23 +31,23 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' }) => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
 
-      breadcrumbs.push({
+      BreadCrumbs.push({
         label,
         href: isLast ? undefined : currentPath,
       });
     });
 
-    return breadcrumbs;
+    return BreadCrumbs;
   };
 
-  const breadcrumbItems = items || generateBreadcrumbs();
+  const BreadCrumbItems = items || generateBreadCrumbs();
 
   return (
     <nav
       className={`flex items-center space-x-1 text-sm text-gray-600 ${className}`}
-      aria-label="Breadcrumb"
+      aria-label="BreadCrumb"
     >
-      {breadcrumbItems.map((item, index) => (
+      {BreadCrumbItems.map((item, index) => (
         <React.Fragment key={index}>
           {index === 0 && <Home className="h-4 w-4" />}
           {index > 0 && <ChevronRight className="h-4 w-4 text-gray-400" />}
@@ -69,4 +69,4 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' }) => {
   );
 };
 
-export default Breadcrumbs;
+export default BreadCrumbs;

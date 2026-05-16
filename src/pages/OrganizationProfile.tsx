@@ -7,6 +7,8 @@ import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { COLLEGES } from '@/data/constants';
 
+import Breadcrumbs from '@/components/ui/Breadcrumbs'; // Import Breadcrumbs
+
 type BrowserOrg = {
   slug: string;
   org: string;
@@ -75,6 +77,16 @@ export default function OrganizationProfile() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Organizations', href: '/organization' },
+          { label: org.org }, // Current organization name
+        ]}
+        className="mb-6"
+      />
+
       {/* Back Button */}
       <Link
         to="/organization"

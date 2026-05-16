@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_ICONS, CONTACT_COLORS } from '../data/constants';
 

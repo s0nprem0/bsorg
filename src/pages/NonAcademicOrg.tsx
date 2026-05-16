@@ -1,7 +1,7 @@
 import Section from '@/components/ui/Section';
-import OrganizationCard from '@/components/OrganizationCard';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import type { NonAcademicOrg } from '@/data/nonAcademicOrgs';
+import OrgGrid from '@/components/layout/OrgGrid';
 
 export default function NonAcademicOrg() {
   return (
@@ -23,9 +23,7 @@ export default function NonAcademicOrg() {
                 {category}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {sortedOrgs.map(org => (
-                  <OrganizationCard key={org.slug} {...org} />
-                ))}
+                <OrgGrid organizations={sortedOrgs} columns={3} className="mt-6" />
               </div>
             </section>
           );

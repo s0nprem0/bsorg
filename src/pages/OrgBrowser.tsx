@@ -1,9 +1,9 @@
 import { useMemo, useReducer, useEffect, useCallback } from 'react';
 import Section from '@/components/ui/Section';
-import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { normalize } from '@/lib/utils';
+import OrgGrid from '@/components/layout/OrgGrid';
 
 type OrgType = 'Academic' | 'Non-Academic';
 type FilterValue = 'All' | string;
@@ -230,18 +230,11 @@ export default function OrgBrowser() {
           <p className="text-neutral-500 text-sm mt-1">Try adjusting your search or filters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredOrgs.map((org) => (
-            <OrganizationCard
-              key={org.slug || org.org}
-              slug={org.slug}
-              org={org.org}
-              program={org.program}
-              contact={org.contact}
-              logo={org.logo}
-            />
-          ))}
-        </div>
+        <OrgGrid
+          organizations={filteredOrgs}
+          columns={4} // Adjusted to ensure proper scaling
+          className="w-full mt-6 gap-6"
+        />
       )}
     </div>
   );

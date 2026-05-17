@@ -1,16 +1,18 @@
 import React from 'react';
 
-interface MarqueeProps {
-  text: string;
+interface MarqueeProps<T> {
+  items: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
   speed?: number;
   className?: string;
 }
 
-const Marquee: React.FC<MarqueeProps> = ({
-  text,
+const Marquee = <T,>({
+  items,
+  renderItem,
   speed = 40,
   className = '',
-}) => {
+}: MarqueeProps<T>) => {
   return (
     <div
       className={[
@@ -31,14 +33,16 @@ const Marquee: React.FC<MarqueeProps> = ({
           animationDuration: `${speed}s`,
         }}
       >
-        {Array.from({ length: 20 }).map((_, i) => (
-          <span
-            key={`first-${i}`}
-            className="mx-8 whitespace-nowrap text-sm font-medium tracking-wide text-neutral-700"
-          >
-            {text}
-          </span>
-        ))}
+        {Array.from({ length: 10 }).flatMap((_, loopIndex) =>
+          items.map((item, itemIndex) => (
+            <div
+              key={`first-${loopIndex}-${itemIndex}`}
+              className="mx-4 flex shrink-0 items-center"
+            >
+              {renderItem(item, itemIndex)}
+            </div>
+          ))
+        )}
       </div>
 
       {/* Duplicate */}
@@ -48,14 +52,16 @@ const Marquee: React.FC<MarqueeProps> = ({
           animationDuration: `${speed}s`,
         }}
       >
-        {Array.from({ length: 20 }).map((_, i) => (
-          <span
-            key={`second-${i}`}
-            className="mx-8 whitespace-nowrap text-sm font-medium tracking-wide text-neutral-700"
-          >
-            {text}
-          </span>
-        ))}
+        {Array.from({ length: 10 }).flatMap((_, loopIndex) =>
+          items.map((item, itemIndex) => (
+            <div
+              key={`second-${loopIndex}-${itemIndex}`}
+              className="mx-4 flex shrink-0 items-center"
+            >
+              {renderItem(item, itemIndex)}
+            </div>
+          ))
+        )}
       </div>
 
       <style>{`

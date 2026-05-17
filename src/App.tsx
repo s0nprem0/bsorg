@@ -6,6 +6,8 @@ import College from '@/pages/College';
 import OrganizationProfile from '@/pages/OrganizationProfile';
 import OrgBrowser from '@/pages/OrgBrowser';
 import NavBar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/organization" element={<OrgBrowser />} />
           <Route path="/organization/:slug" element={<OrganizationProfile />} />
         </Routes>
+        <ScrollToTop />
+        <Footer />
       </div>
     </Router>
   );

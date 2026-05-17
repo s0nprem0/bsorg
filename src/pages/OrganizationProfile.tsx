@@ -153,6 +153,9 @@ export default function OrganizationProfile() {
               {org.contact.email && (
                 <ContactLink type="email" href={`mailto:${org.contact.email}`} label={org.contact.email} />
               )}
+              {org.contact.website && (
+                <ContactLink type="website" href={org.contact.website} label="Website" />
+              )}
               {org.contact.facebook && (
                 <ContactLink type="facebook" href={org.contact.facebook} label="Facebook" />
               )}

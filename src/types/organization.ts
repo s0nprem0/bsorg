@@ -10,6 +10,7 @@ export interface Organization {
     instagram?: string;
     tiktok?: string;
     x?: string; // Twitter/X
+    website?: string;
   };
   campusId: number; // Reference to campus
 }

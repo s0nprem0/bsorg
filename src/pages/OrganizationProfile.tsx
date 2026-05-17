@@ -1,13 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Mail, ArrowLeft } from 'lucide-react';
-import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import { ArrowLeft } from 'lucide-react';
 
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { COLLEGES } from '@/data/constants';
+import { CONTACT_ICONS } from '@/data/constants';
 
-import Breadcrumbs from '@/components/ui/Breadcrumbs'; // Import Breadcrumbs
+import Breadcrumbs from '@/components/ui/BreadCrumbs'; // Correct casing for Breadcrumbs import
 
 type BrowserOrg = {
   slug: string;
@@ -21,6 +21,7 @@ type BrowserOrg = {
     instagram?: string;
     tiktok?: string;
     x?: string;
+    website?: string; // Added website property
   };
   type?: 'Academic' | 'Non-Academic';
   category?: string;
@@ -51,6 +52,21 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   }
 
   return null;
+}
+
+// Reusable component for rendering contact links
+function ContactLink({ type, href, label }: { type: string; href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`flex items-center gap-3 border border-neutral-300 hover:border-black px-5 py-3 transition-colors ${type !== 'email' ? 'text-neutral-700' : ''}`}
+    >
+      {CONTACT_ICONS[type]?.(true)}
+      <span className="font-medium">{label}</span>
+    </a>
+  );
 }
 
 export default function OrganizationProfile() {
@@ -151,61 +167,39 @@ export default function OrganizationProfile() {
 
             <div className="flex flex-wrap gap-4">
               {org.contact.email && (
-                <a
-                  href={`mailto:${org.contact.email}`}
-                  className="flex items-center gap-3 border border-neutral-300 hover:border-black px-5 py-3 transition-colors group"
-                >
-                  <Mail className="text-neutral-500 group-hover:text-black" size={22} />
-                  <span className="font-medium">{org.contact.email}</span>
-                </a>
+                <ContactLink type="email" href={`mailto:${org.contact.email}`}
+                  label={org.contact.email}
+                />
+              )}
+
+              {org.contact.website && (
+                <ContactLink type="website" href={org.contact.website}
+                  label="Website"
+                />
               )}
 
               {org.contact.facebook && (
-                <a
-                  href={org.contact.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-neutral-300 hover:border-[#1877F2] px-5 py-3 transition-colors text-neutral-700 hover:text-[#1877F2]"
-                >
-                  <FaFacebook size={22} />
-                  <span>Facebook</span>
-                </a>
+                <ContactLink type="facebook" href={org.contact.facebook}
+                  label="Facebook"
+                />
               )}
 
               {org.contact.instagram && (
-                <a
-                  href={org.contact.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-neutral-300 hover:border-[#E4405F] px-5 py-3 transition-colors text-neutral-700 hover:text-[#E4405F]"
-                >
-                  <FaInstagram size={22} />
-                  <span>Instagram</span>
-                </a>
+                <ContactLink type="instagram" href={org.contact.instagram}
+                  label="Instagram"
+                />
               )}
 
               {org.contact.tiktok && (
-                <a
-                  href={org.contact.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-neutral-300 hover:border-black px-5 py-3 transition-colors"
-                >
-                  <FaTiktok size={22} />
-                  <span>TikTok</span>
-                </a>
+                <ContactLink type="tiktok" href={org.contact.tiktok}
+                  label="TikTok"
+                />
               )}
 
               {org.contact.x && (
-                <a
-                  href={org.contact.x}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-neutral-300 hover:border-black px-5 py-3 transition-colors"
-                >
-                  <FaXTwitter size={22} />
-                  <span>X (Twitter)</span>
-                </a>
+                <ContactLink type="x" href={org.contact.x}
+                  label="X (Twitter)"
+                />
               )}
             </div>
           </div>

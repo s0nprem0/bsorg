@@ -9,7 +9,7 @@ interface OrgGridProps {
     description?: string;
     program?: string;
     logo?: string;
-    campusId?: number;
+    campusId: number;
     contact?: {
       email?: string;
       facebook?: string;

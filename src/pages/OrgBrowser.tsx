@@ -1,5 +1,6 @@
-import React, { useMemo, useReducer, useEffect, useState, useCallback } from 'react';
+import React, { useMemo, useReducer, useEffect, useState, useCallback, useRef } from 'react';
 import { Search, Filter } from 'lucide-react';
+import type { Organization } from '@/types/organization';
 import Section from '@/components/ui/Section';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
@@ -11,19 +12,7 @@ import { ORG_BROWSER } from '@/data/constants';
 type OrgType = 'Academic' | 'Non-Academic';
 type FilterValue = 'All' | string;
 
-type BrowserOrg = {
-  slug: string;
-  org: string;
-  description?: string;
-  program?: string;
-  logo?: string;
-  contact: {
-    email?: string;
-    facebook?: string;
-    instagram?: string;
-    tiktok?: string;
-    x?: string;
-  };
+type BrowserOrg = Organization & {
   type: OrgType;
   category: string;
 };
@@ -35,8 +24,8 @@ const INITIAL_STATE = {
   category: 'All' as FilterValue,
 };
 
-const getUniqueOrgKey = (org: { slug: string; org: string }): string =>
-  org.slug ? `slug:${normalize(org.slug)}` : `org:${normalize(org.org)}`;
+const getUniqueOrgKey = (org: { slug: string }): string =>
+  `slug:${normalize(org.slug)}`;
 
 const getCompletenessScore = (org: BrowserOrg): number =>
   [org.description, org.program, org.logo, org.contact.email, org.contact.facebook, org.contact.instagram, org.contact.tiktok, org.contact.x].filter(Boolean).length;
@@ -146,14 +135,25 @@ export default function OrgBrowser() {
   const allOrgs = useMemo(() => buildOrgIndex(), []);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { query, debouncedQuery, orgType, category } = state;
   const { ITEMS_PER_PAGE, DEBOUNCE_DELAY, ORG_TYPE_OPTIONS, PLACEHOLDER_TEXT, MESSAGES } = ORG_BROWSER;
 
   useEffect(() => {
-    const timer = setTimeout(() => dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: query }), DEBOUNCE_DELAY);
+    const timer = setTimeout(() => {
+      dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: query });
+    }, DEBOUNCE_DELAY);
     return () => clearTimeout(timer);
   }, [query, DEBOUNCE_DELAY]);
+
+  // Show loading when query differs from debounced query (deferred to avoid cascading renders)
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setIsLoading(query !== debouncedQuery);
+    }, 0);
+    return () => clearTimeout(t);
+  }, [query, debouncedQuery]);
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(allOrgs.map((org) => org.category)));
@@ -165,10 +165,8 @@ export default function OrgBrowser() {
     [allOrgs, debouncedQuery, orgType, category]
   );
 
-  const totalPages = Math.ceil(filteredOrgs.length / ITEMS_PER_PAGE);
-
-  const isInitialMount = React.useRef(true);
-  React.useEffect(() => {
+  const isInitialMount = useRef(true);
+  useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
@@ -180,6 +178,8 @@ export default function OrgBrowser() {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredOrgs.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredOrgs, currentPage, ITEMS_PER_PAGE]);
+
+  const totalPages = Math.ceil(filteredOrgs.length / ITEMS_PER_PAGE);
 
   const handleResetFilters = useCallback(() => {
     dispatch({ type: 'RESET_FILTERS' });
@@ -242,16 +242,58 @@ export default function OrgBrowser() {
         </div>
       </Section>
 
-      {paginatedOrgs.length === 0 ? (
+      {!isLoading && filteredOrgs.length === 0 ? (
         <div className="border border-dashed border-neutral-300 bg-neutral-50 py-16 text-center">
           <p className="text-neutral-600">{MESSAGES.NO_RESULTS}</p>
           <p className="text-neutral-500 text-sm mt-1">{MESSAGES.NO_RESULTS_SUBTEXT}</p>
+        </div>
+      ) : isLoading ? (
+        <div className="space-y-6">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div className="relative shrink-0 overflow-hidden aspect-3/2 w-44">
+                  <div className="h-full w-full bg-neutral-200 animate-pulse" />
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/20" />
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col justify-between p-4 md:p-5">
+                  <div className="min-w-0">
+                    <div className="mb-2">
+                      <div className="h-2 w-20 rounded bg-neutral-200 animate-pulse" />
+                    </div>
+                    <h3 className="truncate font-bold leading-tight text-black text-lg md:text-xl">
+                      <div className="h-4 w-32 rounded bg-neutral-200 animate-pulse" />
+                    </h3>
+                    <p className="mt-3 line-clamp-3 text-neutral-600 text-sm">
+                      <div className="h-2 w-full rounded bg-neutral-200 animate-pulse" />
+                      <div className="mt-1 h-2 w-3/4 rounded bg-neutral-200 animate-pulse" />
+                      <div className="mt-1 h-2 w-1/2 rounded bg-neutral-200 animate-pulse" />
+                    </p>
+                  </div>
+                  <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                    {[...Array(3)].map((_, i) => (
+                      <a
+                        key={i}
+                        href="#"
+                        title="Contact"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200 h-9 w-9"
+                      >
+                        <div className="h-5 w-5 bg-neutral-200 animate-pulse" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <OrgGrid organizations={paginatedOrgs} columns={2} className="w-full mt-6 gap-6" />
       )}
 
-      {totalPages > 1 && (
+      {totalPages > 1 && !isLoading && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

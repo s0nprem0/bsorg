@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
 import { ArrowLeft } from 'lucide-react';
+import type { Organization } from '@/types/organization';
 
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
@@ -8,23 +9,9 @@ import { CAMPUSES, COLLEGES, CONTACT_ICONS } from '@/data/constants';
 import { Pills } from '@/components/ui/Pills';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
-type BrowserOrg = {
-  slug: string;
-  org: string;
-  description?: string;
-  program?: string;
-  logo?: string;
-  contact: {
-    email?: string;
-    facebook?: string;
-    instagram?: string;
-    tiktok?: string;
-    x?: string;
-    website?: string;
-  };
-  type?: 'Academic' | 'Non-Academic';
-  category?: string;
-  campusId: number;
+type BrowserOrg = Organization & {
+  type: 'Academic' | 'Non-Academic';
+  category: string;
 };
 
 const PROFILE_STRINGS = {
@@ -54,7 +41,7 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   for (const [category, orgs] of Object.entries(nonAcademicOrgsByCategory)) {
     const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
     if (found) {
-      return { ...found, type: 'Non-Academic', category, campusId: found.campusId || 0 };
+      return { ...found, type: 'Non-Academic', category };
     }
   }
 
@@ -165,9 +152,6 @@ export default function OrganizationProfile() {
             <div className="flex flex-wrap gap-3">
               {org.contact.email && (
                 <ContactLink type="email" href={`mailto:${org.contact.email}`} label={org.contact.email} />
-              )}
-              {org.contact.website && (
-                <ContactLink type="website" href={org.contact.website} label="Website" />
               )}
               {org.contact.facebook && (
                 <ContactLink type="facebook" href={org.contact.facebook} label="Facebook" />

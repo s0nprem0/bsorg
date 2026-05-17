@@ -1,5 +1,6 @@
 // This file provides a utility to load academic orgs by college/category
 
+import type { Organization } from '@/types/organization';
 import cas from '@/../contents/colleges/cas.json';
 import ceit from '@/../contents/colleges/ceit.json';
 import cemds from '@/../contents/colleges/cemds.json';
@@ -8,24 +9,9 @@ import cspear from '@/../contents/colleges/cspear.json';
 import cafenr from '@/../contents/colleges/cafenr.json';
 import cthm from '@/../contents/colleges/cthm.json';
 
-
 import { COLLEGES, CAMPUSES } from './constants';
 
-export type AcademicOrg = {
-  campusId: number;
-  slug: string;
-  org: string;
-  description?: string;
-  contact: {
-    email?: string;
-    facebook?: string;
-    instagram?: string;
-    tiktok?: string;
-    x?: string;
-  };
-  program?: string;
-  logo?: string;
-};
+export type AcademicOrg = Organization;
 
 const academicOrgData: Record<string, AcademicOrg[]> = {
   cas: cas as AcademicOrg[],

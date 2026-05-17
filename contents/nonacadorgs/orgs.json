@@ -2,6 +2,7 @@
   {
     "campusId": 0,
     "slug": "ufy-sc",
+    "logo": "/org/ufy-sc.png",
     "org": "University First Year Student Council",
     "description": "1st year student governance and welfare",
     "contact": {
@@ -12,6 +13,7 @@
   {
     "campusId": 0,
     "slug": "sinagtala",
+    "logo": "/org/sinagtalamma.jpg",
     "org": "Sinagtala Multimedia Arts Organization",
     "description": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films",
     "contact": {
@@ -22,11 +24,35 @@
   {
     "campusId": 0,
     "slug": "kasama",
+    "logo": "/org/kasama3.jpg",
     "org": "CVSU KASAMA - Kabsuhenyong Samahan ng Manggagawa Manlilikha at Manininda",
     "description": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university.",
     "contact": {
       "email": "cvsu.kasama3@gmail.com",
       "facebook": "https://www.facebook.com/CvSUKASAMA3"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "likhain",
+    "logo": "/org/likhain.png",
+    "org": "LIKHAIN - Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal",
+    "description": "CvSU Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal.",
+    "contact": {
+      "email": "cvsu.likhain@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/likhain.cvsumain"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "mym",
+    "logo": "/org/mym.png",
+    "org": "Mind Your Mind",
+    "description": "A mental health advocacy organization that aims to raise awareness and provide support for mental health issues among students.",
+    "contact": {
+      "email": "mym.cvsumain@gmail.com",
+      "facebook": "https://www.facebook.com/mym.cvsu",
+      "instagram": "https://www.instagram.com/mindyourmind.cvsu"
     }
   }
 ]

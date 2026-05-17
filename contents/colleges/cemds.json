@@ -23,11 +23,11 @@
 	{
 		"campusId": 0,
 		"slug": "issa",
-		"logo": "/cemds/issa.png",
+		"logo": "/cemds/issa.jpg",
 		"program": "Bachelor of Science in International Studies",
 		"org": "International Studies  Students Association",
 		"contact": {
-			"email": "",
+			"email": "issa.cvsu@gmail.com",
 			"facebook": "https://www.facebook.com/issa.cemds"
 		}
 	},
@@ -45,11 +45,11 @@
 	{
 		"campusId": 0,
 		"slug": "pasoa",
-		"logo": "/cemds/pasoa.png",
+		"logo": "/cemds/pasoa.jpg",
 		"program": "Bachelor of Science in Office Administration",
 		"org": "Philippine Association of Students in Office Administration - CvSU Chapter",
 		"contact": {
-			"email": "",
+			"email": "pasoa.cvsuchapter@gmail.com",
 			"facebook": "https://www.facebook.com/pasoa.cemds"
 		}
 	},

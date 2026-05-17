@@ -1,0 +1,36 @@
+[
+  {
+    "campusId": 0,
+    "slug": "the-gazette",
+    "logo": "/org/gazette.png",
+    "org": "The Gazette",
+    "description": "The official student publication of CvSU Main Campus",
+    "contact": {
+      "email": "thegazette@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/thegazettecvsu",
+      "x": "https://twitter.com/thegazettespu",
+      "instagram": "https://www.instagram.com/thegazettespu/"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "ghcp",
+    "org": "The Green Horizon Group of Publications",
+    "description": "The GHGP is the official student publication of CvSU - Cavite City Campus.",
+    "contact": {
+      "email": "theghgpofficial@gmail.com",
+      "facebook": "https://www.facebook.com/greenhorizonofficial",
+      "instagram": "https://www.instagram.com/theghgp"
+    }
+  },
+  {
+    "slug": "the-flare",
+    "org": "The Flare - CvSU Imus",
+    "description": "The Flare is the official student publication of CvSU - Imus Campus.",
+    "contact": {
+      "email": "sputheflare.cvsuimus@gmail.com",
+      "facebook": "https://www.facebook.com/theflarecvsuimus",
+      "website": "https://sputheflarecvsuimus.wixsite.com/the-flare"
+    }
+  }
+]

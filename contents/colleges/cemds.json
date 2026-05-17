@@ -1,5 +1,6 @@
 [
 	{
+		"campusId": 0,
 		"slug": "cemds-sc",
 		"logo": "/cemds/cemds-sc.jpg",
 		"org": "CEMDS Student Council",
@@ -9,6 +10,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "sfe",
 		"logo": "/cemds/sfe.png",
 		"program": "Bachelor of Science in Economics",
@@ -19,6 +21,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "issa",
 		"logo": "/cemds/issa.png",
 		"program": "Bachelor of Science in International Studies",
@@ -29,6 +32,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "cddm",
 		"logo": "/cemds/cddm.jpg",
 		"program": "Bachelor of Science in Development Management",
@@ -39,6 +43,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "pasoa",
 		"logo": "/cemds/pasoa.png",
 		"program": "Bachelor of Science in Office Administration",
@@ -49,6 +54,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "jpia",
 		"logo": "/cemds/jpia.png",
 		"program": "Bachelor of Science in Accountancy",
@@ -59,6 +65,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "jfinex",
 		"logo": "/cemds/jfinex.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Financial Management",
@@ -69,6 +76,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "jpmap",
 		"logo": "/cemds/jpmap.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Human Resource Management",
@@ -79,6 +87,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "jma",
 		"logo": "/cemds/jma.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Marketing Management",
@@ -89,6 +98,7 @@
 		}
 	},
 	{
+		"campusId": 0,
 		"slug": "joma",
 		"logo": "/cemds/joma.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Operations Management",

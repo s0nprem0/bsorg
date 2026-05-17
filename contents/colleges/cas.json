@@ -1,5 +1,6 @@
 [
   {
+    "campusId": 0,
     "slug": "cas-sc",
     "logo": "/cas/cas-sc.jpg",
     "org": "CAS Student Council",
@@ -10,6 +11,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "samakom",
     "logo": "/cas/samakom.jpg",
     "program": "Bachelor of Arts in Communication",
@@ -22,6 +24,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "pragmaticus",
     "logo": "/cas/pragmaticus.jpg",
     "program": "Bachelor of Arts in English Language Studies",
@@ -33,6 +36,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "utopia",
     "logo": "/cas/utopia.jpg",
     "program": "Bachelor of Arts in Political Science",
@@ -43,6 +47,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "journalism-guild",
     "logo": "/cas/journguild.jpg",
     "program": "Bachelor of Arts in Journalism",
@@ -53,6 +58,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "radicands",
     "logo": "/cas/radicands.jpg",
     "program": "Bachelor of Science in Applied Mathematics",
@@ -63,6 +69,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "mitochondrion-society",
     "logo": "/cas/mitosoc.jpg",
     "program": "Bachelor of Science in Biology",
@@ -73,6 +80,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "development-communication-society",
     "logo": "/cas/dvca.jpg",
     "program": "Bachelor of Science in Development Communication",
@@ -83,6 +91,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "psychology-circle",
     "logo": "/cas/psychcircle.jpg",
     "program": "Bachelor of Science in Psychology",
@@ -93,6 +102,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "jswap-cvsu",
     "logo": "/cas/jswap.jpg",
     "program": "Bachelor of Science in Social Work",

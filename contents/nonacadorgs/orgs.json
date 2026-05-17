@@ -1,5 +1,6 @@
 [
   {
+    "campusId": 0,
     "slug": "ufy-sc",
     "org": "University First Year Student Council",
     "description": "1st year student governance and welfare",
@@ -9,6 +10,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "sinagtala",
     "org": "Sinagtala Multimedia Arts Organization",
     "description": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films",
@@ -18,6 +20,7 @@
     }
   },
   {
+    "campusId": 0,
     "slug": "kasama",
     "org": "CVSU KASAMA - Kabsuhenyong Samahan ng Manggagawa Manlilikha at Manininda",
     "description": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university.",

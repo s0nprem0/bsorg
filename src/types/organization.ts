@@ -11,6 +11,7 @@ export interface Organization {
     tiktok?: string;
     x?: string; // Twitter/X
     website?: string;
+    youtube?: string;
   };
   campusId: number; // Reference to campus
 }

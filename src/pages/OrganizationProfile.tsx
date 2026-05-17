@@ -168,6 +168,9 @@ export default function OrganizationProfile() {
               {org.contact.x && (
                 <ContactLink type="x" href={org.contact.x} label="X (Twitter)" />
               )}
+              {org.contact.youtube && (
+                <ContactLink type="youtube" href={org.contact.youtube} label="YouTube" />
+              )}
             </div>
           </div>
         </div>

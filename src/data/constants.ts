@@ -1,5 +1,5 @@
 import React, { type JSX } from 'react';
-import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { Mail, Globe } from 'lucide-react';
 
 // ==================== Organization Types ====================
@@ -8,10 +8,9 @@ export const ORGANIZATION_TYPES = {
   STUDENT_COUNCIL: 'Student Council',
   ACADEMIC: 'Academic',
   NON_ACADEMIC: 'Non-Academic',
-  PERFORMING_ARTS: 'Performing Arts',
+  PERFORMING_ARTS: 'Performing Arts Group',
   STUDENT_PUBLICATION_UNITS: 'Student Publication Units',
 } as const;
-
 // ==================== Paginated Browser ====================
 
 export const ORG_BROWSER = {
@@ -41,6 +40,7 @@ export const CONTACT_ICONS: Record<string, (large: boolean) => JSX.Element> = {
   instagram: (large: boolean) => React.createElement(FaInstagram, { size: large ? 24 : 18 }),
   tiktok: (large: boolean) => React.createElement(FaTiktok, { size: large ? 24 : 18 }),
   x: (large: boolean) => React.createElement(FaXTwitter, { size: large ? 24 : 18 }),
+  youtube: (large: boolean) => React.createElement(FaYoutube, { size: large ? 24 : 18 }),
 };
 
 // ==================== Organization Card ====================

@@ -55,5 +55,39 @@
       "facebook": "https://www.facebook.com/mym.cvsu",
       "instagram": "https://www.instagram.com/mindyourmind.cvsu"
     }
+  },
+  {
+    "campusId": 0,
+    "slug": "musikeros",
+    "logo": "/org/musikeros.jpg",
+    "org": "CvSU Musikeros",
+    "description": "A student organization that aims to promote musical excellence and provide a platform for students to showcase their talents.",
+    "contact": {
+      "email": "cvsumusikeros@gmail.com",
+      "facebook": "https://www.facebook.com/CvSUMusikeros",
+      "instagram": "https://www.instagram.com/cvsu.musikeros"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "awsbg-spade",
+    "logo": "/org/aws-spade.jpg",
+    "org": "AWS Student Builder Group - Spade",
+    "description": "AWS Student Builder Group - Spade is a student organization that aims to provide students with opportunities to learn and grow in the field of cloud computing and technology.",
+    "contact": {
+      "email": "awscc.spade@gmail.com",
+      "facebook": "https://www.facebook.com/AWSCCSpade"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "cos",
+    "logo": "/org/cos.jpg",
+    "org": "CvSU Otaku Society",
+    "description": "A student organization for anime and manga enthusiasts at CvSU.",
+    "contact": {
+      "email": "cvsumainotakusociety@gmail.com",
+      "facebook": "https://www.facebook.com/CvSUOtakuSocietyMainCampus"
+    }
   }
 ]

@@ -13,8 +13,9 @@
     }
   },
   {
-    "campusId": 0,
-    "slug": "ghcp",
+    "campusId": 10,
+    "slug": "ghgp",
+    "logo": "/org/ghgp.jpg",
     "org": "The Green Horizon Group of Publications",
     "description": "The GHGP is the official student publication of CvSU - Cavite City Campus.",
     "contact": {

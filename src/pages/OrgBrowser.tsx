@@ -1,9 +1,10 @@
-import { useMemo, useReducer, useEffect } from 'react';
+import { useMemo, useReducer, useEffect, useState } from 'react';
 import Section from '@/components/ui/Section';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { normalize } from '@/lib/utils';
 import OrgGrid from '@/components/layout/OrgGrid';
+import Pagination from '@/components/ui/Pagination';
 
 type OrgType = 'Academic' | 'Non-Academic';
 type FilterValue = 'All' | string;
@@ -130,6 +131,9 @@ function reducer(state: State, action: Action): State {
 export default function OrgBrowser() {
   const allOrgs = useMemo(() => buildOrgIndex(), []);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(allOrgs.length / itemsPerPage);
 
   const { query, debouncedQuery, orgType, category } = state;
 
@@ -156,6 +160,12 @@ export default function OrgBrowser() {
     category,
   ]);
 
+  const paginatedOrgs = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return filteredOrgs.slice(start, end);
+  }, [filteredOrgs, currentPage]);
+
   // Handlers
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'SET_QUERY', payload: e.target.value });
@@ -167,6 +177,10 @@ export default function OrgBrowser() {
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterValue });
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -224,16 +238,26 @@ export default function OrgBrowser() {
       </div>
 
       {/* Results */}
-      {filteredOrgs.length === 0 ? (
+      {paginatedOrgs.length === 0 ? (
         <div className="border border-dashed border-neutral-300 bg-neutral-50 py-16 text-center">
           <p className="text-neutral-600">No organizations match your current filters.</p>
           <p className="text-neutral-500 text-sm mt-1">Try adjusting your search or filters.</p>
         </div>
       ) : (
         <OrgGrid
-          organizations={filteredOrgs}
+          organizations={paginatedOrgs}
           columns={4} // Adjusted to ensure proper scaling
           className="w-full mt-6 gap-6"
+        />
+      )}
+
+      {/* Pagination */}
+      {filteredOrgs.length > itemsPerPage && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          className="mt-8"
         />
       )}
     </div>

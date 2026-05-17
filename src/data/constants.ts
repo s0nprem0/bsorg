@@ -344,6 +344,51 @@ export const CAMPUSES = [
     name: "Main Campus",
     slug: "main",
   },
+  {
+    id: 1,
+    name: "Imus Campus",
+    slug: "imus",
+  },
+  {
+    id: 2,
+    name: "Bacoor Campus",
+    slug: "bacoor",
+  },
+  {
+    id: 3,
+    name: "General Trias Campus",
+    slug: "general-trias",
+  },
+  {
+    id: 4,
+    name: "Silang Campus",
+    slug: "silang",
+  },
+  {
+    id: 5,
+    name: "Tanza Campus",
+    slug: "tanza",
+  },
+  {
+    id: 6,
+    name: "Rosario Campus",
+    slug: "ccat",
+  },
+  {
+    id: 7,
+    name: "Naic Campus",
+    slug: "naic",
+  },
+  {
+    id: 8,
+    name: "Silang Campus",
+    slug: "silang",
+  },
+  {
+    id: 9,
+    name: "Imus Campus",
+    slug: "imus",
+  }
 ];
 
 // Contact Icons and Colors

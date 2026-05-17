@@ -2,12 +2,13 @@
   {
     "campusId": 0,
     "slug": "ufy-sc",
-    "logo": "/org/ufy-sc.png",
+    "logo": "/org/ufy-sc.jpg",
     "org": "University First Year Student Council",
     "description": "1st year student governance and welfare",
     "contact": {
       "email": "cvsu.ufy-sc@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUUFYSC"
+      "facebook": "https://www.facebook.com/CvSUUFYSC",
+      "instagram": "https://www.instagram.com/cvsuufysc"
     }
   },
   {

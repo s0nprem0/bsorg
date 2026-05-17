@@ -388,6 +388,11 @@ export const CAMPUSES = [
     id: 9,
     name: "Imus Campus",
     slug: "imus",
+  },
+  {
+    id: 10,
+    name: "Cavite City Campus",
+    slug: "cavite-city",
   }
 ];
 

@@ -22,10 +22,10 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
   campus,
 }) => {
   const contactEntries = Object.entries(contact).filter(([, value]) => value);
-  const { SIZES, ICONS } = ORG_CARD;
+  const { SIZES } = ORG_CARD;
   const sizes = large ? SIZES.LARGE : SIZES.SMALL;
 
-  const logoSize = `aspect-[3/2] w-${sizes.LOGO_WIDTH}`;
+  const logoSize = large ? 'aspect-[3/2] w-60' : 'aspect-[3/2] w-44';
 
   return (
     <div
@@ -97,22 +97,25 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
             )}
           </div>
 
-          {contactEntries.length > 0 && (
-            <div className="mt-5 flex flex-wrap items-center gap-2.5">
-              {contactEntries.map(([key, value]) => (
-                <a
-                  key={key}
-                  href={key === 'email' ? `mailto:${value}` : value}
-                  title={key.charAt(0).toUpperCase() + key.slice(1)}
-                  target={key === 'email' ? undefined : '_blank'}
-                  rel={key === 'email' ? undefined : 'noopener noreferrer'}
-                  className={`flex h-${ICONS.CONTAINER_SIZE} w-${ICONS.CONTAINER_SIZE} items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200`}
-                >
-                  {CONTACT_ICONS[key]?.(large)}
-                </a>
-              ))}
-            </div>
-          )}
+{contactEntries.length > 0 && (
+             <div className="mt-5 flex flex-wrap items-center gap-2.5">
+               {contactEntries.map(([key, value]) => (
+                 <a
+                   key={key}
+                   href={key === 'email' ? `mailto:${value}` : value}
+                   title={key.charAt(0).toUpperCase() + key.slice(1)}
+                   target={key === 'email' ? undefined : '_blank'}
+                   rel={key === 'email' ? undefined : 'noopener noreferrer'}
+                   className={cn(
+                     'flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200',
+                     large ? 'h-11 w-11' : 'h-9 w-9'
+                   )}
+                 >
+                   {CONTACT_ICONS[key]?.(large)}
+                 </a>
+               ))}
+             </div>
+           )}
         </div>
       </div>
     </div>

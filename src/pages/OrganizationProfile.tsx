@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import type { Organization } from '@/types/organization';
+import SEO from '@/components/SEO';
 
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
@@ -16,7 +17,8 @@ type BrowserOrg = Organization & {
 
 const PROFILE_STRINGS = {
   NOT_FOUND_TITLE: 'Organization Not Found',
-  NOT_FOUND_DESCRIPTION: 'The organization you\'re looking for doesn\'t exist or may have been moved.',
+  NOT_FOUND_DESCRIPTION:
+    "The organization you're looking for doesn't exist or may have been moved.",
   BACK_LINK: '← Back to Organizations',
   CONTACT_TITLE: 'Contact Information',
   ABOUT_TITLE: 'About',
@@ -31,15 +33,20 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   for (const college of COLLEGES) {
     const orgs = academicOrgsByCategory[college.name];
     if (orgs) {
-      const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
+      const found = orgs.find(org => org.slug.toLowerCase() === normalizedSlug);
       if (found) {
-        return { ...found, type: 'Academic', category: college.name, campusId: found.campusId };
+        return {
+          ...found,
+          type: 'Academic',
+          category: college.name,
+          campusId: found.campusId,
+        };
       }
     }
   }
 
   for (const [category, orgs] of Object.entries(nonAcademicOrgsByCategory)) {
-    const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
+    const found = orgs.find(org => org.slug.toLowerCase() === normalizedSlug);
     if (found) {
       return { ...found, type: 'Non-Academic', category };
     }
@@ -48,7 +55,15 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   return null;
 }
 
-function ContactLink({ type, href, label }: { type: string; href: string; label: string }) {
+function ContactLink({
+  type,
+  href,
+  label,
+}: {
+  type: string;
+  href: string;
+  label: string;
+}) {
   return (
     <a
       href={href}
@@ -63,8 +78,12 @@ function ContactLink({ type, href, label }: { type: string; href: string; label:
 }
 
 function CampusDisplay({ campusId }: { campusId: number }) {
-  const campus = CAMPUSES.find((c) => c.id === campusId);
-  return campus ? <Pills items={[campus.name]} variant="outline" size="sm" /> : <span>Unknown Campus</span>;
+  const campus = CAMPUSES.find(c => c.id === campusId);
+  return campus ? (
+    <Pills items={[campus.name]} variant="outline" size="sm" />
+  ) : (
+    <span>Unknown Campus</span>
+  );
 }
 
 export default function OrganizationProfile() {
@@ -73,108 +92,169 @@ export default function OrganizationProfile() {
 
   if (!org) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-        <h2 className="mb-4 text-3xl font-bold">{PROFILE_STRINGS.NOT_FOUND_TITLE}</h2>
-        <p className="mb-8 text-neutral-600">
-          {PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
-        </p>
-        <Link
-          to="/organization"
-          className="inline-flex items-center gap-2 border border-black px-6 py-3 text-sm font-medium transition-colors hover:bg-black hover:text-white"
-        >
-          {PROFILE_STRINGS.BACK_LINK}
-        </Link>
-      </div>
+      <>
+        <SEO
+          title={PROFILE_STRINGS.NOT_FOUND_TITLE}
+          description={PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
+        />
+        <div className="mx-auto max-w-2xl px-4 py-20 text-center">
+          <h2 className="mb-4 text-3xl font-bold">
+            {PROFILE_STRINGS.NOT_FOUND_TITLE}
+          </h2>
+          <p className="mb-8 text-neutral-600">
+            {PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
+          </p>
+          <Link
+            to="/organization"
+            className="inline-flex items-center gap-2 border border-black px-6 py-3 text-sm font-medium transition-colors hover:bg-black hover:text-white"
+          >
+            {PROFILE_STRINGS.BACK_LINK}
+          </Link>
+        </div>
+      </>
     );
   }
 
+
+
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10">
-      <Breadcrumbs
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'Organizations', href: '/organization' },
-          { label: org.org },
-        ]}
-        className="mb-6"
+    <>
+      <SEO
+        title={`${org.org} - ${org.type} Organization Profile`}
+        description={`Learn more about ${org.org}, a ${org.type.toLowerCase()} organization in the category of ${org.category} at Cavite State University.`}
+        image={org.logo}
+        url={typeof window !== 'undefined' ? `${window.location.origin}/organization/${slug}` : undefined}
       />
 
-      <Link
-        to="/organization"
-        className="mb-8 inline-flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-black"
-      >
-        <ArrowLeft size={18} />
-        {PROFILE_STRINGS.BACK_TO_BROWSER}
-      </Link>
+      <div className="mx-auto max-w-4xl px-4 py-10">
+        <Breadcrumbs
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Organizations', href: '/organization' },
+            { label: org.org },
+          ]}
+          className="mb-6"
+        />
 
-      <div className="flex flex-col gap-8 md:flex-row md:gap-10">
-        <div className="shrink-0">
-          <div className="relative aspect-square w-56 overflow-hidden border border-neutral-200 bg-white">
-            {org.logo ? (
-              <>
-                <img
-                  src={org.logo}
-                  alt={`${org.org} logo`}
-                  className="h-full w-full object-contain p-8"
-                />
-                <div className="absolute inset-0 bg-linear-to-br from-black/5 via-transparent to-black/20" />
-              </>
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-7xl font-bold text-neutral-300">
-                {org.org.charAt(0)}
+        <Link
+          to="/organization"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-black"
+        >
+          <ArrowLeft size={18} />
+          {PROFILE_STRINGS.BACK_TO_BROWSER}
+        </Link>
+
+        <div className="flex flex-col gap-8 md:flex-row md:gap-10">
+          <div className="shrink-0">
+            <div className="relative aspect-square w-56 overflow-hidden border border-neutral-200 bg-white">
+              {org.logo ? (
+                <>
+                  <img
+                    src={org.logo}
+                    alt={`${org.org} logo`}
+                    className="h-full w-full object-contain p-8"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-br from-black/5 via-transparent to-black/20" />
+                </>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-7xl font-bold text-neutral-300">
+                  {org.org.charAt(0)}
+                </div>
+              )}
+            </div>
+
+            <div className="mt-5 space-y-3">
+              <Pills
+                items={[org.type || 'Organization']}
+                variant="soft"
+                size="sm"
+              />
+              {org.category && (
+                <div className="text-sm text-neutral-500">{org.category}</div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <CampusDisplay campusId={org.campusId} />
+            <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+              {org.org}
+            </h1>
+
+            {org.program && (
+              <p className="mt-2 text-lg text-neutral-600">{org.program}</p>
+            )}
+
+            {org.description && (
+              <div className="mt-8">
+                <h3 className="mb-3 text-xl font-semibold">
+                  {PROFILE_STRINGS.ABOUT_TITLE}
+                </h3>
+                <p className="whitespace-pre-line leading-relaxed text-neutral-700">
+                  {org.description}
+                </p>
               </div>
             )}
-          </div>
 
-          <div className="mt-5 space-y-3">
-            <Pills items={[org.type || 'Organization']} variant="soft" size="sm" />
-            {org.category && (
-              <div className="text-sm text-neutral-500">{org.category}</div>
-            )}
-          </div>
-        </div>
-
-        <div className="flex-1">
-          <CampusDisplay campusId={org.campusId} />
-          <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{org.org}</h1>
-
-          {org.program && <p className="mt-2 text-lg text-neutral-600">{org.program}</p>}
-
-          {org.description && (
             <div className="mt-8">
-              <h3 className="mb-3 text-xl font-semibold">{PROFILE_STRINGS.ABOUT_TITLE}</h3>
-              <p className="whitespace-pre-line leading-relaxed text-neutral-700">{org.description}</p>
-            </div>
-          )}
-
-          <div className="mt-8">
-            <h3 className="mb-4 text-xl font-semibold">{PROFILE_STRINGS.CONTACT_TITLE}</h3>
-            <div className="flex flex-wrap gap-3">
-              {org.contact.email && (
-                <ContactLink type="email" href={`mailto:${org.contact.email}`} label={org.contact.email} />
-              )}
-              {org.contact.website && (
-                <ContactLink type="website" href={org.contact.website} label="Website" />
-              )}
-              {org.contact.facebook && (
-                <ContactLink type="facebook" href={org.contact.facebook} label="Facebook" />
-              )}
-              {org.contact.instagram && (
-                <ContactLink type="instagram" href={org.contact.instagram} label="Instagram" />
-              )}
-              {org.contact.tiktok && (
-                <ContactLink type="tiktok" href={org.contact.tiktok} label="TikTok" />
-              )}
-              {org.contact.x && (
-                <ContactLink type="x" href={org.contact.x} label="X (Twitter)" />
-              )}
-              {org.contact.youtube && (
-                <ContactLink type="youtube" href={org.contact.youtube} label="YouTube" />
-              )}
+              <h3 className="mb-4 text-xl font-semibold">
+                {PROFILE_STRINGS.CONTACT_TITLE}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {org.contact.email && (
+                  <ContactLink
+                    type="email"
+                    href={`mailto:${org.contact.email}`}
+                    label={org.contact.email}
+                  />
+                )}
+                {org.contact.website && (
+                  <ContactLink
+                    type="website"
+                    href={org.contact.website}
+                    label="Website"
+                  />
+                )}
+                {org.contact.facebook && (
+                  <ContactLink
+                    type="facebook"
+                    href={org.contact.facebook}
+                    label="Facebook"
+                  />
+                )}
+                {org.contact.instagram && (
+                  <ContactLink
+                    type="instagram"
+                    href={org.contact.instagram}
+                    label="Instagram"
+                  />
+                )}
+                {org.contact.tiktok && (
+                  <ContactLink
+                    type="tiktok"
+                    href={org.contact.tiktok}
+                    label="TikTok"
+                  />
+                )}
+                {org.contact.x && (
+                  <ContactLink
+                    type="x"
+                    href={org.contact.x}
+                    label="X (Twitter)"
+                  />
+                )}
+                {org.contact.youtube && (
+                  <ContactLink
+                    type="youtube"
+                    href={org.contact.youtube}
+                    label="YouTube"
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

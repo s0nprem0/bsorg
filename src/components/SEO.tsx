@@ -1,58 +1,42 @@
 import { Helmet } from 'react-helmet-async';
 
-interface SEOProps {
+type SEOProps = {
   title?: string;
   description?: string;
-  keywords?: string;
   image?: string;
-  url?: string;
-  type?: string;
-  siteName?: string;
-}
+  canonical?: string;
+  type?: 'website' | 'article';
+};
 
 export default function SEO({
   title,
-  description,
-  keywords,
-  image,
-  url,
+  description = "Discover and explore student organizations at Cavite State University.",
+  image = "https://yourdomain.com/og-image.jpg", // Replace with your actual OG image
+  canonical,
   type = 'website',
-  siteName = 'Better Student Org',
 }: SEOProps) {
-  const fullTitle = title ? `${title} - ${siteName}` : siteName;
-
-  const getAbsoluteImageUrl = (img?: string): string | undefined => {
-    if (!img) return undefined;
-    if (img.startsWith('http://') || img.startsWith('https://')) return img;
-    if (typeof window !== 'undefined') {
-      return `${window.location.origin}${img}`;
-    }
-    return img;
-  };
-
-  const absoluteImage = getAbsoluteImageUrl(image);
+  const baseTitle = "BetterOSAS";
+  const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
-      {description && <meta name="description" content={description} />}
-      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="description" content={description} />
 
-      {/* Open Graph / Facebook */}
+      {/* Open Graph / Social Media */}
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
       <meta property="og:type" content={type} />
-      {title && <meta property="og:title" content={title} />}
-      {description && <meta property="og:description" content={description} />}
-      {absoluteImage && <meta property="og:image" content={absoluteImage} />}
-      {url && <meta property="og:url" content={url} />}
-      <meta property="og:site_name" content={siteName} />
+      {image && <meta property="og:image" content={image} />}
+      {canonical && <meta property="og:url" content={canonical} />}
 
-      {/* Twitter */}
-      {title && <meta property="twitter:title" content={title} />}
-      {description && (
-        <meta property="twitter:description" content={description} />
-      )}
-      {absoluteImage && <meta property="twitter:image" content={absoluteImage} />}
-      <meta property="twitter:card" content="summary_large_image" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      {image && <meta name="twitter:image" content={image} />}
+
+      {canonical && <link rel="canonical" href={canonical} />}
     </Helmet>
   );
 }

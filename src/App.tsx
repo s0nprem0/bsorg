@@ -8,9 +8,12 @@ import OrgBrowser from '@/pages/OrgBrowser';
 import NavBar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
+    <ErrorBoundary>
     <Router>
       <div className='min-h-screen flex flex-col'>
         <NavBar />
@@ -21,11 +24,13 @@ function App() {
           <Route path="/college" element={<College />} />
           <Route path="/organization" element={<OrgBrowser />} />
           <Route path="/organization/:slug" element={<OrganizationProfile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollToTop />
         <Footer />
       </div>
     </Router>
+    </ErrorBoundary>
   );
 }
 

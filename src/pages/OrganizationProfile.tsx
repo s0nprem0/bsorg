@@ -122,8 +122,6 @@ export default function OrganizationProfile() {
       <SEO
         title={`${org.org} - ${org.type} Organization Profile`}
         description={`Learn more about ${org.org}, a ${org.type.toLowerCase()} organization in the category of ${org.category} at Cavite State University.`}
-        image={org.logo}
-        url={typeof window !== 'undefined' ? `${window.location.origin}/organization/${slug}` : undefined}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-10">

@@ -9,6 +9,7 @@ export type OrganizationCardProps = {
   contact?: Partial<Record<'email' | 'facebook' | 'instagram' | 'tiktok' | 'x', string>>;
   logo?: string;
   large?: boolean;
+  campus?: string; // Added campus prop
 };
 
 const OrganizationCard: React.FC<OrganizationCardProps> = ({
@@ -18,6 +19,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
   contact = {},
   logo,
   large = false,
+  campus, // Destructure campus prop
 }) => {
   const contactEntries = Object.entries(contact).filter(([, value]) => value);
 
@@ -64,6 +66,13 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
           )}
         >
           <div className="min-w-0">
+            {/* Campus Pill */}
+            {campus && (
+              <div className="mb-2 inline-block rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-600">
+                {campus}
+              </div>
+            )}
+
             <h3
               className={cn(
                 'truncate font-bold leading-tight text-black',

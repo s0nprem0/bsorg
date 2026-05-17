@@ -9,6 +9,13 @@ type PillProps = {
   className?: string;
 };
 
+type PillsProps = {
+  items: string[];
+  variant?: PillVariant;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+};
+
 const VARIANTS: Record<PillVariant, string> = {
   default:
     'bg-black text-white border border-black',
@@ -52,4 +59,23 @@ const Pill: React.FC<PillProps> = ({
   );
 };
 
+const Pills: React.FC<PillsProps> = ({
+  items,
+  variant = 'soft',
+  size = 'sm',
+  className = '',
+}) => {
+  return (
+    <div className={`flex flex-wrap gap-1.5 ${className}`}>
+      {items.map((item, index) => (
+        <Pill key={index} variant={variant} size={size}>
+          {item}
+        </Pill>
+      ))}
+    </div>
+  );
+};
+
+export type { PillProps, PillsProps };
+export { Pill, Pills };
 export default Pill;

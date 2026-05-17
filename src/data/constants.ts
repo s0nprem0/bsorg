@@ -141,7 +141,6 @@ export const PROGRAMS = [
   { name: "Bachelor of Science in Agriculture Major in Crop Science", slug: "bsa-cs", college_id: 0 },
   { name: "Bachelor of Science in Environmental Science", slug: "bses", college_id: 0 },
   { name: "Bachelor of Science in Food Technology", slug: "bsft", college_id: 0 },
-  { name: "Bachelor of Science in Land Use Design and Management", slug: "bsludm", college_id: 0 },
   { name: "Bachelor in Agricultural Entrepreneurship", slug: "bae", college_id: 0 },
   { name: "Bachelor of Science in Biology", slug: "bs-bio", college_id: 1 },
   { name: "Bachelor of Arts in English Language Studies", slug: "baels", college_id: 1 },
@@ -188,7 +187,7 @@ export const PROGRAMS = [
   { name: "Bachelor of Exercise and Sports Sciences", slug: "bsess", college_id: 7 },
   { name: "Doctor of Veterinary Medicine", slug: "dvm", college_id: 8 },
   { name: "Bachelor of Science in Veterinary Technology", slug: "bsvt", college_id: 8 },
-  { name: "Bachelor of Science in  Animal Health and Management", slug: "bsahm", college_id: 8 },
+  { name: "Bachelor of Science in Animal Health and Management", slug: "bsahm", college_id: 8 },
   { name: "Bachelor of Science in Biomedical Science", slug: "bsbs", college_id: 8 },
 ] as const;
 
@@ -205,4 +204,5 @@ export const CAMPUSES = [
   { id: 7, name: "Naic Campus", slug: "naic" },
   { id: 8, name: "Cavite City Campus", slug: "cavite-city" },
   { id: 9, name: "Trece Martires Campus", slug: "trece-martires" },
+  { id: 10, name: "Maragondon Campus", slug: "maragondon" },
 ] as const;

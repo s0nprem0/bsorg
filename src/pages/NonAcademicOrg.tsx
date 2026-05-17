@@ -15,16 +15,13 @@ export default function NonAcademicOrg() {
       <div>
         {Object.entries(nonAcademicOrgsByCategory).map(([category, orgs]) => {
           const orgList = orgs as NonAcademicOrg[];
-          // Sort organizations alphabetically
-          const sortedOrgs = orgList.sort((a, b) => a.org.localeCompare(b.org));
+          const sortedOrgs = [...orgList].sort((a, b) => a.org.localeCompare(b.org));
           return (
             <section key={category} className="mb-14">
               <h3 className="text-2xl font-mono uppercase font-bold mb-4 text-primary-800 border-l-4 border-primary-400 pl-3 bg-primary-50/60 py-2">
                 {category}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <OrgGrid organizations={sortedOrgs} columns={3} className="mt-6" />
-              </div>
+              <OrgGrid organizations={sortedOrgs} columns={3} className="mt-6" />
             </section>
           );
         })}

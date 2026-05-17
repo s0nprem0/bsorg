@@ -2,6 +2,9 @@ import Section from '@/components/ui/Section';
 import OrganizationCard from '@/components/OrganizationCard';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import type { AcademicOrg } from '@/data/academicOrgs';
+import { CAMPUSES } from '@/data/constants';
+
+const getCampusName = (campusId: number) => CAMPUSES.find((campus) => campus.id === campusId)?.name;
 
 export default function AcademicOrg() {
   return (
@@ -58,6 +61,7 @@ export default function AcademicOrg() {
                       <OrganizationCard
                         key={council.slug}
                         {...council}
+                        campus={getCampusName(council.campusId)}
                         large
                       />
                     </div>
@@ -66,7 +70,11 @@ export default function AcademicOrg() {
                   {/* Organization Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {rest.map((org) => (
-                      <OrganizationCard key={org.slug} {...org} />
+                      <OrganizationCard
+                        key={org.slug}
+                        {...org}
+                        campus={getCampusName(org.campusId)}
+                      />
                     ))}
                   </div>
                 </>

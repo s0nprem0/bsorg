@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { CONTACT_ICONS } from '../data/constants';
+import { CONTACT_ICONS, ORG_CARD } from '@/data/constants';
 
 export type OrganizationCardProps = {
   slug: string;
   org: string;
   program?: string;
-  contact?: Partial<Record<'email' | 'facebook' | 'instagram' | 'tiktok' | 'x', string>>;
+  contact?: Partial<Record<'email' | 'facebook' | 'instagram' | 'tiktok' | 'x' | 'website', string>>;
   logo?: string;
   large?: boolean;
-  campus?: string; // Added campus prop
+  campus?: string;
 };
 
 const OrganizationCard: React.FC<OrganizationCardProps> = ({
@@ -19,12 +19,13 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
   contact = {},
   logo,
   large = false,
-  campus, // Destructure campus prop
+  campus,
 }) => {
   const contactEntries = Object.entries(contact).filter(([, value]) => value);
+  const { SIZES, ICONS } = ORG_CARD;
+  const sizes = large ? SIZES.LARGE : SIZES.SMALL;
 
-  // Dynamic sizing based on aspect ratio (3:2)
-  const logoSize = large ? 'aspect-[3/2] w-60' : 'aspect-[3/2] w-44';
+  const logoSize = `aspect-[3/2] w-${sizes.LOGO_WIDTH}`;
 
   return (
     <div
@@ -34,7 +35,6 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
       )}
     >
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
-        {/* Logo Section */}
         <div
           className={cn(
             'relative shrink-0 overflow-hidden',
@@ -58,15 +58,13 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
           )}
         </div>
 
-        {/* Content Section */}
         <div
           className={cn(
             'flex min-w-0 flex-1 flex-col justify-between',
-            large ? 'p-6 md:p-8' : 'p-4 md:p-5'
+            sizes.PADDING
           )}
         >
           <div className="min-w-0">
-            {/* Campus Pill */}
             {campus && (
               <div className="mb-2 inline-block rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-600">
                 {campus}
@@ -76,7 +74,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
             <h3
               className={cn(
                 'truncate font-bold leading-tight text-black',
-                large ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'
+                sizes.TITLE_SIZE
               )}
             >
               <Link
@@ -91,7 +89,7 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
               <p
                 className={cn(
                   'mt-3 line-clamp-3 text-neutral-600',
-                  large ? 'text-base leading-relaxed' : 'text-sm'
+                  sizes.DESCRIPTION_SIZE
                 )}
               >
                 {program}
@@ -99,7 +97,6 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
             )}
           </div>
 
-          {/* Contact Icons */}
           {contactEntries.length > 0 && (
             <div className="mt-5 flex flex-wrap items-center gap-2.5">
               {contactEntries.map(([key, value]) => (
@@ -109,9 +106,9 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
                   title={key.charAt(0).toUpperCase() + key.slice(1)}
                   target={key === 'email' ? undefined : '_blank'}
                   rel={key === 'email' ? undefined : 'noopener noreferrer'}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200"
+                  className={`flex h-${ICONS.CONTAINER_SIZE} w-${ICONS.CONTAINER_SIZE} items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200`}
                 >
-                  {CONTACT_ICONS[key](large)}
+                  {CONTACT_ICONS[key]?.(large)}
                 </a>
               ))}
             </div>

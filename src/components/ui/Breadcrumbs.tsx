@@ -12,13 +12,13 @@ interface BreadCrumbsProps {
   className?: string;
 }
 
-const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
+const Breadcrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
   const location = useLocation();
 
-  // Generate BreadCrumbs from current path if no items provided
-  const generateBreadCrumbs = (): BreadCrumbItem[] => {
+  // Generate Breadcrumbs from current path if no items provided
+  const generateBreadcrumbs = (): BreadCrumbItem[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    const BreadCrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
+    const Breadcrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
 
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
@@ -31,16 +31,16 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
 
-      BreadCrumbs.push({
+      Breadcrumbs.push({
         label,
         href: isLast ? undefined : currentPath,
       });
     });
 
-    return BreadCrumbs;
+    return Breadcrumbs;
   };
 
-  const BreadCrumbItems = items || generateBreadCrumbs();
+  const BreadCrumbItems = items || generateBreadcrumbs();
 
   return (
     <nav
@@ -69,4 +69,4 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
   );
 };
 
-export default BreadCrumbs;
+export default Breadcrumbs;

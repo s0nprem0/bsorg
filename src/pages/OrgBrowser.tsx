@@ -6,6 +6,7 @@ import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { normalize } from '@/lib/utils';
 import OrgGrid from '@/components/layout/OrgGrid';
 import Pagination from '@/components/ui/Pagination';
+import { ORG_BROWSER } from '@/data/constants';
 
 type OrgType = 'Academic' | 'Non-Academic';
 type FilterValue = 'All' | string;
@@ -27,7 +28,12 @@ type BrowserOrg = {
   category: string;
 };
 
-// ==================== Utility Functions ====================
+const INITIAL_STATE = {
+  query: '',
+  debouncedQuery: '',
+  orgType: 'All' as FilterValue,
+  category: 'All' as FilterValue,
+};
 
 const getUniqueOrgKey = (org: { slug: string; org: string }): string =>
   org.slug ? `slug:${normalize(org.slug)}` : `org:${normalize(org.org)}`;
@@ -87,16 +93,7 @@ const filterOrganizations = (
   });
 };
 
-// ==================== Reducer ====================
-
-const initialState = {
-  query: '',
-  debouncedQuery: '',
-  orgType: 'All' as FilterValue,
-  category: 'All' as FilterValue,
-};
-
-type State = typeof initialState;
+type State = typeof INITIAL_STATE;
 type Action =
   | { type: 'SET_QUERY'; payload: string }
   | { type: 'SET_DEBOUNCED_QUERY'; payload: string }
@@ -115,13 +112,11 @@ const reducer = (state: State, action: Action): State => {
     case 'SET_CATEGORY':
       return { ...state, category: action.payload };
     case 'RESET_FILTERS':
-      return { ...initialState };
+      return { ...INITIAL_STATE };
     default:
       return state;
   }
 };
-
-// ==================== Components ====================
 
 const FilterSelect = ({
   value,
@@ -147,21 +142,18 @@ const FilterSelect = ({
   </select>
 );
 
-// ==================== Main Component ====================
-
 export default function OrgBrowser() {
   const allOrgs = useMemo(() => buildOrgIndex(), []);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
 
   const { query, debouncedQuery, orgType, category } = state;
+  const { ITEMS_PER_PAGE, DEBOUNCE_DELAY, ORG_TYPE_OPTIONS, PLACEHOLDER_TEXT, MESSAGES } = ORG_BROWSER;
 
-  // Debounced search
   useEffect(() => {
-    const timer = setTimeout(() => dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: query }), 300);
+    const timer = setTimeout(() => dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: query }), DEBOUNCE_DELAY);
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, DEBOUNCE_DELAY]);
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(allOrgs.map((org) => org.category)));
@@ -173,9 +165,8 @@ export default function OrgBrowser() {
     [allOrgs, debouncedQuery, orgType, category]
   );
 
-  const totalPages = Math.ceil(filteredOrgs.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredOrgs.length / ITEMS_PER_PAGE);
 
-  // Reset to page 1 when filters change
   const isInitialMount = React.useRef(true);
   React.useEffect(() => {
     if (isInitialMount.current) {
@@ -186,9 +177,9 @@ export default function OrgBrowser() {
   }, [debouncedQuery, orgType, category]);
 
   const paginatedOrgs = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredOrgs.slice(start, start + itemsPerPage);
-  }, [filteredOrgs, currentPage]);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredOrgs.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredOrgs, currentPage, ITEMS_PER_PAGE]);
 
   const handleResetFilters = useCallback(() => {
     dispatch({ type: 'RESET_FILTERS' });
@@ -199,14 +190,13 @@ export default function OrgBrowser() {
       <Section>
         <div className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight text-black mb-2">
-            Organization Browser
+            {MESSAGES.TITLE}
           </h1>
           <p className="text-lg text-neutral-600">
-            Discover and explore student organizations across campus.
+            {MESSAGES.SUBTITLE}
           </p>
         </div>
 
-        {/* Filters */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
@@ -214,7 +204,7 @@ export default function OrgBrowser() {
               type="text"
               value={query}
               onChange={(e) => dispatch({ type: 'SET_QUERY', payload: e.target.value })}
-              placeholder="Search organizations..."
+              placeholder={PLACEHOLDER_TEXT.SEARCH}
               className="w-full border border-neutral-300 pl-12 pr-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
             />
           </div>
@@ -222,19 +212,18 @@ export default function OrgBrowser() {
           <FilterSelect
             value={orgType}
             onChange={(e) => dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value as FilterValue })}
-            options={['All', 'Academic', 'Non-Academic']}
-            placeholder="All Types"
+            options={ORG_TYPE_OPTIONS}
+            placeholder={PLACEHOLDER_TEXT.ALL_TYPES}
           />
 
           <FilterSelect
             value={category}
             onChange={(e) => dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterValue })}
             options={categories}
-            placeholder="All Categories"
+            placeholder={PLACEHOLDER_TEXT.ALL_CATEGORIES}
           />
         </div>
 
-        {/* Results Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-neutral-600 gap-3">
           <p>
             Showing{' '}
@@ -247,23 +236,21 @@ export default function OrgBrowser() {
               className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-black transition-colors"
             >
               <Filter className="h-3.5 w-3.5" />
-              Clear filters
+              {MESSAGES.CLEAR_FILTERS}
             </button>
           )}
         </div>
       </Section>
 
-      {/* Results */}
       {paginatedOrgs.length === 0 ? (
         <div className="border border-dashed border-neutral-300 bg-neutral-50 py-16 text-center">
-          <p className="text-neutral-600">No organizations match your current filters.</p>
-          <p className="text-neutral-500 text-sm mt-1">Try adjusting your search or filters.</p>
+          <p className="text-neutral-600">{MESSAGES.NO_RESULTS}</p>
+          <p className="text-neutral-500 text-sm mt-1">{MESSAGES.NO_RESULTS_SUBTEXT}</p>
         </div>
       ) : (
         <OrgGrid organizations={paginatedOrgs} columns={2} className="w-full mt-6 gap-6" />
       )}
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}

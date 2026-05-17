@@ -27,6 +27,15 @@ type BrowserOrg = {
   campusId: number;
 };
 
+const PROFILE_STRINGS = {
+  NOT_FOUND_TITLE: 'Organization Not Found',
+  NOT_FOUND_DESCRIPTION: 'The organization you\'re looking for doesn\'t exist or may have been moved.',
+  BACK_LINK: '← Back to Organizations',
+  CONTACT_TITLE: 'Contact Information',
+  ABOUT_TITLE: 'About',
+  BACK_TO_BROWSER: 'Back to Organization Browser',
+} as const;
+
 function findOrganization(slug: string | undefined): BrowserOrg | null {
   if (!slug) return null;
 
@@ -78,15 +87,15 @@ export default function OrganizationProfile() {
   if (!org) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-        <h2 className="mb-4 text-3xl font-bold">Organization Not Found</h2>
+        <h2 className="mb-4 text-3xl font-bold">{PROFILE_STRINGS.NOT_FOUND_TITLE}</h2>
         <p className="mb-8 text-neutral-600">
-          The organization you're looking for doesn't exist or may have been moved.
+          {PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
         </p>
         <Link
           to="/organization"
           className="inline-flex items-center gap-2 border border-black px-6 py-3 text-sm font-medium transition-colors hover:bg-black hover:text-white"
         >
-          ← Back to Organizations
+          {PROFILE_STRINGS.BACK_LINK}
         </Link>
       </div>
     );
@@ -108,7 +117,7 @@ export default function OrganizationProfile() {
         className="mb-8 inline-flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-black"
       >
         <ArrowLeft size={18} />
-        Back to Organization Browser
+        {PROFILE_STRINGS.BACK_TO_BROWSER}
       </Link>
 
       <div className="flex flex-col gap-8 md:flex-row md:gap-10">
@@ -146,13 +155,13 @@ export default function OrganizationProfile() {
 
           {org.description && (
             <div className="mt-8">
-              <h3 className="mb-3 text-xl font-semibold">About</h3>
+              <h3 className="mb-3 text-xl font-semibold">{PROFILE_STRINGS.ABOUT_TITLE}</h3>
               <p className="whitespace-pre-line leading-relaxed text-neutral-700">{org.description}</p>
             </div>
           )}
 
           <div className="mt-8">
-            <h3 className="mb-4 text-xl font-semibold">Contact Information</h3>
+            <h3 className="mb-4 text-xl font-semibold">{PROFILE_STRINGS.CONTACT_TITLE}</h3>
             <div className="flex flex-wrap gap-3">
               {org.contact.email && (
                 <ContactLink type="email" href={`mailto:${org.contact.email}`} label={org.contact.email} />

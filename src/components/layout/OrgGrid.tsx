@@ -6,8 +6,9 @@ interface OrgGridProps {
     slug: string;
     org: string;
     description?: string;
+    program?: string;
     logo?: string;
-    contact: {
+    contact?: {
       email?: string;
       facebook?: string;
       instagram?: string;
@@ -15,21 +16,17 @@ interface OrgGridProps {
       x?: string;
     };
   }>;
-  columns?: number; // Number of columns for the grid
-  className?: string; // Additional class names for customization
+  columns?: number;
+  className?: string;
 }
 
 const OrgGrid: React.FC<OrgGridProps> = ({ organizations, columns = 3, className = '' }) => {
-  if (organizations.length === 0) {
-    return <p className="text-neutral-500">No organizations found.</p>;
-  }
+  if (!organizations?.length) return null;
 
   return (
     <div
       className={`grid gap-6 ${className}`}
-      style={{
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-      }}
+      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
     >
       {organizations.map((org) => (
         <OrganizationCard key={org.slug} {...org} />

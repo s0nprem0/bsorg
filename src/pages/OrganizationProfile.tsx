@@ -6,7 +6,7 @@ import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { CAMPUSES ,COLLEGES, CONTACT_ICONS } from '@/data/constants';
 
-import Breadcrumbs from '@/components/ui/BreadCrumbs'; // Correct casing for Breadcrumbs import
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 type BrowserOrg = {
   slug: string;

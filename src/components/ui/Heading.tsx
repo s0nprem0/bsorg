@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../lib/utils';
+import { cn } from '@/lib/utils';
 
 interface HeadingProps {
   level?: 1 | 2 | 3 | 4 | 5 | 6;

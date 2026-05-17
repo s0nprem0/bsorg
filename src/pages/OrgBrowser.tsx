@@ -1,4 +1,4 @@
-import { useMemo, useReducer, useEffect, useCallback } from 'react';
+import { useMemo, useReducer, useEffect } from 'react';
 import Section from '@/components/ui/Section';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
@@ -157,17 +157,17 @@ export default function OrgBrowser() {
   ]);
 
   // Handlers
-  const handleQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'SET_QUERY', payload: e.target.value });
-  }, []);
+  };
 
-  const handleTypeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value as FilterValue });
-  }, []);
+  };
 
-  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterValue });
-  }, []);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">

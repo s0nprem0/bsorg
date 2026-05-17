@@ -204,4 +204,5 @@ export const CAMPUSES = [
   { id: 6, name: "Rosario Campus", slug: "ccat" },
   { id: 7, name: "Naic Campus", slug: "naic" },
   { id: 8, name: "Cavite City Campus", slug: "cavite-city" },
+  { id: 9, name: "Trece Martires Campus", slug: "trece-martires" },
 ] as const;

@@ -1,0 +1,67 @@
+[
+	{
+		"campusId": 0,
+		"slug": "cafenr-sc",
+		"logo": "/cafenr/cafenr-sc.jpg",
+		"org": "CAFENR Student Council",
+		"description": "The official student government of the College of Agriculture, Food, Environment and Natural Resources.",
+		"contact": {
+			"email": "cvsu.cafenr-sc@cvsu.edu.ph",
+			"facebook": "https://www.facebook.com/cafenrsc"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "mcss",
+		"logo": "/cafenr/mcss.jpg",
+		"org": "Matayuyon Crop Science Society",
+		"program": "Bachelor of Science in Agriculture Major in Crop Science",
+		"contact": {
+			"email": "matayuyoncss@gmail.com",
+			"facebook": "https://www.facebook.com/MatayuyonCS/",
+			"instagram": "https://www.instagram.com/matayuyoncss/"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "paddocksoc",
+		"logo": "/cafenr/paddocksoc.jpg",
+		"org": "Paddock Society",
+		"program": "Bachelor of Science in Agriculture Major in Animal Science",
+		"contact": {
+			"email": "paddocksociety.official@gmail.com",
+			"facebook": "https://www.facebook.com/itspaddocks"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "salinlahi",
+		"logo": "/cafenr/salinlahi.jpg",
+		"org": "SALINLAHI - CvSU Environmental Science Students Association",
+		"contact": {
+			"email": "cvsu.salinlahi@cvsu.edu.ph",
+			"facebook": "https://www.facebook.com/salinlahicvsu"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "punlaan-community",
+		"logo": "/cafenr/punlaan.jpg",
+		"org": "Punlaan Community",
+		"program": "Bachelor of Science in Agriculture Major in Agribusiness",
+		"contact": {
+			"email": "punlaancommunity@gmail.com",
+			"facebook": "https://www.facebook.com/profile.php?id=61552235964596"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "paft",
+		"logo": "/cafenr/paft.jpg",
+		"org": "PAFT - Cavite State University Chapter - formerly D'Glycans",
+		"contact": {
+			"email": "cvsu.paft@cvsu.edu.ph",
+			"facebook": "https://www.facebook.com/PAFTCvSUChapter"
+		}
+	}
+]

@@ -101,5 +101,16 @@
       "facebook": "https://www.facebook.com/cvsu.asclepsoc",
       "instagram": "https://www.instagram.com/cvsu.asclepsoc/"
     }
+  },
+  {
+    "campusId": 0,
+    "slug": "cerat",
+    "logo": "/org/cerat.jpg",
+    "org": "Cavite State University Emergency Response and Airsoft Team",
+    "description": "A student organization that focuses on emergency response training and airsoft activities.",
+    "contact": {
+      "email": "ccj.cerat@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/CvSUMAIN.CERAT/"
+    }
   }
 ]

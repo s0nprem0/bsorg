@@ -5,6 +5,7 @@ import ceit from '@/../contents/colleges/ceit.json';
 import cemds from '@/../contents/colleges/cemds.json';
 import ccj from '@/../contents/colleges/ccj.json';
 import cspear from '@/../contents/colleges/cspear.json';
+import cafenr from '@/../contents/colleges/cafenr.json';
 
 
 import { COLLEGES, CAMPUSES } from './constants';
@@ -31,6 +32,7 @@ const academicOrgData: Record<string, AcademicOrg[]> = {
   cemds: cemds as AcademicOrg[],
   ccj: ccj as AcademicOrg[],
   cspear: cspear as AcademicOrg[],
+  cafenr: cafenr as AcademicOrg[],
 };
 
 // Organize academic orgs by college/category

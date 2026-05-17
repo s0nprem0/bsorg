@@ -13,7 +13,7 @@
     }
   },
   {
-    "campusId": 10,
+    "campusId": 8,
     "slug": "ghgp",
     "logo": "/org/ghgp.jpg",
     "org": "The Green Horizon Group of Publications",
@@ -25,14 +25,26 @@
     }
   },
   {
-    "campusId": 9,
+    "campusId": 1,
     "slug": "the-flare",
+    "logo": "/org/theflare.jpg",
     "org": "The Flare - CvSU Imus",
     "description": "The Flare is the official student publication of CvSU - Imus Campus.",
     "contact": {
       "email": "sputheflare.cvsuimus@gmail.com",
       "facebook": "https://www.facebook.com/theflarecvsuimus",
       "website": "https://sputheflarecvsuimus.wixsite.com/the-flare"
+    }
+  },
+  {
+    "campusId": 2,
+    "slug": "the-cornerstone",
+    "logo": "/org/thecornerstone.jpg",
+    "org": "The Cornerstone",
+    "description": "The Cornerstone is the official student publication of CvSU - Bacoor Campus.",
+    "contact": {
+      "email": "cvsuthecornerstoneorg@gmail.com",
+      "facebook": "https://www.facebook.com/TheCornerstoneCvSU"
     }
   }
 ]

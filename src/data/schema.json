@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Organization",
+	"description": "Schema for organization data.",
+	"type": "object",
+	"properties": {
+		"org": {
+			"type": "string",
+			"description": "The name of the organization."
+		},
+		"type": {
+			"type": "string",
+			"description": "The type of the organization (e.g., Academic, Non-Academic)."
+		},
+		"category": {
+			"type": "string",
+			"description": "The category of the organization (e.g., Cultural, Sports)."
+		},
+		"logo": {
+			"type": "string",
+			"description": "URL to the organization's logo image."
+		},
+		"slug": {
+			"type": "string",
+			"description": "A URL-friendly identifier for the organization."
+		},
+		"campusId": {
+			"type": "integer",
+			"description": "The ID of the campus the organization belongs to."
+		}
+	},
+	"required": ["org", "type", "slug"]
+}

@@ -1,7 +1,7 @@
 // This file provides a utility to load non-academic orgs
 
 import orgs from '@/../contents/nonacadorgs/orgs.json';
-import spuOrgs from '@/../contents/spu.json';
+import spuOrgs from '@/../contents/nonacadorgs/spu.json';
 
 export type NonAcademicOrg = {
   slug: string;
@@ -13,6 +13,7 @@ export type NonAcademicOrg = {
     instagram?: string;
     tiktok?: string;
     x?: string;
+    website?: string;
   };
   logo?: string;
 };

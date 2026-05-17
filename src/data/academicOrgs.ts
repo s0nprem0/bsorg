@@ -6,6 +6,7 @@ import cemds from '@/../contents/colleges/cemds.json';
 import { COLLEGES } from './constants';
 
 export type AcademicOrg = {
+  campusId: number;
   slug: string;
   org: string;
   description?: string;

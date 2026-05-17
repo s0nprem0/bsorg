@@ -4,8 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
-import { COLLEGES } from '@/data/constants';
-import { CONTACT_ICONS } from '@/data/constants';
+import { CAMPUSES ,COLLEGES, CONTACT_ICONS } from '@/data/constants';
 
 import Breadcrumbs from '@/components/ui/BreadCrumbs'; // Correct casing for Breadcrumbs import
 
@@ -21,10 +20,11 @@ type BrowserOrg = {
     instagram?: string;
     tiktok?: string;
     x?: string;
-    website?: string; // Added website property
+    website?: string;
   };
   type?: 'Academic' | 'Non-Academic';
   category?: string;
+  campusId: number;
 };
 
 function findOrganization(slug: string | undefined): BrowserOrg | null {
@@ -38,7 +38,7 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
     if (orgs) {
       const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
       if (found) {
-        return { ...found, type: 'Academic', category: college.name };
+        return { ...found, type: 'Academic', category: college.name, campusId: found.campusId };
       }
     }
   }
@@ -47,7 +47,7 @@ function findOrganization(slug: string | undefined): BrowserOrg | null {
   for (const [category, orgs] of Object.entries(nonAcademicOrgsByCategory)) {
     const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
     if (found) {
-      return { ...found, type: 'Non-Academic', category };
+      return { ...found, type: 'Non-Academic', category, campusId: found.campusId || 0 };
     }
   }
 
@@ -67,6 +67,12 @@ function ContactLink({ type, href, label }: { type: string; href: string; label:
       <span className="font-medium">{label}</span>
     </a>
   );
+}
+
+// Component to display campus name
+function CampusDisplay({ campusId }: { campusId: number }) {
+  const campus = CAMPUSES.find((c) => c.id === campusId);
+  return campus ? <span>{campus.name}</span> : <span>Unknown Campus</span>;
 }
 
 export default function OrganizationProfile() {
@@ -202,6 +208,11 @@ export default function OrganizationProfile() {
                 />
               )}
             </div>
+          </div>
+
+          {/* Display Campus */}
+          <div className="mt-2 text-sm text-neutral-500">
+            <strong>Campus:</strong> <CampusDisplay campusId={org.campusId} />
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import orgs from '@/../contents/nonacadorgs/orgs.json';
 import spuOrgs from '@/../contents/nonacadorgs/spu.json';
 
 export type NonAcademicOrg = {
+  campusId: number;
   slug: string;
   org: string;
   description?: string;

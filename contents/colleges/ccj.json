@@ -1,0 +1,34 @@
+[
+	{
+		"campusId": 0,
+		"slug": "ccj-sc",
+		"logo": "/ccj/ccj-sc.jpg",
+		"org": "CCJ Student Council",
+		"contact": {
+			"email": "ccj.studentcouncil@cvsu.edu.ph",
+			"facebook": "https://www.facebook.com/ccjstudentcouncil"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "isss",
+		"logo": "/ccj/isss.jpg",
+		"program": "Bachelor of Science in Industrial Security Management",
+		"org": "International Security Service Society",
+		"contact": {
+			"email": "isss.ccj@gmail.com",
+			"facebook": "https://www.facebook.com/ISSS.CCJ.CvSU"
+		}
+	},
+	{
+		"campusId": 0,
+		"slug": "crisoc",
+		"logo": "/ccj/crisoc.jpg",
+		"program": "Bachelor of Science in Criminology",
+		"org": "CCJ-Criminology Society",
+		"contact": {
+			"email": "ccj.crisoc@cvsu.edu.ph",
+			"facebook": "https://www.facebook.com/CCJCriSoc"
+		}
+	}
+]

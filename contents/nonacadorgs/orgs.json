@@ -4,7 +4,7 @@
     "slug": "ufy-sc",
     "logo": "/org/ufy-sc.jpg",
     "org": "University First Year Student Council",
-    "description": "1st year student governance and welfare",
+    "description": "1st year student governance and welfare and training grounds for student leadership",
     "contact": {
       "email": "cvsu.ufy-sc@cvsu.edu.ph",
       "facebook": "https://www.facebook.com/CvSUUFYSC",
@@ -88,6 +88,18 @@
     "contact": {
       "email": "cvsumainotakusociety@gmail.com",
       "facebook": "https://www.facebook.com/CvSUOtakuSocietyMainCampus"
+    }
+  },
+  {
+    "campusId": 0,
+    "slug": "asclepsoc",
+    "logo": "/org/asclepsoc.jpg",
+    "org": "Cavite State University - The Asclepian Society",
+    "description": "The Official Pre-Med Organization of Cavite State University - Main Campus.",
+    "contact": {
+      "email": "ext.cvsuasclepsoc@gmail.com",
+      "facebook": "https://www.facebook.com/cvsu.asclepsoc",
+      "instagram": "https://www.instagram.com/cvsu.asclepsoc/"
     }
   }
 ]

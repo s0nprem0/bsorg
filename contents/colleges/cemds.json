@@ -2,7 +2,7 @@
 	{
 		"campusId": 0,
 		"slug": "cemds-sc",
-		"logo": "/cemds/cemds-sc.jpg",
+		"logo": "/colleges/cemds/cemds-sc.jpg",
 		"org": "CEMDS Student Council",
 		"contact": {
 			"email": "cvsu.cemds-sc@cvsu.edu.ph",
@@ -12,7 +12,7 @@
 	{
 		"campusId": 0,
 		"slug": "sfe",
-		"logo": "/cemds/sfe.jpg",
+		"logo": "/colleges/cemds/sfe.jpg",
 		"program": "Bachelor of Science in Economics",
 		"org": "Society of Future Economists",
 		"contact": {
@@ -24,7 +24,7 @@
 	{
 		"campusId": 0,
 		"slug": "issa",
-		"logo": "/cemds/issa.jpg",
+		"logo": "/colleges/cemds/issa.jpg",
 		"program": "Bachelor of Science in International Studies",
 		"org": "International Studies Students Association",
 		"contact": {
@@ -35,7 +35,7 @@
 	{
 		"campusId": 0,
 		"slug": "cddm",
-		"logo": "/cemds/cddm.jpg",
+		"logo": "/colleges/cemds/cddm.jpg",
 		"program": "Bachelor of Science in Development Management",
 		"org": "Chief Delegates of Development Management",
 		"contact": {
@@ -46,7 +46,7 @@
 	{
 		"campusId": 0,
 		"slug": "pasoa",
-		"logo": "/cemds/pasoa.jpg",
+		"logo": "/colleges/cemds/pasoa.jpg",
 		"program": "Bachelor of Science in Office Administration",
 		"org": "Philippine Association of Students in Office Administration - CvSU Chapter",
 		"contact": {
@@ -57,7 +57,7 @@
 	{
 		"campusId": 0,
 		"slug": "jpia",
-		"logo": "/cemds/jpia.jpg",
+		"logo": "/colleges/cemds/jpia.jpg",
 		"program": "Bachelor of Science in Accountancy",
 		"org": "Junior Philippine Institute of Accountants - CvSU Chapter",
 		"contact": {
@@ -68,7 +68,7 @@
 	{
 		"campusId": 0,
 		"slug": "jfinex",
-		"logo": "/cemds/jfinex.jpg",
+		"logo": "/colleges/cemds/jfinex.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Financial Management",
 		"org": "Junior Financial Executives - CvSU Chapter",
 		"contact": {
@@ -81,7 +81,7 @@
 	{
 		"campusId": 0,
 		"slug": "jpmap",
-		"logo": "/cemds/jpmap.jpg",
+		"logo": "/colleges/cemds/jpmap.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Human Resource Management",
 		"org": "Junior Philippine Marketing Association - CvSU Chapter",
 		"contact": {
@@ -92,7 +92,7 @@
 	{
 		"campusId": 0,
 		"slug": "jma",
-		"logo": "/cemds/jma.jpg",
+		"logo": "/colleges/cemds/jma.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Marketing Management",
 		"org": "Junior Philippine Management Association - CvSU Chapter",
 		"contact": {
@@ -105,7 +105,7 @@
 	{
 		"campusId": 0,
 		"slug": "joma",
-		"logo": "/cemds/joma.jpg",
+		"logo": "/colleges/cemds/joma.jpg",
 		"program": "Bachelor of Science in Business Administration - Major in Operations Management",
 		"org": "Junior Operations Management Association - CvSU Chapter",
 		"contact": {

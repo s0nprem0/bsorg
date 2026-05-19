@@ -2,7 +2,7 @@
   {
     "campusId": 0,
     "slug": "ceit-sc",
-    "logo": "/ceit/ceit-sc_blk.svg",
+    "logo": "/colleges/ceit/ceit-sc_blk.svg",
     "org": "CEIT Student Council",
     "contact": {
       "email": "cvsu.ceitsc@gmail.com",
@@ -13,7 +13,7 @@
   {
     "campusId": 0,
     "slug": "csso",
-    "logo": "/ceit/csso.png",
+    "logo": "/colleges/ceit/csso.png",
     "program": "Bachelor of Science in Computer Science",
     "org": "Computer Science Student Organization",
     "contact": {
@@ -24,7 +24,7 @@
   {
     "campusId": 0,
     "slug": "elits",
-    "logo": "/ceit/elits.png",
+    "logo": "/colleges/ceit/elits.png",
     "program": "Bachelor of Science in Information Technology",
     "org": "Elite League of Information Technology Students",
     "contact": {
@@ -35,7 +35,7 @@
   {
     "campusId": 0,
     "slug": "coess",
-    "logo": "/ceit/coess.png",
+    "logo": "/colleges/ceit/coess.png",
     "program": "Bachelor of Science in Computer Engineering",
     "org": "Computer Engineering Students Society - ICPEP Students Edition",
     "contact": {
@@ -46,7 +46,7 @@
   {
     "campusId": 0,
     "slug": "uapsa",
-    "logo": "/ceit/uapsa.png",
+    "logo": "/colleges/ceit/uapsa.png",
     "program": "Bachelor of Science in Architecture",
     "org": "United Architects of the Philippines Student Auxiliary - CvSU Chapter",
     "contact": {
@@ -58,7 +58,7 @@
   {
     "campusId": 0,
     "slug": "piie",
-    "logo": "/ceit/piie.png",
+    "logo": "/colleges/ceit/piie.png",
     "program": "Bachelor of Science in Industrial Engineering",
     "org": "Philippine Institute of Industrial Engineers - CvSU Chapter",
     "contact": {
@@ -70,7 +70,7 @@
   {
     "campusId": 0,
     "slug": "iiee",
-    "logo": "/ceit/iiee.png",
+    "logo": "/colleges/ceit/iiee.png",
     "program": "Bachelor of Science in Electrical Engineering",
     "org": "Institute of Integrated Electrical Engineers - CvSU Chapter",
     "contact": {
@@ -81,7 +81,7 @@
   {
     "campusId": 0,
     "slug": "psabe",
-    "logo": "/ceit/psabe.png",
+    "logo": "/colleges/ceit/psabe.png",
     "program": "Bachelor of Science in Agricultural and Biosystems Engineering",
     "org": "Philippine Society of Agricultural and Biosystems Engineers - CvSU Chapter",
     "contact": {
@@ -92,7 +92,7 @@
   {
     "campusId": 0,
     "slug": "jiecep",
-    "logo": "/ceit/jiecep.png",
+    "logo": "/colleges/ceit/jiecep.png",
     "program": "Bachelor of Science in Electronics Engineering",
     "org": "Junior Institute of Electronics Engineers of the Philippines - CvSU Chapter",
     "contact": {
@@ -103,7 +103,7 @@
   {
     "campusId": 0,
     "slug": "class",
-    "logo": "/ceit/class.png",
+    "logo": "/colleges/ceit/class.png",
     "program": "Bachelor of Science in Industrial Technology - Major in Automotive Technology",
     "org": "CvSU League of Automotive Superb Students",
     "contact": {
@@ -114,7 +114,7 @@
   {
     "campusId": 0,
     "slug": "sites",
-    "logo": "/ceit/sites.png",
+    "logo": "/colleges/ceit/sites.png",
     "program": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
     "org": "Society of Industrial Technology Electrical Students",
     "contact": {
@@ -125,7 +125,7 @@
   {
     "campusId": 0,
     "slug": "pice",
-    "logo"  : "/ceit/pice.png",
+    "logo"  : "/colleges/ceit/pice.png",
     "program": "Bachelor of Science in Civil Engineering",
     "org": "Philippine Institute of Civil Engineers - CvSU Chapter",
     "contact": {
@@ -136,7 +136,7 @@
   {
     "campusId": 0,
     "slug": "etso",
-    "logo": "/ceit/etso.png",
+    "logo": "/colleges/ceit/etso.png",
     "program": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
     "org": "Electrical Technology Students Organization",
     "contact": {

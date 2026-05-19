@@ -2,7 +2,7 @@
 	{
 		"campusId": 0,
 		"slug": "cspear-sc",
-		"logo": "/cspear/cspear-sc.jpg",
+		"logo": "/colleges/cspear/cspear-sc.jpg",
 		"org": "CSPEAR Student Council",
 		"contact": {
 			"email": "studentcouncilcspear@gmail.com",
@@ -12,7 +12,7 @@
 	{
 		"campusId": 0,
 		"slug": "scped",
-		"logo": "/cspear/scped.jpg",
+		"logo": "/colleges/cspear/scped.jpg",
 		"org": "Student Congress of Physical Education - CvSu Main Campus",
 		"program": "Bachelor of Science in Physical Education",
 		"contact": {
@@ -23,7 +23,7 @@
 	{
 		"campusId": 0,
 		"slug": "gs",
-		"logo": "/cspear/gs.jpg",
+		"logo": "/colleges/cspear/gs.jpg",
 		"org": "Gerero's Spear",
 		"program": "Bachelor of Science in Exercise and Sports Science",
 		"contact": {

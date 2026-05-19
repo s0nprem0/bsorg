@@ -2,7 +2,7 @@
 	{
 		"campusId": 0,
 		"slug": "cthm-sc",
-		"logo": "/cthm/cthm-sc.jpg",
+		"logo": "/colleges/cthm/cthm-sc.jpg",
 		"org": "CTHM Student Council",
 		"contact": {
 			"email": "main.cvsu.cthmsc@gmail.com",
@@ -12,7 +12,7 @@
 	{
 		"campusId": 0,
 		"slug": "tourista",
-		"logo": "/cthm/tourista.png",
+		"logo": "/colleges/cthm/tourista.png",
 		"org": "Tourism Students Association",
 		"program": "Bachelor of Science in Tourism Management",
 		"contact": {
@@ -23,7 +23,7 @@
 	{
 		"campusId": 0,
 		"slug": "charms",
-		"logo": "/cthm/charms.jpg",
+		"logo": "/colleges/cthm/charms.jpg",
 		"org": "Circle of Hotel and Restaurant Management Students",
 		"program": "Bachelor of Science in Hotel and Restaurant Management",
 		"contact": {

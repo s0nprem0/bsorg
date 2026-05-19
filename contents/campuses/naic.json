@@ -1,0 +1,13 @@
+[
+	{
+		"campusId": 7,
+		"slug": "csso-naic",
+		"org": "Computer Science Student Organization - CSSO Naic",
+		"logo": "/campuses/naic/csso-naic.jpg",
+		"program": "Bachelor of Science in Computer Science",
+		"contact": {
+			"email": "",
+			"facebook": "https://www.facebook.com/cssonaic"
+		}
+	}
+]

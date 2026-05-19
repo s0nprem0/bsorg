@@ -2,7 +2,7 @@
 	{
 		"campusId": 0,
 		"slug": "ccj-sc",
-		"logo": "/ccj/ccj-sc.jpg",
+		"logo": "/colleges/ccj/ccj-sc.jpg",
 		"org": "CCJ Student Council",
 		"contact": {
 			"email": "ccj.studentcouncil@cvsu.edu.ph",
@@ -12,7 +12,7 @@
 	{
 		"campusId": 0,
 		"slug": "isss",
-		"logo": "/ccj/isss.jpg",
+		"logo": "/colleges/ccj/isss.jpg",
 		"program": "Bachelor of Science in Industrial Security Management",
 		"org": "International Security Service Society",
 		"contact": {
@@ -23,7 +23,7 @@
 	{
 		"campusId": 0,
 		"slug": "crisoc",
-		"logo": "/ccj/crisoc.jpg",
+		"logo": "/colleges/ccj/crisoc.jpg",
 		"program": "Bachelor of Science in Criminology",
 		"org": "CCJ-Criminology Society",
 		"contact": {

@@ -2,7 +2,7 @@
   {
     "campusId": 0,
     "slug": "cas-sc",
-    "logo": "/cas/cas-sc.jpg",
+    "logo": "/colleges/cas/cas-sc.jpg",
     "org": "CAS Student Council",
     "contact": {
       "email": "cvsu.cassc@gmail.com",
@@ -13,7 +13,7 @@
   {
     "campusId": 0,
     "slug": "samakom",
-    "logo": "/cas/samakom.jpg",
+    "logo": "/colleges/cas/samakom.jpg",
     "program": "Bachelor of Arts in Communication",
     "org": "SAMAKOM - Samahan ng mga Mag-aaral sa Komunikasyon",
     "contact": {
@@ -26,7 +26,7 @@
   {
     "campusId": 0,
     "slug": "pragmaticus",
-    "logo": "/cas/pragmaticus.jpg",
+    "logo": "/colleges/cas/pragmaticus.jpg",
     "program": "Bachelor of Arts in English Language Studies",
     "org": "PRAGMATICUS",
     "description": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus.",
@@ -38,7 +38,7 @@
   {
     "campusId": 0,
     "slug": "utopia",
-    "logo": "/cas/utopia.jpg",
+    "logo": "/colleges/cas/utopia.jpg",
     "program": "Bachelor of Arts in Political Science",
     "org": "UTOPIA - CvSU Political Science Society",
     "contact": {
@@ -49,7 +49,7 @@
   {
     "campusId": 0,
     "slug": "journalism-guild",
-    "logo": "/cas/journguild.jpg",
+    "logo": "/colleges/cas/journguild.jpg",
     "program": "Bachelor of Arts in Journalism",
     "org": "Journalism Guild",
     "contact": {
@@ -60,7 +60,7 @@
   {
     "campusId": 0,
     "slug": "radicands",
-    "logo": "/cas/radicands.jpg",
+    "logo": "/colleges/cas/radicands.jpg",
     "program": "Bachelor of Science in Applied Mathematics",
     "org": "RADICANDS - CvSU Cluster of Applied Mathematics Students",
     "contact": {
@@ -71,7 +71,7 @@
   {
     "campusId": 0,
     "slug": "mitochondrion-society",
-    "logo": "/cas/mitosoc.jpg",
+    "logo": "/colleges/cas/mitosoc.jpg",
     "program": "Bachelor of Science in Biology",
     "org": "Mitochondrion Society",
     "contact": {
@@ -82,7 +82,7 @@
   {
     "campusId": 0,
     "slug": "development-communication-society",
-    "logo": "/cas/dvca.jpg",
+    "logo": "/colleges/cas/dvca.jpg",
     "program": "Bachelor of Science in Development Communication",
     "org": "Development Communication Society",
     "contact": {
@@ -93,7 +93,7 @@
   {
     "campusId": 0,
     "slug": "psychology-circle",
-    "logo": "/cas/psychcircle.jpg",
+    "logo": "/colleges/cas/psychcircle.jpg",
     "program": "Bachelor of Science in Psychology",
     "org": "Psychology Circle",
     "contact": {
@@ -104,7 +104,7 @@
   {
     "campusId": 0,
     "slug": "jswap-cvsu",
-    "logo": "/cas/jswap.png",
+    "logo": "/colleges/cas/jswap.png",
     "program": "Bachelor of Science in Social Work",
     "org": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
     "contact": {

@@ -15,7 +15,6 @@ interface BreadCrumbsProps {
 const Breadcrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
   const location = useLocation();
 
-  // Generate Breadcrumbs from current path if no items provided
   const generateBreadcrumbs = (): BreadCrumbItem[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const Breadcrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
@@ -25,7 +24,6 @@ const Breadcrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
       currentPath += `/${segment}`;
       const isLast = index === pathSegments.length - 1;
 
-      // Convert segment to readable label
       const label = segment
         .split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -44,22 +42,22 @@ const Breadcrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
 
   return (
     <nav
-      className={`flex items-center space-x-1 text-sm text-gray-600 ${className}`}
-      aria-label="BreadCrumb"
+      className={`flex items-center space-x-1.5 text-sm text-foreground-muted ${className}`}
+      aria-label="Breadcrumb"
     >
       {BreadCrumbItems.map((item, index) => (
         <React.Fragment key={index}>
-          {index === 0 && <Home className="h-4 w-4" />}
-          {index > 0 && <ChevronRight className="h-4 w-4 text-gray-400" />}
+          {index === 0 && <Home className="h-3.5 w-3.5" />}
+          {index > 0 && <ChevronRight className="h-3.5 w-3.5 opacity-50" />}
           {item.href ? (
             <Link
               to={item.href}
-              className="hover:text-primary-600 transition-colors duration-200"
+              className="hover:text-foreground transition-colors duration-200"
             >
               {item.label.charAt(0).toUpperCase() + item.label.slice(1)}
             </Link>
           ) : (
-            <span className="text-gray-900 font-medium" aria-current="page">
+            <span className="text-foreground font-medium" aria-current="page">
               {item.label.charAt(0).toUpperCase() + item.label.slice(1)}
             </span>
           )}

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { CONTACT_ICONS, ORG_CARD } from '@/data/constants';
-import Pill from '@/components/ui/Pills';
+import { CONTACT_ICONS } from '@/data/constants';
+import { useState } from 'react'; // Import useState
 
 export type OrganizationCardProps = {
   slug: string;
@@ -25,102 +25,97 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
   campus,
 }) => {
   const contactEntries = Object.entries(contact).filter(([, value]) => value);
-  const { SIZES } = ORG_CARD;
-  const sizes = large ? SIZES.LARGE : SIZES.SMALL;
   const summary = program ?? description;
-
-  const logoSize = large ? 'aspect-[3/2] w-60' : 'aspect-[3/2] w-44';
+  const [imageError, setImageError] = useState(false); // Add state for image error
 
   return (
     <div
       className={cn(
-        'group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl',
-        large ? 'md:min-h-60' : 'md:min-h-44'
+        'group relative flex h-full w-full overflow-hidden rounded-lg border border-border bg-surface-1 transition-colors hover:border-foreground-muted',
+        // Use Tailwind's predefined min-height classes
+        large ? 'min-h-40' : 'min-h-32'
       )}
     >
-      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
-        <div
-          className={cn(
-            'relative shrink-0 overflow-hidden',
-            logoSize
-          )}
-        >
-          {logo ? (
-            <>
-              <img
-                src={logo}
-                alt={`${org} logo`}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/20" />
-            </>
-          ) : (
-            <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-5xl font-bold text-neutral-400">
-              {org.charAt(0)}
+      {/* Left Side: Logo Area
+        Using stretch ensures the gray background perfectly matches
+        the height of the text area, no matter how tall the text gets. */}
+      <div
+        className={cn(
+          'relative flex shrink-0 items-center justify-center bg-surface-2 border-r border-border',
+          large ? 'w-32 sm:w-40' : 'w-28 sm:w-32'
+        )}
+      >
+        {logo && !imageError ? (
+          <img
+            src={logo}
+            alt={`${org} logo`}
+            onError={() => setImageError(true)} // Catch broken images
+            className="absolute inset-0 h-full w-full object-contain p-4 opacity-90 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100"
+            loading="lazy"
+          />
+        ) : (
+          <span className="text-3xl font-bold tracking-tighter text-border-strong transition-transform duration-300 group-hover:scale-110">
+            {org.substring(0, 2).toUpperCase()}
+          </span>
+        )}
+      </div>
+
+      {/* Right Side: Details Area
+        Using flex-col ensures natural stacking without overlap. */}
+      <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-4">
+
+        {/* Top Data (Campus & Title) */}
+        <div className="min-w-0">
+          {campus && (
+            <div className="mb-2">
+              <span className="inline-flex items-center rounded-md border border-border bg-surface-2 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-widest text-foreground-secondary">
+                {campus}
+              </span>
             </div>
+          )}
+
+          {/* line-clamp-2 prevents titles from getting excessively long and breaking the layout */}
+          <h3 className="line-clamp-2 text-sm font-semibold leading-tight tracking-tight text-foreground sm:text-base">
+            <Link to={`/organization/${slug}`} className="focus:outline-none">
+              <span className="absolute inset-0" aria-hidden="true" />
+              {org}
+            </Link>
+          </h3>
+
+          {summary && (
+            <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-foreground-secondary">
+              {summary}
+            </p>
           )}
         </div>
 
-        <div
-          className={cn(
-            'flex min-w-0 flex-1 flex-col justify-between',
-            sizes.PADDING
-          )}
-        >
-          <div className="min-w-0">
-            {campus && (
-              <Pill variant="soft" size="sm" className="mb-2">
-                {campus}
-              </Pill>
-            )}
+        {/* Spacer: This pushes the social icons to the absolute bottom of the card
+            if the title and description are short. */}
+        <div className="flex-1" />
 
-            <h3
-              className={cn(
-                'truncate font-bold leading-tight text-black',
-                sizes.TITLE_SIZE
-              )}
-            >
-              <Link
-                to={`/organization/${slug}`}
-                className="transition-colors hover:text-accent-600"
+        {/* Contact Icons Footer */}
+        {contactEntries.length > 0 && (
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {contactEntries.slice(0, 4).map(([key, value]) => (
+              <a
+                key={key}
+                href={key === 'email' ? `mailto:${value}` : value}
+                title={key}
+                target={key === 'email' ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                className="relative z-10 text-foreground-muted transition-colors hover:text-foreground scale-90"
               >
-                {org}
-              </Link>
-            </h3>
-
-            {summary && (
-              <p
-                className={cn(
-                  'mt-3 line-clamp-3 text-neutral-600',
-                  sizes.DESCRIPTION_SIZE
-                )}
-              >
-                {summary}
-              </p>
+                {CONTACT_ICONS[key]?.(false)}
+              </a>
+            ))}
+            {/* Overflow indicator if there are too many icons to fit horizontally */}
+            {contactEntries.length > 4 && (
+              <span className="text-[10px] text-foreground-muted ml-1 font-mono">
+                +{contactEntries.length - 4}
+              </span>
             )}
           </div>
-
-          {contactEntries.length > 0 && (
-            <div className="mt-5 flex flex-wrap items-center gap-2.5">
-              {contactEntries.map(([key, value]) => (
-                <a
-                  key={key}
-                  href={key === 'email' ? `mailto:${value}` : value}
-                  title={key.charAt(0).toUpperCase() + key.slice(1)}
-                  target={key === 'email' ? undefined : '_blank'}
-                  rel={key === 'email' ? undefined : 'noopener noreferrer'}
-                  className={cn(
-                    'flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200',
-                    large ? 'h-11 w-11' : 'h-9 w-9'
-                  )}
-                >
-                  {CONTACT_ICONS[key]?.(large)}
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

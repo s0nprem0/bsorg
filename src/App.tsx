@@ -15,7 +15,7 @@ function App() {
   return (
     <ErrorBoundary>
     <Router>
-      <div className='min-h-screen flex flex-col'>
+      <div className='min-h-screen flex flex-col bg-background text-foreground'>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />

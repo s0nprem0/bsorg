@@ -154,7 +154,7 @@ const FilterSelect = ({
   <select
     value={value}
     onChange={onChange}
-    className="w-full border border-neutral-300 px-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
+    className="w-full appearance-none rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
   >
     {options.map(opt => (
       <option key={opt} value={opt}>
@@ -186,7 +186,6 @@ export default function OrgBrowser() {
     return () => clearTimeout(timer);
   }, [query, DEBOUNCE_DELAY]);
 
-  // Show loading when query differs from debounced query (deferred to avoid cascading renders)
   useEffect(() => {
     const t = setTimeout(() => {
       setIsLoading(query !== debouncedQuery);
@@ -231,18 +230,20 @@ export default function OrgBrowser() {
         description={ORG_BROWSER.MESSAGES.SUBTITLE}
       />
 
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6 md:py-10">
         <Section>
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold tracking-tight text-black mb-2">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-2">
               {MESSAGES.TITLE}
             </h1>
-            <p className="text-lg text-neutral-600">{MESSAGES.SUBTITLE}</p>
+            <p className="text-sm md:text-base text-foreground-secondary max-w-2xl">
+              {MESSAGES.SUBTITLE}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <div className="relative md:col-span-2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground-muted" />
               <input
                 type="text"
                 value={query}
@@ -250,7 +251,7 @@ export default function OrgBrowser() {
                   dispatch({ type: 'SET_QUERY', payload: e.target.value })
                 }
                 placeholder={PLACEHOLDER_TEXT.SEARCH}
-                className="w-full border border-neutral-300 pl-12 pr-4 py-3 text-sm focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
+                className="w-full rounded-md border border-border bg-surface-1 pl-9 pr-3 py-2 text-sm text-foreground placeholder:text-foreground-muted focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
               />
             </div>
 
@@ -279,20 +280,20 @@ export default function OrgBrowser() {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-neutral-600 gap-3">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-foreground-secondary gap-3 pb-3 border-b border-border">
             <p>
               Showing{' '}
-              <span className="font-medium text-black">
+              <span className="font-mono text-foreground">
                 {filteredOrgs.length}
               </span>{' '}
               of{' '}
-              <span className="font-medium text-black">{allOrgs.length}</span>{' '}
+              <span className="font-mono text-foreground">{allOrgs.length}</span>{' '}
               organizations
             </p>
             {(query || orgType !== 'All' || category !== 'All') && (
               <button
                 onClick={handleResetFilters}
-                className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-black transition-colors"
+                className="flex items-center gap-1.5 text-xs font-medium text-foreground-muted hover:text-foreground transition-colors"
               >
                 <Filter className="h-3.5 w-3.5" />
                 {MESSAGES.CLEAR_FILTERS}
@@ -302,51 +303,31 @@ export default function OrgBrowser() {
         </Section>
 
         {!isLoading && filteredOrgs.length === 0 ? (
-          <div className="border border-dashed border-neutral-300 bg-neutral-50 py-16 text-center">
-            <p className="text-neutral-600">{MESSAGES.NO_RESULTS}</p>
-            <p className="text-neutral-500 text-sm mt-1">
+          <div className="rounded-lg border border-dashed border-border bg-surface-1 py-16 text-center">
+            <p className="text-foreground text-sm font-medium">{MESSAGES.NO_RESULTS}</p>
+            <p className="text-foreground-secondary text-xs mt-1">
               {MESSAGES.NO_RESULTS_SUBTEXT}
             </p>
           </div>
         ) : isLoading ? (
-          <div className="space-y-6">
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {[...Array(6)].map((_, i) => (
+          <div className="space-y-4">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-surface-1"
                 >
-                  <div className="relative shrink-0 overflow-hidden aspect-3/2 w-44">
-                    <div className="h-full w-full bg-neutral-200 animate-pulse" />
-                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/20" />
+                  <div className="relative shrink-0 overflow-hidden h-28 md:h-auto md:w-full border-b border-border">
+                    <div className="h-28 w-full bg-surface-2 animate-pulse" />
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col justify-between p-4 md:p-5">
-                    <div className="min-w-0">
-                      <div className="mb-2">
-                        <div className="h-2 w-20 rounded bg-neutral-200 animate-pulse" />
+                  <div className="flex flex-1 flex-col justify-between p-4">
+                    <div className="min-w-0 space-y-2">
+                      <div className="h-2 w-16 rounded bg-surface-3 animate-pulse" />
+                      <div className="h-4 w-3/4 rounded bg-surface-3 animate-pulse" />
+                      <div className="space-y-1.5 mt-3">
+                        <div className="h-2 w-full rounded bg-surface-2 animate-pulse" />
+                        <div className="h-2 w-5/6 rounded bg-surface-2 animate-pulse" />
                       </div>
-                      <h3 className="truncate font-bold leading-tight text-black text-lg md:text-xl">
-                        <div className="h-4 w-32 rounded bg-neutral-200 animate-pulse" />
-                      </h3>
-                      <p className="mt-3 line-clamp-3 text-neutral-600 text-sm">
-                        <div className="h-2 w-full rounded bg-neutral-200 animate-pulse" />
-                        <div className="mt-1 h-2 w-3/4 rounded bg-neutral-200 animate-pulse" />
-                        <div className="mt-1 h-2 w-1/2 rounded bg-neutral-200 animate-pulse" />
-                      </p>
-                    </div>
-                    <div className="mt-5 flex flex-wrap items-center gap-2.5">
-                      {[...Array(3)].map((_, i) => (
-                        <a
-                          key={i}
-                          href="#"
-                          title="Contact"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition-all duration-200 hover:scale-110 hover:bg-neutral-200 h-9 w-9"
-                        >
-                          <div className="h-5 w-5 bg-neutral-200 animate-pulse" />
-                        </a>
-                      ))}
                     </div>
                   </div>
                 </div>
@@ -356,8 +337,8 @@ export default function OrgBrowser() {
         ) : (
           <OrgGrid
             organizations={paginatedOrgs}
-            columns={2}
-            className="w-full mt-6 gap-6"
+            columns={4}
+            className="w-full mt-4"
           />
         )}
 

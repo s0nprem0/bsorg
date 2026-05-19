@@ -15,7 +15,7 @@ const Footer = () => {
       { label: 'About Us', href: '#' },
       { label: 'Contact', href: '#' },
       { label: 'Feedback', href: '#' },
-    ],  
+    ],
   };
 
   const socialLinks = [
@@ -25,26 +25,23 @@ const Footer = () => {
     { icon: FaXTwitter, href: '#', label: 'X' },
   ];
 
-  return (
-    <footer className="border-t border-neutral-200 bg-white">
+return (
+    <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8">
-        {/* Main Footer Content */}
         <div className="grid gap-12 sm:gap-8 md:grid-cols-3">
-          {/* Branding Section */}
           <div className="flex flex-col gap-4">
             <Link to="/" className="inline-flex w-fit items-center gap-2">
-              <span className="text-xl font-bold text-black">Student Orgs</span>
+              <span className="text-xl font-bold text-foreground">Student Orgs</span>
             </Link>
-            <p className="max-w-sm text-sm text-neutral-600">
+            <p className="max-w-sm text-sm text-foreground-secondary">
               Discover and connect with student organizations across campus.
             </p>
           </div>
 
-          {/* Links Sections */}
           <div className="grid grid-cols-2 gap-8">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h3 className="mb-4 text-sm font-semibold text-black">
+                <h3 className="mb-4 text-sm font-semibold text-foreground">
                   {category}
                 </h3>
                 <ul className="space-y-2.5">
@@ -52,7 +49,7 @@ const Footer = () => {
                     <li key={link.label}>
                       <Link
                         to={link.href}
-                        className="text-sm text-neutral-600 transition-colors hover:text-black"
+                        className="text-sm text-foreground-secondary transition-colors hover:text-primary-400"
                       >
                         {link.label}
                       </Link>
@@ -63,9 +60,8 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* Social Links */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-semibold text-black">Follow Us</h3>
+            <h3 className="text-sm font-semibold text-foreground">Follow Us</h3>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -74,7 +70,7 @@ const Footer = () => {
                   title={social.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors duration-200 hover:border-neutral-300 hover:bg-neutral-50 hover:text-black"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground-secondary transition-colors duration-200 hover:border-border-strong hover:bg-surface-2 hover:text-foreground"
                 >
                   <social.icon size={18} />
                 </a>
@@ -83,16 +79,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="my-12 border-t border-neutral-200" />
+        <div className="my-12 border-t border-border" />
 
-        {/* Footer Bottom */}
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-foreground-secondary">
             © {currentYear} Student Organization Directory. All rights reserved.
           </p>
-          <div className="flex gap-6">
-          </div>
         </div>
       </div>
     </footer>

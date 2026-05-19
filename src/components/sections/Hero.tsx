@@ -1,15 +1,31 @@
-import { Heading } from "../ui/Heading";
-import { Text } from "../ui/Text";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-	return (
-		<div className="bg-linear-to-r from-primary-900 to-gray-900 text-white py-12 md:py-24">
-			<div className="container mx-auto px-4">
-				<Heading level={1}>Welcome to Cavite State University</Heading>
-				<Text className="text-lg">
-					Here's your guide to CvSU Main programs and recognized student organizations. Explore, connect, and get involved!
-				</Text>
-			</div>
-		</div>
-	);
+  return (
+    <div className="relative overflow-hidden bg-background py-24 sm:py-32 border-b border-border">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
+        <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-foreground sm:text-7xl">
+          Discover the heartbeat of <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground-muted">
+            Cavite State University
+          </span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-foreground-secondary">
+          The definitive guide to CvSU Main programs and recognized student organizations. Explore chapters, connect with leaders, and build your campus network.
+        </p>
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          <Link
+            to="/organization"
+            className="rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-sm hover:bg-foreground/90 transition-all"
+          >
+            Start Exploring
+          </Link>
+          <a href="#featured" className="text-sm font-semibold leading-6 text-foreground hover:text-foreground-secondary transition-colors">
+            View featured <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 }

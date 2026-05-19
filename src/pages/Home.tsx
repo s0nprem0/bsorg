@@ -62,131 +62,72 @@ export default function Home() {
 
   return (
     <>
-      <title>Home - Better Student Org</title>
+      <title>BetterOSAS - Directory</title>
       <main className="grow">
         <Hero />
 
-        <Section>
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-neutral-500">
+        <Section id="featured" className="py-16 md:py-24">
+          <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
                 Featured Organizations
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-black md:text-4xl">
-                At your glance, the student organizations you need to know about.
               </h2>
+              <p className="mt-2 text-foreground-secondary">
+                At a glance, the essential student groups driving campus culture.
+              </p>
             </div>
             <Link
               to="/organization"
-              className="rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+              className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-surface-1 px-4 text-sm font-medium text-foreground hover:bg-surface-2 transition-colors"
             >
-              Browse All Organizations
+              View Directory
             </Link>
           </div>
 
-          <Marquee
-            className="mb-8 rounded-2xl border border-neutral-200 bg-white py-3"
-            speed={360}
-            items={featuredOrgs}
-            renderItem={(org) => (
-              <div className="flex items-center gap-3 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-2 shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white">
-                  {org.logo ? (
-                    <img
-                      src={org.logo}
-                      alt={`${org.org} logo`}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className="text-sm font-bold text-neutral-500">
-                      {org.org.charAt(0)}
-                    </span>
-                  )}
-                </div>
-                <span className="whitespace-nowrap text-sm font-medium tracking-wide text-neutral-700">
-                  {org.org}
-                </span>
-              </div>
-            )}
-          />
-
-          <div className="grid auto-rows-[minmax(180px,auto)] gap-6 lg:grid-cols-4 lg:grid-rows-3">
+          <div className="grid auto-rows-fr gap-6 lg:grid-cols-4 lg:grid-rows-3">
             {first && (
               <div className="lg:col-span-2 lg:row-span-2">
-                <OrganizationCard
-                  {...first}
-                  campus={getCampusName(first.campusId)}
-                  large
-                />
+                <OrganizationCard {...first} campus={getCampusName(first.campusId)} large />
               </div>
             )}
 
             {second && (
               <div className="lg:col-span-1">
-                <OrganizationCard
-                  {...second}
-                  campus={getCampusName(second.campusId)}
-                />
+                <OrganizationCard {...second} campus={getCampusName(second.campusId)} />
               </div>
             )}
 
-            <div className="rounded-2xl border border-neutral-200 bg-linear-to-br from-black to-neutral-800 p-6 text-white lg:col-span-1 lg:row-span-2">
-              <p className="text-sm uppercase tracking-[0.25em] text-white/60">
-                Directory Pulse
-              </p>
-              <div className="mt-6 text-5xl font-bold">{featuredOrgs.length}</div>
-              <p className="mt-3 text-sm leading-6 text-white/75">
-                Featured organizations are surfaced in a varied card layout so the
-                most important entries stand out immediately.
-              </p>
-              <div className="mt-8 space-y-3 text-sm text-white/70">
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <span>Academic orgs</span>
-                  <span>{featuredAcademic.length}</span>
+            {/* Vercel-style Metric Card */}
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 lg:col-span-1 lg:row-span-2">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-border to-foreground-muted opacity-20" />
+              <div>
+                <p className="text-xs font-mono tracking-wider text-foreground-secondary uppercase">
+                  System Stats
+                </p>
+                <div className="mt-4 text-6xl font-light tracking-tighter text-foreground">
+                  {featuredOrgs.length}
                 </div>
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <span>Non-academic orgs</span>
-                  <span>{featuredNonAcademic.length}</span>
+                <p className="mt-2 text-sm text-foreground-secondary leading-relaxed">
+                  Featured organizations surfaced actively to highlight campus involvement.
+                </p>
+              </div>
+
+              <div className="mt-8 space-y-3 pt-6 border-t border-border">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-foreground-secondary">Academic</span>
+                  <span className="font-mono text-foreground">{featuredAcademic.length}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-foreground-secondary">Non-Academic</span>
+                  <span className="font-mono text-foreground">{featuredNonAcademic.length}</span>
                 </div>
               </div>
             </div>
 
-            {third && (
-              <div className="lg:col-span-1">
-                <OrganizationCard
-                  {...third}
-                  campus={getCampusName(third.campusId)}
-                />
-              </div>
-            )}
-
-            {fourth && (
-              <div className="lg:col-span-1">
-                <OrganizationCard
-                  {...fourth}
-                  campus={getCampusName(fourth.campusId)}
-                />
-              </div>
-            )}
-
-            {fifth && (
-              <div className="lg:col-span-2">
-                <OrganizationCard
-                  {...fifth}
-                  campus={getCampusName(fifth.campusId)}
-                />
-              </div>
-            )}
-
-            {sixth && (
-              <div className="lg:col-span-2">
-                <OrganizationCard
-                  {...sixth}
-                  campus={getCampusName(sixth.campusId)}
-                />
-              </div>
-            )}
+            {third && (<div className="lg:col-span-1"><OrganizationCard {...third} campus={getCampusName(third.campusId)} /></div>)}
+            {fourth && (<div className="lg:col-span-1"><OrganizationCard {...fourth} campus={getCampusName(fourth.campusId)} /></div>)}
+            {fifth && (<div className="lg:col-span-2"><OrganizationCard {...fifth} campus={getCampusName(fifth.campusId)} /></div>)}
+            {sixth && (<div className="lg:col-span-2"><OrganizationCard {...sixth} campus={getCampusName(sixth.campusId)} /></div>)}
           </div>
         </Section>
       </main>

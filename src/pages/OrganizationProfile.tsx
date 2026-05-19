@@ -69,7 +69,7 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 border border-neutral-300 px-5 py-3 text-sm font-medium text-neutral-700 transition-colors hover:border-black"
+      className="flex items-center gap-3 rounded-lg border border-border bg-surface-1 px-5 py-3 text-sm font-medium text-foreground-secondary transition-colors hover:border-foreground hover:bg-surface-2 hover:text-foreground"
     >
       {CONTACT_ICONS[type]?.(true)}
       <span>{label}</span>
@@ -98,15 +98,15 @@ export default function OrganizationProfile() {
           description={PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
         />
         <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-          <h2 className="mb-4 text-3xl font-bold">
+          <h2 className="mb-4 text-3xl font-bold text-foreground">
             {PROFILE_STRINGS.NOT_FOUND_TITLE}
           </h2>
-          <p className="mb-8 text-neutral-600">
+          <p className="mb-8 text-foreground-secondary">
             {PROFILE_STRINGS.NOT_FOUND_DESCRIPTION}
           </p>
           <Link
             to="/organization"
-            className="inline-flex items-center gap-2 border border-black px-6 py-3 text-sm font-medium transition-colors hover:bg-black hover:text-white"
+            className="inline-flex items-center gap-2 border border-foreground px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
             {PROFILE_STRINGS.BACK_LINK}
           </Link>
@@ -114,8 +114,6 @@ export default function OrganizationProfile() {
       </>
     );
   }
-
-
 
   return (
     <>
@@ -136,7 +134,7 @@ export default function OrganizationProfile() {
 
         <Link
           to="/organization"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-black"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-foreground-secondary transition-colors hover:text-foreground"
         >
           <ArrowLeft size={18} />
           {PROFILE_STRINGS.BACK_TO_BROWSER}
@@ -144,7 +142,7 @@ export default function OrganizationProfile() {
 
         <div className="flex flex-col gap-8 md:flex-row md:gap-10">
           <div className="shrink-0">
-            <div className="relative aspect-square w-56 overflow-hidden border border-neutral-200 bg-white">
+            <div className="relative aspect-square w-56 overflow-hidden rounded-2xl border border-border bg-surface-2">
               {org.logo ? (
                 <>
                   <img
@@ -152,10 +150,10 @@ export default function OrganizationProfile() {
                     alt={`${org.org} logo`}
                     className="h-full w-full object-contain p-8"
                   />
-                  <div className="absolute inset-0 bg-linear-to-br from-black/5 via-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-linear-to-br from-background/10 via-transparent to-background/30" />
                 </>
               ) : (
-                <div className="flex h-full w-full items-center justify-center text-7xl font-bold text-neutral-300">
+                <div className="flex h-full w-full items-center justify-center text-7xl font-bold text-foreground-disabled">
                   {org.org.charAt(0)}
                 </div>
               )}
@@ -168,34 +166,34 @@ export default function OrganizationProfile() {
                 size="sm"
               />
               {org.category && (
-                <div className="text-sm text-neutral-500">{org.category}</div>
+                <div className="text-sm text-foreground-muted">{org.category}</div>
               )}
             </div>
           </div>
 
           <div className="flex-1">
             <CampusDisplay campusId={org.campusId} />
-            <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {org.org}
             </h1>
 
             {org.program && (
-              <p className="mt-2 text-lg text-neutral-600">{org.program}</p>
+              <p className="mt-2 text-lg text-foreground-secondary">{org.program}</p>
             )}
 
             {org.description && (
               <div className="mt-8">
-                <h3 className="mb-3 text-xl font-semibold">
+                <h3 className="mb-3 text-xl font-semibold text-foreground">
                   {PROFILE_STRINGS.ABOUT_TITLE}
                 </h3>
-                <p className="whitespace-pre-line leading-relaxed text-neutral-700">
+                <p className="whitespace-pre-line leading-relaxed text-foreground-secondary">
                   {org.description}
                 </p>
               </div>
             )}
 
             <div className="mt-8">
-              <h3 className="mb-4 text-xl font-semibold">
+              <h3 className="mb-4 text-xl font-semibold text-foreground">
                 {PROFILE_STRINGS.CONTACT_TITLE}
               </h3>
               <div className="flex flex-wrap gap-3">

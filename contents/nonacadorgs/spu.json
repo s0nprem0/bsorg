@@ -46,5 +46,16 @@
       "email": "cvsuthecornerstoneorg@gmail.com",
       "facebook": "https://www.facebook.com/TheCornerstoneCvSU"
     }
+  },
+  {
+    "campusId": 5,
+    "slug": "the-oracle",
+    "logo": "/org/theoracle.jpg",
+    "org": "The Oracle",
+    "description": "The Oracle is the official student publication of CvSU - Tanza Campus.",
+    "contact": {
+      "email": "theoracle@cvsu.edu.ph",
+      "facebook": "https://www.facebook.com/theoracle.publication"
+    }
   }
 ]

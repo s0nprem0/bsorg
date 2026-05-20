@@ -1,6 +1,6 @@
 // This file provides a utility to load academic orgs by college/category
 
-import type { Organization } from '@/types/organization';
+import type { Organization, CollegeCategory } from '@/types/organization';
 import cas from '@/../contents/colleges/cas.json';
 import ceit from '@/../contents/colleges/ceit.json';
 import cemds from '@/../contents/colleges/cemds.json';
@@ -24,16 +24,16 @@ const academicOrgData: Record<string, AcademicOrg[]> = {
 };
 
 // Organize academic orgs by college/category
-export const academicOrgsByCategory: Record<string, AcademicOrg[]> =
+export const academicOrgsByCategory: Record<CollegeCategory, AcademicOrg[]> =
   COLLEGES.reduce(
     (acc, college) => {
       const orgs = academicOrgData[college.slug];
       if (orgs && orgs.length > 0) {
-        acc[college.name] = orgs;
+        acc[college.name as CollegeCategory] = orgs;
       }
       return acc;
     },
-    {} as Record<string, AcademicOrg[]>
+    {} as Record<CollegeCategory, AcademicOrg[]>
   );
 
 // Organize academic orgs by campus for quick lookup

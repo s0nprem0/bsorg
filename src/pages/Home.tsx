@@ -1,6 +1,5 @@
 import Hero from '@/components/sections/Hero';
 import OrganizationCard from '@/components/OrganizationCard';
-import Marquee from '@/components/ui/Marquee';
 import Section from '@/components/ui/Section';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -99,7 +98,7 @@ export default function Home() {
 
             {/* Vercel-style Metric Card */}
             <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 lg:col-span-1 lg:row-span-2">
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-border to-foreground-muted opacity-20" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-border to-foreground-muted opacity-20" />
               <div>
                 <p className="text-xs font-mono tracking-wider text-foreground-secondary uppercase">
                   System Stats

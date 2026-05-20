@@ -6,6 +6,7 @@ import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import SkeletonLoader from '@/components/ui/SkeletonLoader';
 import { ORG_BROWSER } from '@/data/constants';
+import type { FilterCategory } from '@/types/organization';
 
 export default function OrgBrowser() {
   const { state, dispatch, paginatedOrgs, totalPages, currentPage, setCurrentPage, isLoading, allOrgsCount, filteredCount, categories } = useOrgBrowser();
@@ -36,7 +37,7 @@ export default function OrgBrowser() {
               <Filter className="absolute left-3 top-2.5 h-4 w-4 text-foreground-tertiary pointer-events-none" />
               <select
                 value={state.orgType}
-                onChange={(e) => dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value })}
+                onChange={(e) => dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value as 'All' | 'Academic' | 'Non-Academic' })}
                 className="w-full rounded-md border border-border bg-surface-1 pl-9 pr-4 py-2 text-sm text-foreground appearance-none cursor-pointer"
               >
                 <option value="All">All Types</option>
@@ -49,7 +50,7 @@ export default function OrgBrowser() {
               <Filter className="absolute left-3 top-2.5 h-4 w-4 text-foreground-tertiary pointer-events-none" />
               <select
                 value={state.category}
-                onChange={(e) => dispatch({ type: 'SET_CATEGORY', payload: e.target.value })}
+                onChange={(e) => dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterCategory | 'All' })}
                 className="w-full rounded-md border border-border bg-surface-1 pl-9 pr-4 py-2 text-sm text-foreground appearance-none cursor-pointer"
               >
                 {categories.map((cat) => (

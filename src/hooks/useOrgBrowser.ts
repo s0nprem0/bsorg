@@ -1,41 +1,43 @@
 import { useReducer, useEffect, useMemo, useState, useRef } from 'react';
 import { normalize } from '@/lib/utils';
-import type { Organization } from '@/types/organization';
+import type { Organization, OrgType, FilterCategory } from '@/types/organization';
 import { academicOrgsByCategory } from '@/data/academicOrgs';
 import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
 import { ORG_BROWSER } from '@/data/constants';
 
-// Define types
-type OrgType = 'Academic' | 'Non-Academic';
-type FilterValue = 'All' | string;
-
 type Action =
   | { type: 'SET_QUERY'; payload: string }
   | { type: 'SET_DEBOUNCED_QUERY'; payload: string }
-  | { type: 'SET_ORG_TYPE'; payload: FilterValue }
-  | { type: 'SET_CATEGORY'; payload: FilterValue }
+  | { type: 'SET_ORG_TYPE'; payload: 'All' | OrgType }
+  | { type: 'SET_CATEGORY'; payload: FilterCategory | 'All' }
   | { type: 'RESET' };
 
 interface BrowserOrg extends Organization {
   type: OrgType;
-  category: string;
+  category: FilterCategory;
 }
 
-// Initial state
-const INITIAL_STATE = {
+type FilterState = {
+  query: string;
+  debouncedQuery: string;
+  orgType: 'All' | OrgType;
+  category: FilterCategory | 'All';
+};
+
+const INITIAL_STATE: FilterState = {
   query: '',
   debouncedQuery: '',
-  orgType: 'All' as FilterValue,
-  category: 'All' as FilterValue,
+  orgType: 'All',
+  category: 'All',
 };
 
 // Build organization index
 function buildOrgIndex(): BrowserOrg[] {
   const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Academic' as const, category }))
+    orgs.map((org) => ({ ...org, type: 'Academic' as const, category: category as FilterCategory }))
   );
   const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category }))
+    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category: category as FilterCategory }))
   );
   return [...academic, ...nonAcademic];
 }
@@ -112,6 +114,6 @@ export function useOrgBrowser() {
     isLoading,
     allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
-    categories: useMemo(() => ['All', ...Array.from(new Set(allOrgs.map((o) => o.category))).sort()], [allOrgs]),
+    categories: ['All', ...Array.from(new Set(allOrgs.map((o) => o.category))).sort()],
   };
 }

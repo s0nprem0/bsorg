@@ -6,22 +6,7 @@ import SEO from '@/components/SEO';
 import OrganizationCard from '@/components/OrganizationCard';
 import OrgGrid from '@/components/layout/OrgGrid';
 import { CAMPUSES } from '@/data/constants';
-
-interface Organization {
-  org: string;
-  slug: string;
-  program?: string;
-  description?: string;
-  campusId: number;
-  logo?: string;
-  contact?: {
-    email?: string;
-    facebook?: string;
-    instagram?: string;
-    tiktok?: string;
-    x?: string;
-  };
-}
+import type { Organization } from '@/types/organization';
 
 export interface CategoryPageTemplateProps {
   title: string;

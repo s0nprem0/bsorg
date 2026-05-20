@@ -103,7 +103,7 @@ export default function Home() {
 
             {/* Vercel-style Metric Card Updated with Real Data */}
             <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 lg:col-span-1 lg:row-span-2 shadow-sm">
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-50" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary-500 to-secondary-500 opacity-50" />
               <div>
                 <p className="text-xs font-bold font-mono tracking-widest text-foreground-tertiary uppercase">
                   Platform Stats

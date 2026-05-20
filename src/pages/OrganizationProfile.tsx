@@ -47,7 +47,7 @@ export default function OrganizationProfile() {
       <div className="min-h-screen bg-bg">
         {/* Hero Section */}
         <div className="relative bg-primary-900 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-secondary-600 opacity-90" />
+          <div className="absolute inset-0 bg-linear-to-br from-primary-600 to-secondary-600 opacity-90" />
           <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center md:items-end gap-8">
 
             {/* Visual Identity / Logo Area */}

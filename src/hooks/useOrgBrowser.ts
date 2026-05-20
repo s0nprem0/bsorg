@@ -104,6 +104,15 @@ export function useOrgBrowser() {
     isLoading,
     allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
-    categories: ['All', ...Array.from(new Set(allOrgs.map((o) => o.category))).sort()],
+    // Build categories list safely: trim values and exclude empty strings
+    categories: (['All'] as string[]).concat(
+      Array.from(
+        new Set(
+          allOrgs
+            .map((o) => (o.category || '').toString().trim())
+            .filter((c) => c.length > 0)
+        )
+      ).sort()
+    ),
   };
 }

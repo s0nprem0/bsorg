@@ -1,14 +1,20 @@
+// src/pages/OrgBrowser.tsx
 import { Search, Filter } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
-import Pagination from '@/components/ui/Pagination';
+import Pagination from '@/components//ui/Pagination';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import SkeletonLoader from '@/components/ui/SkeletonLoader';
 
 import { ORG_BROWSER } from '@/data/constants';
 import type { FilterCategory } from '@/types/organization';
+
+// Shadcn UI Imports
+import { Input } from '@/components/ui/shadcn/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/shadcn/select';
+import { Button } from '@/components/ui/shadcn/button';
 
 export default function OrgBrowser() {
   const {
@@ -41,51 +47,54 @@ export default function OrgBrowser() {
 
           {/* Filter Bar - Fully Accessible */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="relative md:col-span-2 group">
-              <label htmlFor="search-orgs" className="sr-only">Search organizations</label>
-              <Search className="absolute left-3.5 top-3 h-5 w-5 text-foreground-tertiary transition-colors group-focus-within:text-primary" />
-              <input
+            <div className="relative md:col-span-2 group flex items-center">
+              <Search className="absolute left-3 h-5 w-5 text-foreground-tertiary transition-colors group-focus-within:text-primary z-10" />
+              <Input
                 id="search-orgs"
                 value={state.query}
                 onChange={(e) => dispatch({ type: 'SET_QUERY', payload: e.target.value })}
-                className="w-full rounded-xl border border-border bg-surface-1 pl-11 pr-4 py-2.5 text-sm text-foreground placeholder:text-foreground-tertiary focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm"
+                className="pl-10 h-11 bg-surface-1 shadow-sm"
                 placeholder="Search by name, acronym, or tags..."
               />
             </div>
 
-            <div className="relative group">
-              <label htmlFor="filter-type" className="sr-only">Filter by Type</label>
-              <Filter className="absolute left-3.5 top-3 h-5 w-5 text-foreground-tertiary pointer-events-none" />
-              <select
-                id="filter-type"
-                value={state.orgType}
-                onChange={(e) => dispatch({ type: 'SET_ORG_TYPE', payload: e.target.value as any })}
-                className="w-full rounded-xl border border-border bg-surface-1 pl-11 pr-4 py-2.5 text-sm text-foreground appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 hover:bg-surface-2 transition-all shadow-sm"
-              >
-                <option value="All">All Types</option>
-                <option value="Academic">Academic</option>
-                <option value="Non-Academic">Non-Academic</option>
-                <option value="Student Council">Student Council</option>
-                <option value="Performing Arts Group">Performing Arts</option>
-              </select>
-            </div>
+            <Select
+              value={state.orgType}
+              onValueChange={(value) => dispatch({ type: 'SET_ORG_TYPE', payload: value as any })}
+            >
+              <SelectTrigger className="h-11 bg-surface-1 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <Filter className="h-4 w-4 text-foreground-tertiary" />
+                  <SelectValue placeholder="All Types" />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All Types</SelectItem>
+                <SelectItem value="Academic">Academic</SelectItem>
+                <SelectItem value="Non-Academic">Non-Academic</SelectItem>
+                <SelectItem value="Student Council">Student Council</SelectItem>
+                <SelectItem value="Performing Arts Group">Performing Arts</SelectItem>
+              </SelectContent>
+            </Select>
 
-            <div className="relative group">
-              <label htmlFor="filter-category" className="sr-only">Filter by Category</label>
-              <Filter className="absolute left-3.5 top-3 h-5 w-5 text-foreground-tertiary pointer-events-none" />
-              <select
-                id="filter-category"
-                value={state.category}
-                onChange={(e) => dispatch({ type: 'SET_CATEGORY', payload: e.target.value as FilterCategory | 'All' })}
-                className="w-full rounded-xl border border-border bg-surface-1 pl-11 pr-4 py-2.5 text-sm text-foreground appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 hover:bg-surface-2 transition-all shadow-sm"
-              >
+            <Select
+              value={state.category}
+              onValueChange={(value) => dispatch({ type: 'SET_CATEGORY', payload: value as FilterCategory | 'All' })}
+            >
+              <SelectTrigger className="h-11 bg-surface-1 shadow-sm">
+                 <div className="flex items-center gap-2">
+                  <Filter className="h-4 w-4 text-foreground-tertiary" />
+                  <SelectValue placeholder="All Categories" />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat}>
+                  <SelectItem key={cat} value={cat}>
                     {cat === 'All' ? 'All Categories' : cat}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
-            </div>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Results Count */}
@@ -107,12 +116,13 @@ export default function OrgBrowser() {
               <Search className="h-12 w-12 text-foreground-muted mb-4 opacity-50" />
               <p className="text-lg font-semibold text-foreground">No organizations found</p>
               <p className="text-sm text-foreground-secondary mt-2">Try adjusting your filters or searching for an acronym.</p>
-              <button
+              <Button
+                variant="secondary"
                 onClick={() => dispatch({ type: 'RESET' })}
-                className="mt-6 rounded-lg bg-surface-2 px-5 py-2.5 text-sm font-medium text-foreground hover:bg-surface-3 hover:text-primary transition-colors"
+                className="mt-6"
               >
                 Clear all filters
-              </button>
+              </Button>
             </div>
           ) : (
             <OrgGrid organizations={paginatedOrgs} columns={4} />

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import { Button } from '@/components/ui/shadcn/button';
+import { Separator } from '@/components/ui/shadcn/separator';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -26,7 +28,7 @@ const Footer = () => {
   ];
 
 return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8">
         <div className="grid gap-12 sm:gap-8 md:grid-cols-3">
           <div className="flex flex-col gap-4">
@@ -49,7 +51,7 @@ return (
                     <li key={link.label}>
                       <Link
                         to={link.href}
-                        className="text-sm text-foreground-secondary transition-colors hover:text-primary-400"
+                        className="text-sm text-foreground-secondary transition-colors hover:text-primary"
                       >
                         {link.label}
                       </Link>
@@ -64,22 +66,17 @@ return (
             <h3 className="text-sm font-semibold text-foreground">Follow Us</h3>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  title={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground-secondary transition-colors duration-200 hover:border-border-strong hover:bg-surface-2 hover:text-foreground"
-                >
-                  <social.icon size={18} />
-                </a>
+                <Button key={social.label} variant="outline" size="icon" asChild className="text-foreground-secondary hover:text-foreground">
+                  <a href={social.href} title={social.label} target="_blank" rel="noopener noreferrer">
+                    <social.icon size={18} />
+                  </a>
+                </Button>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="my-12 border-t border-border" />
+        <Separator className="my-12" />
 
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-foreground-secondary">

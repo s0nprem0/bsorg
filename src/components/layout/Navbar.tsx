@@ -1,19 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+// src/components/layout/Navbar.tsx
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { X, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/shadcn/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/shadcn/sheet';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-  const closeMenu = () => setIsOpen(false);
-
-  // Close mobile menu automatically on route change
   useEffect(() => {
-    closeMenu();
+    setIsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -38,7 +36,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <div className="flex items-center gap-10">
-          <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
             <div className="h-8 w-8 rounded-lg bg-foreground flex items-center justify-center shadow-sm">
                <span className="text-background text-sm font-extrabold">B</span>
             </div>
@@ -49,28 +47,11 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors hover:text-primary ${
-                  isActive ? 'text-primary' : 'text-foreground-secondary'
-                }`
-              }
-            >
+            <NavLink to="/" end className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-foreground-secondary'}`}>
               Overview
             </NavLink>
             {navLinks.map((link) => (
-              <NavLink
-                key={link.href}
-                to={link.href}
-                end={Boolean(link.end)}
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-primary ${
-                    isActive ? 'text-primary' : 'text-foreground-secondary'
-                  }`
-                }
-              >
+              <NavLink key={link.href} to={link.href} end={Boolean(link.end)} className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-foreground-secondary'}`}>
                 {link.label}
               </NavLink>
             ))}
@@ -79,58 +60,37 @@ export default function Navbar() {
 
         {/* Action Button */}
         <div className="hidden md:flex items-center gap-4">
-          <Link
-            to="/organization"
-            className="inline-flex h-9 items-center justify-center rounded-lg bg-foreground px-5 text-sm font-semibold text-background transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background shadow-sm"
-          >
-            Explore Directory
-          </Link>
+          <Button asChild className="shadow-sm transition-all hover:scale-105 active:scale-95">
+            <Link to="/organization">Explore Directory</Link>
+          </Button>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={toggleMenu}
-          aria-expanded={isOpen}
-          aria-controls="mobile-nav-menu"
-          aria-label="Toggle navigation menu"
-          className="md:hidden p-2 -mr-2 text-foreground-secondary hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Navigation Sheet */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Toggle navigation menu">
+              <Menu size={24} />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <div className="flex flex-col gap-6 pt-10">
+              <NavLink to="/" end className="text-base font-medium text-foreground-secondary hover:text-primary">
+                Overview
+              </NavLink>
+              {navLinks.map((link) => (
+                <NavLink key={link.href} to={link.href} className={({ isActive }) => `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground-secondary hover:text-primary'}`}>
+                  {link.label}
+                </NavLink>
+              ))}
+              <div className="pt-4 border-t">
+                <Button asChild className="w-full">
+                  <Link to="/organization">Explore Directory</Link>
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </nav>
-
-      {/* Mobile Menu Panel */}
-      <div
-        id="mobile-nav-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-background border-border ${
-          isOpen ? 'max-h-[400px] border-t opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div ref={mobileMenuRef} className="flex flex-col px-6 py-6 space-y-5">
-          <NavLink to="/" end className="text-base font-medium text-foreground-secondary hover:text-primary">
-            Overview
-          </NavLink>
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.href}
-              to={link.href}
-              className={({ isActive }) =>
-                `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground-secondary hover:text-primary'}`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
-          <div className="pt-4 mt-2 border-t border-border">
-            <Link
-              to="/organization"
-              className="flex w-full h-10 items-center justify-center rounded-lg bg-foreground px-4 text-sm font-semibold text-background transition-colors"
-            >
-              Explore Directory
-            </Link>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }

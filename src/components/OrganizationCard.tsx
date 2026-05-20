@@ -1,7 +1,11 @@
+// src/components/OrganizationCard.tsx
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { CONTACT_ICONS } from '@/data/constants';
 import type { Organization } from '@/types/organization';
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/shadcn/card';
+import { Badge } from '@/components/ui/shadcn/badge';
+import { Button } from '@/components/ui/shadcn/button';
 
 interface OrganizationCardProps {
   org: Organization;
@@ -10,14 +14,13 @@ interface OrganizationCardProps {
 }
 
 export default function OrganizationCard({ org, campusName, large = false }: OrganizationCardProps) {
-  // FIX 1: Added optional chaining (?. ) to org.contact to prevent crashes if contact is missing
   const socialEntries = org.contact?.social
     ? Object.entries(org.contact.social).filter(([, val]) => val)
     : [];
 
   return (
-    <article className={cn(
-      'group relative flex h-full w-full overflow-hidden rounded-xl border border-border bg-surface-1 transition-all hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5',
+    <Card className={cn(
+      'group relative flex flex-row h-full w-full overflow-hidden transition-all hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5 bg-surface-1',
       large ? 'min-h-[160px]' : 'min-h-[128px]'
     )}>
       {/* Visual Identity Area */}
@@ -39,7 +42,7 @@ export default function OrganizationCard({ org, campusName, large = false }: Org
           />
         ) : null}
 
-        {/* Fallback Text - Hidden by default if image exists, revealed on error */}
+        {/* Fallback Text */}
         <div className={cn(
           "flex h-full w-full items-center justify-center bg-surface-2 text-border-strong font-extrabold tracking-tighter transition-transform duration-500 group-hover:scale-110",
           org.assets?.logoUrl ? "hidden" : "flex",
@@ -50,43 +53,42 @@ export default function OrganizationCard({ org, campusName, large = false }: Org
       </figure>
 
       {/* Metadata Area */}
-      <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-5">
-        <header className="min-w-0 mb-auto">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <CardHeader className="p-4 sm:p-5 pb-0 mb-auto">
           {campusName && (
-            <span className="inline-flex items-center rounded bg-surface-2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground-tertiary mb-2">
+            <Badge variant="secondary" className="w-fit mb-2 text-[10px] uppercase tracking-wider">
               {campusName}
-            </span>
+            </Badge>
           )}
-          <h3 className="line-clamp-2 text-base font-bold leading-tight text-foreground group-hover:text-primary transition-colors">
+          <CardTitle className="line-clamp-2 text-base group-hover:text-primary transition-colors">
             <Link to={`/organization/${org.slug}`} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <span className="absolute inset-0" aria-hidden="true" />
               {org.name}
             </Link>
-          </h3>
-          {/* FIX 2: Added optional chaining to org.content to prevent crashes if content block is missing */}
-          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-foreground-secondary">
+          </CardTitle>
+          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-foreground-secondary">
             {org.content?.shortDescription}
-          </p>
-        </header>
+          </CardDescription>
+        </CardHeader>
 
         {socialEntries.length > 0 && (
-          <footer className="mt-4 flex flex-wrap items-center gap-3 relative z-10">
+          <CardFooter className="p-4 sm:p-5 pt-4 flex flex-wrap items-center gap-3 relative z-10">
             {socialEntries.slice(0, 4).map(([network, url]) => (
-              <a
-                key={network}
-                href={url as string}
-                title={network}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground-muted transition-colors hover:text-primary"
-                aria-label={`Visit our ${network}`}
-              >
-                {CONTACT_ICONS[network]?.(false)}
-              </a>
+              <Button key={network} variant="ghost" size="icon" asChild className="h-8 w-8 text-foreground-muted hover:text-primary">
+                <a
+                  href={url as string}
+                  title={network}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit our ${network}`}
+                >
+                  {CONTACT_ICONS[network]?.(false)}
+                </a>
+              </Button>
             ))}
-          </footer>
+          </CardFooter>
         )}
       </div>
-    </article>
+    </Card>
   );
 }

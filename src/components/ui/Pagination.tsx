@@ -1,5 +1,11 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Pagination as ShadcnPagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/shadcn/pagination';
 
 interface PaginationProps {
   currentPage: number;
@@ -8,52 +14,48 @@ interface PaginationProps {
   className?: string;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+export default function Pagination({
   currentPage,
   totalPages,
   onPageChange,
   className = '',
-}) => {
+}: PaginationProps) {
   if (totalPages <= 1) return null;
 
   return (
-    <nav className={`flex items-center justify-center gap-1 ${className}`} aria-label="Pagination">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground-muted transition-colors hover:bg-surface-2 hover:text-foreground disabled:pointer-events-none disabled:opacity-50"
-      >
-        <ChevronLeft size={16} />
-      </button>
+    <ShadcnPagination className={className}>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={() => onPageChange(currentPage - 1)}
+            aria-disabled={currentPage === 1}
+            className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+          />
+        </PaginationItem>
 
-      {[...Array(totalPages)].map((_, i) => {
-        const page = i + 1;
-        const isActive = currentPage === page;
+        {[...Array(totalPages)].map((_, i) => {
+          const page = i + 1;
+          return (
+            <PaginationItem key={page}>
+              <PaginationLink
+                onClick={() => onPageChange(page)}
+                isActive={currentPage === page}
+                className="cursor-pointer"
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
 
-        return (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={`inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors ${
-              isActive
-                ? 'bg-foreground text-background'
-                : 'text-foreground-secondary hover:bg-surface-2 hover:text-foreground'
-            }`}
-          >
-            {page}
-          </button>
-        );
-      })}
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground-muted transition-colors hover:bg-surface-2 hover:text-foreground disabled:pointer-events-none disabled:opacity-50"
-      >
-        <ChevronRight size={16} />
-      </button>
-    </nav>
+        <PaginationItem>
+          <PaginationNext
+            onClick={() => onPageChange(currentPage + 1)}
+            aria-disabled={currentPage === totalPages}
+            className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </ShadcnPagination>
   );
-};
-
-export default Pagination;
+}

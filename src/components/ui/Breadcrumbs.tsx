@@ -1,6 +1,13 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
+import { useLocation, Link } from 'react-router-dom';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/shadcn/breadcrumb';
 
 interface BreadCrumbItem {
   label: string;
@@ -12,59 +19,53 @@ interface BreadCrumbsProps {
   className?: string;
 }
 
-const Breadcrumbs: React.FC<BreadCrumbsProps> = ({ items, className = '' }) => {
+export default function Breadcrumbs({ items, className = '' }: BreadCrumbsProps) {
   const location = useLocation();
 
   const generateBreadcrumbs = (): BreadCrumbItem[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    const Breadcrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
+    const breadcrumbs: BreadCrumbItem[] = [{ label: 'Home', href: '/' }];
 
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
       const isLast = index === pathSegments.length - 1;
+      const label = segment.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-      const label = segment
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-
-      Breadcrumbs.push({
+      breadcrumbs.push({
         label,
         href: isLast ? undefined : currentPath,
       });
     });
 
-    return Breadcrumbs;
+    return breadcrumbs;
   };
 
-  const BreadCrumbItems = items || generateBreadcrumbs();
+  const breadcrumbItems = items || generateBreadcrumbs();
 
   return (
-    <nav
-      className={`flex items-center space-x-1.5 text-sm text-foreground-muted ${className}`}
-      aria-label="Breadcrumb"
-    >
-      {BreadCrumbItems.map((item, index) => (
-        <React.Fragment key={index}>
-          {index === 0 && <Home className="h-3.5 w-3.5" />}
-          {index > 0 && <ChevronRight className="h-3.5 w-3.5 opacity-50" />}
-          {item.href ? (
-            <Link
-              to={item.href}
-              className="hover:text-foreground transition-colors duration-200"
-            >
-              {item.label.charAt(0).toUpperCase() + item.label.slice(1)}
-            </Link>
-          ) : (
-            <span className="text-foreground font-medium" aria-current="page">
-              {item.label.charAt(0).toUpperCase() + item.label.slice(1)}
-            </span>
-          )}
-        </React.Fragment>
-      ))}
-    </nav>
-  );
-};
+    <Breadcrumb className={className}>
+      <BreadcrumbList>
+        {breadcrumbItems.map((item, index) => {
+          const isLast = index === breadcrumbItems.length - 1;
+          const label = item.label.charAt(0).toUpperCase() + item.label.slice(1);
 
-export default Breadcrumbs;
+          return (
+            <React.Fragment key={index}>
+              <BreadcrumbItem>
+                {isLast || !item.href ? (
+                  <BreadcrumbPage>{label}</BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink asChild>
+                    <Link to={item.href}>{label}</Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+              {!isLast && <BreadcrumbSeparator />}
+            </React.Fragment>
+          );
+        })}
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}

@@ -1,4 +1,6 @@
+// src/components/sections/Hero.tsx
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/shadcn/button";
 
 export default function Hero() {
   return (
@@ -15,15 +17,12 @@ export default function Hero() {
           The definitive guide to CvSU Main programs and recognized student organizations. Explore chapters, connect with leaders, and build your campus network.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link
-            to="/organization"
-            className="rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-sm hover:bg-foreground/90 transition-all"
-          >
-            Start Exploring
-          </Link>
-          <a href="#featured" className="text-sm font-semibold leading-6 text-foreground hover:text-foreground-secondary transition-colors">
-            View featured <span aria-hidden="true">→</span>
-          </a>
+          <Button asChild size="lg" className="shadow-sm hover:bg-foreground/90 transition-all">
+            <Link to="/organization">Start Exploring</Link>
+          </Button>
+          <Button asChild variant="link" className="text-foreground hover:text-foreground-secondary transition-colors font-semibold">
+            <a href="#featured">View featured <span aria-hidden="true" className="ml-1">→</span></a>
+          </Button>
         </div>
       </div>
     </div>

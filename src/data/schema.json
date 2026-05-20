@@ -1,33 +1,71 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"title": "Organization",
-	"description": "Schema for organization data.",
-	"type": "object",
-	"properties": {
-		"org": {
-			"type": "string",
-			"description": "The name of the organization."
-		},
-		"type": {
-			"type": "string",
-			"description": "The type of the organization (e.g., Academic, Non-Academic)."
-		},
-		"category": {
-			"type": "string",
-			"description": "The category of the organization (e.g., Cultural, Sports)."
-		},
-		"logo": {
-			"type": "string",
-			"description": "URL to the organization's logo image."
-		},
-		"slug": {
-			"type": "string",
-			"description": "A URL-friendly identifier for the organization."
-		},
-		"campusId": {
-			"type": "integer",
-			"description": "The ID of the campus the organization belongs to."
-		}
-	},
-	"required": ["org", "type", "slug"]
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://betterosas.dev/schemas/organization.json",
+  "title": "Student Organization Record",
+  "description": "Comprehensive schema for student organizations across campuses. and sattelite campuses. This schema captures essential details, contact information, and metadata for each organization.",
+  "type": "object",
+  "required": ["id", "slug", "name", "type", "category", "status", "campusId"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid", "description": "Immutable unique identifier" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "URL-safe routing identifier" },
+    "name": { "type": "string", "minLength": 2, "maxLength": 150 },
+    "acronym": { "type": "string", "maxLength": 20 },
+    "status": { "type": "string", "enum": ["Active", "Inactive", "Probationary"] },
+    "type": { "type": "string", "enum": ["Academic", "Non-Academic", "Student Council", "Student Publication Units", "Performing Arts Group"] },
+    "category": { "type": "string" },
+    "campusId": { "type": "integer" },
+    "programId": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "foundedYear": { "type": "integer", "minimum": 1900 },
+        "accredited": { "type": "boolean", "default": false },
+        "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "shortDescription": { "type": "string", "maxLength": 250 },
+        "about": { "type": "string", "description": "Markdown supported long-form description" },
+        "mission": { "type": "string" },
+        "vision": { "type": "string" }
+      },
+      "required": ["shortDescription"]
+    },
+    "assets": {
+      "type": "object",
+      "properties": {
+        "logoUrl": { "type": "string", "format": "uri-reference" },
+        "bannerUrl": { "type": "string", "format": "uri-reference" },
+        "galleryUrls": { "type": "array", "items": { "type": "string", "format": "uri-reference" } }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "website": { "type": "string", "format": "uri" },
+        "officeLocation": { "type": "string" },
+        "social": {
+          "type": "object",
+          "properties": {
+            "facebook": { "type": "string", "format": "uri" },
+            "instagram": { "type": "string", "format": "uri" },
+            "x": { "type": "string", "format": "uri" },
+            "tiktok": { "type": "string", "format": "uri" },
+            "linkedin": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "membership": {
+      "type": "object",
+      "properties": {
+        "isOpen": { "type": "boolean" },
+        "requirements": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "additionalProperties": false
 }

@@ -1,117 +1,304 @@
 [
   {
-    "campusId": 0,
+    "id": "72da738a-8b3b-4d6e-975b-f1fc46535c2d",
     "slug": "cas-sc",
-    "logo": "/colleges/cas/cas-sc.jpg",
-    "org": "CAS Student Council",
+    "name": "CAS Student Council",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "CAS Student Council organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/cas-sc.jpg"
+    },
     "contact": {
       "email": "cvsu.cassc@gmail.com",
-      "facebook": "https://www.facebook.com/CvSUCAS",
-      "instagram": "https://www.instagram.com/cassc_cvsum/"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUCAS",
+        "instagram": "https://www.instagram.com/cassc_cvsum/"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "43151383-d953-47ca-9d39-8f5174742e1f",
     "slug": "samakom",
-    "logo": "/colleges/cas/samakom.jpg",
-    "program": "Bachelor of Arts in Communication",
-    "org": "SAMAKOM - Samahan ng mga Mag-aaral sa Komunikasyon",
+    "name": "Samahan ng mga Mag-aaral sa Komunikasyon",
+    "acronym": "SAMAKOM",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Arts in Communication",
+    "metadata": {
+      "tags": [
+        "SAMAKOM",
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Samahan ng mga Mag-aaral sa Komunikasyon organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/samakom.jpg"
+    },
     "contact": {
       "email": "samakom.cvsu@gmail.com",
-      "facebook": "https://www.facebook.com/cvsusamakom",
-      "instagram": "https://www.instagram.com/samakom_cvsu/",
-      "tiktok": "https://www.tiktok.com/@samakomcvsu"
+      "social": {
+        "facebook": "https://www.facebook.com/cvsusamakom",
+        "instagram": "https://www.instagram.com/samakom_cvsu/",
+        "tiktok": "https://www.tiktok.com/@samakomcvsu"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "cf4c4b88-ef4c-4761-a3f3-e777f63fcb0c",
     "slug": "pragmaticus",
-    "logo": "/colleges/cas/pragmaticus.jpg",
-    "program": "Bachelor of Arts in English Language Studies",
-    "org": "PRAGMATICUS",
-    "description": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus.",
+    "name": "PRAGMATICUS",
+    "acronym": "PRAGMATICUS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Arts in English Language Studies",
+    "metadata": {
+      "tags": [
+        "PRAGMATICUS",
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus.",
+      "about": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus."
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/pragmaticus.jpg"
+    },
     "contact": {
       "email": "cas.pragmaticus@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/pragmaticus.cvsu"
+      "social": {
+        "facebook": "https://www.facebook.com/pragmaticus.cvsu"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "4cf9da7b-da83-486d-995b-b87a8be62eda",
     "slug": "utopia",
-    "logo": "/colleges/cas/utopia.jpg",
-    "program": "Bachelor of Arts in Political Science",
-    "org": "UTOPIA - CvSU Political Science Society",
+    "name": "CvSU Political Science Society",
+    "acronym": "UTOPIA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Arts in Political Science",
+    "metadata": {
+      "tags": [
+        "UTOPIA",
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "CvSU Political Science Society organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/utopia.jpg"
+    },
     "contact": {
       "email": "cas.utopia@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/utopiacvsu"
+      "social": {
+        "facebook": "https://www.facebook.com/utopiacvsu"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "30fa40f7-dc26-4e72-9343-6628d1206a43",
     "slug": "journalism-guild",
-    "logo": "/colleges/cas/journguild.jpg",
-    "program": "Bachelor of Arts in Journalism",
-    "org": "Journalism Guild",
+    "name": "Journalism Guild",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Arts in Journalism",
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Journalism Guild organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/journguild.jpg"
+    },
     "contact": {
       "email": "cas.journalismguild@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUJournGuildOfficial"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUJournGuildOfficial"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "5d6fec42-f1ba-4ebe-a58e-8599681f29c2",
     "slug": "radicands",
-    "logo": "/colleges/cas/radicands.jpg",
-    "program": "Bachelor of Science in Applied Mathematics",
-    "org": "RADICANDS - CvSU Cluster of Applied Mathematics Students",
+    "name": "CvSU Cluster of Applied Mathematics Students",
+    "acronym": "RADICANDS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Applied Mathematics",
+    "metadata": {
+      "tags": [
+        "RADICANDS",
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "CvSU Cluster of Applied Mathematics Students organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/radicands.jpg"
+    },
     "contact": {
       "email": "cas.radicands@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/bsam.radicands"
+      "social": {
+        "facebook": "https://www.facebook.com/bsam.radicands"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "ec193ab7-f168-4219-b563-4b736c214487",
     "slug": "mitochondrion-society",
-    "logo": "/colleges/cas/mitosoc.jpg",
-    "program": "Bachelor of Science in Biology",
-    "org": "Mitochondrion Society",
+    "name": "Mitochondrion Society",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Biology",
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Mitochondrion Society organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/mitosoc.jpg"
+    },
     "contact": {
       "email": "cas.mitosoc@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUMitochondrion"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUMitochondrion"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "f09b2539-5e56-434e-8d56-c35edfef3f6b",
     "slug": "development-communication-society",
-    "logo": "/colleges/cas/dvca.jpg",
-    "program": "Bachelor of Science in Development Communication",
-    "org": "Development Communication Society",
+    "name": "Development Communication Society",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Development Communication",
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Development Communication Society organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/dvca.jpg"
+    },
     "contact": {
       "email": "dvcatalysts@gmail.com",
-      "facebook": "https://www.facebook.com/cvsudvca"
+      "social": {
+        "facebook": "https://www.facebook.com/cvsudvca"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "1f0ed2ff-7d66-49c4-a01d-2af63bbb4762",
     "slug": "psychology-circle",
-    "logo": "/colleges/cas/psychcircle.jpg",
-    "program": "Bachelor of Science in Psychology",
-    "org": "Psychology Circle",
+    "name": "Psychology Circle",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Psychology",
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Psychology Circle organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/psychcircle.jpg"
+    },
     "contact": {
       "email": "cas.psychcircle@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/PsychCircleCvSUMain"
+      "social": {
+        "facebook": "https://www.facebook.com/PsychCircleCvSUMain"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "df1add6c-877f-435d-80fa-d2bad757fb67",
     "slug": "jswap-cvsu",
-    "logo": "/colleges/cas/jswap.png",
-    "program": "Bachelor of Science in Social Work",
-    "org": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
+    "name": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Arts and Sciences",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Social Work",
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Arts and Sciences"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Social Workers' Association of the Philippines - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cas/jswap.png"
+    },
     "contact": {
       "email": "cas.jswap@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/jswap.cvsumain",
-      "instagram": "https://www.instagram.com/tahanang_jswap",
-      "x": "https://www.x.com/TahanangJSWAP"
+      "social": {
+        "facebook": "https://www.facebook.com/jswap.cvsumain",
+        "instagram": "https://www.instagram.com/tahanang_jswap",
+        "x": "https://www.x.com/TahanangJSWAP"
+      }
     }
   }
 ]

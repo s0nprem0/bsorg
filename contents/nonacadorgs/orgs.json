@@ -1,116 +1,300 @@
 [
   {
-    "campusId": 0,
+    "id": "0bb446fd-4332-4477-a784-2fc3ff4867f5",
     "slug": "ufy-sc",
-    "logo": "/org/ufy-sc.jpg",
-    "org": "University First Year Student Council",
-    "description": "1st year student governance and welfare and training grounds for student leadership",
+    "name": "University First Year Student Council",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "1st year student governance and welfare and training grounds for student leadership",
+      "about": "1st year student governance and welfare and training grounds for student leadership"
+    },
+    "assets": {
+      "logoUrl": "/org/ufy-sc.jpg"
+    },
     "contact": {
       "email": "cvsu.ufy-sc@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUUFYSC",
-      "instagram": "https://www.instagram.com/cvsuufysc"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUUFYSC",
+        "instagram": "https://www.instagram.com/cvsuufysc"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "fe906166-f4c7-49a0-8f5d-f880ebfd527d",
     "slug": "sinagtala",
-    "logo": "/org/sinagtalamma.jpg",
-    "org": "Sinagtala Multimedia Arts Organization",
-    "description": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films",
+    "name": "Sinagtala Multimedia Arts Organization",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films",
+      "about": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films"
+    },
+    "assets": {
+      "logoUrl": "/org/sinagtalamma.jpg"
+    },
     "contact": {
       "email": "sinagtala.multimediaorg.ext@gmail.com",
-      "facebook": "https://www.facebook.com/sinagtala.multimedia"
+      "social": {
+        "facebook": "https://www.facebook.com/sinagtala.multimedia"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "63169dfc-1ac1-4c1a-8ef1-ec8b31d36901",
     "slug": "kasama",
-    "logo": "/org/kasama3.jpg",
-    "org": "CVSU KASAMA - Kabsuhenyong Samahan ng Manggagawa Manlilikha at Manininda",
-    "description": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university.",
+    "name": "Kabsuhenyong Samahan ng Manggagawa Manlilikha at Manininda",
+    "acronym": "KASAMA",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "KASAMA",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university.",
+      "about": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university."
+    },
+    "assets": {
+      "logoUrl": "/org/kasama3.jpg"
+    },
     "contact": {
       "email": "cvsu.kasama3@gmail.com",
-      "facebook": "https://www.facebook.com/CvSUKASAMA3"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUKASAMA3"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "17bdb21b-4087-419d-812a-6f10ec9cf6ed",
     "slug": "likhain",
-    "logo": "/org/likhain.png",
-    "org": "LIKHAIN - Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal",
-    "description": "CvSU Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal.",
+    "name": "Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal",
+    "acronym": "LIKHAIN",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "LIKHAIN",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "CvSU Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal.",
+      "about": "CvSU Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal."
+    },
+    "assets": {
+      "logoUrl": "/org/likhain.png"
+    },
     "contact": {
       "email": "cvsu.likhain@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/likhain.cvsumain"
+      "social": {
+        "facebook": "https://www.facebook.com/likhain.cvsumain"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "4a6f2c47-92c7-4175-a5bc-b159c272561b",
     "slug": "mym",
-    "logo": "/org/mym.png",
-    "org": "Mind Your Mind",
-    "description": "A mental health advocacy organization that aims to raise awareness and provide support for mental health issues among students.",
+    "name": "Mind Your Mind",
+    "acronym": "MYM",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "MYM",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "A mental health advocacy organization that aims to raise awareness and provide support for mental health issues among students.",
+      "about": "A mental health advocacy organization that aims to raise awareness and provide support for mental health issues among students."
+    },
+    "assets": {
+      "logoUrl": "/org/mym.png"
+    },
     "contact": {
       "email": "mym.cvsumain@gmail.com",
-      "facebook": "https://www.facebook.com/mym.cvsu",
-      "instagram": "https://www.instagram.com/mindyourmind.cvsu"
+      "social": {
+        "facebook": "https://www.facebook.com/mym.cvsu",
+        "instagram": "https://www.instagram.com/mindyourmind.cvsu"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "ad44224f-3551-47aa-b4e1-dbee7bfe290b",
     "slug": "musikeros",
-    "logo": "/org/musikeros.jpg",
-    "org": "CvSU Musikeros",
-    "description": "A student organization that aims to promote musical excellence and provide a platform for students to showcase their talents.",
+    "name": "CvSU Musikeros",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "A student organization that aims to promote musical excellence and provide a platform for students to showcase their talents.",
+      "about": "A student organization that aims to promote musical excellence and provide a platform for students to showcase their talents."
+    },
+    "assets": {
+      "logoUrl": "/org/musikeros.jpg"
+    },
     "contact": {
       "email": "cvsumusikeros@gmail.com",
-      "facebook": "https://www.facebook.com/CvSUMusikeros",
-      "instagram": "https://www.instagram.com/cvsu.musikeros"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUMusikeros",
+        "instagram": "https://www.instagram.com/cvsu.musikeros"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "9aefd134-33f1-41be-a8ea-b33dc80ccc0d",
     "slug": "awsbg-spade",
-    "logo": "/org/aws-spade.jpg",
-    "org": "AWS Student Builder Group - Spade",
-    "description": "AWS Student Builder Group - Spade is a student organization that aims to provide students with opportunities to learn and grow in the field of cloud computing and technology.",
+    "name": "AWS Student Builder Group - Spade",
+    "acronym": "AWSBG",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "AWSBG",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "AWS Student Builder Group - Spade is a student organization that aims to provide students with opportunities to learn and grow in the field of cloud computing and technology.",
+      "about": "AWS Student Builder Group - Spade is a student organization that aims to provide students with opportunities to learn and grow in the field of cloud computing and technology."
+    },
+    "assets": {
+      "logoUrl": "/org/aws-spade.jpg"
+    },
     "contact": {
       "email": "awscc.spade@gmail.com",
-      "facebook": "https://www.facebook.com/AWSCCSpade"
+      "social": {
+        "facebook": "https://www.facebook.com/AWSCCSpade"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "50d587b4-38ba-4f9a-9c5e-dccb6d7d3709",
     "slug": "cos",
-    "logo": "/org/cos.jpg",
-    "org": "CvSU Otaku Society",
-    "description": "A student organization for anime and manga enthusiasts at CvSU.",
+    "name": "CvSU Otaku Society",
+    "acronym": "COS",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "COS",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "A student organization for anime and manga enthusiasts at CvSU.",
+      "about": "A student organization for anime and manga enthusiasts at CvSU."
+    },
+    "assets": {
+      "logoUrl": "/org/cos.jpg"
+    },
     "contact": {
       "email": "cvsumainotakusociety@gmail.com",
-      "facebook": "https://www.facebook.com/CvSUOtakuSocietyMainCampus"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUOtakuSocietyMainCampus"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "549b96df-1b2a-4ef9-900f-98df2ad13ccb",
     "slug": "asclepsoc",
-    "logo": "/org/asclepsoc.jpg",
-    "org": "Cavite State University - The Asclepian Society",
-    "description": "The Official Pre-Med Organization of Cavite State University - Main Campus.",
+    "name": "Cavite State University - The Asclepian Society",
+    "acronym": "ASCLEPSOC",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "ASCLEPSOC",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "The Official Pre-Med Organization of Cavite State University - Main Campus.",
+      "about": "The Official Pre-Med Organization of Cavite State University - Main Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/asclepsoc.jpg"
+    },
     "contact": {
       "email": "ext.cvsuasclepsoc@gmail.com",
-      "facebook": "https://www.facebook.com/cvsu.asclepsoc",
-      "instagram": "https://www.instagram.com/cvsu.asclepsoc/"
+      "social": {
+        "facebook": "https://www.facebook.com/cvsu.asclepsoc",
+        "instagram": "https://www.instagram.com/cvsu.asclepsoc/"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "bb9e78de-79aa-4e1f-b1a7-fb5e2d21e88c",
     "slug": "cerat",
-    "logo": "/org/cerat.jpg",
-    "org": "Cavite State University Emergency Response and Airsoft Team",
-    "description": "A student organization that focuses on emergency response training and airsoft activities.",
+    "name": "Cavite State University Emergency Response and Airsoft Team",
+    "acronym": "CERAT",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "CERAT",
+        "Non-Academic",
+        "University-Wide"
+      ]
+    },
+    "content": {
+      "shortDescription": "A student organization that focuses on emergency response training and airsoft activities.",
+      "about": "A student organization that focuses on emergency response training and airsoft activities."
+    },
+    "assets": {
+      "logoUrl": "/org/cerat.jpg"
+    },
     "contact": {
       "email": "ccj.cerat@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUMAIN.CERAT/"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUMAIN.CERAT/"
+      }
     }
   }
 ]

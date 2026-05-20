@@ -1,39 +1,90 @@
 [
-	{
-		"campusId": 0,
-		"slug": "chorale-ensemble",
-		"logo": "/org/pag/chorale.jpg",
-		"org": "CvSU Chorale Ensemble",
-		"description": "The CvSU Chorale Ensemble is the official choir of CvSU Main Campus.",
-		"contact": {
-			"email": "cvsuchoraleensemblee@gmail.com",
-			"facebook": "https://www.facebook.com/CvSUChoraleEnsemble",
-			"instagram": "https://www.instagram.com/cvsuchoraleensemble/"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "ccdt",
-		"logo": "/org/pag/ccdt.jpg",
-		"org": "CvSU Cultural Dance Troupe",
-		"description": "The CvSU Cultural Dance Troupe is the official cultural dance group of CvSU Main Campus.",
-		"contact": {
-			"email": "cvsuculturaldancetroupe@gmail.com",
-			"facebook": "https://www.facebook.com/cvsu.indayog",
-			"instagram": "https://www.instagram.com/cvsuculturaldancetroupe/",
-			"youtube":  "https://www.youtube.com/@CVSUCULTURALDANCETROUPE"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "stars",
-		"logo": "/org/pag/stars.jpg",
-		"org": "Student Artisté Society",
-		"description": "Student Artisté Society is the official DANCE THEATRE organization of Cavite State University - Main Campus",
-		"contact": {
-			"email": "studentartistesociety@gmail.com",
-			"facebook": "https://www.facebook.com/studentartistesociety",
-			"instagram": "https://www.instagram.com/cvsustars/"
-		}
-	}
+  {
+    "id": "d2692d72-f9e5-4f11-964e-d864e760becd",
+    "slug": "chorale-ensemble",
+    "name": "CvSU Chorale Ensemble",
+    "status": "Active",
+    "type": "Performing Arts Group",
+    "category": "Performing Arts Group",
+    "campusId": 0,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Performing Arts Group"
+      ]
+    },
+    "content": {
+      "shortDescription": "The CvSU Chorale Ensemble is the official choir of CvSU Main Campus.",
+      "about": "The CvSU Chorale Ensemble is the official choir of CvSU Main Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/pag/chorale.jpg"
+    },
+    "contact": {
+      "email": "cvsuchoraleensemblee@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUChoraleEnsemble",
+        "instagram": "https://www.instagram.com/cvsuchoraleensemble/"
+      }
+    }
+  },
+  {
+    "id": "2e8d51b1-5b4d-414f-9338-9304b4bfba57",
+    "slug": "ccdt",
+    "name": "CvSU Cultural Dance Troupe",
+    "status": "Active",
+    "type": "Performing Arts Group",
+    "category": "Performing Arts Group",
+    "campusId": 0,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Performing Arts Group"
+      ]
+    },
+    "content": {
+      "shortDescription": "The CvSU Cultural Dance Troupe is the official cultural dance group of CvSU Main Campus.",
+      "about": "The CvSU Cultural Dance Troupe is the official cultural dance group of CvSU Main Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/pag/ccdt.jpg"
+    },
+    "contact": {
+      "email": "cvsuculturaldancetroupe@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/cvsu.indayog",
+        "instagram": "https://www.instagram.com/cvsuculturaldancetroupe/",
+        "youtube": "https://www.youtube.com/@CVSUCULTURALDANCETROUPE"
+      }
+    }
+  },
+  {
+    "id": "aa7f4e3c-8663-4f30-a96b-81cecba3561c",
+    "slug": "stars",
+    "name": "Student Artisté Society",
+    "status": "Active",
+    "type": "Performing Arts Group",
+    "category": "Performing Arts Group",
+    "campusId": 0,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Performing Arts Group"
+      ]
+    },
+    "content": {
+      "shortDescription": "Student Artisté Society is the official DANCE THEATRE organization of Cavite State University - Main Campus",
+      "about": "Student Artisté Society is the official DANCE THEATRE organization of Cavite State University - Main Campus"
+    },
+    "assets": {
+      "logoUrl": "/org/pag/stars.jpg"
+    },
+    "contact": {
+      "email": "studentartistesociety@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/studentartistesociety",
+        "instagram": "https://www.instagram.com/cvsustars/"
+      }
+    }
+  }
 ]

@@ -1,61 +1,148 @@
 [
   {
-    "campusId": 0,
+    "id": "07a754f3-9696-4b74-b095-2f66ab757baf",
     "slug": "the-gazette",
-    "logo": "/org/gazette.png",
-    "org": "The Gazette",
-    "description": "The official student publication of CvSU Main Campus",
+    "name": "The Gazette",
+    "status": "Active",
+    "type": "Student Publication Units",
+    "category": "Student Publication Units",
+    "campusId": 0,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Student Publication Units"
+      ]
+    },
+    "content": {
+      "shortDescription": "The official student publication of CvSU Main Campus",
+      "about": "The official student publication of CvSU Main Campus"
+    },
+    "assets": {
+      "logoUrl": "/org/gazette.png"
+    },
     "contact": {
       "email": "thegazette@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/thegazettecvsu",
-      "x": "https://twitter.com/thegazettespu",
-      "instagram": "https://www.instagram.com/thegazettespu/"
+      "social": {
+        "facebook": "https://www.facebook.com/thegazettecvsu",
+        "instagram": "https://www.instagram.com/thegazettespu/",
+        "x": "https://twitter.com/thegazettespu"
+      }
     }
   },
   {
-    "campusId": 8,
+    "id": "6e00ac2f-2e75-440c-be7b-027e7b84ecbe",
     "slug": "ghgp",
-    "logo": "/org/ghgp.jpg",
-    "org": "The Green Horizon Group of Publications",
-    "description": "The GHGP is the official student publication of CvSU - Cavite City Campus.",
+    "name": "The Green Horizon Group of Publications",
+    "status": "Active",
+    "type": "Student Publication Units",
+    "category": "Student Publication Units",
+    "campusId": 8,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Student Publication Units"
+      ]
+    },
+    "content": {
+      "shortDescription": "The GHGP is the official student publication of CvSU - Cavite City Campus.",
+      "about": "The GHGP is the official student publication of CvSU - Cavite City Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/ghgp.jpg"
+    },
     "contact": {
       "email": "theghgpofficial@gmail.com",
-      "facebook": "https://www.facebook.com/greenhorizonofficial",
-      "instagram": "https://www.instagram.com/theghgp"
+      "social": {
+        "facebook": "https://www.facebook.com/greenhorizonofficial",
+        "instagram": "https://www.instagram.com/theghgp"
+      }
     }
   },
   {
-    "campusId": 1,
+    "id": "465db898-9443-4aed-a2ec-1c3dacf001e8",
     "slug": "the-flare",
-    "logo": "/org/theflare.jpg",
-    "org": "The Flare - CvSU Imus",
-    "description": "The Flare is the official student publication of CvSU - Imus Campus.",
+    "name": "CvSU Imus",
+    "acronym": "The Flare",
+    "status": "Active",
+    "type": "Student Publication Units",
+    "category": "Student Publication Units",
+    "campusId": 1,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "The Flare",
+        "Student Publication Units"
+      ]
+    },
+    "content": {
+      "shortDescription": "The Flare is the official student publication of CvSU - Imus Campus.",
+      "about": "The Flare is the official student publication of CvSU - Imus Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/theflare.jpg"
+    },
     "contact": {
       "email": "sputheflare.cvsuimus@gmail.com",
-      "facebook": "https://www.facebook.com/theflarecvsuimus",
-      "website": "https://sputheflarecvsuimus.wixsite.com/the-flare"
+      "website": "https://sputheflarecvsuimus.wixsite.com/the-flare",
+      "social": {
+        "facebook": "https://www.facebook.com/theflarecvsuimus"
+      }
     }
   },
   {
-    "campusId": 2,
+    "id": "2dc55e26-12f3-4083-963d-b1db5af7ee2e",
     "slug": "the-cornerstone",
-    "logo": "/org/thecornerstone.jpg",
-    "org": "The Cornerstone",
-    "description": "The Cornerstone is the official student publication of CvSU - Bacoor Campus.",
+    "name": "The Cornerstone",
+    "status": "Active",
+    "type": "Student Publication Units",
+    "category": "Student Publication Units",
+    "campusId": 2,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Student Publication Units"
+      ]
+    },
+    "content": {
+      "shortDescription": "The Cornerstone is the official student publication of CvSU - Bacoor Campus.",
+      "about": "The Cornerstone is the official student publication of CvSU - Bacoor Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/thecornerstone.jpg"
+    },
     "contact": {
       "email": "cvsuthecornerstoneorg@gmail.com",
-      "facebook": "https://www.facebook.com/TheCornerstoneCvSU"
+      "social": {
+        "facebook": "https://www.facebook.com/TheCornerstoneCvSU"
+      }
     }
   },
   {
-    "campusId": 5,
+    "id": "cac499ce-48ab-4a61-ae91-7af32bda7763",
     "slug": "the-oracle",
-    "logo": "/org/theoracle.jpg",
-    "org": "The Oracle",
-    "description": "The Oracle is the official student publication of CvSU - Tanza Campus.",
+    "name": "The Oracle",
+    "status": "Active",
+    "type": "Student Publication Units",
+    "category": "Student Publication Units",
+    "campusId": 5,
+    "metadata": {
+      "accredited": true,
+      "tags": [
+        "Student Publication Units"
+      ]
+    },
+    "content": {
+      "shortDescription": "The Oracle is the official student publication of CvSU - Tanza Campus.",
+      "about": "The Oracle is the official student publication of CvSU - Tanza Campus."
+    },
+    "assets": {
+      "logoUrl": "/org/theoracle.jpg"
+    },
     "contact": {
       "email": "theoracle@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/theoracle.publication"
+      "social": {
+        "facebook": "https://www.facebook.com/theoracle.publication"
+      }
     }
   }
 ]

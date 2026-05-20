@@ -1,147 +1,403 @@
 [
   {
-    "campusId": 0,
+    "id": "9d129e89-4c54-4653-8bae-ae5bc5f0066a",
     "slug": "ceit-sc",
-    "logo": "/colleges/ceit/ceit-sc_blk.svg",
-    "org": "CEIT Student Council",
+    "name": "CEIT Student Council",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "CEIT Student Council organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/ceit-sc_blk.svg"
+    },
     "contact": {
       "email": "cvsu.ceitsc@gmail.com",
-      "facebook": "https://www.facebook.com/ceitsc.cvsumain",
-      "instagram": "https://www.instagram.com/ceitsc.cvsumain/"
+      "social": {
+        "facebook": "https://www.facebook.com/ceitsc.cvsumain",
+        "instagram": "https://www.instagram.com/ceitsc.cvsumain/"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "cba0096f-0faa-476c-aa30-fecf7493ef65",
     "slug": "csso",
-    "logo": "/colleges/ceit/csso.png",
-    "program": "Bachelor of Science in Computer Science",
-    "org": "Computer Science Student Organization",
+    "name": "Computer Science Student Organization",
+    "acronym": "CSSO",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Computer Science",
+    "metadata": {
+      "tags": [
+        "CSSO",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Computer Science Student Organization organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/csso.png"
+    },
     "contact": {
       "email": "cvsu.csso@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CSSO2016"
+      "social": {
+        "facebook": "https://www.facebook.com/CSSO2016"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "6c2dac09-ce2f-4821-a4cf-cf5c1bcb7f53",
     "slug": "elits",
-    "logo": "/colleges/ceit/elits.png",
-    "program": "Bachelor of Science in Information Technology",
-    "org": "Elite League of Information Technology Students",
+    "name": "Elite League of Information Technology Students",
+    "acronym": "ELITS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Information Technology",
+    "metadata": {
+      "tags": [
+        "ELITS",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Elite League of Information Technology Students organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/elits.png"
+    },
     "contact": {
       "email": "cvsu.elits@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/CvSUELITS"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUELITS"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "406b3f84-d115-486a-a444-cf9d0b61110d",
     "slug": "coess",
-    "logo": "/colleges/ceit/coess.png",
-    "program": "Bachelor of Science in Computer Engineering",
-    "org": "Computer Engineering Students Society - ICPEP Students Edition",
+    "name": "Computer Engineering Students Society - ICPEP Students Edition",
+    "acronym": "COESS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Computer Engineering",
+    "metadata": {
+      "tags": [
+        "COESS",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Computer Engineering Students Society - ICPEP Students Edition organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/coess.png"
+    },
     "contact": {
       "email": "coess.icpep.cvsu@gmail.com",
-      "facebook": "https://www.facebook.com/CvSUCpE"
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUCpE"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "5fd1ca7d-53c2-4073-ab06-258e3bf812a0",
     "slug": "uapsa",
-    "logo": "/colleges/ceit/uapsa.png",
-    "program": "Bachelor of Science in Architecture",
-    "org": "United Architects of the Philippines Student Auxiliary - CvSU Chapter",
+    "name": "United Architects of the Philippines Student Auxiliary - CvSU Chapter",
+    "acronym": "UAPSA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Architecture",
+    "metadata": {
+      "tags": [
+        "UAPSA",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "United Architects of the Philippines Student Auxiliary - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/uapsa.png"
+    },
     "contact": {
       "email": "uapsa.cvsu@gmail.com",
-      "facebook": "https://www.facebook.com/uapsacvsu",
-      "instagram": "https://www.instagram.com/uapsa_cvsu"
+      "social": {
+        "facebook": "https://www.facebook.com/uapsacvsu",
+        "instagram": "https://www.instagram.com/uapsa_cvsu"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "c89ec9fe-e51a-4434-b3b7-3dfe76c67410",
     "slug": "piie",
-    "logo": "/colleges/ceit/piie.png",
-    "program": "Bachelor of Science in Industrial Engineering",
-    "org": "Philippine Institute of Industrial Engineers - CvSU Chapter",
+    "name": "Philippine Institute of Industrial Engineers - CvSU Chapter",
+    "acronym": "PIIE",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Industrial Engineering",
+    "metadata": {
+      "tags": [
+        "PIIE",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Philippine Institute of Industrial Engineers - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/piie.png"
+    },
     "contact": {
       "email": "cvsu.piie-cvsusc@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/piiecvsusc",
-      "instagram": "https://www.instagram.com/piie.cvsusc/"
+      "social": {
+        "facebook": "https://www.facebook.com/piiecvsusc",
+        "instagram": "https://www.instagram.com/piie.cvsusc/"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "3a2df459-b70e-4689-850b-e955764f437b",
     "slug": "iiee",
-    "logo": "/colleges/ceit/iiee.png",
-    "program": "Bachelor of Science in Electrical Engineering",
-    "org": "Institute of Integrated Electrical Engineers - CvSU Chapter",
+    "name": "Institute of Integrated Electrical Engineers - CvSU Chapter",
+    "acronym": "IIEE",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Electrical Engineering",
+    "metadata": {
+      "tags": [
+        "IIEE",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Institute of Integrated Electrical Engineers - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/iiee.png"
+    },
     "contact": {
       "email": "cvsu.iiee-csc@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/iieecsccvsumain"
+      "social": {
+        "facebook": "https://www.facebook.com/iieecsccvsumain"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "1e1eb757-1592-410c-b4ca-32354303793d",
     "slug": "psabe",
-    "logo": "/colleges/ceit/psabe.png",
-    "program": "Bachelor of Science in Agricultural and Biosystems Engineering",
-    "org": "Philippine Society of Agricultural and Biosystems Engineers - CvSU Chapter",
+    "name": "Philippine Society of Agricultural and Biosystems Engineers - CvSU Chapter",
+    "acronym": "PSABE",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Agricultural and Biosystems Engineering",
+    "metadata": {
+      "tags": [
+        "PSABE",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Philippine Society of Agricultural and Biosystems Engineers - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/psabe.png"
+    },
     "contact": {
-      "email": "",
-      "facebook": "https://www.facebook.com/psabeppgcvsuchapter"
+      "social": {
+        "facebook": "https://www.facebook.com/psabeppgcvsuchapter"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "e090184b-8b15-4135-8f2f-114dff3067c7",
     "slug": "jiecep",
-    "logo": "/colleges/ceit/jiecep.png",
-    "program": "Bachelor of Science in Electronics Engineering",
-    "org": "Junior Institute of Electronics Engineers of the Philippines - CvSU Chapter",
+    "name": "Junior Institute of Electronics Engineers of the Philippines - CvSU Chapter",
+    "acronym": "JIECEP",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Electronics Engineering",
+    "metadata": {
+      "tags": [
+        "JIECEP",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Institute of Electronics Engineers of the Philippines - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/jiecep.png"
+    },
     "contact": {
       "email": "cvsu.ece@gmail.com",
-      "facebook": "https://www.facebook.com/cvsuece"
+      "social": {
+        "facebook": "https://www.facebook.com/cvsuece"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "e71ba4f3-012a-42cc-a48f-85456bc7f2bb",
     "slug": "class",
-    "logo": "/colleges/ceit/class.png",
-    "program": "Bachelor of Science in Industrial Technology - Major in Automotive Technology",
-    "org": "CvSU League of Automotive Superb Students",
+    "name": "CvSU League of Automotive Superb Students",
+    "acronym": "CLASS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Industrial Technology - Major in Automotive Technology",
+    "metadata": {
+      "tags": [
+        "CLASS",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "CvSU League of Automotive Superb Students organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/class.png"
+    },
     "contact": {
       "email": "c.l.a.s.sorganization2022@gmail.com",
-      "facebook": "https://www.facebook.com/CLASS.CVSU"
+      "social": {
+        "facebook": "https://www.facebook.com/CLASS.CVSU"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "2d8cb4ff-057b-4032-9502-3e47ff76b6a6",
     "slug": "sites",
-    "logo": "/colleges/ceit/sites.png",
-    "program": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
-    "org": "Society of Industrial Technology Electrical Students",
+    "name": "Society of Industrial Technology Electrical Students",
+    "acronym": "SITES",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
+    "metadata": {
+      "tags": [
+        "SITES",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Society of Industrial Technology Electrical Students organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/sites.png"
+    },
     "contact": {
       "email": "cvsu.sites@cvsu.edu.ph",
-      "facebook": "https://www.facebook.com/cvsu.elex.sites"
+      "social": {
+        "facebook": "https://www.facebook.com/cvsu.elex.sites"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "e8409d97-b8f0-45d5-b2df-1c124686a7e1",
     "slug": "pice",
-    "logo"  : "/colleges/ceit/pice.png",
-    "program": "Bachelor of Science in Civil Engineering",
-    "org": "Philippine Institute of Civil Engineers - CvSU Chapter",
+    "name": "Philippine Institute of Civil Engineers - CvSU Chapter",
+    "acronym": "PICE",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Civil Engineering",
+    "metadata": {
+      "tags": [
+        "PICE",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Philippine Institute of Civil Engineers - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/pice.png"
+    },
     "contact": {
       "email": "pice.cvsusc.official@gmail.com",
-      "facebook": "https://www.facebook.com/picecvsustudentchapter"
+      "social": {
+        "facebook": "https://www.facebook.com/picecvsustudentchapter"
+      }
     }
   },
   {
-    "campusId": 0,
+    "id": "ad77ecff-baad-4cfb-806e-495d8bdc3189",
     "slug": "etso",
-    "logo": "/colleges/ceit/etso.png",
-    "program": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
-    "org": "Electrical Technology Students Organization",
+    "name": "Electrical Technology Students Organization",
+    "acronym": "ETSO",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Engineering and Information Technology",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Industrial Technology - Major in Electrical Technology",
+    "metadata": {
+      "tags": [
+        "ETSO",
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
+    },
+    "content": {
+      "shortDescription": "Electrical Technology Students Organization organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ceit/etso.png"
+    },
     "contact": {
-      "email": "",
-      "facebook": "https://www.facebook.com/profile.php?id=100072488476712"
+      "social": {
+        "facebook": "https://www.facebook.com/profile.php?id=100072488476712"
+      }
     }
   }
 ]

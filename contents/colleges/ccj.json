@@ -1,34 +1,92 @@
 [
-	{
-		"campusId": 0,
-		"slug": "ccj-sc",
-		"logo": "/colleges/ccj/ccj-sc.jpg",
-		"org": "CCJ Student Council",
-		"contact": {
-			"email": "ccj.studentcouncil@cvsu.edu.ph",
-			"facebook": "https://www.facebook.com/ccjstudentcouncil"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "isss",
-		"logo": "/colleges/ccj/isss.jpg",
-		"program": "Bachelor of Science in Industrial Security Management",
-		"org": "International Security Service Society",
-		"contact": {
-			"email": "isss.ccj@gmail.com",
-			"facebook": "https://www.facebook.com/ISSS.CCJ.CvSU"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "crisoc",
-		"logo": "/colleges/ccj/crisoc.jpg",
-		"program": "Bachelor of Science in Criminology",
-		"org": "CCJ-Criminology Society",
-		"contact": {
-			"email": "ccj.crisoc@cvsu.edu.ph",
-			"facebook": "https://www.facebook.com/CCJCriSoc"
-		}
-	}
+  {
+    "id": "c697ac99-316f-499e-9398-0351d3533bc4",
+    "slug": "ccj-sc",
+    "name": "CCJ Student Council",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Criminal Justice",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Criminal Justice"
+      ]
+    },
+    "content": {
+      "shortDescription": "CCJ Student Council organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ccj/ccj-sc.jpg"
+    },
+    "contact": {
+      "email": "ccj.studentcouncil@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/ccjstudentcouncil"
+      }
+    }
+  },
+  {
+    "id": "a750f423-d86c-4967-9567-836b4c6c0b3e",
+    "slug": "isss",
+    "name": "International Security Service Society",
+    "acronym": "ISSS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Criminal Justice",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Industrial Security Management",
+    "metadata": {
+      "tags": [
+        "ISSS",
+        "Academic",
+        "College of Criminal Justice"
+      ]
+    },
+    "content": {
+      "shortDescription": "International Security Service Society organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ccj/isss.jpg"
+    },
+    "contact": {
+      "email": "isss.ccj@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/ISSS.CCJ.CvSU"
+      }
+    }
+  },
+  {
+    "id": "d7d89838-53d4-4134-ac51-d234658c8bc3",
+    "slug": "crisoc",
+    "name": "CCJ-Criminology Society",
+    "acronym": "CRISOC",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Criminal Justice",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Criminology",
+    "metadata": {
+      "tags": [
+        "CRISOC",
+        "Academic",
+        "College of Criminal Justice"
+      ]
+    },
+    "content": {
+      "shortDescription": "CCJ-Criminology Society organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/ccj/crisoc.jpg"
+    },
+    "contact": {
+      "email": "ccj.crisoc@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/CCJCriSoc"
+      }
+    }
+  }
 ]

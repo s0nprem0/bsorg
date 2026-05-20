@@ -1,116 +1,313 @@
 [
-	{
-		"campusId": 0,
-		"slug": "cemds-sc",
-		"logo": "/colleges/cemds/cemds-sc.jpg",
-		"org": "CEMDS Student Council",
-		"contact": {
-			"email": "cvsu.cemds-sc@cvsu.edu.ph",
-			"facebook": "https://www.facebook.com/cvsu.cemds.sc"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "sfe",
-		"logo": "/colleges/cemds/sfe.jpg",
-		"program": "Bachelor of Science in Economics",
-		"org": "Society of Future Economists",
-		"contact": {
-			"email": "external.theofficialsfe.cvsu@gmail.com",
-			"facebook": "https://www.facebook.com/OfficialSFE",
-			"instagram": "https://www.instagram.com/officialSFE/"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "issa",
-		"logo": "/colleges/cemds/issa.jpg",
-		"program": "Bachelor of Science in International Studies",
-		"org": "International Studies Students Association",
-		"contact": {
-			"email": "issa.cvsu@gmail.com",
-			"facebook": "https://www.facebook.com/issacvsu"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "cddm",
-		"logo": "/colleges/cemds/cddm.jpg",
-		"program": "Bachelor of Science in Development Management",
-		"org": "Chief Delegates of Development Management",
-		"contact": {
-			"email": "cddm.cvsu@gmail.com",
-			"facebook": "https://www.facebook.com/CDDMgt"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "pasoa",
-		"logo": "/colleges/cemds/pasoa.jpg",
-		"program": "Bachelor of Science in Office Administration",
-		"org": "Philippine Association of Students in Office Administration - CvSU Chapter",
-		"contact": {
-			"email": "pasoa.cvsuchapter@gmail.com",
-			"facebook": "https://www.facebook.com/pasoa.cemds"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "jpia",
-		"logo": "/colleges/cemds/jpia.jpg",
-		"program": "Bachelor of Science in Accountancy",
-		"org": "Junior Philippine Institute of Accountants - CvSU Chapter",
-		"contact": {
-			"email": "secgen.jpiacvsu2526@gmail.com",
-			"facebook": "https://www.facebook.com/jpiacvsu"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "jfinex",
-		"logo": "/colleges/cemds/jfinex.jpg",
-		"program": "Bachelor of Science in Business Administration - Major in Financial Management",
-		"org": "Junior Financial Executives - CvSU Chapter",
-		"contact": {
-			"email": "cvsu.jfinex@cvsu.edu.ph",
-			"facebook": "https://www.facebook.com/jfinexcvsu",
-			"instagram": "https://www.instagram.com/jfinexcvsu/",
-			"x": "https://twitter.com/jfinex_cvsu"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "jpmap",
-		"logo": "/colleges/cemds/jpmap.jpg",
-		"program": "Bachelor of Science in Business Administration - Major in Human Resource Management",
-		"org": "Junior Philippine Marketing Association - CvSU Chapter",
-		"contact": {
-			"email": "cvsumainjpmap@gmail.com",
-			"facebook": "https://www.facebook.com/JPMAPCvSUMain"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "jma",
-		"logo": "/colleges/cemds/jma.jpg",
-		"program": "Bachelor of Science in Business Administration - Major in Marketing Management",
-		"org": "Junior Philippine Management Association - CvSU Chapter",
-		"contact": {
-			"email": "",
-			"facebook": "https://www.facebook.com/CvSUJMA",
-			"instagram": "https://www.instagram.com/jma_cvsu/",
-			"x": "https://twitter.com/CvSU_JMA"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "joma",
-		"logo": "/colleges/cemds/joma.jpg",
-		"program": "Bachelor of Science in Business Administration - Major in Operations Management",
-		"org": "Junior Operations Management Association - CvSU Chapter",
-		"contact": {
-			"email": "cvsu.joma-cvsu@cvsu.edu.ph",
-			"facebook": "https://www.facebook.com/joma.cvsumain"
-		}
-	}
+  {
+    "id": "b20d8ca0-36df-48cf-9ffd-f003d32f83bb",
+    "slug": "cemds-sc",
+    "name": "CEMDS Student Council",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "CEMDS Student Council organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/cemds-sc.jpg"
+    },
+    "contact": {
+      "email": "cvsu.cemds-sc@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/cvsu.cemds.sc"
+      }
+    }
+  },
+  {
+    "id": "bd48ff97-9fd4-4863-ba1a-6ec70ee7aeb7",
+    "slug": "sfe",
+    "name": "Society of Future Economists",
+    "acronym": "SFE",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Economics",
+    "metadata": {
+      "tags": [
+        "SFE",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Society of Future Economists organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/sfe.jpg"
+    },
+    "contact": {
+      "email": "external.theofficialsfe.cvsu@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/OfficialSFE",
+        "instagram": "https://www.instagram.com/officialSFE/"
+      }
+    }
+  },
+  {
+    "id": "3e434c19-dd1e-419f-a50c-42a8166e0980",
+    "slug": "issa",
+    "name": "International Studies Students Association",
+    "acronym": "ISSA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in International Studies",
+    "metadata": {
+      "tags": [
+        "ISSA",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "International Studies Students Association organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/issa.jpg"
+    },
+    "contact": {
+      "email": "issa.cvsu@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/issacvsu"
+      }
+    }
+  },
+  {
+    "id": "99c1da23-4a64-4f20-839c-3293f9e51ed1",
+    "slug": "cddm",
+    "name": "Chief Delegates of Development Management",
+    "acronym": "CDDM",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Development Management",
+    "metadata": {
+      "tags": [
+        "CDDM",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Chief Delegates of Development Management organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/cddm.jpg"
+    },
+    "contact": {
+      "email": "cddm.cvsu@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/CDDMgt"
+      }
+    }
+  },
+  {
+    "id": "4abf6ac5-6daa-4957-bbdd-970429b9572a",
+    "slug": "pasoa",
+    "name": "Philippine Association of Students in Office Administration - CvSU Chapter",
+    "acronym": "PASOA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Office Administration",
+    "metadata": {
+      "tags": [
+        "PASOA",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Philippine Association of Students in Office Administration - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/pasoa.jpg"
+    },
+    "contact": {
+      "email": "pasoa.cvsuchapter@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/pasoa.cemds"
+      }
+    }
+  },
+  {
+    "id": "4fa829cf-a1a2-40f3-9762-9f53a64c381c",
+    "slug": "jpia",
+    "name": "Junior Philippine Institute of Accountants - CvSU Chapter",
+    "acronym": "JPIA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Accountancy",
+    "metadata": {
+      "tags": [
+        "JPIA",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Philippine Institute of Accountants - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/jpia.jpg"
+    },
+    "contact": {
+      "email": "secgen.jpiacvsu2526@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/jpiacvsu"
+      }
+    }
+  },
+  {
+    "id": "e0ad619f-1c34-45e0-9f95-c3b49f8245bb",
+    "slug": "jfinex",
+    "name": "Junior Financial Executives - CvSU Chapter",
+    "acronym": "JFINEX",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Business Administration - Major in Financial Management",
+    "metadata": {
+      "tags": [
+        "JFINEX",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Financial Executives - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/jfinex.jpg"
+    },
+    "contact": {
+      "email": "cvsu.jfinex@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/jfinexcvsu",
+        "instagram": "https://www.instagram.com/jfinexcvsu/",
+        "x": "https://twitter.com/jfinex_cvsu"
+      }
+    }
+  },
+  {
+    "id": "9094efc5-0867-4f77-a16b-fac24f96e69c",
+    "slug": "jpmap",
+    "name": "Junior Philippine Marketing Association - CvSU Chapter",
+    "acronym": "JPMAP",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Business Administration - Major in Human Resource Management",
+    "metadata": {
+      "tags": [
+        "JPMAP",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Philippine Marketing Association - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/jpmap.jpg"
+    },
+    "contact": {
+      "email": "cvsumainjpmap@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/JPMAPCvSUMain"
+      }
+    }
+  },
+  {
+    "id": "598a782c-23ed-42b6-a134-7b34e5c711ac",
+    "slug": "jma",
+    "name": "Junior Philippine Management Association - CvSU Chapter",
+    "acronym": "JMA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Business Administration - Major in Marketing Management",
+    "metadata": {
+      "tags": [
+        "JMA",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Philippine Management Association - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/jma.jpg"
+    },
+    "contact": {
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUJMA",
+        "instagram": "https://www.instagram.com/jma_cvsu/",
+        "x": "https://twitter.com/CvSU_JMA"
+      }
+    }
+  },
+  {
+    "id": "c7ae7c1e-b1ae-44bf-944c-ffd2a5fcf6b6",
+    "slug": "joma",
+    "name": "Junior Operations Management Association - CvSU Chapter",
+    "acronym": "JOMA",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Economics, Management and Development Studies",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Business Administration - Major in Operations Management",
+    "metadata": {
+      "tags": [
+        "JOMA",
+        "Academic",
+        "College of Economics, Management and Development Studies"
+      ]
+    },
+    "content": {
+      "shortDescription": "Junior Operations Management Association - CvSU Chapter organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cemds/joma.jpg"
+    },
+    "contact": {
+      "email": "cvsu.joma-cvsu@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/joma.cvsumain"
+      }
+    }
+  }
 ]

@@ -1,8 +1,7 @@
 import { useReducer, useEffect, useMemo, useState, useRef } from 'react';
 import { normalize } from '@/lib/utils';
-import type { Organization, OrgType, FilterCategory } from '@/types/organization';
-import { academicOrgsByCategory } from '@/data/academicOrgs';
-import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
+import type { OrgType, FilterCategory } from '@/types/organization';
+import { orgRegistry } from '@/lib/orgIndex';
 import { ORG_BROWSER } from '@/data/constants';
 
 type Action =
@@ -11,11 +10,6 @@ type Action =
   | { type: 'SET_ORG_TYPE'; payload: 'All' | OrgType }
   | { type: 'SET_CATEGORY'; payload: FilterCategory | 'All' }
   | { type: 'RESET' };
-
-interface BrowserOrg extends Organization {
-  type: OrgType;
-  category: FilterCategory;
-}
 
 type FilterState = {
   query: string;
@@ -30,17 +24,6 @@ const INITIAL_STATE: FilterState = {
   orgType: 'All',
   category: 'All',
 };
-
-// Build organization index
-function buildOrgIndex(): BrowserOrg[] {
-  const academic = Object.entries(academicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Academic' as const, category: category as FilterCategory }))
-  );
-  const nonAcademic = Object.entries(nonAcademicOrgsByCategory).flatMap(([category, orgs]) =>
-    orgs.map((org) => ({ ...org, type: 'Non-Academic' as const, category: category as FilterCategory }))
-  );
-  return [...academic, ...nonAcademic];
-}
 
 // Reducer function
 function reducer(state: typeof INITIAL_STATE, action: Action) {
@@ -64,7 +47,7 @@ function reducer(state: typeof INITIAL_STATE, action: Action) {
 export function useOrgBrowser() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [currentPage, setCurrentPage] = useState(1);
-  const allOrgs = useMemo(() => buildOrgIndex(), []);
+  const allOrgs = useMemo(() => orgRegistry.getAll(), []);
 
   // Derived loading state
   const isLoading = useMemo(() => state.query !== state.debouncedQuery, [state.query, state.debouncedQuery]);
@@ -77,14 +60,21 @@ export function useOrgBrowser() {
     return () => clearTimeout(handler);
   }, [state.query]);
 
-  // Filtering
+  // Filtering (schema-aware, weighted search)
   const filteredOrgs = useMemo(() => {
     const q = normalize(state.debouncedQuery);
     return allOrgs.filter((org) => {
       const matchesType = state.orgType === 'All' || org.type === state.orgType;
       const matchesCat = state.category === 'All' || org.category === state.category;
-      const matchesQuery = !q || normalize([org.org, org.description, org.category].join(' ')).includes(q);
-      return matchesType && matchesCat && matchesQuery;
+      if (!matchesType || !matchesCat) return false;
+      if (!q) return true;
+
+      // Weighted search strategy
+      const exactMatch = normalize(org.name).includes(q) || normalize(org.acronym || '').includes(q);
+      const deepMatch = org.metadata?.tags?.some(tag => normalize(tag).includes(q)) ||
+                        normalize(org.content?.shortDescription || '').includes(q);
+
+      return exactMatch || deepMatch;
     });
   }, [allOrgs, state.debouncedQuery, state.orgType, state.category]);
 

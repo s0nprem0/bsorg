@@ -1,19 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Users, MapPin, ExternalLink,} from 'lucide-react';
-import type { Organization } from '@/types/organization';
+import { Users, MapPin, ExternalLink } from 'lucide-react';
 import SEO from '@/components/SEO';
 
-import { academicOrgsByCategory } from '@/data/academicOrgs';
-import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
+import { orgRegistry } from '@/lib/orgIndex';
 import { CAMPUSES, CONTACT_ICONS } from '@/data/constants';
 import { Pills } from '@/components/ui/Pills';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-
-type BrowserOrg = Organization & {
-  type: 'Academic' | 'Non-Academic';
-  category: string;
-};
 
 const PROFILE_STRINGS = {
   NOT_FOUND_TITLE: 'Organization Not Found',
@@ -21,26 +14,11 @@ const PROFILE_STRINGS = {
   BACK_LINK: '← Back to Organizations',
 };
 
-function findOrganization(slug: string | undefined): BrowserOrg | null {
-  if (!slug) return null;
-  const normalizedSlug = slug.toLowerCase().trim();
-
-  for (const college of Object.keys(academicOrgsByCategory)) {
-    const orgs = academicOrgsByCategory[college as keyof typeof academicOrgsByCategory];
-    const found = orgs?.find((org) => org.slug.toLowerCase() === normalizedSlug);
-    if (found) return { ...found, type: 'Academic', category: college };
-  }
-
-  for (const [category, orgs] of Object.entries(nonAcademicOrgsByCategory)) {
-    const found = orgs.find((org) => org.slug.toLowerCase() === normalizedSlug);
-    if (found) return { ...found, type: 'Non-Academic', category };
-  }
-  return null;
-}
-
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
-  const org = useMemo(() => findOrganization(slug), [slug]);
+
+  // O(1) Instant Lookup using our new Singleton Registry
+  const org = useMemo(() => (slug ? orgRegistry.getBySlug(slug) : null), [slug]);
   const campus = CAMPUSES.find((c) => c.id === org?.campusId);
 
   if (!org) {
@@ -57,27 +35,48 @@ export default function OrganizationProfile() {
     );
   }
 
+  // Safely extract contact links matching the new schema
+  const socialEntries = org.contact?.social
+    ? Object.entries(org.contact.social).filter(([, val]) => val)
+    : [];
+
   return (
     <>
-      <SEO title={`${org.org} • BetterOSAS`} description={org.description} />
+      <SEO title={`${org.name} • BetterOSAS`} description={org.content.shortDescription} />
 
       <div className="min-h-screen bg-bg">
         {/* Hero Section */}
         <div className="relative bg-primary-900 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-linear-to-br from-primary-600 to-secondary-600 opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-secondary-600 opacity-90" />
           <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center md:items-end gap-8">
-            <div className="w-32 h-32 md:w-64 md:h-64 rounded-xl overflow-hidden shadow-2xl bg-white flex items-center justify-center shrink-0 border-4 border-white/10">
-              {org.logo ? (
-                <img src={org.logo} alt={org.org} className="w-full h-full object-contain p-2" />
-              ) : (
-                <span className="text-6xl font-bold text-gray-400">{org.org.charAt(0)}</span>
-              )}
+
+            {/* Visual Identity / Logo Area */}
+            <div className="w-32 h-32 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl bg-white flex items-center justify-center shrink-0 border-4 border-white/10 relative group">
+              {org.assets?.logoUrl ? (
+                <img
+                  src={org.assets.logoUrl}
+                  alt={`${org.name} logo`}
+                  className="w-full h-full object-contain p-4"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              {/* Fallback Display */}
+              <div className={`flex items-center justify-center w-full h-full bg-surface-2 text-border-strong font-extrabold tracking-tighter ${org.assets?.logoUrl ? 'hidden' : ''} text-5xl md:text-8xl`}>
+                {org.acronym || org.name.substring(0, 2).toUpperCase()}
+              </div>
             </div>
-            <div className="text-center md:text-left">
-              <Pills items={[org.type]} className="mb-3 justify-center md:justify-start bg-white/20 text-white border-0" />
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">{org.org}</h1>
-              <p className="mt-2 text-white/80 flex items-center justify-center md:justify-start gap-2">
-                <MapPin size={16} /> {org.category} {campus && `• ${campus.name}`}
+
+            {/* Header Text Area */}
+            <div className="text-center md:text-left flex-1 min-w-0">
+              <Pills items={[org.type]} className="mb-4 justify-center md:justify-start bg-white/20 text-white border-0 backdrop-blur-sm font-medium" />
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                {org.name}
+              </h1>
+              <p className="mt-3 text-white/80 flex items-center justify-center md:justify-start gap-2 font-medium">
+                <MapPin size={18} /> {org.category} {campus && `• ${campus.name}`}
               </p>
             </div>
           </div>
@@ -85,59 +84,101 @@ export default function OrganizationProfile() {
 
         {/* Content Layout */}
         <main className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-10">
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Organizations', href: '/organization' },
+              { label: org.acronym || org.name } // Prefer acronym for breadcrumbs to save space
+            ]} />
 
-          <div className="lg:col-span-2 space-y-8">
-            <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Organizations', href: '/organization' }, { label: org.org }]} />
-
-            {org.description && (
-              <section>
-                <h2 className="text-2xl font-bold mb-4">About</h2>
-                <div className="prose prose-gray max-w-none text-text-secondary leading-relaxed whitespace-pre-line">
-                  {org.description}
-                </div>
-              </section>
-            )}
+            {/* Content Section */}
+            <section>
+              <h2 className="text-2xl font-bold mb-6 text-foreground flex items-center gap-3">
+                About the Organization
+                <div className="h-px flex-1 bg-border/60" />
+              </h2>
+              <div className="prose prose-gray max-w-none text-foreground-secondary leading-relaxed whitespace-pre-line text-lg">
+                {org.content.about || org.content.shortDescription}
+              </div>
+            </section>
           </div>
 
           <aside className="space-y-6">
-            {/* Info Card */}
+            {/* Details Card */}
             <div className="bg-surface-1 border border-border p-6 rounded-2xl shadow-sm">
-              <h3 className="font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-wider text-text-secondary">
-                <Users size={18} /> Details
+              <h3 className="font-bold mb-5 flex items-center gap-2 text-xs uppercase tracking-widest text-foreground-tertiary">
+                <Users size={16} /> Details
               </h3>
               <div className="space-y-4 text-sm">
-                {org.program && (
+                {org.programId && (
                   <div>
-                    <p className="text-xs text-text-muted">Program</p>
-                    <p className="font-semibold">{org.program}</p>
+                    <p className="text-[11px] uppercase tracking-wider text-foreground-muted mb-1">Program</p>
+                    <p className="font-semibold text-foreground">{org.programId}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-xs text-text-muted">Campus</p>
-                  <p className="font-semibold">{campus?.name || 'N/A'}</p>
+                  <p className="text-[11px] uppercase tracking-wider text-foreground-muted mb-1">Campus</p>
+                  <p className="font-semibold text-foreground">{campus?.name || 'N/A'}</p>
                 </div>
+                {org.metadata?.foundedYear && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-wider text-foreground-muted mb-1">Founded</p>
+                    <p className="font-semibold text-foreground">{org.metadata.foundedYear}</p>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Connect Card */}
             <div className="bg-surface-1 border border-border p-6 rounded-2xl shadow-sm">
-              <h3 className="font-bold mb-6 flex items-center gap-2 text-sm uppercase tracking-wider text-text-secondary">
-                <ExternalLink size={18} /> Connect
+              <h3 className="font-bold mb-5 flex items-center gap-2 text-xs uppercase tracking-widest text-foreground-tertiary">
+                <ExternalLink size={16} /> Connect
               </h3>
+
               <div className="grid grid-cols-2 gap-3">
-                {Object.entries(org.contact).map(([key, value]) => value && (
+                {/* Direct Contacts (Email/Website) */}
+                {org.contact?.email && (
                   <a
-                    key={key}
-                    href={key === 'email' ? `mailto:${value}` : value}
+                    href={`mailto:${org.contact.email}`}
+                    className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-surface-2 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700 transition-all duration-300 group"
+                  >
+                    {CONTACT_ICONS['email']?.(true)}
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Email</span>
+                  </a>
+                )}
+
+                {org.contact?.website && (
+                  <a
+                    href={org.contact.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-bg hover:border-primary-500 hover:text-primary-600 transition-all duration-300 group"
+                    className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-surface-2 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700 transition-all duration-300 group"
                   >
-                    {CONTACT_ICONS[key as keyof typeof CONTACT_ICONS]?.(true)}
-                    <span className="text-[10px] font-bold uppercase">{key}</span>
+                    {CONTACT_ICONS['website']?.(true)}
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Website</span>
+                  </a>
+                )}
+
+                {/* Social Media Links */}
+                {socialEntries.map(([network, url]) => (
+                  <a
+                    key={network}
+                    href={url as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-surface-2 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700 transition-all duration-300 group"
+                  >
+                    {CONTACT_ICONS[network]?.(true)}
+                    <span className="text-[10px] font-bold uppercase tracking-wider">{network}</span>
                   </a>
                 ))}
               </div>
+
+              {(!org.contact?.email && !org.contact?.website && socialEntries.length === 0) && (
+                <p className="text-sm italic text-foreground-muted text-center py-4">
+                  No contact information available.
+                </p>
+              )}
             </div>
           </aside>
         </main>

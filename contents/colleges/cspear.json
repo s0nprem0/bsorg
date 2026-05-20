@@ -1,34 +1,92 @@
 [
-	{
-		"campusId": 0,
-		"slug": "cspear-sc",
-		"logo": "/colleges/cspear/cspear-sc.jpg",
-		"org": "CSPEAR Student Council",
-		"contact": {
-			"email": "studentcouncilcspear@gmail.com",
-			"facebook": "https://www.facebook.com/CspearSC"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "scped",
-		"logo": "/colleges/cspear/scped.jpg",
-		"org": "Student Congress of Physical Education - CvSu Main Campus",
-		"program": "Bachelor of Science in Physical Education",
-		"contact": {
-			"email": "studentcongressofphysicaleduca@gmail.com",
-			"facebook": "https://www.facebook.com/profile.php?id=61564736113731"
-		}
-	},
-	{
-		"campusId": 0,
-		"slug": "gs",
-		"logo": "/colleges/cspear/gs.jpg",
-		"org": "Gerero's Spear",
-		"program": "Bachelor of Science in Exercise and Sports Science",
-		"contact": {
-			"email": "gererosspear.cspear@gmail.com",
-			"facebook": "https://www.facebook.com/profile.php?id=61551540894878"
-		}
-	}
+  {
+    "id": "d1fa05a4-bdfe-4ef8-8d46-11eed5737f71",
+    "slug": "cspear-sc",
+    "name": "CSPEAR Student Council",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Sports, Physical Education, Arts and Recreation",
+    "campusId": 0,
+    "metadata": {
+      "tags": [
+        "Academic",
+        "College of Sports, Physical Education, Arts and Recreation"
+      ]
+    },
+    "content": {
+      "shortDescription": "CSPEAR Student Council organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cspear/cspear-sc.jpg"
+    },
+    "contact": {
+      "email": "studentcouncilcspear@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/CspearSC"
+      }
+    }
+  },
+  {
+    "id": "7d58143a-02cf-4a01-80af-d3674bfb9515",
+    "slug": "scped",
+    "name": "Student Congress of Physical Education - CvSu Main Campus",
+    "acronym": "SCPED",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Sports, Physical Education, Arts and Recreation",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Physical Education",
+    "metadata": {
+      "tags": [
+        "SCPED",
+        "Academic",
+        "College of Sports, Physical Education, Arts and Recreation"
+      ]
+    },
+    "content": {
+      "shortDescription": "Student Congress of Physical Education - CvSu Main Campus organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cspear/scped.jpg"
+    },
+    "contact": {
+      "email": "studentcongressofphysicaleduca@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/profile.php?id=61564736113731"
+      }
+    }
+  },
+  {
+    "id": "2821dda7-e61b-48f4-821b-8957b6f817f7",
+    "slug": "gs",
+    "name": "Gerero's Spear",
+    "acronym": "GS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Sports, Physical Education, Arts and Recreation",
+    "campusId": 0,
+    "programId": "Bachelor of Science in Exercise and Sports Science",
+    "metadata": {
+      "tags": [
+        "GS",
+        "Academic",
+        "College of Sports, Physical Education, Arts and Recreation"
+      ]
+    },
+    "content": {
+      "shortDescription": "Gerero's Spear organization at Cavite State University.",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/cspear/gs.jpg"
+    },
+    "contact": {
+      "email": "gererosspear.cspear@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/profile.php?id=61551540894878"
+      }
+    }
+  }
 ]

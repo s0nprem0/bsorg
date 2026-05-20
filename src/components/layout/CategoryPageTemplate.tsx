@@ -17,7 +17,6 @@ export interface CategoryPageTemplateProps {
 
 const getCampusName = (campusId?: number) => {
   if (campusId === undefined) return undefined;
-
   return CAMPUSES.find((campus) => campus.id === campusId)?.name;
 };
 
@@ -30,30 +29,28 @@ export default function CategoryPageTemplate({
   const [searchQuery, setSearchQuery] = useState('');
 
   const processedData = useMemo(() => {
-    const q = searchQuery.toLowerCase();
+    const q = searchQuery.toLowerCase().trim();
 
     return Object.entries(data).map(([category, orgs]) => {
       const filtered = orgs.filter((org) => {
-        if (!searchQuery) return true;
+        if (!q) return true;
 
+        // Schema-Aware Robust Searching
         return (
-          org.org.toLowerCase().includes(q) ||
+          org.name.toLowerCase().includes(q) ||
+          org.acronym?.toLowerCase().includes(q) ||
           org.slug.toLowerCase().includes(q) ||
-          org.program?.toLowerCase().includes(q) ||
-          org.description?.toLowerCase().includes(q)
+          org.programId?.toLowerCase().includes(q) ||
+          org.content.shortDescription.toLowerCase().includes(q) ||
+          org.metadata?.tags?.some(tag => tag.toLowerCase().includes(q))
         );
       });
 
-      return {
-        category,
-        orgs: filtered,
-      };
+      return { category, orgs: filtered };
     });
   }, [data, searchQuery]);
 
-  const hasGlobalResults = processedData.some(
-    (item) => item.orgs.length > 0
-  );
+  const hasGlobalResults = processedData.some((item) => item.orgs.length > 0);
 
   return (
     <>
@@ -61,70 +58,70 @@ export default function CategoryPageTemplate({
 
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6 md:py-12">
         <Section>
-          <div className="mb-8 max-w-2xl">
-            <h1 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <div className="mb-10 max-w-2xl">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               {title}
             </h1>
-
-            <p className="text-sm leading-relaxed text-foreground-secondary sm:text-base">
+            <p className="text-lg leading-relaxed text-foreground-secondary">
               {description}
             </p>
           </div>
         </Section>
 
-        <div className="relative mb-10 max-w-md">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground-muted" />
-
+        {/* Improved Search Bar (A11y + UI) */}
+        <div className="relative mb-12 max-w-md group">
+          <label htmlFor="category-search" className="sr-only">Filter organizations</label>
+          <Search className="absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground-muted transition-colors group-focus-within:text-primary" />
           <input
+            id="category-search"
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter organizations..."
-            className="w-full rounded-md border border-border bg-surface-1 py-2 pl-9 pr-4 text-sm text-foreground transition-colors placeholder:text-foreground-muted focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground"
+            placeholder="Filter by name, acronym, or tag..."
+            className="w-full rounded-xl border border-border bg-surface-1 py-3 pl-11 pr-4 text-sm text-foreground transition-all placeholder:text-foreground-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 shadow-sm"
           />
         </div>
 
         <div className="space-y-16">
           {processedData.map(({ category, orgs: filteredOrgs }) => {
-            if (searchQuery && filteredOrgs.length === 0) {
-              return null;
-            }
+            if (searchQuery && filteredOrgs.length === 0) return null;
 
             let council: Organization | undefined;
 
-            let rest = [...filteredOrgs].sort((a, b) =>
-              a.org.localeCompare(b.org)
-            );
+            // Sort alphabetically by name (updated from org.org)
+            let rest = [...filteredOrgs].sort((a, b) => a.name.localeCompare(b.name));
 
             if (highlightStudentCouncils && !searchQuery) {
-              council = rest.find(
-                (org) =>
-                  org.slug.includes('sc') ||
-                  org.org.toLowerCase().includes('student council')
-              );
+              // Deterministic Council Check (Using the strict Schema Enum)
+              council = rest.find((org) => org.type === 'Student Council');
 
               if (council) {
-                rest = rest.filter((org) => org !== council);
+                rest = rest.filter((org) => org.id !== council?.id); // Use stable ID
               }
             }
 
             return (
-              <section key={category}>
-                <h3 className="mb-5 border-b border-border pb-2.5 text-xs font-mono uppercase tracking-widest text-foreground-muted">
-                  {category}
-                </h3>
+              <section key={category} className="scroll-mt-24">
+                {/* Modernized Section Header */}
+                <div className="mb-6 flex items-center gap-4">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-foreground-secondary">
+                    {category}
+                  </h3>
+                  <div className="h-px flex-1 bg-border/60" />
+                </div>
 
                 {filteredOrgs.length === 0 ? (
-                  <p className="text-sm italic text-foreground-muted">
+                  <p className="text-sm italic text-foreground-muted py-8 text-center bg-surface-1/50 rounded-xl border border-dashed border-border">
                     No organizations found in this category.
                   </p>
                 ) : (
                   <>
                     {council && (
-                      <div className="mb-4">
+                      <div className="mb-6">
+                        {/* Updated to match the new OrganizationCard props API */}
                         <OrganizationCard
-                          {...council}
-                          campus={getCampusName(council.campusId)}
+                          org={council}
+                          campusName={getCampusName(council.campusId)}
                           large
                         />
                       </div>
@@ -137,11 +134,22 @@ export default function CategoryPageTemplate({
             );
           })}
 
+          {/* Premium Empty State */}
           {!hasGlobalResults && (
-            <div className="rounded-lg border border-dashed border-border bg-surface-1 py-16 text-center">
-              <p className="text-sm font-medium text-foreground">
+            <div className="rounded-2xl border-2 border-dashed border-border bg-surface-1 py-20 text-center flex flex-col items-center justify-center">
+              <Search className="h-10 w-10 text-foreground-muted mb-4 opacity-50" />
+              <p className="text-lg font-semibold text-foreground">
                 No results found for "{searchQuery}"
               </p>
+              <p className="text-sm text-foreground-secondary mt-2">
+                Try adjusting your search terms or using an acronym.
+              </p>
+              <button
+                onClick={() => setSearchQuery('')}
+                className="mt-6 rounded-lg bg-surface-2 px-4 py-2 text-sm font-medium text-foreground hover:bg-surface-3 transition-colors"
+              >
+                Clear search
+              </button>
             </div>
           )}
         </div>

@@ -1,34 +1,31 @@
+import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+
 import Hero from '@/components/sections/Hero';
 import OrganizationCard from '@/components/OrganizationCard';
 import Section from '@/components/ui/Section';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { academicOrgsByCategory } from '@/data/academicOrgs';
-import { nonAcademicOrgsByCategory } from '@/data/nonAcademicOrgs';
+
+import { orgRegistry } from '@/lib/orgIndex';
 import { CAMPUSES } from '@/data/constants';
+import type { Organization } from '@/types/organization';
 
-const getCampusName = (campusId: number) =>
-  CAMPUSES.find((campus) => campus.id === campusId)?.name;
+const getCampusName = (campusId?: number) => {
+  if (campusId === undefined) return undefined;
+  return CAMPUSES.find((campus) => campus.id === campusId)?.name;
+};
 
-const featuredAcademic = Object.values(academicOrgsByCategory)
-  .flatMap((orgs) => orgs.slice(0, 1));
-
-const featuredNonAcademic = Object.values(nonAcademicOrgsByCategory)
-  .flatMap((orgs) => orgs.slice(0, 1));
-
+// Seeded randomizer utilities to ensure the "Featured" list stays consistent
+// for the duration of a single day, rather than flashing on every navigation.
 const hashSeed = (value: string): number => {
   let hash = 0;
-
   for (let index = 0; index < value.length; index += 1) {
     hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
   }
-
   return hash;
 };
 
 const seededRandom = (seed: number) => {
   let current = seed || 1;
-
   return () => {
     current = (current * 1664525 + 1013904223) >>> 0;
     return current / 4294967296;
@@ -48,13 +45,21 @@ const shuffleOrganizationsBySeed = <T,>(items: T[], seedText: string): T[] => {
 };
 
 export default function Home() {
-  const [featuredOrgs] = useState(() =>
-    shuffleOrganizationsBySeed(
-      Array.from(
-        new Map([...featuredAcademic, ...featuredNonAcademic].map((org) => [org.slug, org])).values()
-      ).slice(0, 6),
-      new Date().toISOString().slice(0, 10)
-    )
+  // Use the new Singleton Registry to get all active organizations instantly
+  const allOrgs = useMemo(() => orgRegistry.getAll(), []);
+
+  // Calculate real system stats dynamically
+  const stats = useMemo(() => {
+    return {
+      total: allOrgs.length,
+      academic: allOrgs.filter((org) => org.type === 'Academic').length,
+      nonAcademic: allOrgs.filter((org) => org.type !== 'Academic').length,
+    };
+  }, [allOrgs]);
+
+  // Shuffle all organizations based on today's date, then pick top 6
+  const [featuredOrgs] = useState<Organization[]>(() =>
+    shuffleOrganizationsBySeed(allOrgs, new Date().toISOString().slice(0, 10)).slice(0, 6)
   );
 
   const [first, second, third, fourth, fifth, sixth] = featuredOrgs;
@@ -68,65 +73,66 @@ export default function Home() {
         <Section id="featured" className="py-16 md:py-24">
           <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
                 Featured Organizations
               </h2>
-              <p className="mt-2 text-foreground-secondary">
+              <p className="mt-3 text-lg text-foreground-secondary">
                 At a glance, the essential student groups driving campus culture.
               </p>
             </div>
             <Link
               to="/organization"
-              className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-surface-1 px-4 text-sm font-medium text-foreground hover:bg-surface-2 transition-colors"
+              className="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-surface-1 px-5 text-sm font-semibold text-foreground hover:bg-surface-2 hover:border-foreground-muted transition-all"
             >
-              View Directory
+              View Full Directory
             </Link>
           </div>
 
-          <div className="grid auto-rows-fr gap-6 lg:grid-cols-4 lg:grid-rows-3">
+          <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
             {first && (
               <div className="lg:col-span-2 lg:row-span-2">
-                <OrganizationCard {...first} campus={getCampusName(first.campusId)} large />
+                <OrganizationCard org={first} campusName={getCampusName(first.campusId)} large />
               </div>
             )}
 
             {second && (
               <div className="lg:col-span-1">
-                <OrganizationCard {...second} campus={getCampusName(second.campusId)} />
+                <OrganizationCard org={second} campusName={getCampusName(second.campusId)} />
               </div>
             )}
 
-            {/* Vercel-style Metric Card */}
-            <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 lg:col-span-1 lg:row-span-2">
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-border to-foreground-muted opacity-20" />
+            {/* Vercel-style Metric Card Updated with Real Data */}
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 lg:col-span-1 lg:row-span-2 shadow-sm">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-50" />
               <div>
-                <p className="text-xs font-mono tracking-wider text-foreground-secondary uppercase">
-                  System Stats
+                <p className="text-xs font-bold font-mono tracking-widest text-foreground-tertiary uppercase">
+                  Platform Stats
                 </p>
-                <div className="mt-4 text-6xl font-light tracking-tighter text-foreground">
-                  {featuredOrgs.length}
+                <div className="mt-4 text-7xl font-light tracking-tighter text-foreground">
+                  {stats.total}
                 </div>
-                <p className="mt-2 text-sm text-foreground-secondary leading-relaxed">
-                  Featured organizations surfaced actively to highlight campus involvement.
+                <p className="mt-2 text-sm text-foreground-secondary leading-relaxed font-medium">
+                  Active student organizations currently registered across the university network.
                 </p>
               </div>
 
               <div className="mt-8 space-y-3 pt-6 border-t border-border">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-foreground-secondary">Academic</span>
-                  <span className="font-mono text-foreground">{featuredAcademic.length}</span>
+                  <span className="text-foreground-secondary font-medium">Academic</span>
+                  <span className="font-mono font-bold text-foreground">{stats.academic}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-foreground-secondary">Non-Academic</span>
-                  <span className="font-mono text-foreground">{featuredNonAcademic.length}</span>
+                  <span className="text-foreground-secondary font-medium">Non-Academic</span>
+                  <span className="font-mono font-bold text-foreground">{stats.nonAcademic}</span>
                 </div>
               </div>
             </div>
 
-            {third && (<div className="lg:col-span-1"><OrganizationCard {...third} campus={getCampusName(third.campusId)} /></div>)}
-            {fourth && (<div className="lg:col-span-1"><OrganizationCard {...fourth} campus={getCampusName(fourth.campusId)} /></div>)}
-            {fifth && (<div className="lg:col-span-2"><OrganizationCard {...fifth} campus={getCampusName(fifth.campusId)} /></div>)}
-            {sixth && (<div className="lg:col-span-2"><OrganizationCard {...sixth} campus={getCampusName(sixth.campusId)} /></div>)}
+            {/* Remaining Grid Items */}
+            {third && (<div className="lg:col-span-1"><OrganizationCard org={third} campusName={getCampusName(third.campusId)} /></div>)}
+            {fourth && (<div className="lg:col-span-1"><OrganizationCard org={fourth} campusName={getCampusName(fourth.campusId)} /></div>)}
+            {fifth && (<div className="lg:col-span-2"><OrganizationCard org={fifth} campusName={getCampusName(fifth.campusId)} /></div>)}
+            {sixth && (<div className="lg:col-span-2"><OrganizationCard org={sixth} campusName={getCampusName(sixth.campusId)} /></div>)}
           </div>
         </Section>
       </main>

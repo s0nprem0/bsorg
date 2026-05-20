@@ -1,9 +1,17 @@
 // This file provides a utility to load non-academic orgs
 
 import type { Organization } from '@/types/organization';
-import orgs from '@/../contents/nonacadorgs/orgs.json';
-import spuOrgs from '@/../contents/nonacadorgs/spu.json';
-import pagOrgs from '@/../contents/nonacadorgs/pag.json';
+
+// Dynamically import all non-academic org JSON files using Vite's import.meta.glob
+const nonAcadOrgModules = import.meta.glob<{ default: Organization[] }>(
+  '/contents/nonacadorgs/*.json',
+  { eager: true }
+);
+
+// Flatten all orgs from the imported modules
+const allNonAcademicOrgs: NonAcademicOrg[] = Object.values(nonAcadOrgModules).flatMap(
+  (module) => module.default || module
+) as NonAcademicOrg[];
 
 import { ORGANIZATION_TYPES as ORG_TYPES } from './constants';
 import { groupOrgsByCategory } from './orgDataUtils';
@@ -11,12 +19,13 @@ import { groupOrgsByCategory } from './orgDataUtils';
 export type NonAcademicOrg = Organization;
 
 
-// Use ORGANIZATION_TYPES values for both slug and name to match NonAcademicCategory
-const nonAcadOrgData: Record<string, NonAcademicOrg[]> = {
-  [ORG_TYPES.NON_ACADEMIC]: orgs as NonAcademicOrg[],
-  [ORG_TYPES.STUDENT_PUBLICATION_UNITS]: spuOrgs as NonAcademicOrg[],
-  [ORG_TYPES.PERFORMING_ARTS]: pagOrgs as NonAcademicOrg[],
-};
+// Group orgs by type (category)
+const nonAcadOrgData: Record<string, NonAcademicOrg[]> = {};
+for (const org of allNonAcademicOrgs) {
+  if (!org || !org.type) continue;
+  if (!nonAcadOrgData[org.type]) nonAcadOrgData[org.type] = [];
+  nonAcadOrgData[org.type].push(org);
+}
 
 const NON_ACAD_CATEGORIES: { slug: string; name: string }[] = [
   { slug: ORG_TYPES.NON_ACADEMIC, name: ORG_TYPES.NON_ACADEMIC },

@@ -1,28 +1,33 @@
 // This file provides a utility to load academic orgs by college/category
 
 import type { Organization } from '@/types/organization';
-import cas from '@/../contents/colleges/cas.json';
-import ceit from '@/../contents/colleges/ceit.json';
-import cemds from '@/../contents/colleges/cemds.json';
-import ccj from '@/../contents/colleges/ccj.json';
-import cspear from '@/../contents/colleges/cspear.json';
-import cafenr from '@/../contents/colleges/cafenr.json';
-import cthm from '@/../contents/colleges/cthm.json';
+
+// Dynamically import all college org JSON files using Vite's import.meta.glob
+const collegeOrgModules = import.meta.glob<{ default: Organization[] }>(
+  '/contents/colleges/*.json',
+  { eager: true }
+);
+
+// Flatten all orgs from the imported modules
+const allAcademicOrgs: AcademicOrg[] = Object.values(collegeOrgModules).flatMap(
+  (module) => module.default || module
+) as AcademicOrg[];
 
 import { COLLEGES, CAMPUSES } from './constants';
 import { groupOrgsByCategory } from './orgDataUtils';
 
 export type AcademicOrg = Organization;
 
-const academicOrgData: Record<string, AcademicOrg[]> = {
-  cas: cas as AcademicOrg[],
-  ceit: ceit as AcademicOrg[],
-  cemds: cemds as AcademicOrg[],
-  ccj: ccj as AcademicOrg[],
-  cspear: cspear as AcademicOrg[],
-  cafenr: cafenr as AcademicOrg[],
-  cthm: cthm as AcademicOrg[],
-};
+// Group orgs by college slug
+const academicOrgData: Record<string, AcademicOrg[]> = {};
+for (const org of allAcademicOrgs) {
+  if (!org || !org.category) continue;
+  // Find the college slug for this org
+  const college = COLLEGES.find(c => c.name === org.category || c.slug === org.category);
+  if (!college) continue;
+  if (!academicOrgData[college.slug]) academicOrgData[college.slug] = [];
+  academicOrgData[college.slug].push(org);
+}
 
 export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsByCategory(
   academicOrgData,

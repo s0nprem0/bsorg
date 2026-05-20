@@ -1,6 +1,6 @@
 // src/components/layout/Navbar.tsx
 import { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/shadcn/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/shadcn/sheet';
@@ -8,12 +8,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/shadcn/sheet'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
-
+  // We only keep the scroll effect, as this legitimately requires syncing with the DOM window
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -47,11 +43,11 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <NavLink to="/" end className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-foreground-secondary'}`}>
+            <NavLink to="/" end className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
               Overview
             </NavLink>
             {navLinks.map((link) => (
-              <NavLink key={link.href} to={link.href} end={Boolean(link.end)} className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-foreground-secondary'}`}>
+              <NavLink key={link.href} to={link.href} end={Boolean(link.end)} className={({ isActive }) => `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
                 {link.label}
               </NavLink>
             ))}
@@ -72,18 +68,32 @@ export default function Navbar() {
               <Menu size={24} />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+          <SheetContent side="right" className="w-75 sm:w-100">
             <div className="flex flex-col gap-6 pt-10">
-              <NavLink to="/" end className="text-base font-medium text-foreground-secondary hover:text-primary">
+
+              {/* Fix: Added onClick={() => setIsOpen(false)} to all mobile links */}
+              <NavLink
+                to="/"
+                end
+                onClick={() => setIsOpen(false)}
+                className="text-base font-medium text-muted-foreground hover:text-primary"
+              >
                 Overview
               </NavLink>
+
               {navLinks.map((link) => (
-                <NavLink key={link.href} to={link.href} className={({ isActive }) => `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground-secondary hover:text-primary'}`}>
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) => `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+                >
                   {link.label}
                 </NavLink>
               ))}
+
               <div className="pt-4 border-t">
-                <Button asChild className="w-full">
+                <Button asChild className="w-full" onClick={() => setIsOpen(false)}>
                   <Link to="/organization">Explore Directory</Link>
                 </Button>
               </div>

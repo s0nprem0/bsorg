@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import type { Organization } from '@/types/organization';
+ import type { Organization, OrgStatus, OrgType } from '@/types/organization';
 
-// 1. Setup strict Zod validation matching the strict TypeScript Organization schema
+// 1. Zod runtime verification mapping to the strict type compilation layout
 const orgStatusSchema = z.enum(['Active', 'Inactive', 'Probationary']);
 const orgTypeSchema = z.enum([
   'Academic',
@@ -11,7 +11,7 @@ const orgTypeSchema = z.enum([
   'Performing Arts Group',
 ]);
 
-const orgSchema = z.object({
+const orgValidationSchema = z.object({
   id: z.string(),
   slug: z.string(),
   name: z.string(),
@@ -56,7 +56,7 @@ const orgSchema = z.object({
   }).optional(),
 });
 
-// 2. Single Global Glob Fetcher for performance (Vite executes this exactly once)
+// 2. Singleton Registry with Zero Duplicate Glob Fetch Calls
 const rawModules = import.meta.glob<{ default: unknown }>(
   [
     '/contents/colleges/*.json',
@@ -66,19 +66,25 @@ const rawModules = import.meta.glob<{ default: unknown }>(
   { eager: true }
 );
 
-// 3. Centralized Validation and Parsing Loop
-const allOrgsRaw: Organization[] = Object.entries(rawModules).flatMap(([path, module]) => {
+// 3. Flatten, Validate, and Inject Campus Defaults
+const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(([path, module]) => {
   const data = module.default || module;
   try {
-    return z.array(orgSchema).parse(data) as Organization[];
+    const rawArray = z.array(orgValidationSchema).parse(data);
+
+    return rawArray.map((raw) => ({
+      ...raw,
+      campusId: raw.campusId ?? 0, // Fallback injection: Defaults to 0 (Main Campus) if absent in JSON
+      status: raw.status as OrgStatus,
+      type: raw.type as OrgType,
+    })) as Organization[];
   } catch (error) {
-    console.error(`🚨 Production Schema Validation Failed in data file: ${path}`);
+    console.error(`🚨 Core Registry Schema Error in file path: ${path}`);
     console.error(error);
-    return []; // Resilient fallback: strips malformed files from building while maintaining uptime
+    return [];
   }
 });
 
-// 4. Thread-Safe Registry Singleton Pattern
 class OrgRegistry {
   private static instance: OrgRegistry;
   private slugMap: Map<string, Organization> = new Map();
@@ -87,19 +93,25 @@ class OrgRegistry {
   private nonAcademicOrgs: Organization[] = [];
 
   private constructor() {
-    // Standard filter out of active directory matching initial registry filters
-    const activeOrgs = allOrgsRaw.filter((org) => org.status !== 'Inactive');
+    // Exclude Inactive structures early
+    const activeData = validatedOrgs.filter((org) => org.status !== 'Inactive');
 
-    // Categorize data sets neatly based on type constraints
-    this.academicOrgs = activeOrgs.filter(
-      (org) => org.type === 'Academic' || org.type === 'Student Council'
-    );
-    this.nonAcademicOrgs = activeOrgs.filter(
-      (org) => org.type !== 'Academic' && org.type !== 'Student Council'
-    );
-    this.allOrgs = activeOrgs;
+    // Prioritization Rule: Sort all arrays to rank Main Campus (campusId: 0) first alphabetically
+    const sortPriority = (a: Organization, b: Organization) => {
+      if (a.campusId === 0 && b.campusId !== 0) return -1;
+      if (a.campusId !== 0 && b.campusId === 0) return 1;
+      return a.name.localeCompare(b.name);
+    };
 
-    // Fast O(1) String-Key Lookup Optimization
+    this.allOrgs = [...activeData].sort(sortPriority);
+    this.academicOrgs = activeData
+      .filter((org) => org.type === 'Academic' || org.type === 'Student Council')
+      .sort(sortPriority);
+    this.nonAcademicOrgs = activeData
+      .filter((org) => org.type !== 'Academic' && org.type !== 'Student Council')
+      .sort(sortPriority);
+
+    // Build Fast O(1) Unique Key Lookup Structure
     this.allOrgs.forEach((org) => {
       if (org?.slug) {
         this.slugMap.set(org.slug.toLowerCase().trim(), org);

@@ -69,11 +69,11 @@ export default function OrgBrowser() {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="All">All Types</SelectItem>
-                <SelectItem value="Academic">Academic</SelectItem>
-                <SelectItem value="Non-Academic">Non-Academic</SelectItem>
-                <SelectItem value="Student Council">Student Council</SelectItem>
-                <SelectItem value="Performing Arts Group">Performing Arts</SelectItem>
+                {ORG_BROWSER.ORG_TYPE_OPTIONS.map((type) => (
+                  <SelectItem key={`org-type-option-${type}`} value={type}>
+                    {type}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
 

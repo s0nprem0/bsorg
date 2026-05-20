@@ -5,10 +5,10 @@ import { orgRegistry } from '@/lib/orgIndex';
 
 export type AcademicOrg = Organization;
 
-// Load pre-validated records safely from the registry source
+// Extract clean datasets instantly out of our centralized store
 const allAcademicOrgs = orgRegistry.getAcademicOrgs();
 
-// Build College Mappings for Main Campus View
+// Dictionary Mapping for Main Campus College views
 const academicOrgData: Record<string, AcademicOrg[]> = {};
 
 allAcademicOrgs.forEach((org) => {
@@ -31,7 +31,7 @@ export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsBy
   'name'
 );
 
-// Map All Academic Orgs by Campus ID including all Satellites seamlessly
+// Map Organizations systematically by Campus IDs ensuring Main (0) displays on load
 export const academicOrgsByCampus: Record<number, AcademicOrg[]> = CAMPUSES.reduce(
   (acc, campus) => {
     acc[campus.id] = allAcademicOrgs.filter((org) => org.campusId === campus.id);

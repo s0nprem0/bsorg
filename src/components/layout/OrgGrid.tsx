@@ -46,7 +46,7 @@ export default function OrgGrid({
     <div className={cn('grid gap-4 sm:gap-6', columnClasses, className)}>
       {organizations.map((org) => (
         <OrganizationCard
-          key={org.id}
+          key={`org-browser-card-${org.id}`}
           org={normalizeOrg(org)}
           campusName={getCampusName(org.campusId)}
         />

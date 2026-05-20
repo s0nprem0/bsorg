@@ -18,27 +18,27 @@ export interface OrgContact {
 }
 
 export interface Organization {
-  id: string;
-  slug: string;
-  name: string;
-  acronym?: string;
-  status: OrgStatus;
-  type: OrgType;
-  category: string;
-  campusId: number;
-  programId?: string;
+  id: string; // Unique identifier
+  slug: string; // URL-friendly identifier
+  name: string; // Full name of the organization
+  acronym?: string; // Optional acronym for display purposes
+  status: OrgStatus; // Active, Inactive, Probationary
+  type: OrgType; // Academic, Non-Academic, Student Council, etc.
+  category: string; // E.g., "College of Science", "Cultural Organizations"
+  campusId: number; // ID of the campus the org belongs to
+  programId?: string; // Optional program affiliation (e.g., "BS Computer Science")
 
   metadata: {
-    foundedYear?: number;
-    accredited: boolean;
+    foundedYear?: number; // Optional because not all orgs may have this info
+    accredited?: boolean; // May depend
     tags?: string[];
   };
 
   content: {
-    shortDescription: string;
-    about?: string;
-    mission?: string;
-    vision?: string;
+    shortDescription?: string; // Optional because not all orgs may have this info
+    about?: string; // Optional because not all orgs may have this info
+    mission?: string; // Optional because not all orgs may have this info
+    vision?: string; // Optional because not all orgs may have this info
   };
 
   assets: {

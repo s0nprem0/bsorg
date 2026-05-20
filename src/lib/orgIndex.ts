@@ -8,7 +8,8 @@ import type { Organization } from '@/types/organization';
 const jsonModules = import.meta.glob<{ default: Organization[] }>(
   [
     '/contents/colleges/*.json',
-    '/contents/nonacadorgs/*.json'
+    '/contents/nonacadorgs/*.json',
+    '/contents/campuses/*.json'
   ],
   { eager: true }
 );

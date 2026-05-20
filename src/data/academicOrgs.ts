@@ -2,14 +2,15 @@
 
 import type { Organization } from '@/types/organization';
 
-// Dynamically import all college org JSON files using Vite's import.meta.glob
-const collegeOrgModules = import.meta.glob<{ default: Organization[] }>(
-  '/contents/colleges/*.json',
+const academicOrgModules = import.meta.glob<{ default: Organization[] }>(
+  [
+    '/contents/colleges/*.json', // Main campus academic orgs are categorized by college
+    '/contents/campuses/*.json' // Sattelite campus orgs
+  ],
   { eager: true }
 );
-
 // Flatten all orgs from the imported modules
-const allAcademicOrgs: AcademicOrg[] = Object.values(collegeOrgModules).flatMap(
+const allAcademicOrgs: AcademicOrg[] = Object.values(academicOrgModules).flatMap(
   (module) => module.default || module
 ) as AcademicOrg[];
 
@@ -18,15 +19,16 @@ import { groupOrgsByCategory } from './orgDataUtils';
 
 export type AcademicOrg = Organization;
 
-// Group orgs by college slug
+// 2. Group by College for Main Campus
 const academicOrgData: Record<string, AcademicOrg[]> = {};
 for (const org of allAcademicOrgs) {
   if (!org || !org.category) continue;
-  // Find the college slug for this org
+
   const college = COLLEGES.find(c => c.name === org.category || c.slug === org.category);
-  if (!college) continue;
-  if (!academicOrgData[college.slug]) academicOrgData[college.slug] = [];
-  academicOrgData[college.slug].push(org);
+  if (college) {
+    if (!academicOrgData[college.slug]) academicOrgData[college.slug] = [];
+    academicOrgData[college.slug].push(org);
+  }
 }
 
 export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsByCategory(
@@ -35,8 +37,9 @@ export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsBy
   'name'
 );
 
-// Organize academic orgs by campus for quick lookup
+// Organize ALL academic orgs by campus ID
 export const academicOrgsByCampus: Record<number, AcademicOrg[]> = CAMPUSES.reduce((acc, campus) => {
-  acc[campus.id] = [];
+  // Filter the flattened array by campusId to populate the record
+  acc[campus.id] = allAcademicOrgs.filter(org => org.campusId === campus.id);
   return acc;
 }, {} as Record<number, AcademicOrg[]>);

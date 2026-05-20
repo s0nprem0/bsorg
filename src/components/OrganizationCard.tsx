@@ -21,7 +21,7 @@ export default function OrganizationCard({ org, campusName, large = false }: Org
   return (
     <Card className={cn(
       'group relative flex flex-row h-full w-full overflow-hidden transition-all hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5 bg-surface-1',
-      large ? 'min-h-[160px]' : 'min-h-[128px]'
+      large ? 'min-h-40' : 'min-h-32'
     )}>
       {/* Visual Identity Area */}
       <figure className={cn(

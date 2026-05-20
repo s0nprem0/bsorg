@@ -29,10 +29,10 @@ function App() {
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/organization/acad-org" element={<AcademicOrg />} />
-                <Route path="/organization/non-acadorg" element={<NonAcademicOrg />} />
-                <Route path="/organization" element={<OrgBrowser />} />
-                <Route path="/organization/:slug" element={<OrganizationProfile />} />
+                <Route path="/org/acad-org" element={<AcademicOrg />} />
+                <Route path="/org/non-acadorg" element={<NonAcademicOrg />} />
+                <Route path="/org" element={<OrgBrowser />} />
+                <Route path="/org/:slug" element={<OrganizationProfile />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

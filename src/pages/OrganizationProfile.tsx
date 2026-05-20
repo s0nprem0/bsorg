@@ -25,7 +25,7 @@ export default function OrganizationProfile() {
           <h2 className="text-3xl font-bold">Organization Not Found</h2>
           <p className="text-muted-foreground">The organization you're looking for doesn't exist or may have been moved.</p>
           <Button asChild variant="link">
-            <Link to="/organization">← Back to Organizations</Link>
+            <Link to="/org">← Back to Organizations</Link>
           </Button>
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function OrganizationProfile() {
           <div className="lg:col-span-2 space-y-10">
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
-              { label: 'Organizations', href: '/organization' },
+              { label: 'Organizations', href: '/org' },
               { label: org.acronym || org.name }
             ]} />
 

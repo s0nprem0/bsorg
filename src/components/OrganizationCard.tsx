@@ -60,13 +60,13 @@ export default function OrganizationCard({ org, campusName, large = false }: Org
             </Badge>
           )}
           <CardTitle className="line-clamp-2 text-base transition-colors group-hover:text-primary">
-            <Link to={`/organization/${org.slug}`} className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <Link to={`/org/${org.slug}`} className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
               <span className="absolute inset-0" aria-hidden="true" />
               {org.name}
             </Link>
           </CardTitle>
           <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-foreground-secondary">
-            {org.content?.shortDescription}
+            {org.content?.shortDescription || org.content?.about || 'No description available.'}
           </CardDescription>
         </CardHeader>
 

@@ -17,9 +17,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Browse', href: '/organization', end: true },
-    { label: 'Academic', href: '/organization/acad-org' },
-    { label: 'Non-Academic', href: '/organization/non-acadorg' },
+    { label: 'Browse', href: '/org', end: true },
+    { label: 'Academic', href: '/org/acad-org' },
+    { label: 'Non-Academic', href: '/org/non-acadorg' },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function Navbar() {
         {/* Action Button */}
         <div className="hidden md:flex items-center gap-4">
           <Button asChild className="shadow-sm transition-all hover:scale-105 active:scale-95">
-            <Link to="/organization">Explore Directory</Link>
+            <Link to="/org">Explore Directory</Link>
           </Button>
         </div>
 
@@ -94,7 +94,7 @@ export default function Navbar() {
 
               <div className="pt-4 border-t">
                 <Button asChild className="w-full" onClick={() => setIsOpen(false)}>
-                  <Link to="/organization">Explore Directory</Link>
+                  <Link to="/org">Explore Directory</Link>
                 </Button>
               </div>
             </div>

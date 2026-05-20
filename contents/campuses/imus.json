@@ -1,0 +1,314 @@
+[
+  {
+    "id": "csg-imus",
+    "slug": "csg-imus",
+    "name": "Central Student Government - Imus Campus",
+    "acronym": "CSG Imus",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Student Council",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/csg-imus.jpg"
+    },
+    "contact": {
+      "email": "csg.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/csg.imus"
+      }
+    }
+  },
+  {
+    "id": "bits-imus",
+    "slug": "bits-imus",
+    "name": "Builders of Innovative Technologist Society",
+    "acronym": "BITS",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "category": "University-Wide",
+    "programId": "Bachelor of Science in Information Technology",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Information Technology of Cavite State University – Imus Campus."
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/bits-imus.jpg"
+    },
+    "contact": {
+      "email": "bits.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/bitspageofficial"
+      }
+    }
+  },
+  {
+    "id": "bas-imus",
+    "slug": "bas-imus",
+    "name": "Business Administration Society",
+    "acronym": "BAS Imus",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "category": "University-Wide",
+    "programId": "Bachelor of Science in Business Administration",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Business Administration of Cavite State University – Imus Campus."
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/bas-imus.jpg"
+    },
+    "contact": {
+      "email": "bas.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/BAS.CvSUImus"
+      }
+    }
+  },
+  {
+    "id": "edge-imus",
+    "slug": "edge-imus",
+    "name": "Educators' Guild for Excellence",
+    "acronym": "EdGE",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true,
+      "foundedYear": 2009
+    },
+    "content": {
+      "shortDescription": "The Educators' Guild for Excellence (EdGE) is the official student organization for education students at the Imus Campus, fostering a community of future educators committed to excellence and innovation in teaching."
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/edge-imus.jpg"
+    },
+    "contact": {
+      "email": "cvsuimus.edge@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/edgecares"
+      }
+    }
+  },
+  {
+    "id": "chats-imus",
+    "slug": "chats-imus",
+    "name": "Circle of Hospitality and Tourism Students",
+    "acronym": "CHATS",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": "The Circle of Hospitality and Tourism Students (CHATS) is the official student organization of BSHM and BSHRM of Cavite State University-Imus Campus."
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/chats-imus.jpg"
+    },
+    "contact": {
+      "email": "cvsuimus.chats@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/chatscvsu.imus/"
+      }
+    }
+  },
+  {
+    "id": "csc-imus",
+    "slug": "csc-imus",
+    "name": "Computer Science Clique",
+    "acronym": "CSC",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "programId": "Bachelor of Science in Computer Science",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/csc-imus.jpg"
+    },
+    "contact": {
+      "email": "csc.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/cvsucomputerscienceclique"
+      }
+    }
+  },
+  {
+    "id": "cyle-imus",
+    "slug": "cyle-imus",
+    "name": "Cavite Youth Leaders for Entrepreneurship",
+    "acronym": "CYLE",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "programId": "Bachelor of Science in Entrepreneurship",
+    "category": "Department of Entrepreneurship",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/cyle-imus.jpg"
+    },
+    "contact": {
+      "email": "cyle.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/CvSU.CYLE/"
+      }
+    }
+  },
+  {
+    "id": "cavcomm-imus",
+    "slug": "cavcomm-imus",
+    "name": "Cavite Communicators",
+    "acronym": "CavComm",
+    "programId": "Bachelor of Arts in Journalism",
+    "status": "Active",
+    "campusId": 1,
+    "category": "University-Wide",
+    "type": "Academic",
+    "metadata": {
+      "accredited": true,
+      "foundedYear": 2012
+    },
+    "content": {},
+    "assets": {
+      "logoUrl": "/campuses/imus/cavcomm-imus.jpg"
+    },
+    "contact": {
+      "email": "cavcomm.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/profile.php?id=100066918155631"
+      }
+    }
+  },
+  {
+    "id": "cihs-imus",
+    "slug": "cihs-imus",
+    "name": "Honor Society",
+    "acronym": "CIHS",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Non-Academic",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true,
+      "foundedYear": 2011
+    },
+    "content": {
+      "shortDescription": "𝑯𝒐𝒏𝒐𝒓𝒊𝒏𝒈 𝑬𝒙𝒄𝒆𝒍𝒍𝒆𝒏𝒄𝒆, 𝑰𝒏𝒔𝒑𝒊𝒓𝒊𝒏𝒈 𝒕𝒉𝒆 𝒀𝒐𝒖𝒕𝒉"
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/cihs-imus.jpg"
+    },
+    "contact": {
+      "email": "honorsociety.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUImusHonorSociety"
+      }
+    }
+  },
+  {
+    "id": "yopa-imus",
+    "slug": "yopa-imus",
+    "name": "Young Office Processional Advocates",
+    "acronym": "YOPA",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "programId": "Bachelor of Science in Office Administration",
+    "category": "University-Wide",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/yopa-imus.jpg"
+    },
+    "contact": {
+      "email": "yopa.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/YOPACvSUImus"
+      }
+    }
+  },
+  {
+    "id": "sinag-tala-imus",
+    "slug": "sinag-tala-imus",
+    "name": "Sinag-Tala Performing Arts Group",
+    "acronym": "STPAG",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Performing Arts Group",
+    "category": "Performing Arts Group",
+    "metadata": {
+      "tags": ["Performing Arts", "Dance", "Theater", "Music"],
+      "accredited": true,
+      "foundedYear": 2008
+    },
+    "content": {
+      "shortDescription": "Sining ng Pag-arte at Galaw, Tuklas awit ng liping angat"
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/sinag-tala-imus.jpg"
+    },
+    "contact": {
+      "email": "sinagtalaperformingartsgroup@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/STPAGOfficial"
+      }
+    }
+  },
+  {
+    "id": "sms-imus",
+    "slug": "sms-imus",
+    "name": "Samahan ng mga Magaaral ng Sikolohiya",
+    "acronym": "SMS",
+    "status": "Active",
+    "campusId": 1,
+    "type": "Academic",
+    "category": "University-Wide",
+    "programId": "Bachelor of Science in Psychology",
+    "metadata": {
+      "accredited": true,
+      "foundedYear": 2011
+    },
+    "content": {
+      "shortDescription": "a"
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/sms-imus.jpg"
+    },
+    "contact": {
+      "email": "sms.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/SMSCvSUImus/"
+      }
+    }
+  }
+]
+

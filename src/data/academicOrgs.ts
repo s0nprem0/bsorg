@@ -1,6 +1,6 @@
 // This file provides a utility to load academic orgs by college/category
 
-import type { Organization, CollegeCategory } from '@/types/organization';
+import type { Organization } from '@/types/organization';
 import cas from '@/../contents/colleges/cas.json';
 import ceit from '@/../contents/colleges/ceit.json';
 import cemds from '@/../contents/colleges/cemds.json';
@@ -10,6 +10,7 @@ import cafenr from '@/../contents/colleges/cafenr.json';
 import cthm from '@/../contents/colleges/cthm.json';
 
 import { COLLEGES, CAMPUSES } from './constants';
+import { groupOrgsByCategory } from './orgDataUtils';
 
 export type AcademicOrg = Organization;
 
@@ -23,18 +24,11 @@ const academicOrgData: Record<string, AcademicOrg[]> = {
   cthm: cthm as AcademicOrg[],
 };
 
-// Organize academic orgs by college/category
-export const academicOrgsByCategory: Record<CollegeCategory, AcademicOrg[]> =
-  COLLEGES.reduce(
-    (acc, college) => {
-      const orgs = academicOrgData[college.slug];
-      if (orgs && orgs.length > 0) {
-        acc[college.name as CollegeCategory] = orgs;
-      }
-      return acc;
-    },
-    {} as Record<CollegeCategory, AcademicOrg[]>
-  );
+export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsByCategory(
+  academicOrgData,
+  [...COLLEGES],
+  'name'
+);
 
 // Organize academic orgs by campus for quick lookup
 export const academicOrgsByCampus: Record<number, AcademicOrg[]> = CAMPUSES.reduce((acc, campus) => {

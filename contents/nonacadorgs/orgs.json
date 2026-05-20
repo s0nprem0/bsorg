@@ -40,7 +40,8 @@
       "tags": [
         "Non-Academic",
         "University-Wide"
-      ]
+      ],
+      "foundedYear": 2024
     },
     "content": {
       "shortDescription": "First premiere and only multimedia arts organization based in CvSU Main that caters to the creative needs focused on digital arts and films",
@@ -52,7 +53,9 @@
     "contact": {
       "email": "sinagtala.multimediaorg.ext@gmail.com",
       "social": {
-        "facebook": "https://www.facebook.com/sinagtala.multimedia"
+        "facebook": "https://www.facebook.com/sinagtala.multimedia",
+        "instagram": "https://www.instagram.com/sinagtala.mma",
+        "tiktok": "https://www.tiktok.com/@sinagtala.multimedia"
       }
     }
   },

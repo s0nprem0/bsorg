@@ -1,13 +1,28 @@
 [
-	{
-		"campusId": 7,
-		"slug": "csso-naic",
-		"org": "Computer Science Student Organization - CSSO Naic",
-		"logo": "/campuses/naic/csso-naic.jpg",
-		"program": "Bachelor of Science in Computer Science",
-		"contact": {
-			"email": "",
-			"facebook": "https://www.facebook.com/cssonaic"
-		}
-	}
+  {
+    "id": "15823f38-0794-4d49-b1ab-3c8288ca90bc",
+    "slug": "csso-naic",
+    "name": "Computer Science Student Organization - CSSO Naic",
+    "acronym": "CSSO Naic",
+    "status": "Active",
+    "campusId": 7,
+    "type": "Academic",
+    "category": "University-Wide",
+    "program": "Bachelor of Science in Computer Science",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": "The Computer Science Student Organization representing BSCS students at the Naic Campus."
+    },
+    "assets": {
+      "logoUrl": "/campuses/naic/csso-naic.jpg"
+    },
+    "contact": {
+      "email": "cssonaic@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/csso.naic"
+      }
+    }
+  }
 ]

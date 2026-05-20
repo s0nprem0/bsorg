@@ -25,7 +25,6 @@ const INITIAL_STATE: FilterState = {
   category: 'All',
 };
 
-// Reducer function
 function reducer(state: typeof INITIAL_STATE, action: Action) {
   switch (action.type) {
     case 'SET_QUERY':
@@ -43,16 +42,13 @@ function reducer(state: typeof INITIAL_STATE, action: Action) {
   }
 }
 
-// Custom hook
 export function useOrgBrowser() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [currentPage, setCurrentPage] = useState(1);
   const allOrgs = useMemo(() => orgRegistry.getAll(), []);
 
-  // Derived loading state
   const isLoading = useMemo(() => state.query !== state.debouncedQuery, [state.query, state.debouncedQuery]);
 
-  // Sync Debounce
   useEffect(() => {
     const handler = setTimeout(() => {
       dispatch({ type: 'SET_DEBOUNCED_QUERY', payload: state.query });
@@ -60,7 +56,6 @@ export function useOrgBrowser() {
     return () => clearTimeout(handler);
   }, [state.query]);
 
-  // Filtering (schema-aware, weighted search)
   const filteredOrgs = useMemo(() => {
     const q = normalize(state.debouncedQuery);
     return allOrgs.filter((org) => {
@@ -69,7 +64,6 @@ export function useOrgBrowser() {
       if (!matchesType || !matchesCat) return false;
       if (!q) return true;
 
-      // Weighted search strategy
       const exactMatch = normalize(org.name).includes(q) || normalize(org.acronym || '').includes(q);
       const deepMatch = org.metadata?.tags?.some(tag => normalize(tag).includes(q)) ||
                         normalize(org.content?.shortDescription || '').includes(q);
@@ -78,7 +72,6 @@ export function useOrgBrowser() {
     });
   }, [allOrgs, state.debouncedQuery, state.orgType, state.category]);
 
-  // Reset page when filters change
   const isInitial = useRef(true);
   useEffect(() => {
     if (isInitial.current) {
@@ -88,11 +81,23 @@ export function useOrgBrowser() {
     setCurrentPage(1);
   }, [state.debouncedQuery, state.orgType, state.category]);
 
-  // Pagination
   const paginatedOrgs = useMemo(() => {
     const start = (currentPage - 1) * ORG_BROWSER.ITEMS_PER_PAGE;
     return filteredOrgs.slice(start, start + ORG_BROWSER.ITEMS_PER_PAGE);
   }, [filteredOrgs, currentPage]);
+
+  // Memoize categories to prevent O(N log N) recalculations on every keystroke
+  const categories = useMemo(() => {
+    return (['All'] as string[]).concat(
+      Array.from(
+        new Set(
+          allOrgs
+            .map((o) => (o.category || '').toString().trim())
+            .filter((c) => c.length > 0)
+        )
+      ).sort()
+    );
+  }, [allOrgs]);
 
   return {
     state,
@@ -104,15 +109,6 @@ export function useOrgBrowser() {
     isLoading,
     allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
-    // Build categories list safely: trim values and exclude empty strings
-    categories: (['All'] as string[]).concat(
-      Array.from(
-        new Set(
-          allOrgs
-            .map((o) => (o.category || '').toString().trim())
-            .filter((c) => c.length > 0)
-        )
-      ).sort()
-    ),
+    categories,
   };
 }

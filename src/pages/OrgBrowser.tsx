@@ -1,9 +1,9 @@
 // src/pages/OrgBrowser.tsx
-import { Search, Filter } from 'lucide-react';
+import { useEffect, useRef, useCallback } from 'react';
+import { Search, Filter, Loader2 } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
-import Pagination from '@/components/ui/Pagination';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import SkeletonLoader from '@/components/ui/SkeletonLoader';
@@ -26,15 +26,32 @@ export default function OrgBrowser() {
   const {
     state,
     dispatch,
-    paginatedOrgs,
-    totalPages,
-    currentPage,
-    setCurrentPage,
+    visibleOrgs,
+    hasMore,
+    loadMore,
     isLoading,
     allOrgsCount,
     filteredCount,
     categories,
   } = useOrgBrowser();
+
+  // Infinite Scroll Observer setup
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const loadMoreRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (isLoading) return;
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMore();
+        }
+      });
+
+      if (node) observerRef.current.observe(node);
+    },
+    [isLoading, hasMore, loadMore]
+  );
 
   return (
     <>
@@ -54,7 +71,7 @@ export default function OrgBrowser() {
             </p>
           </div>
 
-          {/* Filter Bar - Fully Accessible */}
+          {/* Filter Bar */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
             <div className="relative md:col-span-2 group flex items-center">
               <Search className="absolute left-3 h-5 w-5 text-foreground-tertiary transition-colors group-focus-within:text-primary z-10" />
@@ -71,7 +88,6 @@ export default function OrgBrowser() {
 
             <Select
               value={state.orgType}
-              // [REFACTOR]: Replaced `as any` with proper strict typing
               onValueChange={value =>
                 dispatch({
                   type: 'SET_ORG_TYPE',
@@ -124,7 +140,7 @@ export default function OrgBrowser() {
             <p className="text-sm text-foreground-secondary font-medium">
               Showing{' '}
               <span className="font-bold text-foreground">
-                {paginatedOrgs.length}
+                {visibleOrgs.length}
               </span>{' '}
               of{' '}
               <span className="font-bold text-foreground">{filteredCount}</span>{' '}
@@ -140,7 +156,7 @@ export default function OrgBrowser() {
 
         {/* Grid or Loading State */}
         <Section className="min-h-100">
-          {isLoading ? (
+          {isLoading && visibleOrgs.length === 0 ? (
             <SkeletonLoader count={8} />
           ) : filteredCount === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-border bg-surface-1 text-center">
@@ -160,22 +176,27 @@ export default function OrgBrowser() {
               </Button>
             </div>
           ) : (
-            <OrgGrid organizations={paginatedOrgs} columns={4} />
+            <>
+              <OrgGrid organizations={visibleOrgs} columns={4} />
+
+              {/* Infinite Scroll Sentinel */}
+              <div
+                ref={loadMoreRef}
+                className="w-full h-24 flex items-center justify-center mt-8 text-muted-foreground"
+              >
+                {hasMore && !isLoading && (
+                  <Loader2 className="w-8 h-8 animate-spin opacity-50" />
+                )}
+                {!hasMore && visibleOrgs.length > 0 && (
+                  <span className="text-sm opacity-60">
+                    You've reached the end of the directory.
+                  </span>
+                )}
+              </div>
+            </>
           )}
         </Section>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-12">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </div>
-        )}
       </div>
     </>
   );
 }
-

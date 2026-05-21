@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1267.28 1267.28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-6);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-7);
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-9);
+      }
+
+      .cls-9 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-10 {
+        fill: url(#linear-gradient-8);
+      }
+
+      .cls-11 {
+        fill: url(#linear-gradient-10);
+      }
+
+      .cls-12 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="130.4" y1="649.57" x2="1136.87" y2="649.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#007f08"/>
+      <stop offset="1" stop-color="#53aa00"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="633.28" cy="690.22" fx="633.28" fy="690.22" r="531.73" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#231f20"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient-2" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(1012.35 1445.78) rotate(-160)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(401.71 1499.2) rotate(-120)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(-100.4 1147.62) rotate(-80)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-5" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(-259.05 555.54) rotate(-40)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-6" x1="464.8" y1="171.31" x2="424.97" y2="57.95" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-7" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(555.54 -259.05) rotate(40)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-8" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(1147.62 -100.4) rotate(80)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-9" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(1499.2 401.71) rotate(120)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-10" x1="464.8" y1="171.31" x2="424.97" y2="57.95" gradientTransform="translate(1445.78 1012.35) rotate(160)" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <circle class="cls-1" cx="633.64" cy="649.57" r="503.23"/>
+    <path class="cls-9" d="m767.55,515.66c-110.82,127.25-110.82,140.57,0,267.83-127.25-110.82-140.57-110.82-267.83,0,110.82-127.25,110.82-140.57,0-267.83,127.25,110.82,140.57,110.82,267.83,0Z"/>
+    <path class="cls-4" d="m934.3,649.57c-267.26,18.45-282.21,33.41-300.66,300.66-18.45-267.26-33.41-282.21-300.66-300.66,267.26-18.45,282.21-33.41,300.66-300.66,18.45,267.26,33.41,282.21,300.66,300.66Z"/>
+    <g>
+      <g id="_Radial_Repeat_" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="633.64 1024.03 586.77 1081.36 604.67 1113.18 662.6 1113.18 680.51 1081.36 633.64 1024.03"/>
+      </g>
+      <g id="_Radial_Repeat_-2" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="446.41 973.86 377.15 1000.08 376.75 1036.58 426.92 1065.55 458.33 1046.95 446.41 973.86"/>
+      </g>
+      <g id="_Radial_Repeat_-3" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="309.35 836.8 236.26 824.88 217.66 856.29 246.63 906.46 283.13 906.06 309.35 836.8"/>
+      </g>
+      <g id="_Radial_Repeat_-4" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="259.18 649.57 201.85 602.7 170.03 620.61 170.03 678.54 201.85 696.44 259.18 649.57"/>
+      </g>
+      <g id="_Radial_Repeat_-5" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="309.35 462.35 283.13 393.09 246.63 392.69 217.66 442.86 236.26 474.27 309.35 462.35"/>
+      </g>
+      <g id="_Radial_Repeat_-6" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="446.41 325.29 458.33 252.2 426.92 233.6 376.75 262.56 377.15 299.07 446.41 325.29"/>
+      </g>
+      <g id="_Radial_Repeat_-7" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="633.64 275.12 680.51 217.78 662.6 185.97 604.67 185.97 586.77 217.78 633.64 275.12"/>
+      </g>
+      <g id="_Radial_Repeat_-8" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="820.86 325.29 890.12 299.07 890.53 262.56 840.35 233.6 808.94 252.2 820.86 325.29"/>
+      </g>
+      <g id="_Radial_Repeat_-9" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="957.93 462.35 1031.01 474.27 1049.62 442.86 1020.65 392.68 984.14 393.09 957.93 462.35"/>
+      </g>
+      <g id="_Radial_Repeat_-10" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="1008.09 649.57 1065.43 696.44 1097.24 678.54 1097.24 620.61 1065.43 602.7 1008.09 649.57"/>
+      </g>
+      <g id="_Radial_Repeat_-11" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="957.92 836.8 984.14 906.06 1020.65 906.46 1049.61 856.29 1031.01 824.88 957.92 836.8"/>
+      </g>
+      <g id="_Radial_Repeat_-12" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-4" points="820.86 973.86 808.94 1046.95 840.35 1065.55 890.53 1036.59 890.12 1000.08 820.86 973.86"/>
+      </g>
+    </g>
+    <g>
+      <g id="_Radial_Repeat_-13" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-5" points="633.64 1267.28 691.33 1173.16 669.29 1120.94 597.98 1120.94 575.95 1173.16 633.64 1267.28"/>
+      </g>
+      <g id="_Radial_Repeat_-14" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-7" points="226.34 1119.03 331.03 1084.02 347.72 1029.85 293.1 984.01 242.64 1009.85 226.34 1119.03"/>
+      </g>
+      <g id="_Radial_Repeat_-15" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-12" points="9.63 743.67 112.33 784.14 159.93 753.37 147.55 683.14 92.29 670.51 9.63 743.67"/>
+      </g>
+      <g id="_Radial_Repeat_-16" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-3" points="84.89 316.82 137.55 413.84 193.8 420.87 229.45 359.11 195.24 313.91 84.89 316.82"/>
+      </g>
+      <g id="_Radial_Repeat_-17" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-2" points="416.92 38.21 394.9 146.38 433.47 187.92 500.48 163.53 503.32 106.92 416.92 38.21"/>
+      </g>
+      <g id="_Radial_Repeat_-18" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-6" points="850.35 38.21 763.95 106.92 766.8 163.53 833.81 187.92 872.38 146.38 850.35 38.21"/>
+      </g>
+      <g id="_Radial_Repeat_-19" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-10" points="1182.38 316.82 1072.03 313.91 1037.82 359.11 1073.48 420.87 1129.72 413.84 1182.38 316.82"/>
+      </g>
+      <g id="_Radial_Repeat_-20" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-8" points="1257.65 743.67 1174.98 670.51 1119.72 683.14 1107.34 753.37 1154.95 784.14 1257.65 743.67"/>
+      </g>
+      <g id="_Radial_Repeat_-21" data-name="&amp;lt;Radial Repeat&amp;gt;">
+        <polygon class="cls-11" points="1040.93 1119.03 1024.63 1009.86 974.18 984.01 919.55 1029.85 936.24 1084.02 1040.93 1119.03"/>
+      </g>
+    </g>
+  </g>
+</svg>

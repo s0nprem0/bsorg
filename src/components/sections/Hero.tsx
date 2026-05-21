@@ -1,30 +1,60 @@
 // src/components/sections/Hero.tsx
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/shadcn/button";
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/shadcn/button';
+import { Badge } from '@/components/ui/shadcn/badge';
 
 export default function Hero() {
   return (
-    <div className="relative overflow-hidden bg-background py-24 sm:py-32 border-b border-border">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-foreground sm:text-7xl">
-          Discover the heartbeat of <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground-muted">
+    <div className="relative overflow-hidden bg-background py-24 sm:py-32 border-b border-border/50">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
+
+      {/* Subtle Ambient Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-100 bg-primary/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center z-10">
+        <Badge
+          variant="secondary"
+          className="mb-8 bg-primary/20 text-primary hover:bg-primary/30 border-none px-4 py-1.5 text-sm backdrop-blur-sm shadow-sm"
+        >
+          Discover Your Community
+        </Badge>
+
+        <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl">
+          Find the heartbeat of <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
             Cavite State University
           </span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-foreground-secondary">
-          The definitive guide to CvSU Main programs and recognized student organizations. Explore chapters, connect with leaders, and build your campus network.
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          The definitive guide to CvSU programs and recognized student
+          organizations. Explore chapters, connect with leaders, and build your
+          campus network.
         </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Button asChild size="lg" className="shadow-sm hover:bg-foreground/90 transition-all">
-            <Link to="/organization">Start Exploring</Link>
+
+        <div className="mt-10 flex items-center justify-center gap-x-4">
+          <Button
+            asChild
+            size="lg"
+            className="h-12 px-8 font-bold shadow-lg hover:shadow-primary/25 transition-all text-primary-foreground"
+          >
+            <Link to="/org">
+              Start Exploring <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </Button>
-          <Button asChild variant="link" className="text-foreground hover:text-foreground-secondary transition-colors font-semibold">
-            <a href="#featured">View featured <span aria-hidden="true" className="ml-1">→</span></a>
+          <Button
+            asChild
+            variant="ghost"
+            size="lg"
+            className="h-12 px-8 font-semibold text-muted-foreground hover:text-foreground"
+          >
+            <a href="#featured">View Featured</a>
           </Button>
         </div>
       </div>
     </div>
   );
 }
+

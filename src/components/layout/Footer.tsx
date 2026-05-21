@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTiktok,
+  FaXTwitter,
+  FaGithub,
+} from 'react-icons/fa6';
 import { Button } from '@/components/ui/shadcn/button';
 import { Separator } from '@/components/ui/shadcn/separator';
 
@@ -7,16 +13,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Resources: [
-      { label: 'Browse Organizations', href: '/orgbrowser' },
-      { label: 'Academic Orgs', href: '/acadorg' },
-      { label: 'Non-Academic Orgs', href: '/non-acadorg' },
-      { label: 'By College', href: '/college' },
+    Directory: [
+      { label: 'Browse All Orgs', href: '/org' },
+      { label: 'Academic Orgs', href: '/org/acad-org' },
+      { label: 'Non-Academic Orgs', href: '/org/non-acadorg' },
     ],
     About: [
-      { label: 'About Us', href: '#' },
-      { label: 'Contact', href: '#' },
-      { label: 'Feedback', href: '#' },
+      { label: 'About BetterOSAS', href: '#' },
+      { label: 'Submit Feedback', href: '#' },
     ],
   };
 
@@ -24,34 +28,45 @@ const Footer = () => {
     { icon: FaFacebook, href: '#', label: 'Facebook' },
     { icon: FaInstagram, href: '#', label: 'Instagram' },
     { icon: FaTiktok, href: '#', label: 'TikTok' },
-    { icon: FaXTwitter, href: '#', label: 'X' },
+    { icon: FaXTwitter, href: '#', label: 'X (Twitter)' },
+    {
+      icon: FaGithub,
+      href: 'https://github.com/s0nprem0/bsorg',
+      label: 'GitHub Repository',
+    },
   ];
 
-return (
-    <footer className="border-t bg-background">
+  return (
+    <footer className="border-t border-border/50 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8">
-        <div className="grid gap-12 sm:gap-8 md:grid-cols-3">
-          <div className="flex flex-col gap-4">
+        <div className="grid gap-12 sm:gap-8 md:grid-cols-4">
+          {/* Brand & Mission */}
+          <div className="flex flex-col gap-4 md:col-span-2 pr-8">
             <Link to="/" className="inline-flex w-fit items-center gap-2">
-              <span className="text-xl font-bold text-foreground">Student Orgs</span>
+              <span className="text-2xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
+                BetterOSAS
+              </span>
             </Link>
-            <p className="max-w-sm text-sm text-foreground-secondary">
-              Discover and connect with student organizations across campus.
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              The definitive, student-led directory for exploring academic,
+              cultural, and special interest organizations across the Cavite
+              State University network.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8">
+          {/* Navigation Links */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-2">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h3 className="mb-4 text-sm font-semibold text-foreground">
+                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">
                   {category}
                 </h3>
-                <ul className="space-y-2.5">
-                  {links.map((link) => (
+                <ul className="space-y-3">
+                  {links.map(link => (
                     <li key={link.label}>
                       <Link
                         to={link.href}
-                        className="text-sm text-foreground-secondary transition-colors hover:text-primary"
+                        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                       >
                         {link.label}
                       </Link>
@@ -61,27 +76,37 @@ return (
               </div>
             ))}
           </div>
-
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-semibold text-foreground">Follow Us</h3>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <Button key={social.label} variant="outline" size="icon" asChild className="text-foreground-secondary hover:text-foreground">
-                  <a href={social.href} title={social.label} target="_blank" rel="noopener noreferrer">
-                    <social.icon size={18} />
-                  </a>
-                </Button>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <Separator className="my-12" />
+        <Separator className="my-10 bg-border/50" />
 
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-foreground-secondary">
-            © {currentYear} Student Organization Directory. All rights reserved.
+        {/* Bottom Bar: Copyright & Socials */}
+        <div className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row">
+          <p className="text-sm font-medium text-muted-foreground">
+            © {currentYear} BetterOSAS. Built by students, for students.
           </p>
+
+          <div className="flex items-center gap-2">
+            {socialLinks.map(social => (
+              <Button
+                key={social.label}
+                variant="ghost"
+                size="icon"
+                asChild
+                className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors rounded-full"
+              >
+                <a
+                  href={social.href}
+                  title={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
+                  <social.icon size={18} />
+                </a>
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
@@ -89,3 +114,4 @@ return (
 };
 
 export default Footer;
+

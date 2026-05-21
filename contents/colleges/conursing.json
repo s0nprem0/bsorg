@@ -1,0 +1,79 @@
+[
+  {
+    "id": "con-sc",
+    "slug": "con-sc",
+    "name": "CON Student Council",
+    "status": "Active",
+    "type": "Student Council",
+    "category": "College of Nusring",
+    "campusId": 0,
+    "metadata": {
+      "tags": ["Academic", "College of Nursing"]
+    },
+    "content": {
+      "shortDescription": "",
+      "about": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/con/con-sc.jpg"
+    },
+    "contact": {
+      "email": "collegeofnursing.sc.cvsu@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/CvSUCONSC",
+        "x": "https://x.com/CON_SC25"
+      }
+    }
+  },
+  {
+    "id": "phismets",
+    "slug": "phismet",
+    "name": "Philippine Society of Medical Technology Students - CVSU Chapter",
+    "acronym": "PHISMETS",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Nusring",
+    "campusId": 0,
+    "metadata": {
+      "tags": ["medtech", "con"]
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/con/phishmet.jpg"
+    },
+    "contact": {
+      "email": "cvsu.phismet@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/PHISMETS.CvSU"
+      }
+    }
+  },
+  {
+    "id": "ismap",
+    "slug": "ismap",
+    "name": "Integrated Student Midwives Association of the Philippines",
+    "acronym": "ISMAP",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Nusring",
+    "campusId": 0,
+    "metadata": {
+      "tags": ["midwifery"],
+      "foundedYear": 2023
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/colleges/con/ismap.jpg"
+    },
+    "contact": {
+      "email": "ismap.cvsu@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/ISMAPCvSU"
+      }
+    }
+  }
+]

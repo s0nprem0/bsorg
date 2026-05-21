@@ -5,10 +5,10 @@ import type { Organization } from '@/types/organization';
 
 export default function AcademicOrg() {
   const groupedData = useMemo(() => {
-    // 1. Fetch all orgs and filter for Academic & specific Student Councils
-    const orgs = orgRegistry.getAll().filter(
-      (org) => org.type === 'Academic' || (org.type === 'Student Council' && org.category !== 'University-Wide')
-    );
+    // 1. Leverage the pre-computed academic array from the registry instead of re-filtering the entire allOrgs array.
+    const orgs = orgRegistry
+      .getAcademicOrgs()
+      .filter(org => org.category !== 'University-Wide');
 
     // 2. Dynamically group them by Category (College)
     const grouped: Record<string, Organization[]> = {};
@@ -18,10 +18,15 @@ export default function AcademicOrg() {
     }
 
     // 3. Sort the categories alphabetically for a predictable UI
-    return Object.keys(grouped).sort().reduce((acc, key) => {
-      acc[key] = grouped[key];
-      return acc;
-    }, {} as Record<string, Organization[]>);
+    return Object.keys(grouped)
+      .sort()
+      .reduce(
+        (acc, key) => {
+          acc[key] = grouped[key];
+          return acc;
+        },
+        {} as Record<string, Organization[]>
+      );
   }, []);
 
   return (
@@ -33,3 +38,4 @@ export default function AcademicOrg() {
     />
   );
 }
+

@@ -15,16 +15,10 @@ const Marquee = <T,>({
 }: MarqueeProps<T>) => {
   return (
     <div
-      className={[
-        'group relative flex overflow-hidden',
-        className,
-      ].join(' ')}
+      className={['group relative flex overflow-hidden', className].join(' ')}
     >
-      {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent" />
-
-      {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-background to-transparent" />
 
       {/* Infinite Track */}
       <div
@@ -45,7 +39,6 @@ const Marquee = <T,>({
         )}
       </div>
 
-      {/* Duplicate */}
       <div
         className="flex min-w-max shrink-0 items-center animate-marquee"
         style={{
@@ -89,3 +82,4 @@ const Marquee = <T,>({
 };
 
 export default Marquee;
+

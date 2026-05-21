@@ -1,9 +1,8 @@
 import { z } from 'zod';
- import type { Organization, OrgStatus, OrgType } from '@/types/organization';
 
-// 1. Zod runtime verification mapping to the strict type compilation layout
-const orgStatusSchema = z.enum(['Active', 'Inactive', 'Probationary']);
-const orgTypeSchema = z.enum([
+// 1. Single Source of Truth: Zod Schema
+export const orgStatusSchema = z.enum(['Active', 'Inactive', 'Probationary']);
+export const orgTypeSchema = z.enum([
   'Academic',
   'Non-Academic',
   'Student Council',
@@ -11,7 +10,7 @@ const orgTypeSchema = z.enum([
   'Performing Arts Group',
 ]);
 
-const orgValidationSchema = z.object({
+export const orgValidationSchema = z.object({
   id: z.string(),
   slug: z.string(),
   name: z.string(),
@@ -21,69 +20,89 @@ const orgValidationSchema = z.object({
   category: z.string(),
   campusId: z.number(),
   programId: z.string().optional(),
-  metadata: z.object({
-    foundedYear: z.number().optional(),
-    accredited: z.boolean().optional(),
-    tags: z.array(z.string()).optional(),
-  }),
+  metadata: z
+    .object({
+      foundedYear: z.number().optional(),
+      accredited: z.boolean().optional(),
+      tags: z.array(z.string()).optional(),
+    })
+    .default({}),
   content: z.object({
-    shortDescription: z.string(),
+    shortDescription: z.string().optional(),
     about: z.string().optional(),
     mission: z.string().optional(),
     vision: z.string().optional(),
   }),
-  assets: z.object({
-    logoUrl: z.string().optional(),
-    bannerUrl: z.string().optional(),
-    galleryUrls: z.array(z.string()).optional(),
-  }),
-  contact: z.object({
-    email: z.string().optional(),
-    website: z.string().optional(),
-    officeLocation: z.string().optional(),
-    social: z.object({
-      facebook: z.string().optional(),
-      instagram: z.string().optional(),
-      x: z.string().optional(),
-      tiktok: z.string().optional(),
-      linkedin: z.string().optional(),
-      youtube: z.string().optional(),
-    }).optional(),
-  }),
-  membership: z.object({
-    isOpen: z.boolean(),
-    requirements: z.array(z.string()).optional(),
-  }).optional(),
+  assets: z
+    .object({
+      logoUrl: z.string().optional(),
+      bannerUrl: z.string().optional(),
+      galleryUrls: z.array(z.string()).optional(),
+    })
+    .default({}),
+  contact: z
+    .object({
+      email: z.email().optional(),
+      website: z.url().optional(),
+      officeLocation: z.string().optional(),
+      social: z
+        .object({
+          facebook: z.url().optional(),
+          instagram: z.url().optional(),
+          x: z.url().optional(),
+          tiktok: z.url().optional(),
+          linkedin: z.url().optional(),
+          youtube: z.url().optional(),
+        })
+        .optional(),
+    })
+    .default({}),
+  membership: z
+    .object({
+      isOpen: z.boolean(),
+      requirements: z.array(z.string()).optional(),
+    })
+    .optional(),
 });
 
-// 2. Singleton Registry with Zero Duplicate Glob Fetch Calls
+// Automatically infer TypeScript types from the schema
+export type Organization = z.infer<typeof orgValidationSchema>;
+export type OrgStatus = z.infer<typeof orgStatusSchema>;
+export type OrgType = z.infer<typeof orgTypeSchema>;
+export type FilterCategory = string | 'All';
+
+// 2. Singleton Registry
 const rawModules = import.meta.glob<{ default: unknown }>(
   [
     '/contents/colleges/*.json',
     '/contents/nonacadorgs/*.json',
     '/contents/campuses/*.json',
   ],
+  // Note: For future scalability, consider changing to eager: false and loading asynchronously
   { eager: true }
 );
 
-// 3. Flatten, Validate, and Inject Campus Defaults
-const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(([path, module]) => {
-  const data = module.default || module;
-  try {
-    const rawArray = z.array(orgValidationSchema).parse(data);
+// 3. Flatten and Validate
+const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(
+  ([path, module]) => {
+    const data = module.default || module;
+    try {
+      const rawArray = z.array(orgValidationSchema).parse(data);
 
-    return rawArray.map((raw) => ({
-      ...raw,
-      campusId: raw.campusId ?? 0, // Fallback injection: Defaults to 0 (Main Campus) if absent in JSON
-      status: raw.status as OrgStatus,
-      type: raw.type as OrgType,
-    })) as Organization[];
-  } catch (error) {
-    console.error(`🚨 Core Registry Schema Error in file path: ${path}`);
-    console.error(error);
-    return [];
+      // Type assertions are no longer needed; Zod handles the typing safely
+      return rawArray.map(raw => ({
+        ...raw,
+        campusId: raw.campusId ?? 0,
+      }));
+    } catch (error) {
+      console.error(
+        `🚨 Core Registry Schema Error in file path: ${path}`,
+        error
+      );
+      return [];
+    }
   }
-});
+);
 
 class OrgRegistry {
   private static instance: OrgRegistry;
@@ -93,10 +112,8 @@ class OrgRegistry {
   private nonAcademicOrgs: Organization[] = [];
 
   private constructor() {
-    // Exclude Inactive structures early
-    const activeData = validatedOrgs.filter((org) => org.status !== 'Inactive');
+    const activeData = validatedOrgs.filter(org => org.status !== 'Inactive');
 
-    // Prioritization Rule: Sort all arrays to rank Main Campus (campusId: 0) first alphabetically
     const sortPriority = (a: Organization, b: Organization) => {
       if (a.campusId === 0 && b.campusId !== 0) return -1;
       if (a.campusId !== 0 && b.campusId === 0) return 1;
@@ -105,14 +122,13 @@ class OrgRegistry {
 
     this.allOrgs = [...activeData].sort(sortPriority);
     this.academicOrgs = activeData
-      .filter((org) => org.type === 'Academic' || org.type === 'Student Council')
+      .filter(org => org.type === 'Academic' || org.type === 'Student Council')
       .sort(sortPriority);
     this.nonAcademicOrgs = activeData
-      .filter((org) => org.type !== 'Academic' && org.type !== 'Student Council')
+      .filter(org => org.type !== 'Academic' && org.type !== 'Student Council')
       .sort(sortPriority);
 
-    // Build Fast O(1) Unique Key Lookup Structure
-    this.allOrgs.forEach((org) => {
+    this.allOrgs.forEach(org => {
       if (org?.slug) {
         this.slugMap.set(org.slug.toLowerCase().trim(), org);
       }
@@ -129,15 +145,12 @@ class OrgRegistry {
   public getAll(): Organization[] {
     return this.allOrgs;
   }
-
   public getAcademicOrgs(): Organization[] {
     return this.academicOrgs;
   }
-
   public getNonAcademicOrgs(): Organization[] {
     return this.nonAcademicOrgs;
   }
-
   public getBySlug(slug: string): Organization | undefined {
     if (!slug) return undefined;
     return this.slugMap.get(slug.toLowerCase().trim());
@@ -145,3 +158,4 @@ class OrgRegistry {
 }
 
 export const orgRegistry = OrgRegistry.getInstance();
+

@@ -10,12 +10,12 @@ type SEOProps = {
 
 export default function SEO({
   title,
-  description = "Discover and explore student organizations at Cavite State University.",
-  image = "https://yourdomain.com/og-image.jpg", // Replace with your actual OG image
+  description = 'Discover and explore student organizations across Cavite State University campuses.',
+  image = '/hero.png', // Pointing to local asset instead of dummy domain
   canonical,
   type = 'website',
 }: SEOProps) {
-  const baseTitle = "BetterOSAS";
+  const baseTitle = 'BetterOSAS';
   const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 
   return (
@@ -40,3 +40,4 @@ export default function SEO({
     </Helmet>
   );
 }
+

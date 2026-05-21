@@ -1,8 +1,9 @@
 // src/pages/OrgBrowser.tsx
-import { useEffect, useRef, useCallback } from 'react';
-import { Search, Filter, Loader2 } from 'lucide-react';
+import { useRef, useCallback } from 'react';
+// Added X and ArrowDownUp for the new UI elements
+import { Search, Filter, Loader2, X, ArrowDownUp } from 'lucide-react';
 
-import { useOrgBrowser } from '@/hooks/useOrgBrowser';
+import { useOrgBrowser, SortOption } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
@@ -71,9 +72,9 @@ export default function OrgBrowser() {
             </p>
           </div>
 
-          {/* Filter Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="relative md:col-span-2 group flex items-center">
+          {/* Filter Bar - Updated to lg:grid-cols-5 to accommodate sort */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <div className="relative lg:col-span-2 group flex items-center">
               <Search className="absolute left-3 h-5 w-5 text-foreground-tertiary transition-colors group-focus-within:text-primary z-10" />
               <Input
                 id="search-orgs"
@@ -81,9 +82,21 @@ export default function OrgBrowser() {
                 onChange={e =>
                   dispatch({ type: 'SET_QUERY', payload: e.target.value })
                 }
-                className="pl-10 h-11 bg-surface-1 shadow-sm"
+                // Added pr-10 so long text doesn't hide behind the 'X' button
+                className="pl-10 pr-10 h-11 bg-surface-1 shadow-sm"
                 placeholder="Search by name, acronym, or tags..."
               />
+
+              {/* 1.C: Clear Search Button */}
+              {state.query && (
+                <button
+                  onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}
+                  className="absolute right-3 p-1 text-foreground-tertiary hover:text-foreground rounded-full transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  aria-label="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </div>
 
             <Select
@@ -131,6 +144,29 @@ export default function OrgBrowser() {
                     {cat === 'All' ? 'All Categories' : cat}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+
+            {/* 1.B: Sorting Dropdown */}
+            <Select
+              value={state.sortBy}
+              onValueChange={value =>
+                dispatch({
+                  type: 'SET_SORT',
+                  payload: value as SortOption,
+                })
+              }
+            >
+              <SelectTrigger className="h-11 bg-surface-1 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <ArrowDownUp className="h-4 w-4 text-foreground-tertiary" />
+                  <SelectValue placeholder="Sort by" />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="A-Z">A-Z (Alphabetical)</SelectItem>
+                <SelectItem value="Z-A">Z-A (Reverse)</SelectItem>
+                <SelectItem value="Newest">Newest Founded</SelectItem>
               </SelectContent>
             </Select>
           </div>

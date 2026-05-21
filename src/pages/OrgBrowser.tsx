@@ -3,17 +3,23 @@ import { Search, Filter } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
-import Pagination from '@/components//ui/Pagination';
+import Pagination from '@/components/ui/Pagination';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import SkeletonLoader from '@/components/ui/SkeletonLoader';
 
 import { ORG_BROWSER } from '@/data/constants';
-import type { FilterCategory } from '@/types/organization';
+import type { FilterCategory, OrgType } from '@/types/organization';
 
 // Shadcn UI Imports
 import { Input } from '@/components/ui/shadcn/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/shadcn/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/shadcn/select';
 import { Button } from '@/components/ui/shadcn/button';
 
 export default function OrgBrowser() {
@@ -27,12 +33,15 @@ export default function OrgBrowser() {
     isLoading,
     allOrgsCount,
     filteredCount,
-    categories
+    categories,
   } = useOrgBrowser();
 
   return (
     <>
-      <SEO title={ORG_BROWSER.MESSAGES.TITLE} description={ORG_BROWSER.MESSAGES.SUBTITLE} />
+      <SEO
+        title={ORG_BROWSER.MESSAGES.TITLE}
+        description={ORG_BROWSER.MESSAGES.SUBTITLE}
+      />
 
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
         <Section>
@@ -52,7 +61,9 @@ export default function OrgBrowser() {
               <Input
                 id="search-orgs"
                 value={state.query}
-                onChange={(e) => dispatch({ type: 'SET_QUERY', payload: e.target.value })}
+                onChange={e =>
+                  dispatch({ type: 'SET_QUERY', payload: e.target.value })
+                }
                 className="pl-10 h-11 bg-surface-1 shadow-sm"
                 placeholder="Search by name, acronym, or tags..."
               />
@@ -60,7 +71,13 @@ export default function OrgBrowser() {
 
             <Select
               value={state.orgType}
-              onValueChange={(value) => dispatch({ type: 'SET_ORG_TYPE', payload: value as any })}
+              // [REFACTOR]: Replaced `as any` with proper strict typing
+              onValueChange={value =>
+                dispatch({
+                  type: 'SET_ORG_TYPE',
+                  payload: value as 'All' | OrgType,
+                })
+              }
             >
               <SelectTrigger className="h-11 bg-surface-1 shadow-sm">
                 <div className="flex items-center gap-2">
@@ -69,7 +86,7 @@ export default function OrgBrowser() {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                {ORG_BROWSER.ORG_TYPE_OPTIONS.map((type) => (
+                {ORG_BROWSER.ORG_TYPE_OPTIONS.map(type => (
                   <SelectItem key={`org-type-option-${type}`} value={type}>
                     {type}
                   </SelectItem>
@@ -79,16 +96,21 @@ export default function OrgBrowser() {
 
             <Select
               value={state.category}
-              onValueChange={(value) => dispatch({ type: 'SET_CATEGORY', payload: value as FilterCategory | 'All' })}
+              onValueChange={value =>
+                dispatch({
+                  type: 'SET_CATEGORY',
+                  payload: value as FilterCategory | 'All',
+                })
+              }
             >
               <SelectTrigger className="h-11 bg-surface-1 shadow-sm">
-                 <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <Filter className="h-4 w-4 text-foreground-tertiary" />
                   <SelectValue placeholder="All Categories" />
                 </div>
               </SelectTrigger>
               <SelectContent>
-                {categories.map((cat) => (
+                {categories.map(cat => (
                   <SelectItem key={cat} value={cat}>
                     {cat === 'All' ? 'All Categories' : cat}
                   </SelectItem>
@@ -100,22 +122,35 @@ export default function OrgBrowser() {
           {/* Results Count */}
           <div className="mb-6 flex items-center justify-between">
             <p className="text-sm text-foreground-secondary font-medium">
-              Showing <span className="font-bold text-foreground">{paginatedOrgs.length}</span> of{' '}
-              <span className="font-bold text-foreground">{filteredCount}</span> organizations
-              {filteredCount < allOrgsCount && <span className="text-foreground-muted ml-1">(filtered from {allOrgsCount} total)</span>}
+              Showing{' '}
+              <span className="font-bold text-foreground">
+                {paginatedOrgs.length}
+              </span>{' '}
+              of{' '}
+              <span className="font-bold text-foreground">{filteredCount}</span>{' '}
+              organizations
+              {filteredCount < allOrgsCount && (
+                <span className="text-foreground-muted ml-1">
+                  (filtered from {allOrgsCount} total)
+                </span>
+              )}
             </p>
           </div>
         </Section>
 
         {/* Grid or Loading State */}
-        <Section className="min-h-[400px]">
+        <Section className="min-h-100">
           {isLoading ? (
             <SkeletonLoader count={8} />
           ) : filteredCount === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-border bg-surface-1 text-center">
               <Search className="h-12 w-12 text-foreground-muted mb-4 opacity-50" />
-              <p className="text-lg font-semibold text-foreground">No organizations found</p>
-              <p className="text-sm text-foreground-secondary mt-2">Try adjusting your filters or searching for an acronym.</p>
+              <p className="text-lg font-semibold text-foreground">
+                No organizations found
+              </p>
+              <p className="text-sm text-foreground-secondary mt-2">
+                Try adjusting your filters or searching for an acronym.
+              </p>
               <Button
                 variant="secondary"
                 onClick={() => dispatch({ type: 'RESET' })}
@@ -132,10 +167,15 @@ export default function OrgBrowser() {
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="mt-12">
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         )}
       </div>
     </>
   );
 }
+

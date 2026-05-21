@@ -7,8 +7,7 @@ import ScrollToTop from '@/components/ui/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const Home = lazy(() => import('@/pages/Home'));
-const AcademicOrg = lazy(() => import('@/pages/AcademicOrg'));
-const NonAcademicOrg = lazy(() => import('@/pages/NonAcademicOrg'));
+const Directory = lazy(() => import('@/pages/Directory'));
 const OrganizationProfile = lazy(() => import('@/pages/OrganizationProfile'));
 const OrgBrowser = lazy(() => import('@/pages/OrgBrowser'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -29,9 +28,8 @@ function App() {
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/org/acad-org" element={<AcademicOrg />} />
-                <Route path="/org/non-acadorg" element={<NonAcademicOrg />} />
                 <Route path="/org" element={<OrgBrowser />} />
+                <Route path="/directory" element={<Directory />} />
                 <Route path="/org/:slug" element={<OrganizationProfile />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

@@ -22,8 +22,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Browse', href: '/org', end: true },
-    { label: 'Academic', href: '/org/acad-org' },
-    { label: 'Non-Academic', href: '/org/non-acadorg' },
+    { label: 'Directory', href: '/directory' },
   ];
 
   return (
@@ -137,4 +136,3 @@ export default function Navbar() {
     </header>
   );
 }
-

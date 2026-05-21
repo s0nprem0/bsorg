@@ -7,7 +7,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Student Council",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
@@ -32,7 +32,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "programId": "Bachelor of Science in Information Technology",
     "metadata": {
       "accredited": true
@@ -58,7 +58,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "programId": "Bachelor of Science in Business Administration",
     "metadata": {
       "accredited": true
@@ -84,7 +84,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true,
       "foundedYear": 2009
@@ -110,7 +110,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
@@ -136,7 +136,7 @@
     "campusId": 1,
     "type": "Academic",
     "programId": "Bachelor of Science in Computer Science",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
@@ -162,7 +162,7 @@
     "campusId": 1,
     "type": "Academic",
     "programId": "Bachelor of Science in Entrepreneurship",
-    "category": "Department of Entrepreneurship",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
@@ -187,7 +187,7 @@
     "programId": "Bachelor of Arts in Journalism",
     "status": "Active",
     "campusId": 1,
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "type": "Academic",
     "metadata": {
       "accredited": true,
@@ -212,7 +212,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true,
       "foundedYear": 2011
@@ -239,7 +239,7 @@
     "campusId": 1,
     "type": "Academic",
     "programId": "Bachelor of Science in Office Administration",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
@@ -264,7 +264,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Performing Arts Group",
-    "category": "Performing Arts Group",
+    "category": "Imus Campus",
     "metadata": {
       "tags": ["Performing Arts", "Dance", "Theater", "Music"],
       "accredited": true,
@@ -291,7 +291,7 @@
     "status": "Active",
     "campusId": 1,
     "type": "Academic",
-    "category": "University-Wide",
+    "category": "Imus Campus",
     "programId": "Bachelor of Science in Psychology",
     "metadata": {
       "accredited": true,
@@ -309,6 +309,28 @@
         "facebook": "https://www.facebook.com/SMSCvSUImus/"
       }
     }
+  },
+  {
+    "id": "oms-imus",
+    "slug": "oms-imus",
+    "name": "Operations Management Society",
+    "acronym": "OMS",
+    "status": "Active",
+    "campusId": 1,
+    "type": " Academic",
+    "category": "Imus Campus",
+    "metadata": {
+      "accredited": true
+    },
+    "content": "",
+    "assets": {
+      "logoUrl": "/campuses/imus/oms-imus.jpg"
+    },
+    "contact": {
+      "email": "oms.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/WeAreOMS"
+      }
+    }
   }
 ]
-

@@ -1,6 +1,6 @@
 [
 	{
-		"id": "019e45d5-b540-77fe-a18c-95c5ac6a61b4",
+		"id": "0e9e45d5-b540-77fe-a18c-95c5ac6a61b4",
 		"slug": "litl",
 		"name": "League of Information Technology Leaders",
 		"acronym": "LITL",
@@ -49,6 +49,32 @@
 			"email": "lyhr.external@gmail.com",
 			"social": {
 				"facebook": "https://www.facebook.com/LYHRcvsu13"
+			}
+		}
+	},
+	{
+		"id": "isip13",
+		"slug": "isip",
+		"name": "Integrated Society of Inclusive Psychology",
+		"acronym": "ISIP",
+		"status": "Active",
+		"campusId": 9,
+		"type": "Academic",
+		"program": "Bachelor of Science in Psychology",
+		"metadata": {
+			"accredited": true
+		},
+		"category": "University-Wide",
+		"content": {
+			"shortDescription": ""
+		},
+		"assets": {
+			"logoUrl": "/campuses/tmc/isip.jpg"
+		},
+		"contact": {
+			"email": "isipcvsu13@gmail.com",
+			"social": {
+				"facebook": "https://www.facebook.com/isipcvsu13"
 			}
 		}
 	}

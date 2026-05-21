@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Users, MapPin, ExternalLink, Info, Target, Eye } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { orgRegistry } from '@/lib/orgIndex';
 import { CAMPUSES, CONTACT_ICONS } from '@/data/constants';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
 
 // Shadcn UI
 import {
@@ -72,7 +73,7 @@ export default function OrganizationProfile() {
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
             {/* Main Identity Box (Spans 2 cols, 2 rows) */}
             <Card className="md:col-span-2 lg:col-span-2 md:row-span-2 relative overflow-hidden group border-none bg-card/50 backdrop-blur-sm shadow-lg">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
               <CardContent className="p-8 sm:p-10 flex flex-col items-center sm:items-start text-center sm:text-left h-full justify-center relative z-10 gap-6">
                 <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-background shadow-xl rounded-3xl bg-secondary transition-transform duration-500 group-hover:scale-105">
                   <AvatarImage
@@ -216,7 +217,7 @@ export default function OrganizationProfile() {
                 {!org.contact?.email &&
                   !org.contact?.website &&
                   socialEntries.length === 0 && (
-                    <div className="h-full min-h-[120px] flex items-center justify-center text-sm italic text-muted-foreground text-center border-2 border-dashed border-border rounded-xl">
+                    <div className="h-full min-h-30 flex items-center justify-center text-sm italic text-muted-foreground text-center border-2 border-dashed border-border rounded-xl">
                       No links available
                     </div>
                   )}
@@ -266,9 +267,9 @@ export default function OrganizationProfile() {
               </Card>
             )}
           </div>
+          <RelatedOrganizations currentOrg={org} />
         </main>
       </div>
     </>
   );
 }
-

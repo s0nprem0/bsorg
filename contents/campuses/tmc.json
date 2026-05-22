@@ -7,8 +7,8 @@
 		"status": "Active",
 		"campusId": 9,
 		"type": "Academic",
-		"category": "University-Wide",
-		"program": "Bachelor of Science in Information Technology",
+		"category": "Trece Martires Campus",
+		"programId": "Bachelor of Science in Information Technology",
 		"metadata": {
 			"foundedYear": 2017,
 			"accredited": true
@@ -34,8 +34,8 @@
 		"status": "Active",
 		"campusId": 9,
 		"type": "Academic",
-		"category": "University-Wide",
-		"program": "Bachelor of Science in Hospitality Management",
+		"category": "Trece Martires Campus",
+		"programId": "Bachelor of Science in Hospitality Management",
 		"metadata": {
 			"accredited": true
 		},
@@ -60,11 +60,11 @@
 		"status": "Active",
 		"campusId": 9,
 		"type": "Academic",
-		"program": "Bachelor of Science in Psychology",
+		"programId": "Bachelor of Science in Psychology",
 		"metadata": {
 			"accredited": true
 		},
-		"category": "University-Wide",
+		"category": "Trece Martires Campus",
 		"content": {
 			"shortDescription": ""
 		},

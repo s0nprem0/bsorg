@@ -7,8 +7,8 @@
     "status": "Active",
     "campusId": 7,
     "type": "Academic",
-    "category": "University-Wide",
-    "program": "Bachelor of Science in Computer Science",
+    "category": "Naic Campus",
+    "programId": "Bachelor of Science in Computer Science",
     "metadata": {
       "accredited": true
     },

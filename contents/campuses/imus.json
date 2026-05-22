@@ -317,12 +317,14 @@
     "acronym": "OMS",
     "status": "Active",
     "campusId": 1,
-    "type": " Academic",
+    "type": "Non-Academic",
     "category": "Imus Campus",
     "metadata": {
       "accredited": true
     },
-    "content": "",
+    "content": {
+      "shortDescription": ""
+    },
     "assets": {
       "logoUrl": "/campuses/imus/oms-imus.jpg"
     },

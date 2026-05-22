@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { Search, Filter, Loader2, ArrowDownUp } from 'lucide-react';
 
 import { useOrgBrowser, SortOption } from '@/hooks/useOrgBrowser';
@@ -9,7 +9,6 @@ import SkeletonLoader from '@/components/ui/SkeletonLoader';
 import { SearchInput } from '@/components/ui/SearchInput';
 
 import { ORG_BROWSER } from '@/data/constants';
-import type { FilterCategory, OrgType } from '@/types/organization';
 
 // Shadcn UI Imports
 import {
@@ -29,7 +28,6 @@ export default function OrgBrowser() {
     hasMore,
     loadMore,
     isLoading,
-    allOrgsCount,
     filteredCount,
     categories,
   } = useOrgBrowser();
@@ -73,22 +71,15 @@ export default function OrgBrowser() {
             <SearchInput
               containerClassName="lg:col-span-2"
               value={state.query}
-              onChange={e =>
-                dispatch({ type: 'SET_QUERY', payload: e.target.value })
-              }
-              onClear={() => dispatch({ type: 'SET_QUERY', payload: '' })}
+              onChange={e => dispatch('q', e.target.value)}
+              onClear={() => dispatch('q', null)}
               placeholder="Search by name, acronym, or tags..."
               aria-label="Search organizations"
             />
 
             <Select
               value={state.orgType}
-              onValueChange={value =>
-                dispatch({
-                  type: 'SET_ORG_TYPE',
-                  payload: value as 'All' | OrgType,
-                })
-              }
+              onValueChange={value => dispatch('type', value)}
             >
               <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
                 <div className="flex items-center gap-2">
@@ -107,12 +98,7 @@ export default function OrgBrowser() {
 
             <Select
               value={state.category}
-              onValueChange={value =>
-                dispatch({
-                  type: 'SET_CATEGORY',
-                  payload: value as FilterCategory | 'All',
-                })
-              }
+              onValueChange={value => dispatch('category', value)}
             >
               <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
                 <div className="flex items-center gap-2">
@@ -131,9 +117,7 @@ export default function OrgBrowser() {
 
             <Select
               value={state.sortBy}
-              onValueChange={value =>
-                dispatch({ type: 'SET_SORT', payload: value as SortOption })
-              }
+              onValueChange={value => dispatch('sort', value as SortOption)}
             >
               <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
                 <div className="flex items-center gap-2">
@@ -173,7 +157,12 @@ export default function OrgBrowser() {
               </p>
               <Button
                 variant="secondary"
-                onClick={() => dispatch({ type: 'RESET' })}
+                onClick={() => {
+                  dispatch('q', null);
+                  dispatch('type', null);
+                  dispatch('category', null);
+                  dispatch('sort', null);
+                }}
                 className="mt-6"
               >
                 Clear all filters

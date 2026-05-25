@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import { Search, Filter, Loader2, ArrowDownUp } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
@@ -31,6 +31,28 @@ export default function OrgBrowser() {
     filteredCount,
     categories,
   } = useOrgBrowser();
+
+  // 1. Create a local state so the UI updates instantly when the user types
+  const [localQuery, setLocalQuery] = useState(state.query);
+
+  // 2. Sync URL changes back to local state
+  // (Crucial for when a user clicks the browser's "Back" button)
+  useEffect(() => {
+    setLocalQuery(state.query);
+  }, [state.query]);
+
+  // 3. The Debounce Effect
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      // Only dispatch to URL if the local string is different from the URL string
+      if (localQuery !== state.query) {
+        dispatch('q', localQuery);
+      }
+    }, ORG_BROWSER.DEBOUNCE_DELAY); // Uses your 300ms constant!
+
+    // Cleanup: clears the timeout if the user types another letter before 300ms
+    return () => clearTimeout(handler);
+  }, [localQuery, dispatch, state.query]);
 
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useCallback(
@@ -70,9 +92,12 @@ export default function OrgBrowser() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
             <SearchInput
               containerClassName="lg:col-span-2"
-              value={state.query}
-              onChange={e => dispatch('q', e.target.value)}
-              onClear={() => dispatch('q', null)}
+              value={localQuery}
+              onChange={e => setLocalQuery(e.target.value)}
+              onClear={() => {
+                setLocalQuery('');
+                dispatch('q', '');
+              }}
               placeholder="Search by name, acronym, or tags..."
               aria-label="Search organizations"
             />

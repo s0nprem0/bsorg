@@ -4,20 +4,20 @@ import { useSearchParams } from 'react-router-dom';
 import { normalize } from '@/lib/utils';
 import type { OrgType, FilterCategory } from '@/types/organization';
 import { orgRegistry } from '@/lib/orgIndex';
-import { ORG_BROWSER } from '@/data/constants';
-
-export type SortOption = 'A-Z' | 'Z-A' | 'Newest';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/constants';
 
 export function useOrgBrowser() {
   const [searchParams, setSearchParams] = useSearchParams();
   const allOrgs = useMemo(() => orgRegistry.getAll(), []);
 
-  // 1. Derive state purely from URL (Single Source of Truth)
+  // 1. Derive state purely from URL
   const query = searchParams.get('q') || '';
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
   const category =
     (searchParams.get('category') as FilterCategory | 'All') || 'All';
-  const sortBy = (searchParams.get('sort') as SortOption) || 'A-Z';
+
+  // Use the constant for the default fallback
+  const sortBy = (searchParams.get('sort') as SortOption) || SORT_OPTIONS.ASC;
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
   // 2. Safe Update Function
@@ -31,7 +31,6 @@ export function useOrgBrowser() {
           } else {
             next.set(key, value);
           }
-          // Reset page on any filter change
           if (key !== 'page') next.delete('page');
           return next;
         },
@@ -61,10 +60,10 @@ export function useOrgBrowser() {
     });
 
     result.sort((a, b) => {
-      if (sortBy === 'A-Z') return a.name.localeCompare(b.name);
-      if (sortBy === 'Z-A') return b.name.localeCompare(a.name);
-      if (sortBy === 'Newest') {
-        // Safe Zod-backed type extraction (no longer coercing to string)
+      // Use the constants for your conditional logic
+      if (sortBy === SORT_OPTIONS.ASC) return a.name.localeCompare(b.name);
+      if (sortBy === SORT_OPTIONS.DESC) return b.name.localeCompare(a.name);
+      if (sortBy === SORT_OPTIONS.NEWEST) {
         const yearA = a.metadata?.foundedYear || 0;
         const yearB = b.metadata?.foundedYear || 0;
         return yearB - yearA;
@@ -98,11 +97,11 @@ export function useOrgBrowser() {
 
   return {
     state: { query, orgType, category, sortBy },
-    dispatch: setFilter, // simplified dispatcher signature
+    dispatch: setFilter,
     visibleOrgs,
     hasMore: currentPage < totalPages,
     loadMore,
-    isLoading: false, // UI handles debounce internally now if needed
+    isLoading: false,
     allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
     categories,

@@ -1,14 +1,14 @@
 import { useRef, useCallback } from 'react';
 import { Search, Filter, Loader2, ArrowDownUp } from 'lucide-react';
 
-import { useOrgBrowser, SortOption } from '@/hooks/useOrgBrowser';
+import { useOrgBrowser } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import SkeletonLoader from '@/components/ui/SkeletonLoader';
 import { SearchInput } from '@/components/ui/SearchInput';
 
-import { ORG_BROWSER } from '@/data/constants';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/constants';
 
 // Shadcn UI Imports
 import {
@@ -126,9 +126,9 @@ export default function OrgBrowser() {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="A-Z">A-Z (Alphabetical)</SelectItem>
-                <SelectItem value="Z-A">Z-A (Reverse)</SelectItem>
-                <SelectItem value="Newest">Newest Founded</SelectItem>
+                <SelectItem value={SORT_OPTIONS.ASC}>A-Z (Alphabetical)</SelectItem>
+                <SelectItem value={SORT_OPTIONS.DESC}>Z-A (Reverse)</SelectItem>
+                <SelectItem value={SORT_OPTIONS.NEWEST}>Newest Founded</SelectItem>
               </SelectContent>
             </Select>
           </div>

@@ -12,18 +12,19 @@ export default function NotFound() {
           <h1 className="text-9xl font-bold tracking-tighter text-surface-2 mb-6">
             404
           </h1>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-3">
-          Page Not Found
-        </h2>
-        <p className="text-muted-foreground mb-10 max-w-md mx-auto">
-          The organization or page you're looking for doesn't exist, has been moved, or is currently unavailable.
-        </p>
-        <Button variant="outline" size="lg" asChild className="gap-2">
-          <Link to="/">
-            <ArrowLeft size={16} />
-            Return to Overview
-          </Link>
-        </Button>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-3">
+            Page Not Found
+          </h2>
+          <p className="text-muted-foreground mb-10 max-w-md mx-auto">
+            The organization or page you're looking for doesn't exist, has been
+            moved, or is currently unavailable.
+          </p>
+          <Button variant="outline" size="lg" asChild className="gap-2">
+            <Link to="/">
+              <ArrowLeft size={16} />
+              Return to Overview
+            </Link>
+          </Button>
         </div>
       </div>
     </>

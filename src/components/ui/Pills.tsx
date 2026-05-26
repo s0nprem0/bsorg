@@ -19,16 +19,11 @@ type PillsProps = {
 };
 
 const VARIANTS: Record<PillVariant, string> = {
-  default:
-    'bg-foreground text-background border border-transparent',
-  outline:
-    'bg-transparent text-foreground border border-border',
-  soft:
-    'bg-surface-2 text-foreground-secondary border border-border/50',
-  success:
-    'bg-success/10 text-success border border-success/20',
-  danger:
-    'bg-error/10 text-error border border-error/20',
+  default: 'bg-foreground text-background border border-transparent',
+  outline: 'bg-transparent text-foreground border border-border',
+  soft: 'bg-surface-2 text-foreground-secondary border border-border/50',
+  success: 'bg-success/10 text-success border border-success/20',
+  danger: 'bg-error/10 text-error border border-error/20',
 };
 
 const SIZES = {

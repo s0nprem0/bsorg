@@ -82,4 +82,3 @@ const Marquee = <T,>({
 };
 
 export default Marquee;
-

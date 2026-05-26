@@ -12,11 +12,14 @@ export function groupOrgsByCategory<T extends string>(
   categories: { slug: string; name: T }[],
   keyField: keyof (typeof categories)[number] = 'name'
 ): Record<T, Organization[]> {
-  return categories.reduce((acc, category) => {
-    const orgs = orgData[category.slug];
-    if (orgs && orgs.length > 0) {
-      acc[category[keyField] as T] = orgs;
-    }
-    return acc;
-  }, {} as Record<T, Organization[]>);
+  return categories.reduce(
+    (acc, category) => {
+      const orgs = orgData[category.slug];
+      if (orgs && orgs.length > 0) {
+        acc[category[keyField] as T] = orgs;
+      }
+      return acc;
+    },
+    {} as Record<T, Organization[]>
+  );
 }

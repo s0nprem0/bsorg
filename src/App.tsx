@@ -22,7 +22,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className='flex min-h-screen flex-col bg-background text-foreground'>
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
           <NavBar />
           <main className="flex-1 flex flex-col">
             <Suspense fallback={<PageLoader />}>

@@ -19,7 +19,10 @@ interface BreadCrumbsProps {
   className?: string;
 }
 
-export default function Breadcrumbs({ items, className = '' }: BreadCrumbsProps) {
+export default function Breadcrumbs({
+  items,
+  className = '',
+}: BreadCrumbsProps) {
   const location = useLocation();
 
   const generateBreadcrumbs = (): BreadCrumbItem[] => {
@@ -30,7 +33,10 @@ export default function Breadcrumbs({ items, className = '' }: BreadCrumbsProps)
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
       const isLast = index === pathSegments.length - 1;
-      const label = segment.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      const label = segment
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 
       breadcrumbs.push({
         label,
@@ -48,7 +54,8 @@ export default function Breadcrumbs({ items, className = '' }: BreadCrumbsProps)
       <BreadcrumbList>
         {breadcrumbItems.map((item, index) => {
           const isLast = index === breadcrumbItems.length - 1;
-          const label = item.label.charAt(0).toUpperCase() + item.label.slice(1);
+          const label =
+            item.label.charAt(0).toUpperCase() + item.label.slice(1);
 
           return (
             <React.Fragment key={index}>

@@ -158,4 +158,3 @@ class OrgRegistry {
 }
 
 export const orgRegistry = OrgRegistry.getInstance();
-

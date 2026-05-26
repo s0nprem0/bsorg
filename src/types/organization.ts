@@ -4,4 +4,3 @@ export type {
   OrgType,
   FilterCategory,
 } from '@/lib/orgIndex';
-

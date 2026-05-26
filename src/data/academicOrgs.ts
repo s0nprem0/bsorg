@@ -11,11 +11,11 @@ const allAcademicOrgs = orgRegistry.getAcademicOrgs();
 // Dictionary Mapping for Main Campus College views
 const academicOrgData: Record<string, AcademicOrg[]> = {};
 
-allAcademicOrgs.forEach((org) => {
+allAcademicOrgs.forEach(org => {
   if (!org || !org.category) return;
 
   const college = COLLEGES.find(
-    (c) => c.name === org.category || c.slug === org.category
+    c => c.name === org.category || c.slug === org.category
   );
   if (college) {
     if (!academicOrgData[college.slug]) {
@@ -25,17 +25,17 @@ allAcademicOrgs.forEach((org) => {
   }
 });
 
-export const academicOrgsByCategory: Record<string, AcademicOrg[]> = groupOrgsByCategory(
-  academicOrgData,
-  [...COLLEGES],
-  'name'
-);
+export const academicOrgsByCategory: Record<string, AcademicOrg[]> =
+  groupOrgsByCategory(academicOrgData, [...COLLEGES], 'name');
 
 // Map Organizations systematically by Campus IDs ensuring Main (0) displays on load
-export const academicOrgsByCampus: Record<number, AcademicOrg[]> = CAMPUSES.reduce(
-  (acc, campus) => {
-    acc[campus.id] = allAcademicOrgs.filter((org) => org.campusId === campus.id);
-    return acc;
-  },
-  {} as Record<number, AcademicOrg[]>
-);
+export const academicOrgsByCampus: Record<number, AcademicOrg[]> =
+  CAMPUSES.reduce(
+    (acc, campus) => {
+      acc[campus.id] = allAcademicOrgs.filter(
+        org => org.campusId === campus.id
+      );
+      return acc;
+    },
+    {} as Record<number, AcademicOrg[]>
+  );

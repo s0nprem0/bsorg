@@ -149,9 +149,13 @@ export default function OrgBrowser() {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={SORT_OPTIONS.ASC}>A-Z (Alphabetical)</SelectItem>
+                <SelectItem value={SORT_OPTIONS.ASC}>
+                  A-Z (Alphabetical)
+                </SelectItem>
                 <SelectItem value={SORT_OPTIONS.DESC}>Z-A (Reverse)</SelectItem>
-                <SelectItem value={SORT_OPTIONS.NEWEST}>Newest Founded</SelectItem>
+                <SelectItem value={SORT_OPTIONS.NEWEST}>
+                  Newest Founded
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>

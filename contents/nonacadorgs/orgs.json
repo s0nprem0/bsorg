@@ -5,13 +5,10 @@
     "name": "University First Year Student Council",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "1st year student governance and welfare and training grounds for student leadership",
@@ -34,13 +31,10 @@
     "name": "Sinagtala Multimedia Arts Organization",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Non-Academic",
-        "University-Wide"
-      ],
+      "tags": ["Non-Academic", "University-Wide"],
       "foundedYear": 2024
     },
     "content": {
@@ -66,14 +60,10 @@
     "acronym": "KASAMA",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "KASAMA",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["KASAMA", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "A student organization that aims to promote the welfare and development for all student vendors, entrepreneurs, and working students in the university.",
@@ -96,14 +86,10 @@
     "acronym": "LIKHAIN",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "LIKHAIN",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["LIKHAIN", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "CvSU Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal.",
@@ -126,14 +112,10 @@
     "acronym": "MYM",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "MYM",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["MYM", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "A mental health advocacy organization that aims to raise awareness and provide support for mental health issues among students.",
@@ -156,13 +138,10 @@
     "name": "CvSU Musikeros",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "A student organization that aims to promote musical excellence and provide a platform for students to showcase their talents.",
@@ -186,14 +165,10 @@
     "acronym": "AWSBG",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "AWSBG",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["AWSBG", "Non-Academic", "AWS Learning Club"]
     },
     "content": {
       "shortDescription": "AWS Student Builder Group - Spade is a student organization that aims to provide students with opportunities to learn and grow in the field of cloud computing and technology.",
@@ -216,14 +191,10 @@
     "acronym": "COS",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "University-Wide",
+    "category": "Main Campus",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "COS",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["COS", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "A student organization for anime and manga enthusiasts at CvSU.",
@@ -249,11 +220,7 @@
     "category": "University-Wide",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "ASCLEPSOC",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["ASCLEPSOC", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "The Official Pre-Med Organization of Cavite State University - Main Campus.",
@@ -280,11 +247,7 @@
     "category": "University-Wide",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "CERAT",
-        "Non-Academic",
-        "University-Wide"
-      ]
+      "tags": ["CERAT", "Non-Academic", "University-Wide"]
     },
     "content": {
       "shortDescription": "A student organization that focuses on emergency response training and airsoft activities.",
@@ -297,6 +260,31 @@
       "email": "ccj.cerat@cvsu.edu.ph",
       "social": {
         "facebook": "https://www.facebook.com/CvSUMAIN.CERAT/"
+      }
+    }
+  },
+  {
+    "id": "rcy-alalay",
+    "slug": "rcyalalay",
+    "name": "Red Cross Youth - ALALAY",
+    "acronym": "RCS - ALALAY",
+    "status": "Active",
+    "type": "Non-Academic",
+    "category": "Main Campus",
+    "campusId": 0,
+    "metadata": {
+      "tags": ["Red Cross"]
+    },
+    "content": {
+      "shortDescription": ""
+    },
+    "assets": {
+      "logoUrl": "/org/rcs-alalay.jpg"
+    },
+    "contact": {
+      "email": "cvsu.rcs-alalay@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/cvsurcyalalay"
       }
     }
   }

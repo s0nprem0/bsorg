@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
+import SEO from '@/components/SEO';
 import Hero from '@/components/sections/Hero';
 import OrganizationCard from '@/components/OrganizationCard';
 import Section from '@/components/ui/Section';
@@ -74,7 +75,7 @@ export default function Home() {
 
   return (
     <>
-      <title>BetterOSAS - Directory</title>
+      <SEO title="Home" />
       <main className="grow bg-background">
         <Hero />
 
@@ -92,7 +93,6 @@ export default function Home() {
                 culture.
               </p>
             </div>
-            {/* [REFACTOR]: Fixed routing to /org */}
             <Button
               variant="secondary"
               asChild
@@ -125,10 +125,9 @@ export default function Home() {
               </div>
             )}
 
-            {/* [REFACTOR]: Bento-style stats card styling */}
             <Card className="relative flex flex-col justify-between overflow-hidden lg:col-span-1 lg:row-span-2 bg-card border-none shadow-md group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-accent" />
+              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-accent" />
 
               <CardHeader className="pb-2 relative z-10">
                 <CardTitle className="text-xs font-bold font-mono tracking-widest text-primary uppercase">

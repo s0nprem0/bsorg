@@ -40,7 +40,7 @@ export default function Navbar() {
             className="flex items-center gap-3 transition-opacity hover:opacity-80"
           >
             <div className="h-8 w-8 flex items-center justify-center shadow-sm">
-              <img className="h-8 w-8" src="/org.svg" />
+              <img className="h-8 w-8" src="/org.svg" alt="BetterOSAS" />
             </div>
             <span className="text-base font-bold tracking-tight text-foreground">
               BetterOSAS

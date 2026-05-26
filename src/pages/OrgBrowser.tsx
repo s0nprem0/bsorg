@@ -32,25 +32,23 @@ export default function OrgBrowser() {
     categories,
   } = useOrgBrowser();
 
-  // 1. Create a local state so the UI updates instantly when the user types
+  // Create a local state so the UI updates instantly when the user types
   const [localQuery, setLocalQuery] = useState(state.query);
 
-  // 2. Sync URL changes back to local state
-  // (Crucial for when a user clicks the browser's "Back" button)
-  useEffect(() => {
+  // Sync URL changes back to local state during render (avoids useEffect cascade)
+  // This handles back/forward navigation where state.query changes externally
+  if (state.query !== localQuery) {
     setLocalQuery(state.query);
-  }, [state.query]);
+  }
 
-  // 3. The Debounce Effect
+  // The Debounce Effect: sync local input to URL state after user stops typing
   useEffect(() => {
     const handler = setTimeout(() => {
-      // Only dispatch to URL if the local string is different from the URL string
       if (localQuery !== state.query) {
         dispatch('q', localQuery);
       }
-    }, ORG_BROWSER.DEBOUNCE_DELAY); // Uses your 300ms constant!
+    }, ORG_BROWSER.DEBOUNCE_DELAY);
 
-    // Cleanup: clears the timeout if the user types another letter before 300ms
     return () => clearTimeout(handler);
   }, [localQuery, dispatch, state.query]);
 

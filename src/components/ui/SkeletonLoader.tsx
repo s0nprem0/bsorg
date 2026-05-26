@@ -9,7 +9,7 @@ const SkeletonLoader: React.FC<{ count?: number; className?: string }> = ({
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
-          className="h-4 w-full rounded mb-2 animate-pulse bg-neutral-200"
+          className="h-4 w-full rounded mb-2 animate-pulse bg-muted"
         />
       ))}
     </div>

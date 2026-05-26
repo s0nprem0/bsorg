@@ -57,7 +57,7 @@ export default function CategoryPageTemplate({
       params.delete('q');
     }
     setSearchParams(params, { replace: true });
-  }, [debouncedQuery, setSearchParams]);
+  }, [debouncedQuery, setSearchParams, searchParams]);
 
   const handleClearSearch = () => {
     setInputValue('');
@@ -135,7 +135,7 @@ export default function CategoryPageTemplate({
 
           {/* Quick Navigation Pills */}
           {visibleCategories.length > 0 && !debouncedQuery && (
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
               {visibleCategories.map(({ category }) => (
                 <button
                   key={`nav-${category}`}

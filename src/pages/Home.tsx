@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/shadcn/card';
 
 import { orgRegistry } from '@/lib/orgIndex';
-import { CAMPUSES } from '@/data/constants';
+import { CAMPUSES } from '@/data/campuses';
 import type { Organization } from '@/types/organization';
 
 const getCampusName = (campusId?: number) => {

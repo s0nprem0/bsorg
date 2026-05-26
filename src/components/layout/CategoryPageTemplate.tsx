@@ -9,7 +9,7 @@ import OrgGrid from '@/components/layout/OrgGrid';
 import { Input } from '@/components/ui/shadcn/input';
 import { Button } from '@/components/ui/shadcn/button';
 import { useDebounce } from '@/hooks/useDebounce';
-import { CAMPUSES } from '@/data/constants';
+import { CAMPUSES } from '@/data/campuses';
 import type { Organization } from '@/types/organization';
 
 export interface CategoryPageTemplateProps {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { CONTACT_ICONS } from '@/data/constants';
+import { CONTACT_ICONS } from '@/data/contactIcons';
 import type { Organization } from '@/types/organization';
 import {
   Card,

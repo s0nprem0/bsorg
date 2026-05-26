@@ -1,5 +1,6 @@
 import type { Organization } from '@/types/organization';
-import { COLLEGES, CAMPUSES } from './constants';
+import { COLLEGES } from './colleges';
+import { CAMPUSES } from './campuses';
 import { groupOrgsByCategory } from './orgDataUtils';
 import { orgRegistry } from '@/lib/orgIndex';
 

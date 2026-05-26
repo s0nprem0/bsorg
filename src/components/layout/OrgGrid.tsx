@@ -1,5 +1,5 @@
 import OrganizationCard from '@/components/OrganizationCard';
-import { CAMPUSES } from '@/data/constants';
+import { CAMPUSES } from '@/data/campuses';
 import type { Organization } from '@/types/organization';
 import { cn } from '@/lib/utils';
 

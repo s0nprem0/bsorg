@@ -4,7 +4,8 @@ import { MapPin, ExternalLink, Info, Target, Eye } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { orgRegistry } from '@/lib/orgIndex';
-import { CAMPUSES, CONTACT_ICONS } from '@/data/constants';
+import { CAMPUSES } from '@/data/campuses';
+import { CONTACT_ICONS } from '@/data/contactIcons';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
 

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { errorReporter } from './errorReporter';
 
 // 1. Single Source of Truth: Zod Schema
 export const orgStatusSchema = z.enum(['Active', 'Inactive', 'Probationary']);
@@ -78,7 +79,6 @@ const rawModules = import.meta.glob<{ default: unknown }>(
     '/contents/nonacadorgs/*.json',
     '/contents/campuses/*.json',
   ],
-  // Note: For future scalability, consider changing to eager: false and loading asynchronously
   { eager: true }
 );
 
@@ -95,10 +95,7 @@ const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(
         campusId: raw.campusId ?? 0,
       }));
     } catch (error) {
-      console.error(
-        `🚨 Core Registry Schema Error in file path: ${path}`,
-        error
-      );
+      errorReporter.capture(error, { source: 'orgIndex', filePath: path });
       return [];
     }
   }

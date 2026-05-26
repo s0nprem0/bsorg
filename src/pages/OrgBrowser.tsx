@@ -7,7 +7,7 @@ import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import { SearchInput } from '@/components/ui/SearchInput';
 
-import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/constants';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 // Shadcn UI Imports
 import {

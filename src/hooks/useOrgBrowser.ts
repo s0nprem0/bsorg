@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { normalize } from '@/lib/utils';
 import type { OrgType, FilterCategory } from '@/types/organization';
 import { orgRegistry } from '@/lib/orgIndex';
-import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/constants';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 export function useOrgBrowser() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, GraduationCap, Users, MapPin, LayoutGrid } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import Hero from '@/components/sections/Hero';
@@ -42,7 +42,6 @@ const seededRandom = (seed: number) => {
 const shuffleOrganizationsBySeed = <T,>(items: T[], seedText: string): T[] => {
   const random = seededRandom(hashSeed(seedText));
   const shuffled = [...items];
-
   for (let index = shuffled.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(random() * (index + 1));
     [shuffled[index], shuffled[randomIndex]] = [
@@ -53,14 +52,48 @@ const shuffleOrganizationsBySeed = <T,>(items: T[], seedText: string): T[] => {
   return shuffled;
 };
 
+function GridPlaceholder() {
+  return (
+    <div className="h-full min-h-20 rounded-xl border border-dashed border-border bg-muted/20" />
+  );
+}
+
+const browseCategories = [
+  {
+    title: 'Academic Organizations',
+    description: 'College-based academic councils and departmental organizations.',
+    icon: GraduationCap,
+    href: '/org?type=Academic',
+    count: null as number | null,
+  },
+  {
+    title: 'Non-Academic Organizations',
+    description: 'Cultural, sports, and special interest groups.',
+    icon: Users,
+    href: '/org?type=Non-Academic',
+    count: null as number | null,
+  },
+  {
+    title: 'Full Directory',
+    description: 'Browse all organizations grouped by category.',
+    icon: LayoutGrid,
+    href: '/directory',
+    count: null as number | null,
+  },
+];
+
 export default function Home() {
   const allOrgs = useMemo(() => orgRegistry.getAll(), []);
 
   const stats = useMemo(() => {
+    const uniqueCampuses = new Set(allOrgs.map(o => o.campusId).filter(id => id !== undefined));
+    const uniqueCategories = new Set(allOrgs.map(o => o.category).filter(Boolean));
     return {
       total: allOrgs.length,
       academic: allOrgs.filter(org => org.type === 'Academic').length,
       nonAcademic: allOrgs.filter(org => org.type !== 'Academic').length,
+      campuses: uniqueCampuses.size,
+      categories: uniqueCategories.size,
     };
   }, [allOrgs]);
 
@@ -71,7 +104,21 @@ export default function Home() {
     ).slice(0, 6)
   );
 
-  const [first, second, third, fourth, fifth, sixth] = featuredOrgs;
+  const [f0, f1, f2, f3, f4, f5] = featuredOrgs;
+
+  const browseCats = useMemo(
+    () =>
+      browseCategories.map(cat => ({
+        ...cat,
+        count:
+          cat.title === 'Academic Organizations'
+            ? stats.academic
+            : cat.title === 'Non-Academic Organizations'
+              ? stats.nonAcademic
+              : null,
+      })),
+    [stats]
+  );
 
   return (
     <>
@@ -106,22 +153,30 @@ export default function Home() {
           </div>
 
           <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
-            {first && (
+            {f0 ? (
               <div className="lg:col-span-2 lg:row-span-2">
                 <OrganizationCard
-                  org={first}
-                  campusName={getCampusName(first.campusId)}
+                  org={f0}
+                  campusName={getCampusName(f0.campusId)}
                   large
                 />
               </div>
+            ) : (
+              <div className="lg:col-span-2 lg:row-span-2">
+                <GridPlaceholder />
+              </div>
             )}
 
-            {second && (
-              <div className="lg:col-span-1">
+            {f1 ? (
+              <div>
                 <OrganizationCard
-                  org={second}
-                  campusName={getCampusName(second.campusId)}
+                  org={f1}
+                  campusName={getCampusName(f1.campusId)}
                 />
+              </div>
+            ) : (
+              <div className="hidden lg:block">
+                <GridPlaceholder />
               </div>
             )}
 
@@ -163,43 +218,143 @@ export default function Home() {
                       {stats.nonAcademic}
                     </span>
                   </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground font-medium flex items-center gap-1">
+                      <MapPin className="h-3.5 w-3.5" /> Campuses
+                    </span>
+                    <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      {stats.campuses}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground font-medium flex items-center gap-1">
+                      <LayoutGrid className="h-3.5 w-3.5" /> Categories
+                    </span>
+                    <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      {stats.categories}
+                    </span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Remaining Grid Items */}
-            {third && (
-              <div className="lg:col-span-1">
+            {f2 ? (
+              <div>
                 <OrganizationCard
-                  org={third}
-                  campusName={getCampusName(third.campusId)}
+                  org={f2}
+                  campusName={getCampusName(f2.campusId)}
                 />
               </div>
-            )}
-            {fourth && (
-              <div className="lg:col-span-1">
-                <OrganizationCard
-                  org={fourth}
-                  campusName={getCampusName(fourth.campusId)}
-                />
+            ) : (
+              <div className="hidden lg:block">
+                <GridPlaceholder />
               </div>
             )}
-            {fifth && (
+
+            {f3 ? (
+              <div>
+                <OrganizationCard
+                  org={f3}
+                  campusName={getCampusName(f3.campusId)}
+                />
+              </div>
+            ) : (
+              <div className="hidden lg:block">
+                <GridPlaceholder />
+              </div>
+            )}
+
+            {f4 ? (
               <div className="lg:col-span-2">
                 <OrganizationCard
-                  org={fifth}
-                  campusName={getCampusName(fifth.campusId)}
+                  org={f4}
+                  campusName={getCampusName(f4.campusId)}
                 />
               </div>
+            ) : (
+              <div className="hidden lg:block lg:col-span-2">
+                <GridPlaceholder />
+              </div>
             )}
-            {sixth && (
+
+            {f5 ? (
               <div className="lg:col-span-2">
                 <OrganizationCard
-                  org={sixth}
-                  campusName={getCampusName(sixth.campusId)}
+                  org={f5}
+                  campusName={getCampusName(f5.campusId)}
                 />
               </div>
+            ) : (
+              <div className="hidden lg:block lg:col-span-2">
+                <GridPlaceholder />
+              </div>
             )}
+          </div>
+        </Section>
+
+        <Section className="py-16 md:py-24 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="mb-10">
+              <h2 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                Browse Organizations
+              </h2>
+              <p className="mt-3 text-lg text-muted-foreground max-w-2xl">
+                Find your community by category or explore the full directory.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {browseCats.map(cat => (
+                <Link
+                  key={cat.title}
+                  to={cat.href}
+                  className="group relative rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-md"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <cat.icon className="h-6 w-6" />
+                    </div>
+                    {cat.count !== null && (
+                      <span className="font-mono text-2xl font-bold text-muted-foreground/30">
+                        {cat.count}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-4 font-bold text-foreground group-hover:text-primary transition-colors">
+                    {cat.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {cat.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
+                    Explore <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section className="py-24 max-w-7xl mx-auto px-6 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+              Ready to find your community?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Browse all organizations, filter by category, and connect with
+              fellow students who share your interests.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="lg" asChild className="h-12 px-8 font-bold shadow-lg">
+                <Link to="/org">
+                  Browse All Organizations{' '}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="h-12 px-8">
+                <Link to="/directory">View Directory</Link>
+              </Button>
+            </div>
           </div>
         </Section>
       </main>

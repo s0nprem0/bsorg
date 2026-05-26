@@ -53,7 +53,7 @@ export default function OrgBrowser() {
     return () => clearTimeout(handler);
   }, [localQuery, dispatch, state.query]);
 
-  const hasActiveFilters = state.orgType !== 'All' || state.category !== 'All' || state.program !== '' || state.sortBy !== SORT_OPTIONS.ASC;
+  const hasActiveFilters = state.orgType !== 'All' || state.category !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC;
 
   const clearAllFilters = useCallback(() => {
     setLocalQuery('');
@@ -68,7 +68,7 @@ export default function OrgBrowser() {
   if (state.query) filterChips.push({ label: `"${state.query}"`, key: 'q' });
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
   if (state.category !== 'All') filterChips.push({ label: state.category, key: 'category' });
-  if (state.program) filterChips.push({ label: state.program, key: 'program' });
+  if (state.program !== 'All') filterChips.push({ label: state.program, key: 'program' });
   if (state.sortBy !== SORT_OPTIONS.ASC) filterChips.push({ label: state.sortBy, key: 'sort' });
 
   const removeFilter = useCallback(
@@ -195,8 +195,8 @@ export default function OrgBrowser() {
                   </SelectTrigger>
                   <SelectContent>
                     {programs.map(p => (
-                      <SelectItem key={p || 'all-programs'} value={p}>
-                        {p || 'All Programs'}
+                      <SelectItem key={p} value={p}>
+                        {p === 'All' ? 'All Programs' : p}
                       </SelectItem>
                     ))}
                   </SelectContent>

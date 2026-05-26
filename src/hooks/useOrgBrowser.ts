@@ -15,7 +15,7 @@ export function useOrgBrowser() {
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
   const category =
     (searchParams.get('category') as FilterCategory | 'All') || 'All';
-  const program = searchParams.get('program') || '';
+  const program = searchParams.get('program') || 'All';
 
   // Use the constant for the default fallback
   const sortBy = (searchParams.get('sort') as SortOption) || SORT_OPTIONS.ASC;
@@ -48,7 +48,7 @@ export function useOrgBrowser() {
     const result = allOrgs.filter(org => {
       const matchesType = orgType === 'All' || org.type === orgType;
       const matchesCat = category === 'All' || org.category === category;
-      const matchesProgram = !program || org.programId === program;
+      const matchesProgram = program === 'All' || org.programId === program;
       if (!matchesType || !matchesCat || !matchesProgram) return false;
       if (!q) return true;
 
@@ -101,7 +101,7 @@ export function useOrgBrowser() {
     const uniquePrograms = new Set(
       allOrgs.map(o => o.programId).filter(Boolean)
     );
-    return ['', ...Array.from(uniquePrograms).sort()];
+    return ['All', ...Array.from(uniquePrograms).sort()];
   }, [allOrgs]);
 
   return {

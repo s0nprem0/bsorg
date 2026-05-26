@@ -1,13 +1,14 @@
 // src/components/layout/Navbar.tsx
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Menu, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/shadcn/button';
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/shadcn/sheet';
+import { useTheme } from '@/hooks/useTheme';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,8 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
     { label: 'Browse', href: '/org', end: true },
@@ -73,8 +76,21 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="hidden md:flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
           <Button
             asChild
             className="shadow-sm transition-all hover:scale-105 active:scale-95"
@@ -120,7 +136,22 @@ export default function Navbar() {
                 </NavLink>
               ))}
 
-              <div className="pt-4 border-t">
+              <div className="pt-4 border-t space-y-3">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  onClick={() => {
+                    toggleTheme();
+                    setIsOpen(false);
+                  }}
+                >
+                  {theme === 'dark' ? (
+                    <Sun className="mr-3 h-5 w-5" />
+                  ) : (
+                    <Moon className="mr-3 h-5 w-5" />
+                  )}
+                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </Button>
                 <Button
                   asChild
                   className="w-full"

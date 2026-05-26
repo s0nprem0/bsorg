@@ -15,6 +15,7 @@ export function useOrgBrowser() {
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
   const category =
     (searchParams.get('category') as FilterCategory | 'All') || 'All';
+  const program = searchParams.get('program') || '';
 
   // Use the constant for the default fallback
   const sortBy = (searchParams.get('sort') as SortOption) || SORT_OPTIONS.ASC;
@@ -47,7 +48,8 @@ export function useOrgBrowser() {
     const result = allOrgs.filter(org => {
       const matchesType = orgType === 'All' || org.type === orgType;
       const matchesCat = category === 'All' || org.category === category;
-      if (!matchesType || !matchesCat) return false;
+      const matchesProgram = !program || org.programId === program;
+      if (!matchesType || !matchesCat || !matchesProgram) return false;
       if (!q) return true;
 
       return (
@@ -72,7 +74,7 @@ export function useOrgBrowser() {
     });
 
     return result;
-  }, [allOrgs, query, orgType, category, sortBy]);
+  }, [allOrgs, query, orgType, category, sortBy, program]);
 
   const totalPages = Math.ceil(
     filteredOrgs.length / ORG_BROWSER.ITEMS_PER_PAGE
@@ -95,8 +97,15 @@ export function useOrgBrowser() {
     return ['All', ...Array.from(uniqueCategories).sort()];
   }, [allOrgs]);
 
+  const programs = useMemo(() => {
+    const uniquePrograms = new Set(
+      allOrgs.map(o => o.programId).filter(Boolean)
+    );
+    return ['', ...Array.from(uniquePrograms).sort()];
+  }, [allOrgs]);
+
   return {
-    state: { query, orgType, category, sortBy },
+    state: { query, orgType, category, sortBy, program },
     dispatch: setFilter,
     visibleOrgs,
     hasMore: currentPage < totalPages,
@@ -105,5 +114,6 @@ export function useOrgBrowser() {
     allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
     categories,
+    programs,
   };
 }

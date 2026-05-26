@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { MapPin, ExternalLink, Info, Target, Eye } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, X } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { orgRegistry } from '@/lib/orgIndex';
@@ -23,6 +23,12 @@ import {
   CardContent,
 } from '@/components/ui/shadcn/card';
 import { Button } from '@/components/ui/shadcn/button';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogClose,
+} from '@/components/ui/shadcn/dialog';
 
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
@@ -69,6 +75,16 @@ export default function OrganizationProfile() {
               { label: org.acronym || org.name },
             ]}
           />
+
+          {org.assets?.bannerUrl && (
+            <div className="rounded-xl overflow-hidden max-h-80 mb-2">
+              <img
+                src={org.assets.bannerUrl}
+                alt={`${org.name} banner`}
+                className="w-full h-56 sm:h-64 object-cover"
+              />
+            </div>
+          )}
 
           {/* Bento Grid Container */}
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
@@ -264,6 +280,47 @@ export default function OrganizationProfile() {
                       </p>
                     </div>
                   )}
+                </CardContent>
+              </Card>
+            )}
+            {org.assets?.galleryUrls && org.assets.galleryUrls.length > 0 && (
+              <Card className="md:col-span-3 lg:col-span-4 bg-card border-none shadow-md">
+                <CardHeader>
+                  <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <ImageIcon className="text-primary" size={20} /> Gallery
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {org.assets.galleryUrls.map((url, i) => (
+                      <Dialog key={url}>
+                        <DialogTrigger asChild>
+                          <button
+                            type="button"
+                            className="group relative overflow-hidden rounded-lg aspect-square bg-muted"
+                            aria-label={`View gallery image ${i + 1}`}
+                          >
+                            <img
+                              src={url}
+                              alt={`${org.name} gallery ${i + 1}`}
+                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              loading="lazy"
+                            />
+                          </button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-2">
+                          <DialogClose className="absolute top-4 right-4 z-10 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors">
+                            <X className="h-5 w-5" />
+                          </DialogClose>
+                          <img
+                            src={url}
+                            alt={`${org.name} gallery ${i + 1}`}
+                            className="w-full max-h-[85vh] object-contain rounded-lg"
+                          />
+                        </DialogContent>
+                      </Dialog>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             )}

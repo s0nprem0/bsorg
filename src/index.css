@@ -186,6 +186,69 @@
   --ring: var(--green-500);
 }
 
+.light {
+  --background: var(--gray-50);
+  --foreground: var(--gray-950);
+
+  --card: rgba(255, 255, 255, 0.8);
+  --card-foreground: var(--gray-950);
+
+  --popover: var(--white);
+  --popover-foreground: var(--gray-950);
+
+  --primary: var(--green-600);
+  --primary-foreground: var(--white);
+
+  --secondary: var(--blue-600);
+  --secondary-foreground: var(--white);
+
+  --accent: var(--yellow-600);
+  --accent-foreground: var(--black);
+
+  --muted: var(--gray-200);
+  --muted-foreground: var(--gray-600);
+
+  --destructive: var(--red-500);
+  --destructive-foreground: var(--white);
+
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+
+  --ring: var(--green-600);
+
+  --surface-1: var(--white);
+  --surface-2: var(--gray-100);
+  --surface-3: var(--gray-200);
+  --surface-4: var(--gray-300);
+
+  --glass: rgba(0, 0, 0, 0.02);
+  --glass-strong: rgba(0, 0, 0, 0.04);
+
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-border-strong: rgba(0, 0, 0, 0.10);
+
+  --shadow-glow-primary:
+    0 0 20px rgba(24, 201, 114, 0.20),
+    0 0 60px rgba(24, 201, 114, 0.08);
+
+  --shadow-glow-secondary:
+    0 0 20px rgba(8, 145, 178, 0.18),
+    0 0 60px rgba(8, 145, 178, 0.06);
+
+  --shadow-glow-accent:
+    0 0 20px rgba(202, 138, 4, 0.16),
+    0 0 60px rgba(202, 138, 4, 0.06);
+
+  --shadow-sm:
+    0 1px 2px rgba(0, 0, 0, 0.06);
+
+  --shadow-md:
+    0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg:
+    0 20px 48px rgba(0, 0, 0, 0.12);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Tailwind Theme Mapping

@@ -5,7 +5,7 @@
 This document provides guidance for AI coding assistants and contributors working in this repository
 
 Applies to:
-- Github Copilot
+- GitHub Copilot
 - Claude Code
 - Cursor
 - Windsurf
@@ -14,62 +14,78 @@ Applies to:
 
 ---
 
-## Bun Compatibility
-
-- Prefer Bun over npm/yarn/pnpm
-- Use `bun install`
-- Use `bun run`
-- Avoid Node.js-only tooling when possible
-
 ## Project Overview
 
-This is a React 19 + TypeScript + Vite application for a
-Student Organization Dashboard Directory.
+BetterOSAS — a student-led directory for exploring academic, cultural, and special interest
+organizations across the Cavite State University (CvSU) network.
 
-The project is designed to improve accessibility and
-visibility of student organizations through a centralized
-dashboard interface.
-
-The application may include:
-- organization listings
-- organization profiles
-- announcements
-- events
-- categories per college
-- organization type filtering
-- searchable directories
-- responsive and accessible navigation
-
-The platform helps students easily discover, explore,
-and connect with organizations within the institution.
+The platform helps students easily discover, explore, and connect with organizations
+within the institution.
 
 ## Tech Stack
-- React 19
-- TypeScript
-- Vite
-- React Router
-- TailwindCSS
+
+- React 19 + TypeScript
+- Vite 8
+- React Router 7
+- TailwindCSS v4
+- shadcn/ui (with @radix-ui primitives + @base-ui/react)
+- Zod (schema validation)
+- Lucide React (icons)
+- react-helmet-async (SEO)
+
+## Commands
+
+```sh
+bun dev           # Start dev server
+bun run build     # Production build
+bun run preview   # Preview production build
+npx tsc --noEmit  # TypeScript check
+npx eslint src/   # Lint
+```
+
+## Conventions
+
+- **Commits**: conventional commits (`feat:`, `fix:`, `refactor:`, `chore:`, etc.)
+- **Imports**: react → react-router → lucide → local components → shadcn → data/lib
+- **Components**: default exports for pages, named exports for everything else
+- **CSS**: Tailwind v4 syntax only — no custom CSS files, no `@apply` for component styles
+- **State**: URL search params as source of truth for filters; local state for immediate UI feedback
 
 ## Architecture
 
-### Routing
+### Routes
 
-```txtsrc/App.tsx``` defines routes
+```txt
+/              Home
+/org           OrgBrowser (search, filter, sort, infinite scroll)
+/org/:slug     OrganizationProfile (bento grid, banner, gallery, related orgs)
+/directory     Directory (category-grouped with quick-nav)
+*              NotFound
+```
 
-Current routes may include
-- `/` - Home Page
-- `/acadorg` - Academic Organization
-- `/non-acadorg` - Non-Academic Organization
-- `/college` - College Categories
-- `/pag` - Performing Arts Group
-- `/organization/:slug` - Organization Profile Page
+### Data
 
-### Routing Guidelines
-- Keep route names clean and readable
-- Use dynamic routes for organization pages
-- Maintain consistent route structure
-- Avoid unnecessary route nesting
+- All org data stored as JSON files in `contents/colleges/`, `contents/nonacadorgs/`, `contents/campuses/`
+- Loaded eagerly via `import.meta.glob` + validated with Zod in `src/lib/orgIndex.ts`
+- `orgRegistry` singleton provides `getAll()`, `getBySlug()`, `getAcademicOrgs()`, `getNonAcademicOrgs()`
+- Constants split by domain in `src/data/` (campuses, colleges, programs, etc.)
 
+### Key Patterns
 
-### UI Components
-Reusable primitives live in src/components/ui/: Section, Heading, Text, Card, ListItem, Breadcrumbs, ScrollToTop. Use these instead of raw HTML elements for consistency.
+- **Filters**: URL-driven via `useSearchParams`; debounced search (300ms); filter chips with remove
+- **Theme**: dark-first; `.light` class override; persisted to localStorage via `useTheme` hook
+- **Errors**: `ErrorBoundary` + `errorReporter` singleton (console in dev, ready for Sentry)
+- **SEO**: `react-helmet-async` with `<SEO>` wrapper component
+
+## Dark/Light Mode
+
+- Defaults to dark; respects `prefers-color-scheme`
+- Toggle in navbar; persisted to `localStorage` key `betterosas-theme`
+- CSS variables in `:root` (dark) and `.light` class override
+
+## Important Notes
+
+- ESLint plugin v10.4 has strict `react-hooks/set-state-in-effect` rule — functional setState with identity check requires `eslint-disable`
+- `react-hooks/refs` rule prohibits reading/writing refs during render
+- `text-foreground-secondary` token does NOT exist in theme CSS (silent no-op)
+- `bg-surface-1/2`, `text-surface-2` ARE defined via `--color-surface-*` custom properties

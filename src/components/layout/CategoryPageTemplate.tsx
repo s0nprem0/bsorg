@@ -8,6 +8,7 @@ import OrganizationCard from '@/components/OrganizationCard';
 import OrgGrid from '@/components/layout/OrgGrid';
 import { Input } from '@/components/ui/shadcn/input';
 import { Button } from '@/components/ui/shadcn/button';
+import { useDebounce } from '@/hooks/useDebounce';
 import { CAMPUSES } from '@/data/constants';
 import type { Organization } from '@/types/organization';
 
@@ -24,43 +25,48 @@ const getCampusName = (campusId?: number) => {
     : undefined;
 };
 
-// Custom Debounce Hook for Performance
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  useEffect(() => {
-    const handler = setTimeout(() => setDebouncedValue(value), delay);
-    return () => clearTimeout(handler);
-  }, [value, delay]);
-  return debouncedValue;
-}
-
 export default function CategoryPageTemplate({
   title,
   description,
   data,
   highlightStudentCouncils = false,
 }: CategoryPageTemplateProps) {
-  // 1. URL Syncing for State Persistence
+  // URL Syncing for State Persistence
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialQuery = searchParams.get('q') || '';
 
   // Local state for instant input UI update, debounced for heavy filtering
-  const [inputValue, setInputValue] = useState(initialQuery);
-  const debouncedQuery = useDebounce(inputValue, 300); // 300ms delay
+  const [inputValue, setInputValue] = useState(() => searchParams.get('q') || '');
+  const debouncedQuery = useDebounce(inputValue, 300);
 
-  // Sync debounced query to URL
+  // Sync URL changes back to local state (handles back/forward navigation)
+  // Functional setState bails out when values match, preventing cascading renders
   useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (debouncedQuery) {
-      params.set('q', debouncedQuery);
-    } else {
-      params.delete('q');
-    }
-    setSearchParams(params, { replace: true });
-  }, [debouncedQuery, setSearchParams, searchParams]);
+    const urlQuery = searchParams.get('q') || '';
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- safe: functional form prevents cascade
+    setInputValue(prev => (prev !== urlQuery ? urlQuery : prev));
+  }, [searchParams]);
+
+  // Sync input to URL with short debounce (coalesces rapid typing)
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      const currentUrlQuery = searchParams.get('q') || '';
+      if (inputValue === currentUrlQuery) return;
+      const params = new URLSearchParams(searchParams);
+      if (inputValue) {
+        params.set('q', inputValue);
+      } else {
+        params.delete('q');
+      }
+      setSearchParams(params, { replace: true });
+    }, 300);
+    return () => clearTimeout(handler);
+  }, [inputValue, searchParams, setSearchParams]);
 
   const handleClearSearch = () => {
     setInputValue('');
+    const params = new URLSearchParams(searchParams);
+    params.delete('q');
+    setSearchParams(params, { replace: true });
   };
 
   const processedData = useMemo(() => {
@@ -105,7 +111,7 @@ export default function CategoryPageTemplate({
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               {title}
             </h1>
-            <p className="text-lg leading-relaxed text-foreground-secondary">
+            <p className="text-lg leading-relaxed text-muted-foreground">
               {description}
             </p>
           </div>

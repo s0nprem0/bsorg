@@ -1,81 +1,75 @@
 [
-	{
-		"id": "0e9e45d5-b540-77fe-a18c-95c5ac6a61b4",
-		"slug": "litl",
-		"name": "League of Information Technology Leaders",
-		"acronym": "LITL",
-		"status": "Active",
-		"campusId": 9,
-		"type": "Academic",
-		"category": "Trece Martires Campus",
-		"programId": "Bachelor of Science in Information Technology",
-		"metadata": {
-			"foundedYear": 2017,
-			"accredited": true
-		},
-		"content": {
-			"shortDescription": ""
-		},
-		"assets": {
-			"logoUrl": "/campuses/tmc/litl.jpg"
-		},
-		"contact": {
-			"email": "litl.external@gmail.com",
-			"social": {
-				"facebook": "https://www.facebook.com/LITLcvsu13"
-			}
-		}
-	},
-	{
-		"id":"d9f1b3c2-6b7a-4f2a-9e1b-8c3d6a5b7c9d",
-		"slug": "lyhr",
-		"name": "League of Young Hoteliers and Restaurateurs",
-		"acronym": "LYHR",
-		"status": "Active",
-		"campusId": 9,
-		"type": "Academic",
-		"category": "Trece Martires Campus",
-		"programId": "Bachelor of Science in Hospitality Management",
-		"metadata": {
-			"accredited": true
-		},
-		"content": {
-			"shortDescription": "The League of Young Hoteliers and Restaurateurs (LYHR) is the leading organization for hospitality students at the TMC Campus, promoting excellence and professionalism in the industry."
-		},
-		"assets": {
-			"logoUrl": "/campuses/tmc/lyhr.jpg"
-		},
-		"contact": {
-			"email": "lyhr.external@gmail.com",
-			"social": {
-				"facebook": "https://www.facebook.com/LYHRcvsu13"
-			}
-		}
-	},
-	{
-		"id": "isip13",
-		"slug": "isip",
-		"name": "Integrated Society of Inclusive Psychology",
-		"acronym": "ISIP",
-		"status": "Active",
-		"campusId": 9,
-		"type": "Academic",
-		"programId": "Bachelor of Science in Psychology",
-		"metadata": {
-			"accredited": true
-		},
-		"category": "Trece Martires Campus",
-		"content": {
-			"shortDescription": ""
-		},
-		"assets": {
-			"logoUrl": "/campuses/tmc/isip.jpg"
-		},
-		"contact": {
-			"email": "isipcvsu13@gmail.com",
-			"social": {
-				"facebook": "https://www.facebook.com/isipcvsu13"
-			}
-		}
-	}
+  {
+    "id": "0e9e45d5-b540-77fe-a18c-95c5ac6a61b4",
+    "slug": "litl",
+    "name": "League of Information Technology Leaders",
+    "acronym": "LITL",
+    "status": "Active",
+    "campusId": 9,
+    "type": "Academic",
+    "category": "Trece Martires Campus",
+    "programId": "Bachelor of Science in Information Technology",
+    "metadata": {
+      "foundedYear": 2017,
+      "accredited": true
+    },
+    "assets": {
+      "logoUrl": "/campuses/tmc/litl.jpg"
+    },
+    "contact": {
+      "email": "litl.external@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/LITLcvsu13"
+      }
+    }
+  },
+  {
+    "id": "d9f1b3c2-6b7a-4f2a-9e1b-8c3d6a5b7c9d",
+    "slug": "lyhr",
+    "name": "League of Young Hoteliers and Restaurateurs",
+    "acronym": "LYHR",
+    "status": "Active",
+    "campusId": 9,
+    "type": "Academic",
+    "category": "Trece Martires Campus",
+    "programId": "Bachelor of Science in Hospitality Management",
+    "metadata": {
+      "accredited": true
+    },
+    "content": {
+      "shortDescription": "The League of Young Hoteliers and Restaurateurs (LYHR) is the leading organization for hospitality students at the TMC Campus, promoting excellence and professionalism in the industry."
+    },
+    "assets": {
+      "logoUrl": "/campuses/tmc/lyhr.jpg"
+    },
+    "contact": {
+      "email": "lyhr.external@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/LYHRcvsu13"
+      }
+    }
+  },
+  {
+    "id": "isip13",
+    "slug": "isip",
+    "name": "Integrated Society of Inclusive Psychology",
+    "acronym": "ISIP",
+    "status": "Active",
+    "campusId": 9,
+    "type": "Academic",
+    "programId": "Bachelor of Science in Psychology",
+    "metadata": {
+      "accredited": true
+    },
+    "category": "Trece Martires Campus",
+    "assets": {
+      "logoUrl": "/campuses/tmc/isip.jpg"
+    },
+    "contact": {
+      "email": "isipcvsu13@gmail.com",
+      "social": {
+        "facebook": "https://www.facebook.com/isipcvsu13"
+      }
+    }
+  }
 ]

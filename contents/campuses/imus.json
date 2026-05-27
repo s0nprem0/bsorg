@@ -11,9 +11,6 @@
     "metadata": {
       "accredited": true
     },
-    "content": {
-      "shortDescription": ""
-    },
     "assets": {
       "logoUrl": "/campuses/imus/csg-imus.jpg"
     },
@@ -140,9 +137,6 @@
     "metadata": {
       "accredited": true
     },
-    "content": {
-      "shortDescription": ""
-    },
     "assets": {
       "logoUrl": "/campuses/imus/csc-imus.jpg"
     },
@@ -165,9 +159,6 @@
     "category": "Imus Campus",
     "metadata": {
       "accredited": true
-    },
-    "content": {
-      "shortDescription": ""
     },
     "assets": {
       "logoUrl": "/campuses/imus/cyle-imus.jpg"
@@ -193,7 +184,6 @@
       "accredited": true,
       "foundedYear": 2012
     },
-    "content": {},
     "assets": {
       "logoUrl": "/campuses/imus/cavcomm-imus.jpg"
     },
@@ -243,9 +233,6 @@
     "metadata": {
       "accredited": true
     },
-    "content": {
-      "shortDescription": ""
-    },
     "assets": {
       "logoUrl": "/campuses/imus/yopa-imus.jpg"
     },
@@ -266,7 +253,12 @@
     "type": "Performing Arts Group",
     "category": "Imus Campus",
     "metadata": {
-      "tags": ["Performing Arts", "Dance", "Theater", "Music"],
+      "tags": [
+        "Performing Arts",
+        "Dance",
+        "Theater",
+        "Music"
+      ],
       "accredited": true,
       "foundedYear": 2008
     },
@@ -321,9 +313,6 @@
     "category": "Imus Campus",
     "metadata": {
       "accredited": true
-    },
-    "content": {
-      "shortDescription": ""
     },
     "assets": {
       "logoUrl": "/campuses/imus/oms-imus.jpg"

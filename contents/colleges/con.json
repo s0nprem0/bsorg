@@ -8,11 +8,10 @@
     "category": "College of Nusring",
     "campusId": 0,
     "metadata": {
-      "tags": ["Academic", "College of Nursing"]
-    },
-    "content": {
-      "shortDescription": "",
-      "about": ""
+      "tags": [
+        "Academic",
+        "College of Nursing"
+      ]
     },
     "assets": {
       "logoUrl": "/colleges/con/con-sc.jpg"
@@ -35,10 +34,10 @@
     "category": "College of Nusring",
     "campusId": 0,
     "metadata": {
-      "tags": ["medtech", "con"]
-    },
-    "content": {
-      "shortDescription": ""
+      "tags": [
+        "medtech",
+        "con"
+      ]
     },
     "assets": {
       "logoUrl": "/colleges/con/phismet.jpg"
@@ -60,11 +59,10 @@
     "category": "College of Nusring",
     "campusId": 0,
     "metadata": {
-      "tags": ["midwifery"],
+      "tags": [
+        "midwifery"
+      ],
       "foundedYear": 2023
-    },
-    "content": {
-      "shortDescription": ""
     },
     "assets": {
       "logoUrl": "/colleges/con/ismap.jpg"

@@ -8,10 +8,7 @@
     "category": "College of Arts and Sciences",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "CAS Student Council organization at Cavite State University."
@@ -38,11 +35,7 @@
     "campusId": 0,
     "programId": "Bachelor of Arts in Communication",
     "metadata": {
-      "tags": [
-        "SAMAKOM",
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["SAMAKOM", "Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Samahan ng mga Mag-aaral sa Komunikasyon organization at Cavite State University."
@@ -70,11 +63,7 @@
     "campusId": 0,
     "programId": "Bachelor of Arts in English Language Studies",
     "metadata": {
-      "tags": [
-        "PRAGMATICUS",
-        "Academic",
-        "College of Arts and Sciences"
-      ],
+      "tags": ["PRAGMATICUS", "Academic", "College of Arts and Sciences"],
       "foundedYear": 2016
     },
     "content": {
@@ -82,7 +71,7 @@
       "about": "Amplifying Voices, Transcending through language. The Premier Organization of English Language Studies Students in CvSU Main Campus."
     },
     "assets": {
-      "logoUrl": "/colleges/cas/pragmaticus.jpg"
+      "logoUrl": "/colleges/cas/pragmaticus.png"
     },
     "contact": {
       "email": "cas.pragmaticus@cvsu.edu.ph",
@@ -102,11 +91,7 @@
     "campusId": 0,
     "programId": "Bachelor of Arts in Political Science",
     "metadata": {
-      "tags": [
-        "UTOPIA",
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["UTOPIA", "Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "CvSU Political Science Society organization at Cavite State University."
@@ -131,10 +116,7 @@
     "campusId": 0,
     "programId": "Bachelor of Arts in Journalism",
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Journalism Guild organization at Cavite State University."
@@ -160,11 +142,7 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Applied Mathematics",
     "metadata": {
-      "tags": [
-        "RADICANDS",
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["RADICANDS", "Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "CvSU Cluster of Applied Mathematics Students organization at Cavite State University."
@@ -189,10 +167,7 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Biology",
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Mitochondrion Society organization at Cavite State University."
@@ -217,10 +192,7 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Development Communication",
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Development Communication Society organization at Cavite State University."
@@ -245,10 +217,7 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Psychology",
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Psychology Circle organization at Cavite State University."
@@ -275,10 +244,7 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Social Work",
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Arts and Sciences"
-      ]
+      "tags": ["Academic", "College of Arts and Sciences"]
     },
     "content": {
       "shortDescription": "Junior Social Workers' Association of the Philippines - CvSU Chapter organization at Cavite State University."

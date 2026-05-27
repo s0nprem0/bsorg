@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/shadcn/card';
 
-import { useOrgService } from '@/hooks/useOrgService';
+import { useOrgs } from '@/hooks/useOrgService';
 import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 
@@ -84,8 +84,7 @@ const browseCategories: {
 ];
 
 export default function Home() {
-  const orgService = useOrgService();
-  const allOrgs = useMemo(() => orgService.getAll(), [orgService]);
+  const { orgs: allOrgs } = useOrgs();
 
   const stats = useMemo(() => {
     const uniqueCampuses = new Set(allOrgs.map(o => o.campusId).filter(id => id !== undefined));

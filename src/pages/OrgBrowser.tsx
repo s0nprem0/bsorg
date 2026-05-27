@@ -30,6 +30,8 @@ export default function OrgBrowser() {
     filteredCount,
     categories,
     programs,
+    loading,
+    error,
   } = useOrgBrowser();
 
   // Create a local state so the UI updates instantly when the user types
@@ -270,7 +272,17 @@ export default function OrgBrowser() {
         </Section>
 
         <Section className="min-h-100">
-          {filteredCount === 0 ? (
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-24">
+              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              <p className="mt-4 text-sm text-muted-foreground">Loading organizations...</p>
+            </div>
+          ) : error ? (
+            <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-destructive/50 bg-destructive/10 text-center">
+              <p className="text-lg font-semibold text-destructive">Failed to load organizations</p>
+              <p className="mt-1 text-sm text-muted-foreground">{error.message}</p>
+            </div>
+          ) : filteredCount === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-border bg-muted/30 text-center">
               <Search className="h-12 w-12 text-muted-foreground mb-4 opacity-50" />
               <p className="text-lg font-semibold text-foreground">

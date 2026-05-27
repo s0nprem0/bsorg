@@ -1,8 +1,8 @@
 import type { Organization } from '@/lib/orgIndex';
 
 export interface OrgService {
-  getAll(): Organization[];
-  getBySlug(slug: string): Organization | undefined;
-  getAcademicOrgs(): Organization[];
-  getNonAcademicOrgs(): Organization[];
+  getAll(): Promise<Organization[]>;
+  getBySlug(slug: string): Promise<Organization | undefined>;
+  getAcademicOrgs(): Promise<Organization[]>;
+  getNonAcademicOrgs(): Promise<Organization[]>;
 }

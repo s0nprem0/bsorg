@@ -1,9 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
-import { useMemo } from 'react';
 import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon } from 'lucide-react';
 
 import SEO from '@/components/SEO';
-import { useOrgService } from '@/hooks/useOrgService';
+import { useOrg } from '@/hooks/useOrgService';
 import { ContactIcon } from '@/components/ui/ContactIcon';
 import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
@@ -30,13 +29,33 @@ import {
 } from '@/components/ui/shadcn/dialog';
 
 export default function OrganizationProfile() {
-  const orgService = useOrgService();
   const { slug } = useParams<{ slug: string }>();
-  const org = useMemo(
-    () => (slug ? orgService.getBySlug(slug) : null),
-    [slug, orgService]
-  );
+  const { org, loading, error } = useOrg(slug);
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6 text-center">
+        <div className="max-w-md space-y-4">
+          <h2 className="text-3xl font-bold text-destructive">Error Loading Organization</h2>
+          <p className="text-muted-foreground">
+            Something went wrong while loading this organization.
+          </p>
+          <Button asChild variant="link">
+            <Link to="/org">← Back to Organizations</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   if (!org) {
     return (

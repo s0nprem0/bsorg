@@ -100,8 +100,8 @@ export default function OrgBrowser() {
       />
 
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
-        <Section>
-          <div className="mb-8">
+        <Section className="py-0">
+          <div className="mb-10">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               Organization Browser
             </h1>
@@ -118,10 +118,7 @@ export default function OrgBrowser() {
                 <SearchInput
               value={localQuery}
               onChange={e => setLocalQuery(e.target.value)}
-              onClear={() => {
-                setLocalQuery('');
-                dispatch('q', '');
-              }}
+              onClear={() => setLocalQuery('')}
               placeholder="Search by name, acronym, or tags..."
               aria-label="Search organizations"
             />

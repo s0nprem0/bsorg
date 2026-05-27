@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { useOrg } from '@/hooks/useOrgService';
@@ -8,7 +8,6 @@ import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
 
-// Shadcn UI
 import {
   Avatar,
   AvatarFallback,
@@ -28,51 +27,100 @@ import {
   DialogContent,
 } from '@/components/ui/shadcn/dialog';
 
+function Skeleton({ className }: { className?: string }) {
+  return (
+    <div
+      className={`rounded-xl bg-card/50 animate-pulse ${className ?? ''}`}
+    />
+  );
+}
+
+function LoadingSkeleton() {
+  return (
+    <div className="min-h-screen bg-background pb-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
+        <Skeleton className="h-5 w-64" />
+        <Skeleton className="h-56 sm:h-64 w-full rounded-xl" />
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <Skeleton className="md:col-span-2 lg:col-span-2 md:row-span-2 h-[420px]" />
+          <Skeleton className="md:col-span-1 lg:col-span-1 h-48" />
+          <Skeleton className="md:col-span-1 lg:col-span-1 h-48" />
+          <Skeleton className="md:col-span-3 lg:col-span-2 h-40" />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function ErrorState({ message }: { message: string }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="max-w-md w-full text-center space-y-6">
+        <div className="mx-auto w-16 h-16 rounded-2xl bg-destructive/10 flex items-center justify-center">
+          <AlertTriangle className="w-8 h-8 text-destructive" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold">Error Loading Organization</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            {message}
+          </p>
+        </div>
+        <Button asChild variant="outline" className="gap-2">
+          <Link to="/org">
+            <ArrowLeft size={16} />
+            Back to Organizations
+          </Link>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function NotFoundState() {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="max-w-md w-full text-center space-y-6">
+        <div className="mx-auto w-16 h-16 rounded-2xl bg-muted flex items-center justify-center">
+          <SearchX className="w-8 h-8 text-muted-foreground" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold">Organization Not Found</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            The organization you're looking for doesn't exist or may have been
+            moved.
+          </p>
+        </div>
+        <Button asChild variant="outline" className="gap-2">
+          <Link to="/org">
+            <ArrowLeft size={16} />
+            Back to Organizations
+          </Link>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+const socialBrandStyles: Record<string, string> = {
+  facebook: 'hover:bg-[#1877F2] hover:text-white',
+  instagram: 'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white',
+  x: 'hover:bg-black hover:text-white',
+  tiktok: 'hover:bg-black hover:text-white',
+  youtube: 'hover:bg-[#FF0000] hover:text-white',
+  email: 'hover:bg-primary hover:text-primary-foreground',
+  website: 'hover:bg-primary hover:text-primary-foreground',
+};
+
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
   const { org, loading, error } = useOrg(slug);
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSkeleton />;
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 text-center">
-        <div className="max-w-md space-y-4">
-          <h2 className="text-3xl font-bold text-destructive">Error Loading Organization</h2>
-          <p className="text-muted-foreground">
-            Something went wrong while loading this organization.
-          </p>
-          <Button asChild variant="link">
-            <Link to="/org">← Back to Organizations</Link>
-          </Button>
-        </div>
-      </div>
-    );
-  }
+  if (error) return <ErrorState message={error.message} />;
 
-  if (!org) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 text-center">
-        <div className="max-w-md space-y-4">
-          <h2 className="text-3xl font-bold">Organization Not Found</h2>
-          <p className="text-muted-foreground">
-            The organization you're looking for doesn't exist or may have been
-            moved.
-          </p>
-          <Button asChild variant="link">
-            <Link to="/org">← Back to Organizations</Link>
-          </Button>
-        </div>
-      </div>
-    );
-  }
+  if (!org) return <NotFoundState />;
 
   const socialEntries = org.contact?.social
     ? Object.entries(org.contact.social).filter(([, val]) => val)
@@ -85,204 +133,159 @@ export default function OrganizationProfile() {
         description={org.content?.shortDescription}
       />
 
-      <div className="min-h-screen bg-background pb-16">
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-          <Breadcrumbs
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Organizations', href: '/org' },
-              { label: org.acronym || org.name },
-            ]}
-          />
+      <div className="min-h-screen bg-background pb-20">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
+
+          <div className="animate-fade-in-up">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Organizations', href: '/org' },
+                { label: org.acronym || org.name },
+              ]}
+            />
+          </div>
 
           {org.assets?.bannerUrl && (
-            <div className="rounded-xl overflow-hidden max-h-80 mb-2">
-              <img
-                src={org.assets.bannerUrl}
-                alt={`${org.name} banner`}
-                className="w-full h-56 sm:h-64 object-cover"
-              />
+            <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
+              <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
+                <img
+                  src={org.assets.bannerUrl}
+                  alt={`${org.name} banner`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
             </div>
           )}
 
-          {/* Bento Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
-            {/* Main Identity Box (Spans 2 cols, 2 rows) */}
-            <Card className="md:col-span-2 lg:col-span-2 md:row-span-2 relative overflow-hidden group border-none bg-card/50 backdrop-blur-sm shadow-lg">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-              <CardContent className="p-8 sm:p-10 flex flex-col items-center sm:items-start text-center sm:text-left h-full justify-center relative z-10 gap-6">
-                <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-background shadow-xl rounded-3xl bg-secondary transition-transform duration-500 group-hover:scale-105">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 auto-rows-min">
+
+            <Card
+              style={{ viewTransitionName: 'org-identity' }}
+              className="animate-fade-in-up animate-delay-100 md:col-span-2 lg:col-span-2 md:row-span-2 relative overflow-hidden group border-none bg-card/50 backdrop-blur-sm shadow-lg"
+            >
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+              <CardContent className="p-6 sm:p-8 lg:p-10 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left h-full justify-center relative z-10 gap-6 lg:gap-8">
+                <Avatar className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 shrink-0 border-4 border-background shadow-xl rounded-3xl bg-secondary transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-primary/30">
                   <AvatarImage
                     src={org.assets?.logoUrl}
                     alt={`${org.name} logo`}
-                    className="object-contain p-4"
+                    className="object-contain p-3 sm:p-4"
                   />
-                  <AvatarFallback className="text-4xl md:text-5xl font-extrabold rounded-3xl bg-secondary text-muted-foreground">
+                  <AvatarFallback className="text-3xl sm:text-4xl lg:text-5xl font-extrabold rounded-3xl bg-secondary text-muted-foreground">
                     {org.acronym || org.name.substring(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
 
-                <div className="space-y-3 w-full">
+                <div className="space-y-3 sm:space-y-4 min-w-0">
                   <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                     <Badge
                       variant="secondary"
-                      className="bg-primary/20 text-primary hover:bg-primary/30 border-none"
+                      className="bg-primary/15 text-primary hover:bg-primary/25 border-none text-[11px] px-3 py-1"
                     >
                       {org.type}
                     </Badge>
-                    <Badge variant="outline">{org.status}</Badge>
+                    {org.status && org.status !== 'Active' && (
+                      <Badge variant="outline" className="text-[11px]">
+                        {org.status}
+                      </Badge>
+                    )}
                   </div>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
                     {org.name}
                   </h1>
-                  <p className="text-muted-foreground font-medium text-lg max-w-lg">
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl">
                     {org.content.shortDescription}
                   </p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Quick Facts Box */}
-            <Card className="md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
+            <Card className="animate-fade-in-up animate-delay-200 md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
               <CardHeader className="pb-2">
-                <CardTitle className="text-xs uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                  <MapPin size={16} /> Campus & Details
+                <CardTitle className="text-[10px] uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
+                  <MapPin size={14} /> Campus & Details
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-5 mt-2">
-                <div>
-                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1">
-                    Location
-                  </p>
-                  <p className="font-semibold text-foreground">
-                    {campus?.name || 'N/A'}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1">
-                    Category
-                  </p>
-                  <p className="font-semibold text-foreground">
-                    {org.category}
-                  </p>
-                </div>
+              <CardContent className="space-y-4 mt-1">
+                <DetailRow label="Location" value={campus?.name || 'N/A'} />
+                <DetailRow label="Category" value={org.category} />
                 {org.programId && (
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1">
-                      Program
-                    </p>
-                    <p className="font-semibold text-foreground">
-                      {org.programId}
-                    </p>
-                  </div>
+                  <DetailRow label="Program" value={org.programId} />
                 )}
                 {org.metadata?.foundedYear && (
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1">
-                      Founded
-                    </p>
-                    <p className="font-semibold text-foreground">
-                      {org.metadata.foundedYear}
-                    </p>
+                  <DetailRow label="Founded" value={String(org.metadata.foundedYear)} />
+                )}
+              </CardContent>
+            </Card>
+
+            <Card className="animate-fade-in-up animate-delay-200 md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-[10px] uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
+                  <ExternalLink size={14} /> Connect
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {org.contact?.email ||
+                org.contact?.website ||
+                socialEntries.length > 0 ? (
+                  <div className="grid grid-cols-2 gap-2.5">
+                    {org.contact?.email && (
+                      <ContactButton
+                        href={`mailto:${org.contact.email}`}
+                        icon={<ContactIcon name="email" size={20} />}
+                        label="Email"
+                        brandStyle={socialBrandStyles.email}
+                      />
+                    )}
+                    {org.contact?.website && (
+                      <ContactButton
+                        href={org.contact.website}
+                        icon={<ContactIcon name="website" size={20} />}
+                        label="Website"
+                        brandStyle={socialBrandStyles.website}
+                      />
+                    )}
+                    {socialEntries.map(([network, url]) => (
+                      <ContactButton
+                        key={network}
+                        href={url as string}
+                        icon={<ContactIcon name={network} size={20} />}
+                        label={network.charAt(0).toUpperCase() + network.slice(1)}
+                        brandStyle={socialBrandStyles[network] || 'hover:bg-primary hover:text-primary-foreground'}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="h-24 flex items-center justify-center text-sm italic text-muted-foreground text-center border-2 border-dashed border-border rounded-xl">
+                    No links available
                   </div>
                 )}
               </CardContent>
             </Card>
 
-            {/* Connect / Socials Box */}
-            <Card className="md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xs uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                  <ExternalLink size={16} /> Connect
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-3">
-                  {org.contact?.email && (
-                    <Button
-                      variant="secondary"
-                      asChild
-                      className="h-auto py-4 flex-col gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <a href={`mailto:${org.contact.email}`}>
-                        <ContactIcon name="email" size={24} />
-                        <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
-                          Email
-                        </span>
-                      </a>
-                    </Button>
-                  )}
-                  {org.contact?.website && (
-                    <Button
-                      variant="secondary"
-                      asChild
-                      className="h-auto py-4 flex-col gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <a
-                        href={org.contact.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ContactIcon name="website" size={24} />
-                        <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
-                          Website
-                        </span>
-                      </a>
-                    </Button>
-                  )}
-                  {socialEntries.map(([network, url]) => (
-                    <Button
-                      key={network}
-                      variant="secondary"
-                      asChild
-                      className="h-auto py-4 flex-col gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <a
-                        href={url as string}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ContactIcon name={network} size={24} />
-                        <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
-                          {network}
-                        </span>
-                      </a>
-                    </Button>
-                  ))}
-                </div>
-                {!org.contact?.email &&
-                  !org.contact?.website &&
-                  socialEntries.length === 0 && (
-                    <div className="h-full min-h-30 flex items-center justify-center text-sm italic text-muted-foreground text-center border-2 border-dashed border-border rounded-xl">
-                      No links available
-                    </div>
-                  )}
-              </CardContent>
-            </Card>
-
-            {/* About Box (Spans wide below) */}
-            <Card className="md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
+            <Card className="animate-fade-in-up animate-delay-300 md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
-                  <Info className="text-primary" size={20} /> About
+                <CardTitle className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
+                  <Info className="text-primary shrink-0" size={18} /> About
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line">
+                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line text-sm sm:text-base">
                   {org.content.about ||
                     'No detailed description available for this organization.'}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Mission / Vision Box (Optional spanning) */}
             {(org.content?.mission || org.content?.vision) && (
-              <Card className="md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
-                <CardContent className="p-6 grid sm:grid-cols-2 gap-8 h-full items-start">
+              <Card className="animate-fade-in-up animate-delay-300 md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
+                <CardContent className="p-5 sm:p-6 grid sm:grid-cols-2 gap-6 sm:gap-8 h-full items-start">
                   {org.content.mission && (
                     <div className="space-y-3">
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
-                        <Target className="text-primary" size={16} /> Mission
+                      <h3 className="text-xs font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
+                        <Target className="text-primary shrink-0" size={15} /> Mission
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-sm">
                         {org.content.mission}
@@ -291,8 +294,8 @@ export default function OrganizationProfile() {
                   )}
                   {org.content.vision && (
                     <div className="space-y-3">
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
-                        <Eye className="text-primary" size={16} /> Vision
+                      <h3 className="text-xs font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
+                        <Eye className="text-primary shrink-0" size={15} /> Vision
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-sm">
                         {org.content.vision}
@@ -302,32 +305,41 @@ export default function OrganizationProfile() {
                 </CardContent>
               </Card>
             )}
+
             {org.assets?.galleryUrls && org.assets.galleryUrls.length > 0 && (
-              <Card className="md:col-span-3 lg:col-span-4 bg-card border-none shadow-md">
+              <Card className="animate-fade-in-up animate-delay-300 md:col-span-3 lg:col-span-4 bg-card border-none shadow-md">
                 <CardHeader>
-                  <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
-                    <ImageIcon className="text-primary" size={20} /> Gallery
+                  <CardTitle className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
+                    <ImageIcon className="text-primary shrink-0" size={18} /> Gallery
+                    <span className="text-xs font-normal text-muted-foreground ml-1">
+                      ({org.assets.galleryUrls.length})
+                    </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                     {org.assets.galleryUrls.map((url, i) => (
                       <Dialog key={url}>
                         <DialogTrigger asChild>
                           <button
                             type="button"
-                            className="group relative overflow-hidden rounded-lg aspect-square bg-muted"
+                            className="group relative overflow-hidden rounded-lg aspect-square bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                             aria-label={`View gallery image ${i + 1}`}
                           >
                             <img
                               src={url}
                               alt={`${org.name} gallery ${i + 1}`}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
                               loading="lazy"
                             />
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="rounded-full bg-background/60 backdrop-blur-sm p-2.5">
+                                <ImageIcon size={18} className="text-foreground" />
+                              </div>
+                            </div>
                           </button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-2">
+                        <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-1 sm:p-2">
                           <img
                             src={url}
                             alt={`${org.name} gallery ${i + 1}`}
@@ -341,9 +353,54 @@ export default function OrganizationProfile() {
               </Card>
             )}
           </div>
-          <RelatedOrganizations currentOrg={org} />
+
+          <div className="animate-fade-in-up animate-delay-500">
+            <RelatedOrganizations currentOrg={org} />
+          </div>
         </main>
       </div>
     </>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">
+        {label}
+      </p>
+      <p className="font-semibold text-foreground text-sm">{value}</p>
+    </div>
+  );
+}
+
+function ContactButton({
+  href,
+  icon,
+  label,
+  brandStyle,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  brandStyle: string;
+}) {
+  return (
+    <Button
+      variant="secondary"
+      asChild
+      className={`h-auto py-3.5 flex-col gap-1.5 transition-all duration-300 ${brandStyle} border-none`}
+    >
+      <a
+        href={href}
+        target={href.startsWith('mailto:') ? undefined : '_blank'}
+        rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+      >
+        {icon}
+        <span className="text-[9px] font-bold uppercase tracking-wider">
+          {label}
+        </span>
+      </a>
+    </Button>
   );
 }

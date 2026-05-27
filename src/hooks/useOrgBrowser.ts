@@ -99,7 +99,7 @@ export function useOrgBrowser() {
 
   const programs = useMemo(() => {
     const uniquePrograms = new Set(
-      allOrgs.map(o => o.programId).filter(Boolean)
+      allOrgs.map(o => o.programId).filter((id): id is string => !!id)
     );
     return ['All', ...Array.from(uniquePrograms).sort()];
   }, [allOrgs]);

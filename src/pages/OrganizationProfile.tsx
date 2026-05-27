@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon } from 'lucide-react';
 
 import SEO from '@/components/SEO';
-import { orgRegistry } from '@/lib/orgIndex';
+import { useOrgService } from '@/hooks/useOrgService';
 import { ContactIcon } from '@/components/ui/ContactIcon';
 import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
@@ -30,10 +30,11 @@ import {
 } from '@/components/ui/shadcn/dialog';
 
 export default function OrganizationProfile() {
+  const orgService = useOrgService();
   const { slug } = useParams<{ slug: string }>();
   const org = useMemo(
-    () => (slug ? orgRegistry.getBySlug(slug) : null),
-    [slug]
+    () => (slug ? orgService.getBySlug(slug) : null),
+    [slug, orgService]
   );
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
 

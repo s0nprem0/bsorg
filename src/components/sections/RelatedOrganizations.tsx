@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Sparkles } from 'lucide-react';
 import { orgRegistry } from '@/lib/orgIndex';
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 import OrgGrid from '@/components/layout/OrgGrid';
 import {
   Card,

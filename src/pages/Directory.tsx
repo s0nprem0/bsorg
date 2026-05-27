@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import CategoryPageTemplate from '@/components/layout/CategoryPageTemplate';
 import { orgRegistry } from '@/lib/orgIndex';
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 
 export default function Directory() {
   const groupedData = useMemo(() => {

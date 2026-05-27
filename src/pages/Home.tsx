@@ -16,7 +16,7 @@ import {
 
 import { orgRegistry } from '@/lib/orgIndex';
 import { CAMPUSES } from '@/data/campuses';
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 
 const getCampusName = (campusId?: number) => {
   if (campusId === undefined) return undefined;

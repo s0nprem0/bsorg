@@ -1,6 +1,6 @@
 import OrganizationCard from '@/components/OrganizationCard';
 import { CAMPUSES } from '@/data/campuses';
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 import { cn } from '@/lib/utils';
 
 export interface OrgGridProps {

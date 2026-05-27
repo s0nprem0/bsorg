@@ -2,7 +2,7 @@
 import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { normalize } from '@/lib/utils';
-import type { OrgType, FilterCategory } from '@/types/organization';
+import type { OrgType, FilterCategory } from '@/lib/orgIndex';
 import { orgRegistry } from '@/lib/orgIndex';
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
@@ -110,8 +110,6 @@ export function useOrgBrowser() {
     visibleOrgs,
     hasMore: currentPage < totalPages,
     loadMore,
-    isLoading: false,
-    allOrgsCount: allOrgs.length,
     filteredCount: filteredOrgs.length,
     categories,
     programs,

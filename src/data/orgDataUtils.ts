@@ -1,5 +1,5 @@
 // Utility to group organizations by category
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 
 /**
  * Groups organizations by a category key.

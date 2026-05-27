@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { CONTACT_ICONS } from '@/data/contactIcons';
-import type { Organization } from '@/types/organization';
+import { ContactIcon } from '@/components/ui/ContactIcon';
+import type { Organization } from '@/lib/orgIndex';
 import {
   Card,
   CardHeader,
@@ -107,7 +107,7 @@ export default function OrganizationCard({
                   rel="noopener noreferrer"
                   aria-label={`Visit ${org.name} on ${network}`}
                 >
-                  {CONTACT_ICONS[network]?.(false)}
+                  <ContactIcon name={network} size={18} />
                 </a>
               </Button>
             ))}

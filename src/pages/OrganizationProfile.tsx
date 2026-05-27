@@ -4,8 +4,8 @@ import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, X } from 'lucide-re
 
 import SEO from '@/components/SEO';
 import { orgRegistry } from '@/lib/orgIndex';
+import { ContactIcon } from '@/components/ui/ContactIcon';
 import { CAMPUSES } from '@/data/campuses';
-import { CONTACT_ICONS } from '@/data/contactIcons';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
 
@@ -186,7 +186,7 @@ export default function OrganizationProfile() {
                       className="h-auto py-4 flex-col gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <a href={`mailto:${org.contact.email}`}>
-                        {CONTACT_ICONS['email']?.(true)}
+                        <ContactIcon name="email" size={24} />
                         <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
                           Email
                         </span>
@@ -204,7 +204,7 @@ export default function OrganizationProfile() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {CONTACT_ICONS['website']?.(true)}
+                        <ContactIcon name="website" size={24} />
                         <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
                           Website
                         </span>
@@ -223,7 +223,7 @@ export default function OrganizationProfile() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {CONTACT_ICONS[network]?.(true)}
+                        <ContactIcon name={network} size={24} />
                         <span className="text-[10px] font-bold uppercase tracking-wider mt-1">
                           {network}
                         </span>

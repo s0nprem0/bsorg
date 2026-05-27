@@ -1,17 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-export default function ScrollToTop() {
-  const { pathname } = useLocation();
+export default function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
 
-  // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  // Show button after scrolling 400px
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener('scroll', onScroll, { passive: true });

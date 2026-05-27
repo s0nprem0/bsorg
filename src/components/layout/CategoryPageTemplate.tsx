@@ -9,8 +9,9 @@ import OrgGrid from '@/components/layout/OrgGrid';
 import { Input } from '@/components/ui/shadcn/input';
 import { Button } from '@/components/ui/shadcn/button';
 import { useDebounce } from '@/hooks/useDebounce';
+import { normalize } from '@/lib/utils';
 import { CAMPUSES } from '@/data/campuses';
-import type { Organization } from '@/types/organization';
+import type { Organization } from '@/lib/orgIndex';
 
 export interface CategoryPageTemplateProps {
   title: string;
@@ -70,19 +71,18 @@ export default function CategoryPageTemplate({
   };
 
   const processedData = useMemo(() => {
-    const q = debouncedQuery.toLowerCase().trim();
+    const q = normalize(debouncedQuery);
 
     return Object.entries(data).map(([category, orgs]) => {
       const filtered = orgs.filter(org => {
         if (!q) return true;
-        // 2. Code Safety: Optional chaining prevents crashes if data is missing
         return (
-          org.name?.toLowerCase().includes(q) ||
-          org.acronym?.toLowerCase().includes(q) ||
-          org.slug?.toLowerCase().includes(q) ||
-          org.programId?.toLowerCase().includes(q) ||
-          org.content?.shortDescription?.toLowerCase().includes(q) ||
-          org.metadata?.tags?.some(tag => tag.toLowerCase().includes(q))
+          normalize(org.name).includes(q) ||
+          normalize(org.acronym || '').includes(q) ||
+          normalize(org.slug).includes(q) ||
+          normalize(org.programId || '').includes(q) ||
+          normalize(org.content?.shortDescription || '').includes(q) ||
+          org.metadata?.tags?.some(tag => normalize(tag).includes(q))
         );
       });
       return { category, orgs: filtered };

@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
 import NavBar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import ErrorBoundary from './components/ErrorBoundary';
+import ScrollToTopButton from '@/components/ui/ScrollToTop';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Directory = lazy(() => import('@/pages/Directory'));
 const OrganizationProfile = lazy(() => import('@/pages/OrganizationProfile'));
 const OrgBrowser = lazy(() => import('@/pages/OrgBrowser'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 const PageLoader = () => (
   <div className="flex h-[50vh] w-full items-center justify-center">
@@ -18,28 +19,33 @@ const PageLoader = () => (
   </div>
 );
 
+function AutoScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
-    <ErrorBoundary>
-      <Router>
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
-          <NavBar />
-          <main className="flex-1 flex flex-col">
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/org" element={<OrgBrowser />} />
-                <Route path="/directory" element={<Directory />} />
-                <Route path="/org/:slug" element={<OrganizationProfile />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <ScrollToTop />
-          <Footer />
-        </div>
-      </Router>
-    </ErrorBoundary>
+    <Router>
+      <AutoScrollToTop />
+      <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <NavBar />
+        <main className="flex-1 flex flex-col">
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<ErrorBoundary key="home"><Home /></ErrorBoundary>} />
+              <Route path="/org" element={<ErrorBoundary key="org"><OrgBrowser /></ErrorBoundary>} />
+              <Route path="/directory" element={<ErrorBoundary key="directory"><Directory /></ErrorBoundary>} />
+              <Route path="/org/:slug" element={<ErrorBoundary key="profile"><OrganizationProfile /></ErrorBoundary>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <ScrollToTopButton />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

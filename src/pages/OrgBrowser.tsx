@@ -29,7 +29,6 @@ export default function OrgBrowser() {
     filteredCount,
     categories,
     programs,
-    isLoading,
   } = useOrgBrowser();
 
   // Create a local state so the UI updates instantly when the user types
@@ -82,7 +81,6 @@ export default function OrgBrowser() {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useCallback(
     (node: HTMLDivElement | null) => {
-      if (isLoading) return;
       if (observerRef.current) observerRef.current.disconnect();
 
       observerRef.current = new IntersectionObserver(entries => {
@@ -93,7 +91,7 @@ export default function OrgBrowser() {
 
       if (node) observerRef.current.observe(node);
     },
-    [isLoading, hasMore, loadMore]
+    [hasMore, loadMore]
   );
 
   return (

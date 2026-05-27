@@ -53,27 +53,33 @@ function GridPlaceholder() {
   );
 }
 
-const browseCategories = [
+const browseCategories: {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  href: string;
+  count: number | null;
+}[] = [
   {
     title: 'Academic Organizations',
     description: 'College-based academic councils and departmental organizations.',
     icon: GraduationCap,
     href: '/org?type=Academic',
-    count: null as number | null,
+    count: null,
   },
   {
     title: 'Non-Academic Organizations',
     description: 'Cultural, sports, and special interest groups.',
     icon: Users,
     href: '/org?type=Non-Academic',
-    count: null as number | null,
+    count: null,
   },
   {
     title: 'Full Directory',
     description: 'Browse all organizations grouped by category.',
     icon: LayoutGrid,
     href: '/directory',
-    count: null as number | null,
+    count: null,
   },
 ];
 

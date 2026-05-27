@@ -8,7 +8,6 @@ import ScrollToTopButton from '@/components/ui/ScrollToTop';
 import ErrorBoundary from '@/components/ErrorBoundary';
 
 const Home = lazy(() => import('@/pages/Home'));
-const Directory = lazy(() => import('@/pages/Directory'));
 const OrganizationProfile = lazy(() => import('@/pages/OrganizationProfile'));
 const OrgBrowser = lazy(() => import('@/pages/OrgBrowser'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
@@ -37,7 +36,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/org" element={<OrgBrowser />} />
-                <Route path="/directory" element={<Directory />} />
                 <Route path="/org/:slug" element={<OrganizationProfile />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

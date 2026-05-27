@@ -25,7 +25,6 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Browse', href: '/org', end: true },
-    { label: 'Directory', href: '/directory' },
   ];
 
   return (
@@ -95,7 +94,7 @@ export default function Navbar() {
             asChild
             className="shadow-sm transition-all hover:scale-105 active:scale-95"
           >
-            <Link to="/org">Explore Directory</Link>
+            <Link to="/org">Explore Orgs</Link>
           </Button>
         </div>
 
@@ -157,7 +156,7 @@ export default function Navbar() {
                   className="w-full"
                   onClick={() => setIsOpen(false)}
                 >
-                  <Link to="/org">Explore Directory</Link>
+<Link to="/org">Explore Orgs</Link>
                 </Button>
               </div>
             </div>

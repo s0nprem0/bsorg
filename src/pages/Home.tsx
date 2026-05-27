@@ -75,10 +75,10 @@ const browseCategories: {
     count: null,
   },
   {
-    title: 'Full Directory',
-    description: 'Browse all organizations grouped by category.',
+    title: 'All Organizations',
+    description: 'Browse all organizations with search and filter.',
     icon: LayoutGrid,
-    href: '/directory',
+    href: '/org',
     count: null,
   },
 ];
@@ -347,15 +347,12 @@ export default function Home() {
               Browse all organizations, filter by category, and connect with
               fellow students who share your interests.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-8 flex items-center justify-center">
               <Button size="lg" asChild className="h-12 px-8 font-bold shadow-lg">
                 <Link to="/org">
                   Browse All Organizations{' '}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="h-12 px-8">
-                <Link to="/directory">View Directory</Link>
               </Button>
             </div>
           </div>

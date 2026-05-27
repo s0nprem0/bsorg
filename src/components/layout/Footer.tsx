@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTiktok,
-  FaXTwitter,
-  FaGithub,
-} from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa6';
 import { Button } from '@/components/ui/shadcn/button';
 import { Separator } from '@/components/ui/shadcn/separator';
 
@@ -25,10 +19,6 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', label: 'Facebook' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaTiktok, href: '#', label: 'TikTok' },
-    { icon: FaXTwitter, href: '#', label: 'X (Twitter)' },
     {
       icon: FaGithub,
       href: 'https://github.com/s0nprem0/bsorg',

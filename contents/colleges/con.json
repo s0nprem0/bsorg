@@ -5,7 +5,7 @@
     "name": "CON Student Council",
     "status": "Active",
     "type": "Student Council",
-    "category": "College of Nusring",
+    "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -31,7 +31,7 @@
     "acronym": "PHISMETS",
     "status": "Active",
     "type": "Academic",
-    "category": "College of Nusring",
+    "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -56,7 +56,7 @@
     "acronym": "ISMAP",
     "status": "Active",
     "type": "Academic",
-    "category": "College of Nusring",
+    "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
       "tags": [

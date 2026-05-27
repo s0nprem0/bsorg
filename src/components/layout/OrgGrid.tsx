@@ -1,5 +1,5 @@
 import OrganizationCard from '@/components/OrganizationCard';
-import { CAMPUSES } from '@/data/campuses';
+import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 import { cn } from '@/lib/utils';
 
@@ -8,12 +8,6 @@ export interface OrgGridProps {
   columns?: 1 | 2 | 3 | 4;
   className?: string;
 }
-
-// Extracted outside component to prevent recreation on every render
-const getCampusName = (campusId?: number) => {
-  if (campusId === undefined) return undefined;
-  return CAMPUSES.find(campus => campus.id === campusId)?.name;
-};
 
 export default function OrgGrid({
   organizations,

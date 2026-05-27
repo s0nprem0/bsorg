@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, GraduationCap, Users, MapPin, LayoutGrid } from 'lucide-react';
 
@@ -15,13 +15,8 @@ import {
 } from '@/components/ui/shadcn/card';
 
 import { orgRegistry } from '@/lib/orgIndex';
-import { CAMPUSES } from '@/data/campuses';
+import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
-
-const getCampusName = (campusId?: number) => {
-  if (campusId === undefined) return undefined;
-  return CAMPUSES.find(campus => campus.id === campusId)?.name;
-};
 
 const hashSeed = (value: string): number => {
   let hash = 0;
@@ -97,11 +92,13 @@ export default function Home() {
     };
   }, [allOrgs]);
 
-  const [featuredOrgs] = useState<Organization[]>(() =>
-    shuffleOrganizationsBySeed(
-      allOrgs,
-      new Date().toISOString().slice(0, 10)
-    ).slice(0, 6)
+  const featuredOrgs = useMemo<Organization[]>(
+    () =>
+      shuffleOrganizationsBySeed(
+        allOrgs,
+        new Date().toISOString().slice(0, 10)
+      ).slice(0, 6),
+    [allOrgs]
   );
 
   const [f0, f1, f2, f3, f4, f5] = featuredOrgs;

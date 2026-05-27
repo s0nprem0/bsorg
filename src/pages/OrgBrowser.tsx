@@ -97,18 +97,18 @@ export default function OrgBrowser() {
   return (
     <>
       <SEO
-        title={ORG_BROWSER.MESSAGES.TITLE}
-        description={ORG_BROWSER.MESSAGES.SUBTITLE}
+        title="Organization Browser"
+        description="Discover and explore student organizations across campus."
       />
 
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
         <Section>
           <div className="mb-8">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-              {ORG_BROWSER.MESSAGES.TITLE}
+              Organization Browser
             </h1>
             <p className="text-lg text-muted-foreground mt-3">
-              {ORG_BROWSER.MESSAGES.SUBTITLE}
+              Discover and explore student organizations across campus.
             </p>
           </div>
 

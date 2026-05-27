@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/shadcn/input';
 import { Button } from '@/components/ui/shadcn/button';
 import { useDebounce } from '@/hooks/useDebounce';
 import { normalize } from '@/lib/utils';
-import { CAMPUSES } from '@/data/campuses';
+import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 
 export interface CategoryPageTemplateProps {
@@ -19,12 +19,6 @@ export interface CategoryPageTemplateProps {
   data: Record<string, Organization[]>;
   highlightStudentCouncils?: boolean;
 }
-
-const getCampusName = (campusId?: number) => {
-  return campusId !== undefined
-    ? CAMPUSES.find(campus => campus.id === campusId)?.name
-    : undefined;
-};
 
 export default function CategoryPageTemplate({
   title,

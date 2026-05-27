@@ -11,3 +11,8 @@ export const CAMPUSES = [
   { id: 9, name: 'Trece Martires Campus', slug: 'trece-martires' },
   { id: 10, name: 'Maragondon Campus', slug: 'maragondon' },
 ] as const;
+
+export function getCampusName(campusId?: number): string | undefined {
+  if (campusId === undefined) return undefined;
+  return CAMPUSES.find(campus => campus.id === campusId)?.name;
+}

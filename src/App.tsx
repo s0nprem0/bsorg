@@ -32,15 +32,17 @@ function App() {
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <NavBar />
         <main className="flex-1 flex flex-col">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<ErrorBoundary key="home"><Home /></ErrorBoundary>} />
-              <Route path="/org" element={<ErrorBoundary key="org"><OrgBrowser /></ErrorBoundary>} />
-              <Route path="/directory" element={<ErrorBoundary key="directory"><Directory /></ErrorBoundary>} />
-              <Route path="/org/:slug" element={<ErrorBoundary key="profile"><OrganizationProfile /></ErrorBoundary>} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/org" element={<OrgBrowser />} />
+                <Route path="/directory" element={<Directory />} />
+                <Route path="/org/:slug" element={<OrganizationProfile />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         <ScrollToTopButton />
         <Footer />

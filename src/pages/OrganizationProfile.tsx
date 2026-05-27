@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, X } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { orgRegistry } from '@/lib/orgIndex';
@@ -27,7 +27,6 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
-  DialogClose,
 } from '@/components/ui/shadcn/dialog';
 
 export default function OrganizationProfile() {
@@ -309,9 +308,6 @@ export default function OrganizationProfile() {
                           </button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-2">
-                          <DialogClose className="absolute top-4 right-4 z-10 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors">
-                            <X className="h-5 w-5" />
-                          </DialogClose>
                           <img
                             src={url}
                             alt={`${org.name} gallery ${i + 1}`}

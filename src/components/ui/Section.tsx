@@ -11,7 +11,7 @@ export default function Section({
 }) {
   return (
     <section className={cn('py-12', className)} id={id}>
-      <div className="container mx-auto px-4">{children}</div>
+      {children}
     </section>
   );
 }

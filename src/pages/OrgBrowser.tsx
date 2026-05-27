@@ -1,4 +1,5 @@
 import { useRef, useCallback, useState, useEffect } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
 import { Search, Filter, Loader2, ArrowDownUp, X } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
@@ -42,15 +43,12 @@ export default function OrgBrowser() {
   }, [state.query]);
 
   // Debounce: sync local input to URL state after user stops typing
+  const debouncedQuery = useDebounce(localQuery, ORG_BROWSER.DEBOUNCE_DELAY);
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (localQuery !== state.query) {
-        dispatch('q', localQuery);
-      }
-    }, ORG_BROWSER.DEBOUNCE_DELAY);
-
-    return () => clearTimeout(handler);
-  }, [localQuery, dispatch, state.query]);
+    if (debouncedQuery !== state.query) {
+      dispatch('q', debouncedQuery);
+    }
+  }, [debouncedQuery, dispatch, state.query]);
 
   const hasActiveFilters = state.orgType !== 'All' || state.category !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC;
 

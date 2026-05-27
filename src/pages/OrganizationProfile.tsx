@@ -63,7 +63,7 @@ export default function OrganizationProfile() {
     <>
       <SEO
         title={`${org.name} • BetterOSAS`}
-        description={org.content.shortDescription}
+        description={org.content?.shortDescription}
       />
 
       <div className="min-h-screen bg-background pb-16">

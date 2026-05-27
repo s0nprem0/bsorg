@@ -33,7 +33,7 @@ export const orgValidationSchema = z.object({
     about: z.string().optional(),
     mission: z.string().optional(),
     vision: z.string().optional(),
-  }).optional(),
+  }).optional().default({}),
   assets: z
     .object({
       logoUrl: z.string().optional(),

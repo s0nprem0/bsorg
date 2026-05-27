@@ -15,8 +15,8 @@ const Footer = () => {
   const footerLinks = {
     Directory: [
       { label: 'Browse All Orgs', href: '/org' },
-      { label: 'Academic Orgs', href: '/org/acad-org' },
-      { label: 'Non-Academic Orgs', href: '/org/non-acadorg' },
+      { label: 'Academic Orgs', href: '/org?type=Academic' },
+      { label: 'Non-Academic Orgs', href: '/org?type=Non-Academic' },
     ],
     About: [
       { label: 'About BetterOSAS', href: '#' },

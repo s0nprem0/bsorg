@@ -125,37 +125,6 @@
   --font-sans: 'Inter', sans-serif;
 }
 
-.dark {
-  --background: var(--black);
-  --foreground: var(--gray-50);
-
-  --card: rgba(255, 255, 255, 0.03);
-  --card-foreground: var(--gray-50);
-
-  --popover: var(--gray-950);
-  --popover-foreground: var(--gray-50);
-
-  --primary: var(--green-500);
-  --primary-foreground: var(--black);
-
-  --secondary: var(--blue-500);
-  --secondary-foreground: var(--white);
-
-  --accent: var(--yellow-500);
-  --accent-foreground: var(--black);
-
-  --muted: var(--gray-900);
-  --muted-foreground: var(--gray-400);
-
-  --destructive: var(--red-500);
-  --destructive-foreground: var(--white);
-
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-
-  --ring: var(--green-500);
-}
-
 .light {
   --background: var(--gray-50);
   --foreground: var(--gray-950);

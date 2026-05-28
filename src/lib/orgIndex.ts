@@ -18,7 +18,6 @@ export const orgValidationSchema = z.object({
   acronym: z.string().optional(),
   status: orgStatusSchema,
   type: orgTypeSchema,
-  category: z.string(),
   campusId: z.number(),
   programId: z.string().optional(),
   parentSlug: z.string().optional(),
@@ -29,12 +28,15 @@ export const orgValidationSchema = z.object({
       tags: z.array(z.string()).optional(),
     })
     .default({}),
-  content: z.object({
-    shortDescription: z.string().optional(),
-    about: z.string().optional(),
-    mission: z.string().optional(),
-    vision: z.string().optional(),
-  }).optional().default({}),
+  content: z
+    .object({
+      shortDescription: z.string().optional(),
+      about: z.string().optional(),
+      mission: z.string().optional(),
+      vision: z.string().optional(),
+    })
+    .optional()
+    .default({}),
   assets: z
     .object({
       logoUrl: z.string().optional(),

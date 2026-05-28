@@ -29,7 +29,6 @@ export default function OrgBrowser() {
     hasMore,
     loadMore,
     filteredCount,
-    categories,
     programs,
     loading,
     error,
@@ -53,13 +52,12 @@ export default function OrgBrowser() {
     }
   }, [debouncedQuery, dispatch, state.query]);
 
-  const hasActiveFilters = state.orgType !== 'All' || state.category !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC;
+  const hasActiveFilters = state.orgType !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC;
 
   const clearAllFilters = useCallback(() => {
     setLocalQuery('');
     dispatch('q', null);
     dispatch('type', null);
-    dispatch('category', null);
     dispatch('program', null);
     dispatch('sort', null);
   }, [dispatch]);
@@ -67,7 +65,6 @@ export default function OrgBrowser() {
   const filterChips: { label: string; key: string }[] = [];
   if (state.query) filterChips.push({ label: `"${state.query}"`, key: 'q' });
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
-  if (state.category !== 'All') filterChips.push({ label: state.category, key: 'category' });
   if (state.program !== 'All') filterChips.push({ label: abbreviateProgram(state.program), key: 'program' });
   if (state.sortBy !== SORT_OPTIONS.ASC) filterChips.push({ label: state.sortBy, key: 'sort' });
 
@@ -113,7 +110,7 @@ export default function OrgBrowser() {
             </p>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-2 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-2 mb-8">
               <div className="lg:col-span-2">
                 <label className="block text-xs font-medium text-muted-foreground mb-1.5">
                   Search
@@ -145,30 +142,6 @@ export default function OrgBrowser() {
                     {ORG_BROWSER.ORG_TYPE_OPTIONS.map(type => (
                       <SelectItem key={`org-type-${type}`} value={type}>
                         {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-                  Category
-                </label>
-                <Select
-                  value={state.category}
-                  onValueChange={value => dispatch('category', value)}
-                >
-                  <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-                      <SelectValue placeholder="All Categories" />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map(cat => (
-                      <SelectItem key={cat} value={cat}>
-                        {cat === 'All' ? 'All Categories' : cat}
                       </SelectItem>
                     ))}
                   </SelectContent>

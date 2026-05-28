@@ -40,7 +40,7 @@ export function abbreviateProgram(name: string): string {
   if (!name) return '';
 
   // 1. Shorten "Bachelor of..." prefixes on the full string (using /i for case-insensitivity)
-  let normalized = name
+  const normalized = name
     .replace(/^Bachelor of Science in /i, 'BS ')
     .replace(/^Bachelor of Arts in /i, 'BA ');
 

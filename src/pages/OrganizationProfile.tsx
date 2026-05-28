@@ -225,7 +225,6 @@ export default function OrganizationProfile() {
               </CardHeader>
               <CardContent className="space-y-4 mt-1">
                 <DetailRow label="Location" value={campus?.name || 'N/A'} />
-                <DetailRow label="Category" value={org.category} />
                 {org.programId && (
                   <DetailRow label="Program" value={org.programId} />
                 )}

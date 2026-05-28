@@ -3,7 +3,7 @@ import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useOrgs } from '@/hooks/useOrgService';
 import { normalize } from '@/lib/utils';
-import type { OrgType, FilterCategory } from '@/lib/orgIndex';
+import type { OrgType } from '@/lib/orgIndex';
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 export function useOrgBrowser() {
@@ -13,8 +13,6 @@ export function useOrgBrowser() {
   // 1. Derive state purely from URL
   const query = searchParams.get('q') || '';
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
-  const category =
-    (searchParams.get('category') as FilterCategory | 'All') || 'All';
   const program = searchParams.get('program') || 'All';
 
   // Use the constant for the default fallback
@@ -47,9 +45,8 @@ export function useOrgBrowser() {
 
     const result = allOrgs.filter(org => {
       const matchesType = orgType === 'All' || org.type === orgType;
-      const matchesCat = category === 'All' || org.category === category;
       const matchesProgram = program === 'All' || org.programId === program;
-      if (!matchesType || !matchesCat || !matchesProgram) return false;
+      if (!matchesType || !matchesProgram) return false;
       if (!q) return true;
 
       return (
@@ -74,7 +71,7 @@ export function useOrgBrowser() {
     });
 
     return result;
-  }, [allOrgs, query, orgType, category, sortBy, program]);
+  }, [allOrgs, query, orgType, sortBy, program]);
 
   const totalPages = Math.ceil(
     filteredOrgs.length / ORG_BROWSER.ITEMS_PER_PAGE
@@ -90,13 +87,6 @@ export function useOrgBrowser() {
     }
   }, [currentPage, totalPages, setFilter]);
 
-  const categories = useMemo(() => {
-    const uniqueCategories = new Set(
-      allOrgs.map(o => o.category?.trim()).filter(Boolean)
-    );
-    return ['All', ...Array.from(uniqueCategories).sort()];
-  }, [allOrgs]);
-
   const programs = useMemo(() => {
     const uniquePrograms = new Set(
       allOrgs.map(o => o.programId).filter((id): id is string => !!id)
@@ -105,13 +95,12 @@ export function useOrgBrowser() {
   }, [allOrgs]);
 
   return {
-    state: { query, orgType, category, sortBy, program },
+    state: { query, orgType, sortBy, program },
     dispatch: setFilter,
     visibleOrgs,
     hasMore: currentPage < totalPages,
     loadMore,
     filteredCount: filteredOrgs.length,
-    categories,
     programs,
     loading: dataLoading,
     error: dataError,

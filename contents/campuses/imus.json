@@ -253,12 +253,7 @@
     "type": "Performing Arts Group",
     "category": "Imus Campus",
     "metadata": {
-      "tags": [
-        "Performing Arts",
-        "Dance",
-        "Theater",
-        "Music"
-      ],
+      "tags": ["Performing Arts", "Dance", "Theater", "Music"],
       "accredited": true,
       "foundedYear": 2008
     },
@@ -271,7 +266,8 @@
     "contact": {
       "email": "sinagtalaperformingartsgroup@gmail.com",
       "social": {
-        "facebook": "https://www.facebook.com/STPAGOfficial"
+        "facebook": "https://www.facebook.com/STPAGOfficial",
+        "tiktok": "https://www.tiktok.com/@tataksinagtala"
       }
     }
   },
@@ -321,6 +317,28 @@
       "email": "oms.imus@cvsu.edu.ph",
       "social": {
         "facebook": "https://www.facebook.com/WeAreOMS"
+      }
+    }
+  },
+  {
+    "id": "jma-imus",
+    "slug": "jma-imus",
+    "name": "Junior Marketing Association",
+    "acronym": "JMA - IMUS",
+    "status": "Active",
+    "campusId": 1,
+    "category": "Imus Campus",
+    "type": "Academic",
+    "metadata": {
+      "accredited": true
+    },
+    "assets": {
+      "logoUrl": "/campuses/imus/jma-imus.jpg"
+    },
+    "contact": {
+      "email": "jma.imus@cvsu.edu.ph",
+      "social": {
+        "facebook": "https://www.facebook.com/JMACvSUI"
       }
     }
   }

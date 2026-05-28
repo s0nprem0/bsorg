@@ -3,18 +3,17 @@
     "id": "9d129e89-4c54-4653-8bae-ae5bc5f0066a",
     "slug": "ceit-sc",
     "name": "CEIT Student Council",
+    "acronym": "CEIT-SC",
     "status": "Active",
     "type": "Student Council",
     "category": "College of Engineering and Information Technology",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Engineering and Information Technology"
-      ]
+      "tags": ["Academic", "College of Engineering and Information Technology"]
     },
     "content": {
-      "shortDescription": "CEIT Student Council organization at Cavite State University."
+      "shortDescription": "Tahanan ng mga dating kampeyon",
+      "mission": "The Council shall promote extra-curricular excellence in the fields of Agricultural and Food Engineering, Architecture, Civil Engineering, Computer Engineering, and Electronics Engineering, Industrial Engineering and Technology, and Information Technology"
     },
     "assets": {
       "logoUrl": "/colleges/ceit/ceit-sc_blk.svg"

@@ -233,7 +233,7 @@ export default function OrgBrowser() {
               {filterChips.map(chip => (
                 <span
                   key={chip.key}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-xs font-medium text-foreground"
                 >
                   {chip.label}
                   <button

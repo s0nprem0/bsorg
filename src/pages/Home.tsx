@@ -258,7 +258,7 @@ export default function Home() {
 
                 <CardContent className="flex flex-col h-full justify-between pb-6 relative z-10">
                   <div>
-                    <div className="mt-2 text-7xl font-extrabold tracking-tighter text-foreground drop-shadow-sm">
+                    <div className="mt-2 text-7xl font-extrabold tracking-tighter text-accent drop-shadow-sm">
                       {stats.total}
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed font-medium">
@@ -398,7 +398,7 @@ export default function Home() {
                     <p className="mt-1 text-sm text-muted-foreground">
                       {cat.description}
                     </p>
-                    <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
+                    <div className="mt-4 flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
                       Explore <ArrowRight className="h-3.5 w-3.5" />
                     </div>
                   </div>

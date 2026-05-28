@@ -54,20 +54,20 @@ export default function Navbar() {
             <NavLink
               to="/"
               end
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
-              }
-            >
-              Overview
-            </NavLink>
-            {navLinks.map(link => (
-              <NavLink
-                key={link.href}
-                to={link.href}
-                end={Boolean(link.end)}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
+                  `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
                 }
+              >
+                Overview
+              </NavLink>
+              {navLinks.map(link => (
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  end={Boolean(link.end)}
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
+                  }
               >
                 {link.label}
               </NavLink>
@@ -116,7 +116,7 @@ export default function Navbar() {
                 to="/"
                 end
                 onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-muted-foreground hover:text-primary"
+                className="text-base font-medium text-muted-foreground hover:text-accent"
               >
                 Overview
               </NavLink>
@@ -127,7 +127,7 @@ export default function Navbar() {
                   to={link.href}
                   onClick={() => setIsOpen(false)}
                   className={({ isActive }) =>
-                    `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`
+                    `text-base font-medium transition-colors ${isActive ? 'text-accent' : 'text-muted-foreground hover:text-accent'}`
                   }
                 >
                   {link.label}

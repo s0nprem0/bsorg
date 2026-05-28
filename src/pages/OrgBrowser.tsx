@@ -207,11 +207,11 @@ export default function OrgBrowser() {
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground font-medium">
               Showing{' '}
-              <span className="font-bold text-foreground">
+              <span className="font-bold text-info">
                 {visibleOrgs.length}
               </span>{' '}
               of{' '}
-              <span className="font-bold text-foreground">{filteredCount}</span>{' '}
+              <span className="font-bold text-info">{filteredCount}</span>{' '}
               organizations
             </p>
 

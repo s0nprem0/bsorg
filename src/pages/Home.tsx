@@ -269,26 +269,26 @@ export default function Home() {
 
                   <div className="mt-8 space-y-3 pt-6 border-t border-border/50">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground font-medium">
+                      <span className="text-info font-medium">
                         Academic
                       </span>
-                      <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      <span className="font-mono font-bold text-info bg-info/10 px-2 py-0.5 rounded-md">
                         {stats.academic}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground font-medium">
+                      <span className="text-warning font-medium">
                         Non-Academic
                       </span>
-                      <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      <span className="font-mono font-bold text-warning bg-warning/10 px-2 py-0.5 rounded-md">
                         {stats.nonAcademic}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground font-medium flex items-center gap-1">
+                      <span className="text-success font-medium flex items-center gap-1">
                         <MapPin className="h-3.5 w-3.5" /> Campuses
                       </span>
-                      <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      <span className="font-mono font-bold text-success bg-success/10 px-2 py-0.5 rounded-md">
                         {stats.campuses}
                       </span>
                     </div>

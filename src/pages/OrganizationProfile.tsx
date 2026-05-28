@@ -204,7 +204,7 @@ export default function OrganizationProfile() {
                       {org.type}
                     </Badge>
                     {org.status && org.status !== 'Active' && (
-                      <Badge variant="outline" className="text-[11px]">
+                      <Badge className="bg-warning text-warning-foreground border-none text-[11px] px-3 py-1">
                         {org.status}
                       </Badge>
                     )}

@@ -52,7 +52,7 @@ export default function ProfileConnectCard({
   socialEntries: [string, string | boolean][];
 }) {
   return (
-    <Card className="animate-fade-in-up animate-delay-200 md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
+    <Card className="animate-fade-in-up animate-delay-200 bg-card border-none shadow-md">
       <CardHeader className="pb-3">
         <CardTitle className="text-xs uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
           <ExternalLink size={14} /> Connect

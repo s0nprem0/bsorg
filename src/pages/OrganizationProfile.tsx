@@ -91,10 +91,14 @@ export default function OrganizationProfile() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 auto-rows-min">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6">
             <ProfileIdentityCard org={org} />
-            <ProfileCampusCard org={org} campusName={campus?.name || 'N/A'} parentOrgs={parentOrgs} />
-            <ProfileConnectCard org={org} socialEntries={socialEntries} />
+
+            <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-5 lg:gap-6">
+              <ProfileCampusCard org={org} campusName={campus?.name || 'N/A'} parentOrgs={parentOrgs} />
+              <ProfileConnectCard org={org} socialEntries={socialEntries} />
+            </div>
+
             <ProfileAboutCard org={org} />
             <ProfileMissionVision org={org} />
             <ProfileGallery org={org} />

@@ -4,7 +4,7 @@ import type { Organization } from '@/lib/orgIndex';
 
 export default function ProfileAboutCard({ org }: { org: Organization }) {
   return (
-    <Card className="animate-fade-in-up animate-delay-300 md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
+    <Card className="animate-fade-in-up animate-delay-300 md:col-span-full bg-card border-none shadow-md">
       <CardHeader>
         <CardTitle className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
           <Info className="text-primary shrink-0" size={18} /> About

@@ -6,7 +6,7 @@ export default function ProfileMissionVision({ org }: { org: Organization }) {
   if (!org.content?.mission && !org.content?.vision) return null;
 
   return (
-    <Card className="animate-fade-in-up animate-delay-300 md:col-span-3 lg:col-span-2 bg-card border-none shadow-md">
+    <Card className="animate-fade-in-up animate-delay-300 md:col-span-full bg-card border-none shadow-md">
       <CardContent className="p-5 sm:p-6 grid sm:grid-cols-2 gap-6 sm:gap-8 h-full items-start">
         {org.content.mission && (
           <div className="space-y-3">

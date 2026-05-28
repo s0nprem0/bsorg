@@ -9,6 +9,7 @@
     "category": "College of Engineering and Information Technology",
     "campusId": 0,
     "metadata": {
+      "accredited": true,
       "tags": ["Academic", "College of Engineering and Information Technology"]
     },
     "assets": {

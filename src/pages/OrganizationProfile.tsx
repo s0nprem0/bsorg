@@ -106,7 +106,7 @@ function NotFoundState() {
 
 const socialBrandStyles: Record<string, string> = {
   facebook: 'hover:bg-[#1877F2] hover:text-white',
-  instagram: 'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white',
+  instagram: 'hover:bg-linear-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white',
   x: 'hover:bg-black hover:text-white',
   tiktok: 'hover:bg-black hover:text-white',
   youtube: 'hover:bg-[#FF0000] hover:text-white',

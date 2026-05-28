@@ -80,7 +80,7 @@ export default function OrgFilterBar({
               <SelectValue placeholder="All Programs" />
             </div>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="max-h-72">
             {programs.map(p => (
               <SelectItem key={p} value={p} title={p === 'All' ? '' : p}>
                 {p === 'All' ? 'All Programs' : abbreviateProgram(p)}

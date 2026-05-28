@@ -147,13 +147,13 @@ export default function FeaturedGrid({
                     <div className="mt-8 space-y-3 pt-6 border-t border-border/50">
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-info font-medium">Academic</span>
-                        <span className="font-mono font-bold text-info bg-info/10 px-2 py-0.5 rounded-md">
+                        <span className="font-mono font-bold text-info bg-info/20 px-2 py-0.5 rounded-md">
                           {stats.academic}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-warning font-medium">Non-Academic</span>
-                        <span className="font-mono font-bold text-warning bg-warning/10 px-2 py-0.5 rounded-md">
+                        <span className="font-mono font-bold text-warning bg-warning/20 px-2 py-0.5 rounded-md">
                           {stats.nonAcademic}
                         </span>
                       </div>

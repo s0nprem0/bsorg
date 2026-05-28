@@ -83,7 +83,6 @@ export default function OrganizationCard({
 
       <div className="flex min-w-0 flex-1 flex-col">
         <CardHeader className="mb-auto px-3 pb-0 pt-3 sm:px-4 sm:pt-4">
-          {/* Moved Program Acronym here to group metadata tags together */}
           <div className="relative z-20 flex flex-wrap items-center gap-1.5 mb-2">
             {campusName && (
               <Badge
@@ -97,7 +96,7 @@ export default function OrganizationCard({
               <Tooltip label={org.programId}>
                 <Badge
                   variant="secondary"
-                  className="w-fit cursor-help text-[10px] uppercase tracking-wider text-secondary-foreground/80 transition-colors hover:bg-secondary/80"
+                  className="w-fit cursor-default text-[10px] uppercase tracking-wider text-secondary-foreground/80 transition-colors hover:bg-secondary/80"
                 >
                   {abbreviateProgram(org.programId)}
                 </Badge>
@@ -182,3 +181,4 @@ export default function OrganizationCard({
       </div>
     </Card>
   );
+}

@@ -9,6 +9,7 @@ import SEO from '@/components/SEO';
 import { SearchInput } from '@/components/ui/SearchInput';
 
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
+import { abbreviateProgram } from '@/data/programs';
 
 // Shadcn UI Imports
 import {
@@ -67,7 +68,7 @@ export default function OrgBrowser() {
   if (state.query) filterChips.push({ label: `"${state.query}"`, key: 'q' });
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
   if (state.category !== 'All') filterChips.push({ label: state.category, key: 'category' });
-  if (state.program !== 'All') filterChips.push({ label: state.program, key: 'program' });
+  if (state.program !== 'All') filterChips.push({ label: abbreviateProgram(state.program), key: 'program' });
   if (state.sortBy !== SORT_OPTIONS.ASC) filterChips.push({ label: state.sortBy, key: 'sort' });
 
   const removeFilter = useCallback(
@@ -191,7 +192,7 @@ export default function OrgBrowser() {
                   <SelectContent>
                     {programs.map(p => (
                       <SelectItem key={p} value={p}>
-                        {p === 'All' ? 'All Programs' : p}
+                        {p === 'All' ? 'All Programs' : abbreviateProgram(p)}
                       </SelectItem>
                     ))}
                   </SelectContent>

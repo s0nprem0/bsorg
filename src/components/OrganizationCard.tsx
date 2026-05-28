@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/shadcn/card';
 import { Badge } from '@/components/ui/shadcn/badge';
 import { Button } from '@/components/ui/shadcn/button';
+import { abbreviateProgram } from '@/data/programs';
 
 interface OrganizationCardProps {
   org: Organization;
@@ -67,14 +68,21 @@ export default function OrganizationCard({
 
       <div className="flex min-w-0 flex-1 flex-col">
         <CardHeader className="mb-auto p-4 pb-0 sm:p-5">
-          {campusName && (
-            <Badge
-              variant="secondary"
-              className="mb-2 w-fit text-[10px] uppercase tracking-wider"
-            >
-              {campusName}
-            </Badge>
-          )}
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            {campusName && (
+              <Badge
+                variant="secondary"
+                className="w-fit text-[10px] uppercase tracking-wider"
+              >
+                {campusName}
+              </Badge>
+            )}
+            {org.programId && (
+              <span className="text-[10px] font-medium text-muted-foreground/70">
+                {abbreviateProgram(org.programId)}
+              </span>
+            )}
+          </div>
           <CardTitle className="line-clamp-2 text-base transition-colors group-hover:text-primary">
             <Link
               to={`/org/${org.slug}`}

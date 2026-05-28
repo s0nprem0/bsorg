@@ -31,7 +31,7 @@ const categories: {
     icon: LayoutGrid,
     href: '/org',
     count: null,
-    accent: 'from-blue-500/10 to-purple-500/10 border-blue-500/20',
+    accent: 'from-primary/10 to-accent/10 border-primary/20',
   },
 ];
 
@@ -92,7 +92,7 @@ export default function BrowseCategories({
                   {cat.title}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{cat.description}</p>
-                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
                   Explore <ArrowRight className="h-3.5 w-3.5" />
                 </div>
               </div>

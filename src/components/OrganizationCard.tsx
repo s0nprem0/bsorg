@@ -75,7 +75,7 @@ export default function OrganizationCard({
         </div>
         <div
           className={cn(
-            'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-10',
+            'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px] pointer-events-none z-10',
             org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
           )}
         />
@@ -128,6 +128,7 @@ export default function OrganizationCard({
               ).map(([network, url]) => (
                 <Tooltip
                   key={network}
+                  side="right"
                   label={network.charAt(0).toUpperCase() + network.slice(1)}
                 >
                   <Button
@@ -157,7 +158,7 @@ export default function OrganizationCard({
                   >
                     +{socialEntries.length - 3}
                   </Button>
-                  <div className="pointer-events-none absolute -top-1 left-1/2 z-50 -translate-x-1/2 -translate-y-full opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
+                  <div className="pointer-events-none absolute left-full ml-1.5 top-1/2 z-50 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
                     <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 shadow-sm">
                       {socialEntries.slice(3).map(([network, url]) => (
                         <a

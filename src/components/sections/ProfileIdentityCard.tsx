@@ -9,15 +9,15 @@ export default function ProfileIdentityCard({ org }: { org: Organization }) {
       style={{ viewTransitionName: 'org-identity' }}
       className="animate-fade-in-up animate-delay-100 md:col-span-2 lg:col-span-2 md:row-span-2 relative overflow-hidden group border-none bg-card/50 backdrop-blur-sm shadow-lg"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]" />
       <CardContent className="p-6 sm:p-8 lg:p-10 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left h-full justify-center relative z-10 gap-6 lg:gap-8">
-        <Avatar className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 shrink-0 border-4 border-background shadow-xl rounded-3xl bg-secondary transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-primary/30">
+        <Avatar className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 shrink-0 border-4 border-background shadow-xl rounded-2xl bg-secondary transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-primary/30">
           <AvatarImage
             src={org.assets?.logoUrl}
             alt={`${org.name} logo`}
             className="object-contain p-3 sm:p-4"
           />
-          <AvatarFallback className="text-3xl sm:text-4xl lg:text-5xl font-extrabold rounded-3xl bg-secondary text-muted-foreground">
+          <AvatarFallback className="text-3xl sm:text-4xl lg:text-5xl font-extrabold rounded-2xl bg-secondary text-muted-foreground">
             {org.acronym || org.name.substring(0, 2).toUpperCase()}
           </AvatarFallback>
         </Avatar>

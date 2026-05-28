@@ -17,7 +17,10 @@ async function loadAll(): Promise<Organization[]> {
   cachePromise = (async () => {
     try {
       const res = await fetch(`${getBaseUrl()}/orgs`);
-      if (!res.ok) throw new Error(`API error: ${res.status}`);
+      if (!res.ok) {
+        const body = await res.text().catch(() => '');
+        throw new Error(`API error: ${res.status}${body ? ` — ${body.slice(0, 200)}` : ''}`);
+      }
       const data = await res.json();
       const orgs = orgValidationSchema.array().parse(data);
       cache = orgs.map(o => ({ ...o, campusId: o.campusId ?? 0 }));

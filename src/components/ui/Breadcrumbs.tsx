@@ -58,7 +58,7 @@ export default function Breadcrumbs({
             item.label.charAt(0).toUpperCase() + item.label.slice(1);
 
           return (
-            <React.Fragment key={index}>
+            <React.Fragment key={item.href || item.label}>
               <BreadcrumbItem>
                 {isLast || !item.href ? (
                   <BreadcrumbPage>{label}</BreadcrumbPage>

@@ -30,9 +30,9 @@ export default function Tooltip({ children, label }: { children: ReactNode; labe
       {visible && (
         <span
           role="tooltip"
-          className="absolute -bottom-1 left-1/2 -translate-x-1/2 translate-y-full z-50"
+          className="absolute -top-1 left-1/2 -translate-x-1/2 -translate-y-full z-50"
         >
-          <span className="block whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background shadow-sm animate-scale-in origin-top">
+          <span className="block whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background shadow-sm animate-scale-in origin-bottom">
             {label}
           </span>
         </span>

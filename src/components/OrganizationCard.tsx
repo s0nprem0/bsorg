@@ -79,7 +79,7 @@ export default function OrganizationCard({
               </Badge>
             )}
             {org.programId && (
-              <span className="text-[10px] font-medium text-muted-foreground/70">
+              <span className="text-[10px] font-medium text-muted-foreground/70" title={org.programId}>
                 {abbreviateProgram(org.programId)}
               </span>
             )}

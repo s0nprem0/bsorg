@@ -113,8 +113,6 @@
 
   --surface-1: #050505;
   --surface-2: #0a0a0a;
-  --surface-3: #111111;
-  --surface-4: #171717;
 
   --shadow-sm:
     0 1px 2px rgba(0, 0, 0, 0.4);
@@ -175,8 +173,6 @@
 
   --surface-1: var(--white);
   --surface-2: var(--zinc-100);
-  --surface-3: var(--zinc-200);
-  --surface-4: var(--zinc-300);
 
   --shadow-sm:
     0 1px 2px rgba(0, 0, 0, 0.06);
@@ -237,8 +233,6 @@
 
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);
-  --color-surface-3: var(--surface-3);
-  --color-surface-4: var(--surface-4);
 
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);

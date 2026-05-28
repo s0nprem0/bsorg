@@ -110,7 +110,7 @@ export default function Navbar() {
               <Menu size={24} />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-75 sm:w-100">
+          <SheetContent side="right" className="w-80 sm:w-96">
             <div className="flex flex-col gap-6 pt-10">
               <NavLink
                 to="/"

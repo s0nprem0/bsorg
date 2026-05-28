@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle, Users } from 'lucide-react';
 
 import SEO from '@/components/SEO';
@@ -117,6 +117,7 @@ const socialBrandStyles: Record<string, string> = {
 
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const { org, loading, error } = useOrg(slug);
   const { orgs: allOrgs } = useOrgs();
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
@@ -153,7 +154,11 @@ export default function OrganizationProfile() {
       <div className="min-h-screen bg-background pb-20">
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
 
-          <div className="animate-fade-in-up">
+          <div className="animate-fade-in-up flex items-center gap-3">
+            <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-1.5 shrink-0 text-muted-foreground hover:text-foreground">
+              <ArrowLeft size={16} />
+              <span className="hidden sm:inline">Back</span>
+            </Button>
             <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },

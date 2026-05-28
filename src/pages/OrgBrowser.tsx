@@ -67,7 +67,14 @@ export default function OrgBrowser() {
   if (state.query) filterChips.push({ label: `"${state.query}"`, key: 'q' });
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
   if (state.program !== 'All') filterChips.push({ label: abbreviateProgram(state.program), key: 'program' });
-  if (state.sortBy !== SORT_OPTIONS.ASC) filterChips.push({ label: state.sortBy, key: 'sort' });
+  if (state.sortBy !== SORT_OPTIONS.ASC) {
+    const sortLabels: Record<string, string> = {
+      [SORT_OPTIONS.ASC]: 'A-Z',
+      [SORT_OPTIONS.DESC]: 'Z-A',
+      [SORT_OPTIONS.NEWEST]: 'Newest',
+    };
+    filterChips.push({ label: sortLabels[state.sortBy] || state.sortBy, key: 'sort' });
+  }
   if (state.campusId) {
     const name = CAMPUSES.find(c => c.id === Number(state.campusId))?.name || `Campus ${state.campusId}`;
     filterChips.push({ label: name, key: 'campusId' });
@@ -169,7 +176,7 @@ export default function OrgBrowser() {
                   </SelectTrigger>
                   <SelectContent>
                     {programs.map(p => (
-                      <SelectItem key={p} value={p}>
+                      <SelectItem key={p} value={p} title={p === 'All' ? '' : p}>
                         {p === 'All' ? 'All Programs' : abbreviateProgram(p)}
                       </SelectItem>
                     ))}
@@ -283,14 +290,14 @@ export default function OrgBrowser() {
           ) : (
             <>
               <OrgGrid organizations={visibleOrgs} columns={4} />
-              <div
-                ref={loadMoreRef}
-                className="w-full h-24 flex items-center justify-center mt-8 text-muted-foreground"
-              >
-                {hasMore && (
+              {hasMore && (
+                <div
+                  ref={loadMoreRef}
+                  className="w-full h-24 flex items-center justify-center mt-8 text-muted-foreground"
+                >
                   <Loader2 className="w-8 h-8 animate-spin opacity-50" />
-                )}
-              </div>
+                </div>
+              )}
             </>
           )}
         </Section>

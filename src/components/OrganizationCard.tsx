@@ -158,8 +158,9 @@ export default function OrganizationCard({
                   </div>
                 </div>
               </div>
-            </div>
             )}
+            </div>
+          )}
           </CardFooter>
         )}
       </div>

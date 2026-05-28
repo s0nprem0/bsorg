@@ -45,7 +45,7 @@ export default function OrganizationCard({
     >
       <figure
         className={cn(
-          'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden',
+          'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg',
           large ? 'w-32 sm:w-40' : 'w-28 sm:w-32'
         )}
       >

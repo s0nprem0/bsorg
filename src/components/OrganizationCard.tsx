@@ -126,27 +126,22 @@ export default function OrganizationCard({
                 ? socialEntries.slice(0, 3)
                 : socialEntries
               ).map(([network, url]) => (
-                <Tooltip
+                <Button
                   key={network}
-                  side="right"
-                  label={network.charAt(0).toUpperCase() + network.slice(1)}
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
                 >
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    asChild
-                    className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
+                  <a
+                    href={url as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${org.name} on ${network}`}
                   >
-                    <a
-                      href={url as string}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${org.name} on ${network}`}
-                    >
-                      <ContactIcon name={network} size={18} />
-                    </a>
-                  </Button>
-                </Tooltip>
+                    <ContactIcon name={network} size={18} />
+                  </a>
+                </Button>
               ))}
               {socialEntries.length > 4 && (
                 <div className="group/overflow relative inline-flex">

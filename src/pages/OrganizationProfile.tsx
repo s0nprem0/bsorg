@@ -1,11 +1,13 @@
+import { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle, Users, ChevronRight } from 'lucide-react';
 
 import SEO from '@/components/SEO';
-import { useOrg } from '@/hooks/useOrgService';
+import { useOrg, useOrgs } from '@/hooks/useOrgService';
 import { ContactIcon } from '@/components/ui/ContactIcon';
 import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import OrgGrid from '@/components/layout/OrgGrid';
 import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
 
 import {
@@ -114,7 +116,20 @@ const socialBrandStyles: Record<string, string> = {
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
   const { org, loading, error } = useOrg(slug);
+  const { orgs: allOrgs } = useOrgs();
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
+
+  const subOrgs = useMemo(
+    () => (slug ? allOrgs.filter(o => o.parentSlug === slug) : []),
+    [allOrgs, slug]
+  );
+  const parentOrg = useMemo(
+    () =>
+      org?.parentSlug
+        ? allOrgs.find(o => o.slug.toLowerCase() === org.parentSlug!.toLowerCase())
+        : undefined,
+    [allOrgs, org]
+  );
 
   if (loading) return <LoadingSkeleton />;
 
@@ -216,6 +231,20 @@ export default function OrganizationProfile() {
                 )}
                 {org.metadata?.foundedYear && (
                   <DetailRow label="Founded" value={String(org.metadata.foundedYear)} />
+                )}
+                {parentOrg && (
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">
+                      Part of
+                    </p>
+                    <Link
+                      to={`/org/${parentOrg.slug}`}
+                      className="font-semibold text-sm text-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      {parentOrg.acronym || parentOrg.name}
+                      <ChevronRight size={14} />
+                    </Link>
+                  </div>
                 )}
               </CardContent>
             </Card>
@@ -353,6 +382,25 @@ export default function OrganizationProfile() {
               </Card>
             )}
           </div>
+
+          {subOrgs.length > 0 && (
+            <section className="animate-fade-in-up animate-delay-400">
+              <Card className="bg-surface-1 border-none shadow-md overflow-hidden">
+                <CardHeader className="border-b border-border/50 pb-6 bg-surface-2/30">
+                  <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
+                    <Users className="text-primary h-5 w-5" />
+                    Sub-Organizations
+                    <span className="text-sm font-normal text-muted-foreground ml-1">
+                      ({subOrgs.length})
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <OrgGrid organizations={subOrgs} columns={4} />
+                </CardContent>
+              </Card>
+            </section>
+          )}
 
           <div className="animate-fade-in-up animate-delay-500">
             <RelatedOrganizations currentOrg={org} />

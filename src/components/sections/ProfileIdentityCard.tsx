@@ -25,12 +25,12 @@ export default function ProfileIdentityCard({ org }: { org: Organization }) {
           <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
             <Badge
               variant="secondary"
-              className="bg-primary/15 text-primary hover:bg-primary/25 border-none text-[11px] px-3 py-1"
+              className="bg-primary/15 text-primary hover:bg-primary/25 border-none text-xs px-3 py-1"
             >
               {org.type}
             </Badge>
             {org.status && org.status !== 'Active' && (
-              <Badge className="bg-warning text-warning-foreground border-none text-[11px] px-3 py-1">
+              <Badge className="bg-warning text-warning-foreground border-none text-xs px-3 py-1">
                 {org.status}
               </Badge>
             )}

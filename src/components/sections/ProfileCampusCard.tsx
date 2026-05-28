@@ -6,7 +6,7 @@ import type { Organization } from '@/lib/orgIndex';
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{label}</p>
+      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-0.5">{label}</p>
       <p className="font-semibold text-foreground text-sm">{value}</p>
     </div>
   );
@@ -24,7 +24,7 @@ export default function ProfileCampusCard({
   return (
     <Card className="animate-fade-in-up animate-delay-200 md:col-span-1 lg:col-span-1 bg-card border-none shadow-md">
       <CardHeader className="pb-2">
-        <CardTitle className="text-[10px] uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
+        <CardTitle className="text-xs uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
           <MapPin size={14} /> Campus & Details
         </CardTitle>
       </CardHeader>
@@ -36,7 +36,7 @@ export default function ProfileCampusCard({
         )}
         {parentOrgs.length > 0 && (
           <div>
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
               Part of
             </p>
             <div className="flex flex-wrap gap-1.5">

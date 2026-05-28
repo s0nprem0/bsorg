@@ -109,14 +109,14 @@ export default function OrganizationCard({
       <CardHeader className={cn('flex-none', large ? 'p-4 sm:p-5' : 'p-3 sm:p-4')}>
         <div className="flex flex-wrap items-center gap-1.5 mb-2">
           {typeStyle && (
-            <Badge variant="outline" className={cn(typeStyle, 'text-[10px] uppercase tracking-wider')}>
+            <Badge variant="outline" className={cn(typeStyle, 'text-xs uppercase tracking-wider')}>
               {TYPE_LABELS[org.type] || org.type}
             </Badge>
           )}
           {campusName && (
             <Badge
               variant="secondary"
-              className="text-[10px] uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary/20 border-none"
+              className="text-xs uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary/20 border-none"
             >
               {campusName}
             </Badge>
@@ -125,7 +125,7 @@ export default function OrganizationCard({
             <Tooltip label={org.programId}>
               <Badge
                 variant="outline"
-                className="text-[10px] uppercase tracking-wider text-muted-foreground/80 border-muted-foreground/20"
+                className="text-xs uppercase tracking-wider text-muted-foreground/80 border-muted-foreground/20"
               >
                 {abbreviateProgram(org.programId)}
               </Badge>
@@ -178,7 +178,7 @@ export default function OrganizationCard({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[10px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary"
+                className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-xs font-bold text-muted-foreground hover:border-primary/50 hover:text-primary"
                 aria-label={`${socialEntries.length - 4} more links`}
               >
                 +{socialEntries.length - 4}

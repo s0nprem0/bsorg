@@ -52,7 +52,7 @@ function GalleryImage({ url, name, index }: { url: string; name: string; index: 
           {failed ? (
             <div className="flex flex-col items-center gap-1.5 text-muted-foreground/40">
               <ImageIcon size={24} />
-              <span className="text-[10px] font-medium">Failed</span>
+              <span className="text-xs font-medium">Failed</span>
             </div>
           ) : (
             <>

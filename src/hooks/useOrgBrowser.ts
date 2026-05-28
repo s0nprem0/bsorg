@@ -40,15 +40,30 @@ export function useOrgBrowser() {
     [setSearchParams]
   );
 
-  // 3. Filter & Sort Logic
+  // 3. Orgs filtered by type + campus only (used for programs list too)
+  const typeCampusOrgs = useMemo(
+    () => allOrgs.filter(org => {
+      if (orgType !== 'All' && org.type !== orgType) return false;
+      if (campusIdParam && org.campusId !== Number(campusIdParam)) return false;
+      return true;
+    }),
+    [allOrgs, orgType, campusIdParam]
+  );
+
+  // 4. Programs derived from type+campus-filtered orgs
+  const programs = useMemo(() => {
+    const uniquePrograms = new Set(
+      typeCampusOrgs.map(o => o.programId).filter((id): id is string => !!id)
+    );
+    return ['All', ...Array.from(uniquePrograms).sort()];
+  }, [typeCampusOrgs]);
+
+  // 5. Filter by program + query, then sort
   const filteredOrgs = useMemo(() => {
     const q = normalize(query);
 
-    const result = allOrgs.filter(org => {
-      const matchesType = orgType === 'All' || org.type === orgType;
-      const matchesProgram = program === 'All' || org.programId === program;
-      const matchesCampus = !campusIdParam || org.campusId === Number(campusIdParam);
-      if (!matchesType || !matchesProgram || !matchesCampus) return false;
+    const result = typeCampusOrgs.filter(org => {
+      if (program !== 'All' && org.programId !== program) return false;
       if (!q) return true;
 
       return (
@@ -61,7 +76,6 @@ export function useOrgBrowser() {
     });
 
     result.sort((a, b) => {
-      // Use the constants for your conditional logic
       if (sortBy === SORT_OPTIONS.ASC) return a.name.localeCompare(b.name);
       if (sortBy === SORT_OPTIONS.DESC) return b.name.localeCompare(a.name);
       if (sortBy === SORT_OPTIONS.NEWEST) {
@@ -73,7 +87,7 @@ export function useOrgBrowser() {
     });
 
     return result;
-  }, [allOrgs, query, orgType, sortBy, program, campusIdParam]);
+  }, [typeCampusOrgs, query, sortBy, program]);
 
   const totalPages = Math.ceil(
     filteredOrgs.length / ORG_BROWSER.ITEMS_PER_PAGE
@@ -88,13 +102,6 @@ export function useOrgBrowser() {
       setFilter('page', (currentPage + 1).toString());
     }
   }, [currentPage, totalPages, setFilter]);
-
-  const programs = useMemo(() => {
-    const uniquePrograms = new Set(
-      allOrgs.map(o => o.programId).filter((id): id is string => !!id)
-    );
-    return ['All', ...Array.from(uniquePrograms).sort()];
-  }, [allOrgs]);
 
   return {
     state: { query, orgType, sortBy, program, campusId: campusIdParam || null },

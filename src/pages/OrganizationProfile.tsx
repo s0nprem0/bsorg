@@ -163,20 +163,18 @@ export default function OrganizationProfile() {
             />
           </div>
 
-          <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
-            <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
-              {org.assets?.bannerUrl ? (
+          {org.assets?.bannerUrl && (
+            <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
+              <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
                 <img
                   src={org.assets.bannerUrl}
                   alt={`${org.name} banner`}
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="eager"
                 />
-              ) : (
-                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-accent/5 border border-border/50 rounded-xl" />
-              )}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 auto-rows-min">
 

@@ -15,6 +15,14 @@ import { Badge } from '@/components/ui/shadcn/badge';
 import { Button } from '@/components/ui/shadcn/button';
 import { abbreviateProgram } from '@/data/programs';
 
+const TYPE_STYLES: Record<string, string> = {
+  'Academic': 'bg-primary/10 text-primary border-primary/25',
+  'Non-Academic': 'bg-warning/10 text-warning border-warning/25',
+  'Student Council': 'bg-info/10 text-info border-info/25',
+  'Student Publication Units': 'bg-success/10 text-success border-success/25',
+  'Performing Arts Group': 'bg-accent/10 text-accent border-accent/25',
+};
+
 interface OrganizationCardProps {
   org: Organization;
   campusName?: string;
@@ -40,17 +48,19 @@ export default function OrganizationCard({
     [org.contact]
   );
 
+  const typeStyle = TYPE_STYLES[org.type];
+
   return (
     <Card
       className={cn(
-        'group relative flex h-full w-full flex-row transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md hover:ring-1 hover:ring-primary/20 bg-card text-card-foreground cursor-pointer',
-        large ? 'min-h-48' : 'min-h-32'
+        'group relative flex h-full w-full flex-row transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md hover:ring-1 hover:ring-primary/20 bg-card text-card-foreground cursor-pointer overflow-hidden',
+        large ? 'min-h-48' : 'min-h-36'
       )}
     >
       <figure
         className={cn(
-          'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg transition-colors group-hover:bg-primary/5',
-          large ? 'w-32 sm:w-44' : 'w-20 sm:w-28'
+          'relative flex shrink-0 items-center justify-center overflow-hidden border-r border-border bg-muted transition-colors group-hover:bg-primary/5',
+          large ? 'w-36 sm:w-48' : 'w-24 sm:w-32'
         )}
       >
         {org.assets?.logoUrl && !imageError ? (
@@ -66,24 +76,29 @@ export default function OrganizationCard({
 
         <div
           className={cn(
-            'flex h-full w-full items-center justify-center font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110 z-20 overflow-hidden truncate max-w-full px-1',
+            'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px] pointer-events-none',
+            org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
+          )}
+        />
+        <div
+          className={cn(
+            'relative flex h-full w-full items-center justify-center font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110 overflow-hidden truncate max-w-full px-1',
             org.assets?.logoUrl && !imageError ? 'hidden' : 'flex',
             acronymClass
           )}
         >
           {acronym}
         </div>
-        <div
-          className={cn(
-            'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px] pointer-events-none z-10',
-            org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
-          )}
-        />
       </figure>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <CardHeader className={cn('mb-auto', large ? 'px-4 pb-0 pt-4 sm:px-6 sm:pt-6' : 'px-3 pb-0 pt-3 sm:px-4 sm:pt-4')}>
-          <div className="relative z-10 flex flex-wrap items-center gap-1.5 mb-2">
+        <CardHeader className={cn('flex flex-col flex-1', large ? 'p-4 pb-0 sm:p-5 sm:pb-0' : 'p-3 pb-0 sm:p-4 sm:pb-0')}>
+          <div className="relative z-10 flex flex-wrap items-center gap-1.5 mb-1.5">
+            {typeStyle && (
+              <Badge variant="outline" className={cn(typeStyle, 'text-[10px] uppercase tracking-wider')}>
+                {org.type === 'Student Publication Units' ? 'Publication' : org.type === 'Performing Arts Group' ? 'Performing Arts' : org.type}
+              </Badge>
+            )}
             {campusName && (
               <Badge
                 variant="outline"
@@ -104,7 +119,7 @@ export default function OrganizationCard({
             )}
           </div>
 
-          <CardTitle className={cn('line-clamp-2 transition-colors group-hover:text-primary', large ? 'text-lg sm:text-xl' : 'text-base')}>
+          <CardTitle className={cn('line-clamp-2 transition-colors group-hover:text-primary', large ? 'text-base sm:text-lg' : 'text-sm')}>
             <Link
               to={`/org/${org.slug}`}
               className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-0"
@@ -112,7 +127,7 @@ export default function OrganizationCard({
               {org.name}
             </Link>
           </CardTitle>
-          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed">
+          <CardDescription className="mt-1 line-clamp-2 text-xs leading-relaxed">
             {org.content?.shortDescription ||
               org.content?.about ||
               'No description available.'}
@@ -120,18 +135,39 @@ export default function OrganizationCard({
         </CardHeader>
 
         {socialEntries.length > 0 && (
-          <CardFooter className={cn('relative z-20 flex flex-col items-start gap-2', large ? 'px-4 pb-4 sm:px-6 sm:pb-6' : 'px-3 pb-3 sm:px-4 sm:pb-4')}>
-            <div className="flex items-center gap-2">
-              {(socialEntries.length > 4
-                ? socialEntries.slice(0, 3)
-                : socialEntries
-              ).map(([network, url]) => (
+          <CardFooter className={cn('relative z-20 flex items-center', large ? 'p-4 pt-1.5 sm:p-5 sm:pt-2' : 'p-3 pt-1.5 sm:p-4 sm:pt-2')}>
+            <div className="flex items-center gap-1">
+              {/* First social: icon + label */}
+              {(() => {
+                const [network, url] = socialEntries[0];
+                return (
+                  <Button
+                    key={network}
+                    variant="ghost"
+                    asChild
+                    className="h-7 gap-1.5 px-2 text-muted-foreground hover:text-primary text-xs"
+                  >
+                    <a
+                      href={url as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${org.name} on ${network}`}
+                    >
+                      <ContactIcon name={network} size={14} />
+                      <span className="hidden sm:inline font-medium">Visit page</span>
+                    </a>
+                  </Button>
+                );
+              })()}
+
+              {/* Remaining socials: icon only */}
+              {socialEntries.slice(1, 4).map(([network, url]) => (
                 <Button
                   key={network}
                   variant="ghost"
                   size="icon"
                   asChild
-                  className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
+                  className="h-7 w-7 text-muted-foreground hover:text-primary"
                 >
                   <a
                     href={url as string}
@@ -139,32 +175,34 @@ export default function OrganizationCard({
                     rel="noopener noreferrer"
                     aria-label={`Visit ${org.name} on ${network}`}
                   >
-                    <ContactIcon name={network} size={18} />
+                    <ContactIcon name={network} size={15} />
                   </a>
                 </Button>
               ))}
+
+              {/* Overflow popup */}
               {socialEntries.length > 4 && (
                 <div className="group/overflow relative inline-flex">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[11px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary z-20"
-                    aria-label={`${socialEntries.length - 3} more links`}
+                    className="h-7 w-7 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[10px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary"
+                    aria-label={`${socialEntries.length - 4} more links`}
                   >
-                    +{socialEntries.length - 3}
+                    +{socialEntries.length - 4}
                   </Button>
-                  <div className="pointer-events-none absolute left-full top-1/2 z-50 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
-                    <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 pl-2.5 shadow-sm">
-                      {socialEntries.slice(3).map(([network, url]) => (
+                  <div className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100 z-50">
+                    <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-1.5 pl-2 shadow-sm">
+                      {socialEntries.slice(4).map(([network, url]) => (
                         <a
                           key={network}
                           href={url as string}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Visit ${org.name} on ${network}`}
-                          className="flex h-7 w-7 items-center justify-center rounded-md text-background hover:bg-background/10 transition-colors pointer-events-auto"
+                          className="flex h-6 w-6 items-center justify-center rounded-md text-background hover:bg-background/10 transition-colors pointer-events-auto"
                         >
-                          <ContactIcon name={network} size={16} />
+                          <ContactIcon name={network} size={14} />
                         </a>
                       ))}
                     </div>

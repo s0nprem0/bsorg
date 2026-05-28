@@ -15,25 +15,25 @@ export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; cou
       1: 'grid-cols-1',
       2: 'grid-cols-1 sm:grid-cols-2',
       3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
+    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
 
   return (
     <div className={cn('grid gap-4 sm:gap-6', columnClasses)}>
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className="flex h-36 animate-pulse rounded-xl bg-card border border-border overflow-hidden"
+          className="flex flex-row animate-pulse rounded-xl bg-card border border-border overflow-hidden"
         >
-          <div className="w-20 sm:w-28 shrink-0 bg-muted rounded-l-xl" />
-          <div className="flex-1 min-w-0 flex flex-col p-4 gap-3">
+          <div className="w-24 sm:w-32 shrink-0 bg-muted" />
+          <div className="flex flex-col flex-1 p-4 gap-3">
             <div className="flex gap-2">
               <div className="h-4 w-16 rounded-md bg-muted" />
               <div className="h-4 w-12 rounded-md bg-muted" />
             </div>
             <div className="h-5 w-3/4 rounded-md bg-muted" />
             <div className="h-3 w-full rounded-md bg-muted" />
-            <div className="flex gap-1.5 mt-auto pt-2">
+            <div className="flex gap-1.5 pt-2">
               <div className="h-6 w-6 rounded-full bg-muted" />
               <div className="h-6 w-6 rounded-full bg-muted" />
               <div className="h-6 w-6 rounded-full bg-muted" />
@@ -57,8 +57,8 @@ export default function OrgGrid({
       1: 'grid-cols-1',
       2: 'grid-cols-1 sm:grid-cols-2',
       3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
+    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
 
   return (
     <div className={cn('grid gap-4 sm:gap-6', columnClasses, className)}>

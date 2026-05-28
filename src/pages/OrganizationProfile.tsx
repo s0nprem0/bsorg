@@ -56,8 +56,9 @@ export default function OrganizationProfile() {
   return (
     <>
       <SEO
-        title={`${org.name} • BetterOSAS`}
+        title={org.name}
         description={org.content?.shortDescription}
+        image={org.assets?.bannerUrl || org.assets?.logoUrl}
       />
 
       <div className="min-h-screen bg-background pb-20">

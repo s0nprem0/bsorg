@@ -7,42 +7,42 @@
   --white: #ffffff;
   --black: #000000;
 
-  /* Gray */
-  --gray-50: #fafafa;
-  --gray-100: #f4f4f5;
-  --gray-200: #e4e4e7;
-  --gray-300: #d4d4d8;
-  --gray-400: #a1a1aa;
-  --gray-500: #71717a;
-  --gray-600: #52525b;
-  --gray-700: #3f3f46;
-  --gray-800: #27272a;
-  --gray-900: #18181b;
-  --gray-950: #09090b;
+  /* Zinc (neutral-warm gray) */
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
 
-  /* Green */
-  --green-50: #ecfff5;
-  --green-100: #d2ffe8;
-  --green-200: #a4ffd1;
-  --green-300: #6ff7b2;
-  --green-400: #3dfca2;
-  --green-500: #22e58b;
-  --green-600: #18c972;
-  --green-700: #13a85f;
-  --green-800: #117048;
-  --green-900: #0b3d27;
+  /* Emerald (mint-green) */
+  --emerald-50: #ecfff5;
+  --emerald-100: #d2ffe8;
+  --emerald-200: #a4ffd1;
+  --emerald-300: #6ff7b2;
+  --emerald-400: #3dfca2;
+  --emerald-500: #22e58b;
+  --emerald-600: #18c972;
+  --emerald-700: #13a85f;
+  --emerald-800: #117048;
+  --emerald-900: #0b3d27;
 
-  /* Blue */
-  --blue-50: #ecfeff;
-  --blue-100: #cffafe;
-  --blue-200: #a5f3fc;
-  --blue-300: #67e8f9;
-  --blue-400: #22d3ee;
-  --blue-500: #06b6d4;
-  --blue-600: #0891b2;
-  --blue-700: #0e7490;
-  --blue-800: #155e75;
-  --blue-900: #083344;
+  /* Cyan */
+  --cyan-50: #ecfeff;
+  --cyan-100: #cffafe;
+  --cyan-200: #a5f3fc;
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #083344;
 
   /* Yellow */
   --yellow-50: #fffceb;
@@ -66,25 +66,25 @@
   */
 
   --background: var(--black);
-  --foreground: var(--gray-50);
+  --foreground: var(--zinc-50);
 
   --card: rgba(255, 255, 255, 0.03);
-  --card-foreground: var(--gray-50);
+  --card-foreground: var(--zinc-50);
 
-  --popover: var(--gray-950);
-  --popover-foreground: var(--gray-50);
+  --popover: var(--zinc-950);
+  --popover-foreground: var(--zinc-50);
 
-  --primary: var(--green-500);
+  --primary: var(--emerald-500);
   --primary-foreground: var(--black);
 
-  --secondary: var(--blue-500);
+  --secondary: var(--cyan-500);
   --secondary-foreground: var(--white);
 
   --accent: var(--yellow-500);
   --accent-foreground: var(--black);
 
-  --muted: var(--gray-900);
-  --muted-foreground: var(--gray-400);
+  --muted: var(--zinc-900);
+  --muted-foreground: var(--zinc-400);
 
   --destructive: var(--red-500);
   --destructive-foreground: var(--white);
@@ -92,7 +92,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.08);
 
-  --ring: var(--green-500);
+  --ring: var(--emerald-500);
 
   --radius: 1rem;
 
@@ -126,26 +126,26 @@
 }
 
 .light {
-  --background: var(--gray-50);
-  --foreground: var(--gray-950);
+  --background: var(--zinc-50);
+  --foreground: var(--zinc-950);
 
   --card: rgba(255, 255, 255, 0.8);
-  --card-foreground: var(--gray-950);
+  --card-foreground: var(--zinc-950);
 
   --popover: var(--white);
-  --popover-foreground: var(--gray-950);
+  --popover-foreground: var(--zinc-950);
 
-  --primary: var(--green-600);
+  --primary: var(--emerald-600);
   --primary-foreground: var(--white);
 
-  --secondary: var(--blue-600);
+  --secondary: var(--cyan-600);
   --secondary-foreground: var(--white);
 
   --accent: var(--yellow-600);
   --accent-foreground: var(--black);
 
-  --muted: var(--gray-200);
-  --muted-foreground: var(--gray-600);
+  --muted: var(--zinc-200);
+  --muted-foreground: var(--zinc-600);
 
   --destructive: var(--red-500);
   --destructive-foreground: var(--white);
@@ -153,12 +153,12 @@
   --border: rgba(0, 0, 0, 0.08);
   --input: rgba(0, 0, 0, 0.08);
 
-  --ring: var(--green-600);
+  --ring: var(--emerald-600);
 
   --surface-1: var(--white);
-  --surface-2: var(--gray-100);
-  --surface-3: var(--gray-200);
-  --surface-4: var(--gray-300);
+  --surface-2: var(--zinc-100);
+  --surface-3: var(--zinc-200);
+  --surface-4: var(--zinc-300);
 
   --shadow-sm:
     0 1px 2px rgba(0, 0, 0, 0.06);

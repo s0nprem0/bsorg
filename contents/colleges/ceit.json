@@ -9,17 +9,15 @@
     "category": "College of Engineering and Information Technology",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Engineering and Information Technology"
-      ]
+      "tags": ["Academic", "College of Engineering and Information Technology"]
     },
     "content": {
       "shortDescription": "Tahanan ng mga dating kampeyon",
       "mission": "The Council shall promote extra-curricular excellence in the fields of Agricultural and Food Engineering, Architecture, Civil Engineering, Computer Engineering, and Electronics Engineering, Industrial Engineering and Technology, and Information Technology"
     },
     "assets": {
-      "logoUrl": "/colleges/ceit/ceit-sc_blk.svg"
+      "logoUrl": "/colleges/ceit/ceit-sc_blk.svg",
+      "bannerUrl": "/colleges/ceit/ceit-sc_banner.jpg"
     },
     "contact": {
       "email": "cvsu.ceitsc@gmail.com",
@@ -58,9 +56,7 @@
         "facebook": "https://www.facebook.com/CSSO2016"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "6c2dac09-ce2f-4821-a4cf-cf5c1bcb7f53",
@@ -91,9 +87,7 @@
         "facebook": "https://www.facebook.com/CvSUELITS"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "coess-main",
@@ -124,9 +118,7 @@
         "facebook": "https://www.facebook.com/CvSUCpE"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "uapsa-main",
@@ -158,9 +150,7 @@
         "instagram": "https://www.instagram.com/uapsa_cvsu"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "c89ec9fe-e51a-4434-b3b7-3dfe76c67410",
@@ -192,9 +182,7 @@
         "instagram": "https://www.instagram.com/piie.cvsusc/"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "3a2df459-b70e-4689-850b-e955764f437b",
@@ -225,9 +213,7 @@
         "facebook": "https://www.facebook.com/iieecsccvsumain"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "1e1eb757-1592-410c-b4ca-32354303793d",
@@ -257,9 +243,7 @@
         "facebook": "https://www.facebook.com/psabeppgcvsuchapter"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "e090184b-8b15-4135-8f2f-114dff3067c7",
@@ -290,9 +274,7 @@
         "facebook": "https://www.facebook.com/cvsuece"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "e71ba4f3-012a-42cc-a48f-85456bc7f2bb",
@@ -323,9 +305,7 @@
         "facebook": "https://www.facebook.com/CLASS.CVSU"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "2d8cb4ff-057b-4032-9502-3e47ff76b6a6",
@@ -356,9 +336,7 @@
         "facebook": "https://www.facebook.com/cvsu.elex.sites"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "e8409d97-b8f0-45d5-b2df-1c124686a7e1",
@@ -389,9 +367,7 @@
         "facebook": "https://www.facebook.com/picecvsustudentchapter"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   },
   {
     "id": "ad77ecff-baad-4cfb-806e-495d8bdc3189",
@@ -421,8 +397,6 @@
         "facebook": "https://www.facebook.com/profile.php?id=100072488476712"
       }
     },
-    "parentSlug": [
-      "ceit-sc"
-    ]
+    "parentSlug": ["ceit-sc"]
   }
 ]

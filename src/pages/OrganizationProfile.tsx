@@ -165,7 +165,7 @@ export default function OrganizationProfile() {
 
           {org.assets?.bannerUrl && (
             <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
-              <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
+              <div className="relative aspect-[820/312]">
                 <img
                   src={org.assets.bannerUrl}
                   alt={`${org.name} banner`}

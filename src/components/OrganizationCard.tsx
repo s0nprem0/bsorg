@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { ContactIcon } from '@/components/ui/ContactIcon';
+import Tooltip from '@/components/ui/Tooltip';
 import type { Organization } from '@/lib/orgIndex';
 import {
   Card,
@@ -101,23 +102,23 @@ export default function OrganizationCard({
         {socialEntries.length > 0 && (
           <CardFooter className="relative z-10 flex flex-wrap items-center gap-3 p-4 pt-4 sm:p-5">
             {socialEntries.slice(0, 4).map(([network, url]) => (
-              <Button
-                key={network}
-                variant="ghost"
-                size="icon"
-                asChild
-                className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
-              >
-                <a
-                  href={url as string}
-                  title={network}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit ${org.name} on ${network}`}
+              <Tooltip key={network} label={network.charAt(0).toUpperCase() + network.slice(1)}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
                 >
-                  <ContactIcon name={network} size={18} />
-                </a>
-              </Button>
+                  <a
+                    href={url as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${org.name} on ${network}`}
+                  >
+                    <ContactIcon name={network} size={18} />
+                  </a>
+                </Button>
+              </Tooltip>
             ))}
           </CardFooter>
         )}

@@ -106,7 +106,11 @@ export default function OrganizationCard({
 
         {socialEntries.length > 0 && (
           <CardFooter className="relative z-10 flex flex-wrap items-center gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
-            {socialEntries.slice(0, 4).map(([network, url]) => (
+            {(
+              socialEntries.length > 4
+                ? socialEntries.slice(0, 3)
+                : socialEntries
+            ).map(([network, url]) => (
               <Tooltip key={network} label={network.charAt(0).toUpperCase() + network.slice(1)}>
                 <Button
                   variant="ghost"
@@ -125,6 +129,34 @@ export default function OrganizationCard({
                 </Button>
               </Tooltip>
             ))}
+            {socialEntries.length > 4 && (
+              <div className="group/overflow relative inline-flex">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[11px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary z-20"
+                  aria-label={`${socialEntries.length - 3} more links`}
+                >
+                  +{socialEntries.length - 3}
+                </Button>
+                <div className="pointer-events-none absolute -top-1 left-1/2 z-50 -translate-x-1/2 -translate-y-full opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
+                  <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 shadow-sm">
+                    {socialEntries.slice(3).map(([network, url]) => (
+                      <a
+                        key={network}
+                        href={url as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${org.name} on ${network}`}
+                        className="flex h-7 w-7 items-center justify-center rounded-md text-background hover:bg-background/10 transition-colors"
+                      >
+                        <ContactIcon name={network} size={16} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </CardFooter>
         )}
       </div>

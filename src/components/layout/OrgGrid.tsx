@@ -23,10 +23,10 @@ export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; cou
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className="flex flex-row animate-pulse rounded-xl bg-card border border-border overflow-hidden"
+          className="flex flex-col animate-pulse rounded-xl bg-card border border-border overflow-hidden"
         >
-          <div className="w-24 sm:w-32 shrink-0 bg-muted" />
-          <div className="flex flex-col flex-1 p-4 gap-3">
+          <div className="h-16 shrink-0 bg-muted/50 border-b border-border" />
+          <div className="flex flex-col p-4 gap-3">
             <div className="flex gap-2">
               <div className="h-4 w-16 rounded-md bg-muted" />
               <div className="h-4 w-12 rounded-md bg-muted" />

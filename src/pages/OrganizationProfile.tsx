@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle, Users, ChevronRight } from 'lucide-react';
+import { MapPin, ExternalLink, Info, Target, Eye, ImageIcon, ArrowLeft, SearchX, AlertTriangle, Users } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { useOrg, useOrgs } from '@/hooks/useOrgService';
@@ -233,7 +233,7 @@ export default function OrganizationProfile() {
                 )}
                 {parentOrgs.length > 0 && (
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">
                       {parentOrgs.length === 1 ? 'Part of' : 'Part of'}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
@@ -241,10 +241,9 @@ export default function OrganizationProfile() {
                         <Link
                           key={p.slug}
                           to={`/org/${p.slug}`}
-                          className="font-semibold text-sm text-primary hover:underline inline-flex items-center gap-1"
+                          className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-xs font-semibold text-primary hover:bg-primary/10 hover:border-primary/30 transition-colors"
                         >
                           {p.acronym || p.name}
-                          <ChevronRight size={14} />
                         </Link>
                       ))}
                     </div>
@@ -291,8 +290,9 @@ export default function OrganizationProfile() {
                     ))}
                   </div>
                 ) : (
-                  <div className="h-24 flex items-center justify-center text-sm italic text-muted-foreground text-center border-2 border-dashed border-border rounded-xl">
-                    No links available
+                  <div className="h-24 flex flex-col items-center justify-center text-sm text-muted-foreground text-center border-2 border-dashed border-border rounded-xl gap-1">
+                    <ExternalLink size={16} className="opacity-40" />
+                    <span className="italic">No links available</span>
                   </div>
                 )}
               </CardContent>
@@ -305,10 +305,18 @@ export default function OrganizationProfile() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                  {org.content.about ||
-                    'No detailed description available for this organization.'}
-                </div>
+                {org.content.about ? (
+                  <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line text-sm sm:text-base">
+                    {org.content.about}
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center py-10 text-center gap-2">
+                    <Info size={24} className="text-muted-foreground/30" />
+                    <p className="text-sm text-muted-foreground/60 italic">
+                      No detailed description available
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -344,8 +352,8 @@ export default function OrganizationProfile() {
                 <CardHeader>
                   <CardTitle className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
                     <ImageIcon className="text-primary shrink-0" size={18} /> Gallery
-                    <span className="text-xs font-normal text-muted-foreground ml-1">
-                      ({org.assets.galleryUrls.length})
+                    <span className="text-xs font-normal text-muted-foreground ml-auto">
+                      {org.assets.galleryUrls.length} {org.assets.galleryUrls.length === 1 ? 'photo' : 'photos'}
                     </span>
                   </CardTitle>
                 </CardHeader>
@@ -394,8 +402,8 @@ export default function OrganizationProfile() {
                   <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
                     <Users className="text-primary h-5 w-5" />
                     Sub-Organizations
-                    <span className="text-sm font-normal text-muted-foreground ml-1">
-                      ({subOrgs.length})
+                    <span className="text-xs font-normal text-muted-foreground ml-auto">
+                      {subOrgs.length} {subOrgs.length === 1 ? 'org' : 'orgs'}
                     </span>
                   </CardTitle>
                 </CardHeader>

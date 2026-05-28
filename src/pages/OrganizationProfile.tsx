@@ -86,6 +86,7 @@ export default function OrganizationProfile() {
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="eager"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
               </div>
             </div>
           )}

@@ -1,9 +1,12 @@
+import { BadgeCheck } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/shadcn/avatar';
 import { Badge } from '@/components/ui/shadcn/badge';
 import { Card, CardContent } from '@/components/ui/shadcn/card';
 import type { Organization } from '@/lib/orgIndex';
 
 export default function ProfileIdentityCard({ org }: { org: Organization }) {
+  const isVerified = org.metadata?.accredited;
+
   return (
     <Card
       style={{ viewTransitionName: 'org-identity' }}
@@ -35,9 +38,15 @@ export default function ProfileIdentityCard({ org }: { org: Organization }) {
               </Badge>
             )}
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight text-foreground flex flex-wrap items-center gap-3">
             {org.name}
+            {isVerified && (
+              <BadgeCheck className="text-primary w-8 h-8 shrink-0" aria-label="Accredited Organization" />
+            )}
           </h1>
+          {org.acronym && (
+            <p className="text-lg font-medium text-muted-foreground">{org.acronym}</p>
+          )}
           <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl">
             {org.content.shortDescription}
           </p>

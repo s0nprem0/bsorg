@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { ContactIcon } from '@/components/ui/ContactIcon';
@@ -21,6 +21,17 @@ interface OrganizationCardProps {
   large?: boolean;
 }
 
+const brandHover: Record<string, string> = {
+  facebook: 'hover:text-[#1877F2]',
+  instagram: 'hover:text-[#E4405F]',
+  x: 'hover:text-foreground',
+  tiktok: 'hover:text-foreground',
+  youtube: 'hover:text-[#FF0000]',
+  linkedin: 'hover:text-[#0A66C2]',
+  email: 'hover:text-primary',
+  website: 'hover:text-primary',
+};
+
 export default function OrganizationCard({
   org,
   campusName,
@@ -28,14 +39,18 @@ export default function OrganizationCard({
 }: OrganizationCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  const socialEntries = org.contact?.social
-    ? Object.entries(org.contact.social).filter(([, val]) => val)
-    : [];
+  const socialEntries = useMemo(
+    () =>
+      org.contact?.social
+        ? Object.entries(org.contact.social).filter(([, val]) => val)
+        : [],
+    [org.contact?.social]
+  );
 
   return (
     <Card
       className={cn(
-        'group relative flex h-full w-full flex-row overflow-hidden transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md bg-card text-card-foreground',
+        'group relative flex h-full w-full flex-row transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl bg-card text-card-foreground border-t-4 border-t-primary/10 hover:border-t-primary/40',
         large ? 'min-h-40' : 'min-h-32'
       )}
     >
@@ -45,6 +60,8 @@ export default function OrganizationCard({
           large ? 'w-32 sm:w-40' : 'w-28 sm:w-32'
         )}
       >
+        <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-black/30 to-transparent z-10 pointer-events-none" />
+
         {org.assets?.logoUrl && !imageError ? (
           <img
             src={org.assets.logoUrl}
@@ -58,7 +75,7 @@ export default function OrganizationCard({
 
         <div
           className={cn(
-            'flex h-full w-full items-center justify-center bg-muted font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110',
+            'flex h-full w-full items-center justify-center bg-muted font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110 z-20',
             org.assets?.logoUrl && !imageError ? 'hidden' : 'flex',
             large ? 'text-5xl' : 'text-4xl'
           )}
@@ -100,14 +117,17 @@ export default function OrganizationCard({
         </CardHeader>
 
         {socialEntries.length > 0 && (
-          <CardFooter className="relative z-10 flex flex-wrap items-center gap-3 p-4 pt-4 sm:p-5">
+          <CardFooter className="relative z-10 flex flex-wrap items-center gap-1.5 p-4 pt-2 sm:p-5 sm:pt-2">
             {socialEntries.slice(0, 4).map(([network, url]) => (
               <Tooltip key={network} label={network.charAt(0).toUpperCase() + network.slice(1)}>
                 <Button
                   variant="ghost"
                   size="icon"
                   asChild
-                  className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
+                  className={cn(
+                    'h-8 w-8 text-muted-foreground z-20 transition-colors',
+                    brandHover[network] || 'hover:text-primary'
+                  )}
                 >
                   <a
                     href={url as string}

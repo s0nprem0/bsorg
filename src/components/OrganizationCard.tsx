@@ -29,18 +29,15 @@ export default function OrganizationCard({
   const [imageError, setImageError] = useState(false);
 
   const acronym = org.acronym || org.name.substring(0, 2).toUpperCase();
-  const acronymClass = acronym.length > 6
-    ? 'text-lg sm:text-xl'
-    : large
-      ? 'text-5xl'
-      : 'text-4xl';
+  const acronymClass =
+    acronym.length > 6 ? 'text-lg sm:text-xl' : large ? 'text-5xl' : 'text-4xl';
 
   const socialEntries = useMemo(
     () =>
       org.contact?.social
         ? Object.entries(org.contact.social).filter(([, val]) => val)
         : [],
-    [org.contact?.social]
+    [org.contact]
   );
 
   return (
@@ -56,7 +53,6 @@ export default function OrganizationCard({
           large ? 'w-28 sm:w-36' : 'w-20 sm:w-28'
         )}
       >
-
         {org.assets?.logoUrl && !imageError ? (
           <img
             src={org.assets.logoUrl}
@@ -77,24 +73,38 @@ export default function OrganizationCard({
         >
           {acronym}
         </div>
-        <div className={cn(
-          'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-10',
-          org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
-        )} />
+        <div
+          className={cn(
+            'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-10',
+            org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
+          )}
+        />
       </figure>
 
       <div className="flex min-w-0 flex-1 flex-col">
         <CardHeader className="mb-auto px-3 pb-0 pt-3 sm:px-4 sm:pt-4">
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+          {/* Moved Program Acronym here to group metadata tags together */}
+          <div className="relative z-20 flex flex-wrap items-center gap-1.5 mb-2">
             {campusName && (
               <Badge
                 variant="outline"
-                className="w-fit text-[10px] uppercase tracking-wider border-muted-foreground/20 text-muted-foreground/80"
+                className="w-fit cursor-default text-[10px] uppercase tracking-wider border-muted-foreground/20 text-muted-foreground/80"
               >
                 {campusName}
               </Badge>
             )}
+            {org.programId && (
+              <Tooltip label={org.programId}>
+                <Badge
+                  variant="secondary"
+                  className="w-fit cursor-help text-[10px] uppercase tracking-wider text-secondary-foreground/80 transition-colors hover:bg-secondary/80"
+                >
+                  {abbreviateProgram(org.programId)}
+                </Badge>
+              </Tooltip>
+            )}
           </div>
+
           <CardTitle className="line-clamp-2 text-base transition-colors group-hover:text-primary">
             <Link
               to={`/org/${org.slug}`}
@@ -110,71 +120,65 @@ export default function OrganizationCard({
           </CardDescription>
         </CardHeader>
 
-        {(org.programId || socialEntries.length > 0) && (
-          <CardFooter className="relative z-10 flex flex-col items-start gap-1.5 px-3 pb-3 sm:px-4 sm:pb-4">
-            {org.programId && (
-              <span className="text-[10px] font-medium text-muted-foreground/70" title={org.programId}>
-                {abbreviateProgram(org.programId)}
-              </span>
-            )}
-            {socialEntries.length > 0 && (
-              <div className="flex items-center gap-2">
-            {(
-              socialEntries.length > 4
+        {socialEntries.length > 0 && (
+          <CardFooter className="relative z-20 flex flex-col items-start gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
+            <div className="flex items-center gap-2">
+              {(socialEntries.length > 4
                 ? socialEntries.slice(0, 3)
                 : socialEntries
-            ).map(([network, url]) => (
-              <Tooltip key={network} label={network.charAt(0).toUpperCase() + network.slice(1)}>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
+              ).map(([network, url]) => (
+                <Tooltip
+                  key={network}
+                  label={network.charAt(0).toUpperCase() + network.slice(1)}
                 >
-                  <a
-                    href={url as string}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${org.name} on ${network}`}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="h-8 w-8 text-muted-foreground hover:text-primary z-20"
                   >
-                    <ContactIcon name={network} size={18} />
-                  </a>
-                </Button>
-              </Tooltip>
-            ))}
-            {socialEntries.length > 4 && (
-              <div className="group/overflow relative inline-flex">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[11px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary z-20"
-                  aria-label={`${socialEntries.length - 3} more links`}
-                >
-                  +{socialEntries.length - 3}
-                </Button>
-                <div className="pointer-events-none absolute -top-1 left-1/2 z-50 -translate-x-1/2 -translate-y-full opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
-                  <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 shadow-sm">
-                    {socialEntries.slice(3).map(([network, url]) => (
-                      <a
-                        key={network}
-                        href={url as string}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Visit ${org.name} on ${network}`}
-                        className="flex h-7 w-7 items-center justify-center rounded-md text-background hover:bg-background/10 transition-colors"
-                      >
-                        <ContactIcon name={network} size={16} />
-                      </a>
-                    ))}
+                    <a
+                      href={url as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${org.name} on ${network}`}
+                    >
+                      <ContactIcon name={network} size={18} />
+                    </a>
+                  </Button>
+                </Tooltip>
+              ))}
+              {socialEntries.length > 4 && (
+                <div className="group/overflow relative inline-flex">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 cursor-default rounded-full border border-dashed border-muted-foreground/30 text-[11px] font-bold text-muted-foreground hover:border-primary/50 hover:text-primary z-20"
+                    aria-label={`${socialEntries.length - 3} more links`}
+                  >
+                    +{socialEntries.length - 3}
+                  </Button>
+                  <div className="pointer-events-none absolute -top-1 left-1/2 z-50 -translate-x-1/2 -translate-y-full opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
+                    <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 shadow-sm">
+                      {socialEntries.slice(3).map(([network, url]) => (
+                        <a
+                          key={network}
+                          href={url as string}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Visit ${org.name} on ${network}`}
+                          className="flex h-7 w-7 items-center justify-center rounded-md text-background hover:bg-background/10 transition-colors pointer-events-auto"
+                        >
+                          <ContactIcon name={network} size={16} />
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
             </div>
-          )}
           </CardFooter>
         )}
       </div>
     </Card>
   );
-}

@@ -1,25 +1,17 @@
 import { useRef, useCallback, useState, useEffect } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
-import { Search, Filter, Loader2, ArrowDownUp, X } from 'lucide-react';
+import { Search, Loader2, X } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
 import OrgGrid from '@/components/layout/OrgGrid';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
-import { SearchInput } from '@/components/ui/SearchInput';
+import OrgFilterBar from '@/components/sections/OrgFilterBar';
+import OrgFilterChips from '@/components/sections/OrgFilterChips';
 
-import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
+import { SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 import { abbreviateProgram } from '@/data/programs';
 import { CAMPUSES } from '@/data/campuses';
-
-// Shadcn UI Imports
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/shadcn/select';
 import { Button } from '@/components/ui/shadcn/button';
 
 export default function OrgBrowser() {
@@ -35,18 +27,14 @@ export default function OrgBrowser() {
     error,
   } = useOrgBrowser();
 
-  // Create a local state so the UI updates instantly when the user types
   const [localQuery, setLocalQuery] = useState(state.query);
 
-  // Sync URL changes back to local state (handles back/forward navigation)
-  // Functional setState bails out when values match, preventing cascading renders
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- safe: functional form prevents cascade
     setLocalQuery(prev => (prev !== state.query ? state.query : prev));
   }, [state.query]);
 
-  // Debounce: sync local input to URL state after user stops typing
-  const debouncedQuery = useDebounce(localQuery, ORG_BROWSER.DEBOUNCE_DELAY);
+  const debouncedQuery = useDebounce(localQuery, 300);
   useEffect(() => {
     if (debouncedQuery !== state.query) {
       dispatch('q', debouncedQuery);
@@ -123,94 +111,17 @@ export default function OrgBrowser() {
             </p>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-2 mb-8">
-              <div className="lg:col-span-2">
-                <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-                  Search
-                </label>
-                <SearchInput
-              value={localQuery}
-              onChange={e => setLocalQuery(e.target.value)}
-              onClear={() => setLocalQuery('')}
-              placeholder="Search by name, acronym, or tags..."
-              aria-label="Search organizations"
-            />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-                  Type
-                </label>
-                <Select
-                  value={state.orgType}
-                  onValueChange={value => dispatch('type', value)}
-                >
-                  <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-                      <SelectValue placeholder="All Types" />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {ORG_BROWSER.ORG_TYPE_OPTIONS.map(type => (
-                      <SelectItem key={`org-type-${type}`} value={type}>
-                        {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-                  Program
-                </label>
-                <Select
-                  value={state.program}
-                  onValueChange={value => dispatch('program', value)}
-                >
-                  <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
-                    <div className="flex items-center gap-2 truncate">
-                      <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-                      <SelectValue placeholder="All Programs" />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {programs.map(p => (
-                      <SelectItem key={p} value={p} title={p === 'All' ? '' : p}>
-                        {p === 'All' ? 'All Programs' : abbreviateProgram(p)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-                  Sort
-                </label>
-                <Select
-                  value={state.sortBy}
-                  onValueChange={value => dispatch('sort', value as SortOption)}
-                >
-                  <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground shrink-0" />
-                      <SelectValue placeholder="Sort by" />
-                    </div>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value={SORT_OPTIONS.ASC}>
-                      A-Z (Alphabetical)
-                    </SelectItem>
-                    <SelectItem value={SORT_OPTIONS.DESC}>Z-A (Reverse)</SelectItem>
-                    <SelectItem value={SORT_OPTIONS.NEWEST}>
-                      Newest Founded
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+          <OrgFilterBar
+            localQuery={localQuery}
+            setLocalQuery={setLocalQuery}
+            orgType={state.orgType}
+            onTypeChange={value => dispatch('type', value)}
+            program={state.program}
+            onProgramChange={value => dispatch('program', value)}
+            sortBy={state.sortBy}
+            onSortChange={value => dispatch('sort', value as SortOption)}
+            programs={programs}
+          />
 
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground font-medium">
@@ -236,26 +147,7 @@ export default function OrgBrowser() {
             )}
           </div>
 
-          {filterChips.length > 0 && (
-            <div className="mb-6 flex flex-wrap items-center gap-2">
-              {filterChips.map(chip => (
-                <span
-                  key={chip.key}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/60 px-3 py-1 text-xs font-medium text-foreground"
-                >
-                  {chip.label}
-                  <button
-                    type="button"
-                    onClick={() => removeFilter(chip.key)}
-                    className="ml-0.5 rounded-full p-0.5 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                    aria-label={`Remove ${chip.label} filter`}
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                </span>
-              ))}
-            </div>
-          )}
+          <OrgFilterChips chips={filterChips} onRemove={removeFilter} />
         </Section>
 
         <Section className="min-h-96">

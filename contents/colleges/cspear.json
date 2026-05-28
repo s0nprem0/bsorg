@@ -54,7 +54,8 @@
       "social": {
         "facebook": "https://www.facebook.com/profile.php?id=61564736113731"
       }
-    }
+    },
+    "parentSlug": "cspear-sc"
   },
   {
     "id": "2821dda7-e61b-48f4-821b-8957b6f817f7",
@@ -84,6 +85,7 @@
       "social": {
         "facebook": "https://www.facebook.com/profile.php?id=61551540894878"
       }
-    }
+    },
+    "parentSlug": "cspear-sc"
   }
 ]

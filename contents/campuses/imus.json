@@ -35,7 +35,7 @@
       "accredited": true
     },
     "content": {
-      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Information Technology of Cavite State University – Imus Campus."
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Information Technology of Cavite State University \u2013 Imus Campus."
     },
     "assets": {
       "logoUrl": "/campuses/imus/bits-imus.jpg"
@@ -45,7 +45,8 @@
       "social": {
         "facebook": "https://www.facebook.com/bitspageofficial"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "bas-imus",
@@ -61,7 +62,7 @@
       "accredited": true
     },
     "content": {
-      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Business Administration of Cavite State University – Imus Campus."
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Business Administration of Cavite State University \u2013 Imus Campus."
     },
     "assets": {
       "logoUrl": "/campuses/imus/bas-imus.jpg"
@@ -71,7 +72,8 @@
       "social": {
         "facebook": "https://www.facebook.com/BAS.CvSUImus"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "edge-imus",
@@ -97,7 +99,8 @@
       "social": {
         "facebook": "https://www.facebook.com/edgecares"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "chats-imus",
@@ -122,7 +125,8 @@
       "social": {
         "facebook": "https://www.facebook.com/chatscvsu.imus/"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "csc-imus",
@@ -145,7 +149,8 @@
       "social": {
         "facebook": "https://www.facebook.com/cvsucomputerscienceclique"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "cyle-imus",
@@ -168,7 +173,8 @@
       "social": {
         "facebook": "https://www.facebook.com/CvSU.CYLE/"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "cavcomm-imus",
@@ -192,7 +198,8 @@
       "social": {
         "facebook": "https://www.facebook.com/profile.php?id=100066918155631"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "cihs-imus",
@@ -208,7 +215,7 @@
       "foundedYear": 2011
     },
     "content": {
-      "shortDescription": "𝑯𝒐𝒏𝒐𝒓𝒊𝒏𝒈 𝑬𝒙𝒄𝒆𝒍𝒍𝒆𝒏𝒄𝒆, 𝑰𝒏𝒔𝒑𝒊𝒓𝒊𝒏𝒈 𝒕𝒉𝒆 𝒀𝒐𝒖𝒕𝒉"
+      "shortDescription": "\ud835\udc6f\ud835\udc90\ud835\udc8f\ud835\udc90\ud835\udc93\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc6c\ud835\udc99\ud835\udc84\ud835\udc86\ud835\udc8d\ud835\udc8d\ud835\udc86\ud835\udc8f\ud835\udc84\ud835\udc86, \ud835\udc70\ud835\udc8f\ud835\udc94\ud835\udc91\ud835\udc8a\ud835\udc93\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc95\ud835\udc89\ud835\udc86 \ud835\udc80\ud835\udc90\ud835\udc96\ud835\udc95\ud835\udc89"
     },
     "assets": {
       "logoUrl": "/campuses/imus/cihs-imus.jpg"
@@ -241,7 +248,8 @@
       "social": {
         "facebook": "https://www.facebook.com/YOPACvSUImus"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "sinag-tala-imus",
@@ -253,7 +261,12 @@
     "type": "Performing Arts Group",
     "category": "Imus Campus",
     "metadata": {
-      "tags": ["Performing Arts", "Dance", "Theater", "Music"],
+      "tags": [
+        "Performing Arts",
+        "Dance",
+        "Theater",
+        "Music"
+      ],
       "accredited": true,
       "foundedYear": 2008
     },
@@ -296,7 +309,8 @@
       "social": {
         "facebook": "https://www.facebook.com/SMSCvSUImus/"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   },
   {
     "id": "oms-imus",
@@ -340,6 +354,7 @@
       "social": {
         "facebook": "https://www.facebook.com/JMACvSUI"
       }
-    }
+    },
+    "parentSlug": "csg-imus"
   }
 ]

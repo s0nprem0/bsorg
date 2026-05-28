@@ -54,7 +54,8 @@
       "social": {
         "facebook": "https://www.facebook.com/ISSS.CCJ.CvSU"
       }
-    }
+    },
+    "parentSlug": "ccj-sc"
   },
   {
     "id": "d7d89838-53d4-4134-ac51-d234658c8bc3",
@@ -84,6 +85,7 @@
       "social": {
         "facebook": "https://www.facebook.com/CCJCriSoc"
       }
-    }
+    },
+    "parentSlug": "ccj-sc"
   }
 ]

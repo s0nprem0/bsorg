@@ -61,6 +61,7 @@ export default function OrgBrowser() {
     dispatch('type', null);
     dispatch('program', null);
     dispatch('sort', null);
+    dispatch('campusId', null);
   }, [dispatch]);
 
   const filterChips: { label: string; key: string }[] = [];
@@ -214,11 +215,11 @@ export default function OrgBrowser() {
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground font-medium">
               Showing{' '}
-              <span className="font-bold text-info">
+              <span className="font-bold text-foreground bg-muted/60 px-1.5 py-0.5 rounded">
                 {visibleOrgs.length}
               </span>{' '}
               of{' '}
-              <span className="font-bold text-info">{filteredCount}</span>{' '}
+              <span className="font-bold text-foreground bg-muted/60 px-1.5 py-0.5 rounded">{filteredCount}</span>{' '}
               organizations
             </p>
 
@@ -240,7 +241,7 @@ export default function OrgBrowser() {
               {filterChips.map(chip => (
                 <span
                   key={chip.key}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-xs font-medium text-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/60 px-3 py-1 text-xs font-medium text-foreground"
                 >
                   {chip.label}
                   <button
@@ -290,12 +291,16 @@ export default function OrgBrowser() {
           ) : (
             <>
               <OrgGrid organizations={visibleOrgs} columns={4} />
-              {hasMore && (
+              {hasMore ? (
                 <div
                   ref={loadMoreRef}
                   className="w-full h-24 flex items-center justify-center mt-8 text-muted-foreground"
                 >
                   <Loader2 className="w-8 h-8 animate-spin opacity-50" />
+                </div>
+              ) : visibleOrgs.length > 0 && (
+                <div className="w-full flex items-center justify-center mt-8 text-xs text-muted-foreground/60">
+                  All {filteredCount} organization{filteredCount !== 1 ? 's' : ''} loaded
                 </div>
               )}
             </>

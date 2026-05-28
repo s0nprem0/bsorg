@@ -28,6 +28,13 @@ export default function OrganizationCard({
 }: OrganizationCardProps) {
   const [imageError, setImageError] = useState(false);
 
+  const acronym = org.acronym || org.name.substring(0, 2).toUpperCase();
+  const acronymClass = acronym.length > 6
+    ? 'text-lg sm:text-xl'
+    : large
+      ? 'text-5xl'
+      : 'text-4xl';
+
   const socialEntries = useMemo(
     () =>
       org.contact?.social
@@ -63,13 +70,17 @@ export default function OrganizationCard({
 
         <div
           className={cn(
-            'flex h-full w-full items-center justify-center bg-muted font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110 z-20',
+            'flex h-full w-full items-center justify-center font-extrabold tracking-tighter text-muted-foreground transition-transform duration-500 group-hover:scale-110 z-20 overflow-hidden truncate max-w-full px-1',
             org.assets?.logoUrl && !imageError ? 'hidden' : 'flex',
-            large ? 'text-5xl' : 'text-4xl'
+            acronymClass
           )}
         >
-          {org.acronym || org.name.substring(0, 2).toUpperCase()}
+          {acronym}
         </div>
+        <div className={cn(
+          'absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-10',
+          org.assets?.logoUrl && !imageError ? 'hidden' : 'block'
+        )} />
       </figure>
 
       <div className="flex min-w-0 flex-1 flex-col">
@@ -77,8 +88,8 @@ export default function OrganizationCard({
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             {campusName && (
               <Badge
-                variant="secondary"
-                className="w-fit text-[10px] uppercase tracking-wider"
+                variant="outline"
+                className="w-fit text-[10px] uppercase tracking-wider border-muted-foreground/20 text-muted-foreground/80"
               >
                 {campusName}
               </Badge>
@@ -92,7 +103,7 @@ export default function OrganizationCard({
               {org.name}
             </Link>
           </CardTitle>
-          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed">
+          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
             {org.content?.shortDescription ||
               org.content?.about ||
               'No description available.'}
@@ -102,7 +113,7 @@ export default function OrganizationCard({
         {(org.programId || socialEntries.length > 0) && (
           <CardFooter className="relative z-10 flex flex-col items-start gap-1.5 px-3 pb-3 sm:px-4 sm:pb-4">
             {org.programId && (
-              <span className="text-[10px] font-medium text-muted-foreground/50" title={org.programId}>
+              <span className="text-[10px] font-medium text-muted-foreground/70" title={org.programId}>
                 {abbreviateProgram(org.programId)}
               </span>
             )}

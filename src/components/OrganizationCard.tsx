@@ -30,7 +30,7 @@ export default function OrganizationCard({
 
   const acronym = org.acronym || org.name.substring(0, 2).toUpperCase();
   const acronymClass =
-    acronym.length > 6 ? 'text-lg sm:text-xl' : large ? 'text-5xl' : 'text-4xl';
+    acronym.length > 6 ? 'text-lg sm:text-xl' : large ? 'text-6xl' : 'text-4xl';
 
   const socialEntries = useMemo(
     () =>
@@ -44,13 +44,13 @@ export default function OrganizationCard({
     <Card
       className={cn(
         'group relative flex h-full w-full flex-row transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md hover:ring-1 hover:ring-primary/20 bg-card text-card-foreground cursor-pointer',
-        large ? 'min-h-40' : 'min-h-32'
+        large ? 'min-h-48' : 'min-h-32'
       )}
     >
       <figure
         className={cn(
           'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg transition-colors group-hover:bg-primary/5',
-          large ? 'w-28 sm:w-36' : 'w-20 sm:w-28'
+          large ? 'w-32 sm:w-44' : 'w-20 sm:w-28'
         )}
       >
         {org.assets?.logoUrl && !imageError ? (
@@ -82,8 +82,8 @@ export default function OrganizationCard({
       </figure>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <CardHeader className="mb-auto px-3 pb-0 pt-3 sm:px-4 sm:pt-4">
-          <div className="relative z-20 flex flex-wrap items-center gap-1.5 mb-2">
+        <CardHeader className={cn('mb-auto', large ? 'px-4 pb-0 pt-4 sm:px-6 sm:pt-6' : 'px-3 pb-0 pt-3 sm:px-4 sm:pt-4')}>
+          <div className="relative z-10 flex flex-wrap items-center gap-1.5 mb-2">
             {campusName && (
               <Badge
                 variant="outline"
@@ -104,7 +104,7 @@ export default function OrganizationCard({
             )}
           </div>
 
-          <CardTitle className="line-clamp-2 text-base transition-colors group-hover:text-primary">
+          <CardTitle className={cn('line-clamp-2 transition-colors group-hover:text-primary', large ? 'text-lg sm:text-xl' : 'text-base')}>
             <Link
               to={`/org/${org.slug}`}
               className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-0"
@@ -112,7 +112,7 @@ export default function OrganizationCard({
               {org.name}
             </Link>
           </CardTitle>
-          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
+          <CardDescription className="mt-1.5 line-clamp-2 text-xs leading-relaxed">
             {org.content?.shortDescription ||
               org.content?.about ||
               'No description available.'}
@@ -120,7 +120,7 @@ export default function OrganizationCard({
         </CardHeader>
 
         {socialEntries.length > 0 && (
-          <CardFooter className="relative z-20 flex flex-col items-start gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
+          <CardFooter className={cn('relative z-20 flex flex-col items-start gap-2', large ? 'px-4 pb-4 sm:px-6 sm:pb-6' : 'px-3 pb-3 sm:px-4 sm:pb-4')}>
             <div className="flex items-center gap-2">
               {(socialEntries.length > 4
                 ? socialEntries.slice(0, 3)
@@ -158,8 +158,8 @@ export default function OrganizationCard({
                   >
                     +{socialEntries.length - 3}
                   </Button>
-                  <div className="pointer-events-none absolute left-full ml-1.5 top-1/2 z-50 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
-                    <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 shadow-sm">
+                  <div className="pointer-events-none absolute left-full top-1/2 z-50 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100">
+                    <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-2 pl-2.5 shadow-sm">
                       {socialEntries.slice(3).map(([network, url]) => (
                         <a
                           key={network}

@@ -8,10 +8,7 @@
     "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "Academic",
-        "College of Nursing"
-      ]
+      "tags": ["Academic", "College of Nursing"]
     },
     "assets": {
       "logoUrl": "/colleges/con/con-sc.jpg"
@@ -29,15 +26,13 @@
     "slug": "phismet",
     "name": "Philippine Society of Medical Technology Students - CVSU Chapter",
     "acronym": "PHISMETS",
+    "programId": "Bachelor of Science in Medical Technology",
     "status": "Active",
     "type": "Academic",
     "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "medtech",
-        "con"
-      ]
+      "tags": ["medtech", "con"]
     },
     "assets": {
       "logoUrl": "/colleges/con/phismet.jpg"
@@ -48,9 +43,7 @@
         "facebook": "https://www.facebook.com/PHISMETS.CvSU"
       }
     },
-    "parentSlug": [
-      "con-sc"
-    ]
+    "parentSlug": ["con-sc"]
   },
   {
     "id": "ismap",
@@ -62,9 +55,7 @@
     "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
-      "tags": [
-        "midwifery"
-      ],
+      "tags": ["midwifery"],
       "foundedYear": 2023
     },
     "assets": {
@@ -76,8 +67,6 @@
         "facebook": "https://www.facebook.com/ISMAPCvSU"
       }
     },
-    "parentSlug": [
-      "con-sc"
-    ]
+    "parentSlug": ["con-sc"]
   }
 ]

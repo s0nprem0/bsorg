@@ -19,7 +19,7 @@ export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; cou
     }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
 
   return (
-    <div className={cn('grid gap-4 sm:gap-6', columnClasses)}>
+    <div className={cn('grid gap-6 auto-rows-fr', columnClasses)}>
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
@@ -61,11 +61,11 @@ export default function OrgGrid({
     }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
 
   return (
-    <div className={cn('grid gap-4 sm:gap-6', columnClasses, className)}>
+    <div className={cn('grid gap-6 auto-rows-fr', columnClasses, className)}>
       {organizations.map((org, i) => (
         <div
           key={org.id}
-          className="animate-fade-in-up"
+          className="animate-fade-in-up h-full"
           style={{ animationDelay: `${Math.min(i, 20) * 60}ms` }}
         >
           <OrganizationCard

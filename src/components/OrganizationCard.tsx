@@ -73,7 +73,7 @@ export default function OrganizationCard({
       >
         <figure
           className={cn(
-            'absolute left-4 sm:left-5 flex shrink-0 items-center justify-center rounded-xl border-4 border-card bg-muted overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-105',
+            'absolute left-4 sm:left-5 flex shrink-0 items-center justify-center bg-muted overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-105',
             large ? '-bottom-10 h-20 w-20' : '-bottom-8 h-20 w-20'
           )}
         >

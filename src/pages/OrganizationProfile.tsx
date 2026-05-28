@@ -36,10 +36,12 @@ export default function OrganizationProfile() {
     [allOrgs, slug]
   );
   const parentOrgs = useMemo(
-    () =>
-      org?.parentSlug?.length
-        ? allOrgs.filter(o => org.parentSlug!.some(p => o.slug.toLowerCase() === p.toLowerCase()))
-        : [],
+    () => {
+      const slugs = org?.parentSlug;
+      return slugs?.length
+        ? allOrgs.filter(o => slugs.some(p => o.slug.toLowerCase() === p.toLowerCase()))
+        : [];
+    },
     [allOrgs, org]
   );
 
@@ -62,7 +64,7 @@ export default function OrganizationProfile() {
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
 
           <div className="animate-fade-in-up flex items-center gap-3">
-            <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-1.5 shrink-0 text-muted-foreground hover:text-foreground">
+            <Button variant="ghost" size="sm" onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/org'); }} className="gap-1.5 shrink-0 text-muted-foreground hover:text-foreground">
               <ArrowLeft size={16} />
               <span className="hidden sm:inline">Back</span>
             </Button>

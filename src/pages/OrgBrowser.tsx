@@ -10,6 +10,7 @@ import { SearchInput } from '@/components/ui/SearchInput';
 
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 import { abbreviateProgram } from '@/data/programs';
+import { CAMPUSES } from '@/data/campuses';
 
 // Shadcn UI Imports
 import {
@@ -52,7 +53,7 @@ export default function OrgBrowser() {
     }
   }, [debouncedQuery, dispatch, state.query]);
 
-  const hasActiveFilters = state.orgType !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC;
+  const hasActiveFilters = !!state.query || state.orgType !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC || !!state.campusId;
 
   const clearAllFilters = useCallback(() => {
     setLocalQuery('');
@@ -67,6 +68,10 @@ export default function OrgBrowser() {
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
   if (state.program !== 'All') filterChips.push({ label: abbreviateProgram(state.program), key: 'program' });
   if (state.sortBy !== SORT_OPTIONS.ASC) filterChips.push({ label: state.sortBy, key: 'sort' });
+  if (state.campusId) {
+    const name = CAMPUSES.find(c => c.id === Number(state.campusId))?.name || `Campus ${state.campusId}`;
+    filterChips.push({ label: name, key: 'campusId' });
+  }
 
   const removeFilter = useCallback(
     (key: string) => {

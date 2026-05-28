@@ -14,6 +14,12 @@ export default function Hero() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-100 bg-primary/15 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center z-10">
+        <img
+          src="/hero.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute -top-20 right-0 w-80 sm:w-96 opacity-10 sm:opacity-20 pointer-events-none select-none"
+        />
         <Badge
           variant="secondary"
           className="mb-8 bg-primary/20 text-primary hover:bg-primary/30 border-none px-4 py-1.5 text-sm backdrop-blur-sm shadow-sm"

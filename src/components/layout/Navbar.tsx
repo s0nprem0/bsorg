@@ -112,7 +112,6 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-75 sm:w-100">
             <div className="flex flex-col gap-6 pt-10">
-              {/* Fix: Added onClick={() => setIsOpen(false)} to all mobile links */}
               <NavLink
                 to="/"
                 end

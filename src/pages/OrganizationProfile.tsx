@@ -27,6 +27,7 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
+  DialogTitle,
 } from '@/components/ui/shadcn/dialog';
 
 function Skeleton({ className }: { className?: string }) {
@@ -109,6 +110,7 @@ const socialBrandStyles: Record<string, string> = {
   x: 'hover:bg-black hover:text-white',
   tiktok: 'hover:bg-black hover:text-white',
   youtube: 'hover:bg-[#FF0000] hover:text-white',
+  linkedin: 'hover:bg-[#0A66C2] hover:text-white',
   email: 'hover:bg-primary hover:text-primary-foreground',
   website: 'hover:bg-primary hover:text-primary-foreground',
 };
@@ -161,18 +163,20 @@ export default function OrganizationProfile() {
             />
           </div>
 
-          {org.assets?.bannerUrl && (
-            <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
-              <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
+          <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
+            <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1]">
+              {org.assets?.bannerUrl ? (
                 <img
                   src={org.assets.bannerUrl}
                   alt={`${org.name} banner`}
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="eager"
                 />
-              </div>
+              ) : (
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-accent/5 border border-border/50 rounded-xl" />
+              )}
             </div>
-          )}
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 auto-rows-min">
 
@@ -372,8 +376,9 @@ export default function OrganizationProfile() {
                               alt={`${org.name} gallery ${i + 1}`}
                               className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
                               loading="lazy"
+                              onError={e => { e.currentTarget.style.display = 'none'; }}
                             />
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               <div className="rounded-full bg-background/60 backdrop-blur-sm p-2.5">
                                 <ImageIcon size={18} className="text-foreground" />
                               </div>
@@ -381,10 +386,12 @@ export default function OrganizationProfile() {
                           </button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-1 sm:p-2">
+                          <DialogTitle className="sr-only">{`${org.name} gallery image ${i + 1}`}</DialogTitle>
                           <img
                             src={url}
                             alt={`${org.name} gallery ${i + 1}`}
                             className="w-full max-h-[85vh] object-contain rounded-lg"
+                            onError={e => { e.currentTarget.style.display = 'none'; }}
                           />
                         </DialogContent>
                       </Dialog>

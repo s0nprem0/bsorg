@@ -14,6 +14,7 @@ export function useOrgBrowser() {
   const query = searchParams.get('q') || '';
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
   const program = searchParams.get('program') || 'All';
+  const campusIdParam = searchParams.get('campusId');
 
   // Use the constant for the default fallback
   const sortBy = (searchParams.get('sort') as SortOption) || SORT_OPTIONS.ASC;
@@ -46,7 +47,8 @@ export function useOrgBrowser() {
     const result = allOrgs.filter(org => {
       const matchesType = orgType === 'All' || org.type === orgType;
       const matchesProgram = program === 'All' || org.programId === program;
-      if (!matchesType || !matchesProgram) return false;
+      const matchesCampus = !campusIdParam || org.campusId === Number(campusIdParam);
+      if (!matchesType || !matchesProgram || !matchesCampus) return false;
       if (!q) return true;
 
       return (
@@ -71,7 +73,7 @@ export function useOrgBrowser() {
     });
 
     return result;
-  }, [allOrgs, query, orgType, sortBy, program]);
+  }, [allOrgs, query, orgType, sortBy, program, campusIdParam]);
 
   const totalPages = Math.ceil(
     filteredOrgs.length / ORG_BROWSER.ITEMS_PER_PAGE
@@ -95,7 +97,7 @@ export function useOrgBrowser() {
   }, [allOrgs]);
 
   return {
-    state: { query, orgType, sortBy, program },
+    state: { query, orgType, sortBy, program, campusId: campusIdParam || null },
     dispatch: setFilter,
     visibleOrgs,
     hasMore: currentPage < totalPages,

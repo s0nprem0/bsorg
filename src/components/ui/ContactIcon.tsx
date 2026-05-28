@@ -6,6 +6,7 @@ import {
   FaTiktok,
   FaXTwitter,
   FaYoutube,
+  FaLinkedin,
 } from 'react-icons/fa6';
 
 const iconMap: Record<string, (size: number) => JSX.Element> = {
@@ -16,6 +17,7 @@ const iconMap: Record<string, (size: number) => JSX.Element> = {
   tiktok: (size: number) => <FaTiktok size={size} />,
   x: (size: number) => <FaXTwitter size={size} />,
   youtube: (size: number) => <FaYoutube size={size} />,
+  linkedin: (size: number) => <FaLinkedin size={size} />,
 };
 
 export function ContactIcon({

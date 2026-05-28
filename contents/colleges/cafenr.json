@@ -57,7 +57,9 @@
         "instagram": "https://www.instagram.com/matayuyoncss/"
       }
     },
-    "parentSlug": "cafenr-sc"
+    "parentSlug": [
+      "cafenr-sc"
+    ]
   },
   {
     "id": "69bd6a6e-fbf2-44c8-94a3-a9729d42adb1",
@@ -86,7 +88,9 @@
         "facebook": "https://www.facebook.com/itspaddocks"
       }
     },
-    "parentSlug": "cafenr-sc"
+    "parentSlug": [
+      "cafenr-sc"
+    ]
   },
   {
     "id": "b12a77dc-44f3-40a2-8aa2-1458e1bb4005",
@@ -116,7 +120,9 @@
         "facebook": "https://www.facebook.com/salinlahicvsu"
       }
     },
-    "parentSlug": "cafenr-sc"
+    "parentSlug": [
+      "cafenr-sc"
+    ]
   },
   {
     "id": "0d347d3e-2a95-456b-a0c2-1d29eba89343",
@@ -145,7 +151,9 @@
         "facebook": "https://www.facebook.com/profile.php?id=61552235964596"
       }
     },
-    "parentSlug": "cafenr-sc"
+    "parentSlug": [
+      "cafenr-sc"
+    ]
   },
   {
     "id": "fcf9727f-a633-4ea8-85fc-1290d4bd7b31",
@@ -175,6 +183,8 @@
         "facebook": "https://www.facebook.com/PAFTCvSUChapter"
       }
     },
-    "parentSlug": "cafenr-sc"
+    "parentSlug": [
+      "cafenr-sc"
+    ]
   }
 ]

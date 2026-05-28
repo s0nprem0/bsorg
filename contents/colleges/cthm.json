@@ -55,7 +55,9 @@
         "facebook": "https://www.facebook.com/tourismstudentsassociation/"
       }
     },
-    "parentSlug": "cthm-sc"
+    "parentSlug": [
+      "cthm-sc"
+    ]
   },
   {
     "id": "e2939a54-d8d3-42da-972c-d249ddde731a",
@@ -86,6 +88,8 @@
         "facebook": "https://www.facebook.com/WeAreCHARMS"
       }
     },
-    "parentSlug": "cthm-sc"
+    "parentSlug": [
+      "cthm-sc"
+    ]
   }
 ]

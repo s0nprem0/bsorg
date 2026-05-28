@@ -46,7 +46,9 @@
         "facebook": "https://www.facebook.com/bitspageofficial"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "bas-imus",
@@ -73,7 +75,9 @@
         "facebook": "https://www.facebook.com/BAS.CvSUImus"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "edge-imus",
@@ -100,7 +104,9 @@
         "facebook": "https://www.facebook.com/edgecares"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "chats-imus",
@@ -126,7 +132,9 @@
         "facebook": "https://www.facebook.com/chatscvsu.imus/"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "csc-imus",
@@ -150,7 +158,9 @@
         "facebook": "https://www.facebook.com/cvsucomputerscienceclique"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "cyle-imus",
@@ -174,7 +184,9 @@
         "facebook": "https://www.facebook.com/CvSU.CYLE/"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "cavcomm-imus",
@@ -199,7 +211,9 @@
         "facebook": "https://www.facebook.com/profile.php?id=100066918155631"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "cihs-imus",
@@ -249,7 +263,9 @@
         "facebook": "https://www.facebook.com/YOPACvSUImus"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "sinag-tala-imus",
@@ -310,7 +326,9 @@
         "facebook": "https://www.facebook.com/SMSCvSUImus/"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "csg-imus"
+    ]
   },
   {
     "id": "oms-imus",
@@ -355,6 +373,8 @@
         "facebook": "https://www.facebook.com/JMACvSUI"
       }
     },
-    "parentSlug": "csg-imus"
+    "parentSlug": [
+      "bas-imus"
+    ]
   }
 ]

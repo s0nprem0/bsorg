@@ -120,14 +120,14 @@ export default function OrganizationProfile() {
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
 
   const subOrgs = useMemo(
-    () => (slug ? allOrgs.filter(o => o.parentSlug === slug) : []),
+    () => (slug ? allOrgs.filter(o => o.parentSlug?.includes(slug)) : []),
     [allOrgs, slug]
   );
-  const parentOrg = useMemo(
+  const parentOrgs = useMemo(
     () =>
-      org?.parentSlug
-        ? allOrgs.find(o => o.slug.toLowerCase() === org.parentSlug!.toLowerCase())
-        : undefined,
+      org?.parentSlug?.length
+        ? allOrgs.filter(o => org.parentSlug!.some(p => o.slug.toLowerCase() === p.toLowerCase()))
+        : [],
     [allOrgs, org]
   );
 
@@ -231,18 +231,23 @@ export default function OrganizationProfile() {
                 {org.metadata?.foundedYear && (
                   <DetailRow label="Founded" value={String(org.metadata.foundedYear)} />
                 )}
-                {parentOrg && (
+                {parentOrgs.length > 0 && (
                   <div>
                     <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">
-                      Part of
+                      {parentOrgs.length === 1 ? 'Part of' : 'Part of'}
                     </p>
-                    <Link
-                      to={`/org/${parentOrg.slug}`}
-                      className="font-semibold text-sm text-primary hover:underline inline-flex items-center gap-1"
-                    >
-                      {parentOrg.acronym || parentOrg.name}
-                      <ChevronRight size={14} />
-                    </Link>
+                    <div className="flex flex-wrap gap-1.5">
+                      {parentOrgs.map(p => (
+                        <Link
+                          key={p.slug}
+                          to={`/org/${p.slug}`}
+                          className="font-semibold text-sm text-primary hover:underline inline-flex items-center gap-1"
+                        >
+                          {p.acronym || p.name}
+                          <ChevronRight size={14} />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </CardContent>

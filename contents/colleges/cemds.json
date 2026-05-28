@@ -56,7 +56,9 @@
         "instagram": "https://www.instagram.com/officialSFE/"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "3e434c19-dd1e-419f-a50c-42a8166e0980",
@@ -87,7 +89,9 @@
         "facebook": "https://www.facebook.com/issacvsu"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "99c1da23-4a64-4f20-839c-3293f9e51ed1",
@@ -118,7 +122,9 @@
         "facebook": "https://www.facebook.com/CDDMgt"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "4abf6ac5-6daa-4957-bbdd-970429b9572a",
@@ -149,7 +155,9 @@
         "facebook": "https://www.facebook.com/pasoa.cemds"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "4fa829cf-a1a2-40f3-9762-9f53a64c381c",
@@ -180,7 +188,9 @@
         "facebook": "https://www.facebook.com/jpiacvsu"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "e0ad619f-1c34-45e0-9f95-c3b49f8245bb",
@@ -213,7 +223,9 @@
         "x": "https://twitter.com/jfinex_cvsu"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "9094efc5-0867-4f77-a16b-fac24f96e69c",
@@ -244,7 +256,9 @@
         "facebook": "https://www.facebook.com/JPMAPCvSUMain"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "598a782c-23ed-42b6-a134-7b34e5c711ac",
@@ -276,7 +290,9 @@
         "x": "https://twitter.com/CvSU_JMA"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   },
   {
     "id": "c7ae7c1e-b1ae-44bf-944c-ffd2a5fcf6b6",
@@ -307,6 +323,8 @@
         "facebook": "https://www.facebook.com/joma.cvsumain"
       }
     },
-    "parentSlug": "cemds-sc"
+    "parentSlug": [
+      "cemds-sc"
+    ]
   }
 ]

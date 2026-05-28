@@ -48,7 +48,9 @@
         "facebook": "https://www.facebook.com/PHISMETS.CvSU"
       }
     },
-    "parentSlug": "con-sc"
+    "parentSlug": [
+      "con-sc"
+    ]
   },
   {
     "id": "ismap",
@@ -74,6 +76,8 @@
         "facebook": "https://www.facebook.com/ISMAPCvSU"
       }
     },
-    "parentSlug": "con-sc"
+    "parentSlug": [
+      "con-sc"
+    ]
   }
 ]

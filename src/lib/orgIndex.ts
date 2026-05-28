@@ -21,7 +21,7 @@ export const orgValidationSchema = z.object({
   campusId: z.number(),
   category: z.string(),
   programId: z.string().optional(),
-  parentSlug: z.string().optional(),
+  parentSlug: z.array(z.string()).optional(),
   metadata: z
     .object({
       foundedYear: z.number().optional(),

@@ -83,11 +83,6 @@ export default function OrganizationCard({
                 {campusName}
               </Badge>
             )}
-            {org.programId && (
-              <span className="text-[10px] font-medium text-muted-foreground/70" title={org.programId}>
-                {abbreviateProgram(org.programId)}
-              </span>
-            )}
           </div>
           <CardTitle className="line-clamp-2 text-base transition-colors group-hover:text-primary">
             <Link
@@ -104,8 +99,13 @@ export default function OrganizationCard({
           </CardDescription>
         </CardHeader>
 
-        {socialEntries.length > 0 && (
+        {(org.programId || socialEntries.length > 0) && (
           <CardFooter className="relative z-10 flex flex-wrap items-center gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
+            {org.programId && (
+              <span className="mr-auto text-[10px] font-medium text-muted-foreground/50" title={org.programId}>
+                {abbreviateProgram(org.programId)}
+              </span>
+            )}
             {(
               socialEntries.length > 4
                 ? socialEntries.slice(0, 3)

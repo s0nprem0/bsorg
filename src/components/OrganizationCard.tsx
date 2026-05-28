@@ -97,15 +97,15 @@ export default function OrganizationCard({
               org.content?.about ||
               'No description available.'}
           </CardDescription>
+          {org.programId && (
+            <span className="mt-2 block text-[10px] font-medium text-muted-foreground/50" title={org.programId}>
+              {abbreviateProgram(org.programId)}
+            </span>
+          )}
         </CardHeader>
 
-        {(org.programId || socialEntries.length > 0) && (
+        {socialEntries.length > 0 && (
           <CardFooter className="relative z-10 flex flex-wrap items-center gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
-            {org.programId && (
-              <span className="mr-auto text-[10px] font-medium text-muted-foreground/50" title={org.programId}>
-                {abbreviateProgram(org.programId)}
-              </span>
-            )}
             {(
               socialEntries.length > 4
                 ? socialEntries.slice(0, 3)

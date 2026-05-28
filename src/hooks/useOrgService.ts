@@ -9,10 +9,6 @@ export const service: OrgService = import.meta.env.VITE_ORG_API_URL
   ? ApiOrgService
   : StaticOrgService;
 
-export function useOrgService(): OrgService {
-  return service;
-}
-
 // --- Data store for sync-compatible access ---
 
 let storeData: Organization[] = [];

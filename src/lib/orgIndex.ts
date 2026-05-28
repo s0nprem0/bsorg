@@ -19,6 +19,7 @@ export const orgValidationSchema = z.object({
   status: orgStatusSchema,
   type: orgTypeSchema,
   campusId: z.number(),
+  category: z.string(),
   programId: z.string().optional(),
   parentSlug: z.string().optional(),
   metadata: z
@@ -73,7 +74,6 @@ export const orgValidationSchema = z.object({
 export type Organization = z.infer<typeof orgValidationSchema>;
 export type OrgStatus = z.infer<typeof orgStatusSchema>;
 export type OrgType = z.infer<typeof orgTypeSchema>;
-export type FilterCategory = string | 'All';
 
 // 2. Singleton Registry
 const rawModules = import.meta.glob<{ default: unknown }>(

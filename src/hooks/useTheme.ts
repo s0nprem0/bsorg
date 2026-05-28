@@ -32,10 +32,5 @@ export function useTheme() {
     });
   }, []);
 
-  const setTheme = useCallback((t: Theme) => {
-    setThemeState(t);
-    localStorage.setItem(STORAGE_KEY, t);
-  }, []);
-
-  return { theme, toggleTheme, setTheme };
+  return { theme, toggleTheme };
 }

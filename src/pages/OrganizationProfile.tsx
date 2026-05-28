@@ -366,13 +366,14 @@ export default function OrganizationProfile() {
                         <DialogTrigger asChild>
                           <button
                             type="button"
-                            className="group relative overflow-hidden rounded-lg aspect-square bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            className="group relative flex items-center justify-center overflow-hidden rounded-lg aspect-square bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                             aria-label={`View gallery image ${i + 1}`}
                           >
+                            <ImageIcon size={24} className="text-muted-foreground/40" />
                             <img
                               src={url}
                               alt={`${org.name} gallery ${i + 1}`}
-                              className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
+                              className="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
                               loading="lazy"
                               onError={e => { e.currentTarget.style.display = 'none'; }}
                             />
@@ -383,7 +384,7 @@ export default function OrganizationProfile() {
                             </div>
                           </button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-1 sm:p-2">
+                        <DialogContent className="max-w-4xl w-[90vw] bg-black/95 border-none p-4">
                           <DialogTitle className="sr-only">{`${org.name} gallery image ${i + 1}`}</DialogTitle>
                           <img
                             src={url}

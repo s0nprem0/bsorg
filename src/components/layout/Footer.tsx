@@ -13,8 +13,8 @@ const Footer = () => {
       { label: 'Non-Academic Orgs', href: '/org?type=Non-Academic' },
     ],
     About: [
-      { label: 'About BetterOSAS', href: '#' },
-      { label: 'Submit Feedback', href: '#' },
+      { label: 'About BetterOSAS', href: 'https://github.com/s0nprem0/bsorg' },
+      { label: 'Submit Feedback', href: 'https://github.com/s0nprem0/bsorg/issues' },
     ],
   };
 
@@ -54,12 +54,23 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {links.map(link => (
                     <li key={link.label}>
-                      <Link
-                        to={link.href}
-                        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                      >
-                        {link.label}
-                      </Link>
+                      {link.href.startsWith('http') ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

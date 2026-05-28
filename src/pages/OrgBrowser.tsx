@@ -3,7 +3,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { Search, Loader2, X } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
-import OrgGrid from '@/components/layout/OrgGrid';
+import OrgGrid, { GridSkeleton } from '@/components/layout/OrgGrid';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import OrgFilterBar from '@/components/sections/OrgFilterBar';
@@ -152,23 +152,24 @@ export default function OrgBrowser() {
 
         <Section className="min-h-96">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-24">
-              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-              <p className="mt-4 text-sm text-muted-foreground">Loading organizations...</p>
-            </div>
+            <GridSkeleton count={8} />
           ) : error ? (
             <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-destructive/50 bg-destructive/10 text-center">
               <p className="text-lg font-semibold text-destructive">Failed to load organizations</p>
               <p className="mt-1 text-sm text-muted-foreground">{error.message}</p>
             </div>
           ) : filteredCount === 0 ? (
-            <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-border bg-muted/30 text-center">
-              <Search className="h-12 w-12 text-muted-foreground mb-4 opacity-50" />
-              <p className="text-lg font-semibold text-foreground">
+            <div className="flex flex-col items-center justify-center py-24 rounded-2xl border border-dashed border-border bg-muted/20 text-center">
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-muted/60">
+                <Search className="h-7 w-7 text-muted-foreground" />
+              </div>
+              <p className="text-xl font-bold text-foreground">
                 No organizations found
               </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Try adjusting your search or filters.
+              <p className="mt-1.5 max-w-md text-sm text-muted-foreground">
+                {hasActiveFilters
+                  ? 'Try adjusting your search or filters to find what you are looking for.'
+                  : 'There are no organizations to display right now.'}
               </p>
               {hasActiveFilters && (
                 <Button

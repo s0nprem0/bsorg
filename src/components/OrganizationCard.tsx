@@ -43,13 +43,13 @@ export default function OrganizationCard({
   return (
     <Card
       className={cn(
-        'group relative flex h-full w-full flex-row transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md bg-card text-card-foreground',
+        'group relative flex h-full w-full flex-row transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md hover:ring-1 hover:ring-primary/20 bg-card text-card-foreground cursor-pointer',
         large ? 'min-h-40' : 'min-h-32'
       )}
     >
       <figure
         className={cn(
-          'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg',
+          'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg transition-colors group-hover:bg-primary/5',
           large ? 'w-28 sm:w-36' : 'w-20 sm:w-28'
         )}
       >

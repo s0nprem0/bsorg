@@ -94,6 +94,15 @@
 
   --ring: var(--emerald-500);
 
+  --success: var(--emerald-500);
+  --success-foreground: var(--black);
+
+  --warning: var(--yellow-500);
+  --warning-foreground: var(--black);
+
+  --info: var(--cyan-500);
+  --info-foreground: var(--black);
+
   --radius: 1rem;
 
   /*
@@ -155,6 +164,15 @@
 
   --ring: var(--emerald-600);
 
+  --success: var(--emerald-600);
+  --success-foreground: var(--white);
+
+  --warning: var(--yellow-600);
+  --warning-foreground: var(--black);
+
+  --info: var(--cyan-600);
+  --info-foreground: var(--white);
+
   --surface-1: var(--white);
   --surface-2: var(--zinc-100);
   --surface-3: var(--zinc-200);
@@ -207,6 +225,15 @@
   --color-input: var(--input);
 
   --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
 
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);

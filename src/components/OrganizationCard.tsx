@@ -46,7 +46,7 @@ export default function OrganizationCard({
       <figure
         className={cn(
           'relative flex shrink-0 items-center justify-center border-r border-border bg-muted overflow-hidden rounded-l-lg',
-          large ? 'w-32 sm:w-40' : 'w-28 sm:w-32'
+          large ? 'w-28 sm:w-36' : 'w-20 sm:w-28'
         )}
       >
 
@@ -56,7 +56,7 @@ export default function OrganizationCard({
             alt={`${org.name} Official Logo`}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+            className="absolute inset-0 h-full w-full object-contain p-3 sm:p-4 transition-transform duration-500 group-hover:scale-110"
             onError={() => setImageError(true)}
           />
         ) : null}
@@ -73,7 +73,7 @@ export default function OrganizationCard({
       </figure>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <CardHeader className="mb-auto p-4 pb-0 sm:p-5">
+        <CardHeader className="mb-auto px-3 pb-0 pt-3 sm:px-4 sm:pt-4">
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             {campusName && (
               <Badge
@@ -105,7 +105,7 @@ export default function OrganizationCard({
         </CardHeader>
 
         {socialEntries.length > 0 && (
-          <CardFooter className="relative z-10 flex flex-wrap items-center gap-3 p-4 pt-4 sm:p-5">
+          <CardFooter className="relative z-10 flex flex-wrap items-center gap-2 px-3 pb-3 sm:px-4 sm:pb-4">
             {socialEntries.slice(0, 4).map(([network, url]) => (
               <Tooltip key={network} label={network.charAt(0).toUpperCase() + network.slice(1)}>
                 <Button

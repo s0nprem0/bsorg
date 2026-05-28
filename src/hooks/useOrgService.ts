@@ -14,6 +14,7 @@ export const service: OrgService = import.meta.env.VITE_ORG_API_URL
 let storeData: Organization[] = [];
 const storeListeners: Set<() => void> = new Set();
 let storeLoaded = false;
+let storeInitError: Error | null = null;
 
 function storeNotify() {
   storeListeners.forEach(fn => fn());
@@ -39,6 +40,10 @@ if (service === StaticOrgService) {
     storeData = orgs;
     storeLoaded = true;
     storeNotify();
+  }).catch(err => {
+    storeInitError = err as Error;
+    storeLoaded = true;
+    storeNotify();
   });
 }
 
@@ -54,23 +59,18 @@ export function useOrgs(): {
 
   useEffect(() => {
     if (storeLoaded) {
+      setLoading(false);
+      if (storeInitError) setError(storeInitError);
       return;
     }
     let cancelled = false;
-    service.getAll().then(
-      () => {
-        if (!cancelled) setLoading(false);
-      },
-      err => {
-        if (!cancelled) {
-          setError(err as Error);
-          setLoading(false);
-        }
+    const unsub = storeSubscribe(() => {
+      if (!cancelled) {
+        setLoading(false);
+        if (storeInitError) setError(storeInitError);
       }
-    );
-    return () => {
-      cancelled = true;
-    };
+    });
+    return () => { cancelled = true; unsub(); };
   }, []);
 
   return { orgs: syncedOrgs, loading, error };

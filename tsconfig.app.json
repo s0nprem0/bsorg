@@ -19,16 +19,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
-    ,
+    "noFallthroughCasesInSwitch": true,
 
     /* Import alias */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
-    ,
-    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }

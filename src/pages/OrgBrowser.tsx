@@ -111,7 +111,7 @@ export default function OrgBrowser() {
         description="Discover and explore student organizations across campus."
       />
 
-      <div className="mx-auto w-full max-w-screen-2xl px-4 py-8 md:px-6">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6">
         <Section className="py-0">
           <div className="mb-10">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
@@ -257,7 +257,7 @@ export default function OrgBrowser() {
           )}
         </Section>
 
-        <Section className="min-h-100">
+        <Section className="min-h-96">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-24">
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />

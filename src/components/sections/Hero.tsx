@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
       {/* Subtle Ambient Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-100 bg-primary/15 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[37.5rem] h-[25rem] bg-primary/15 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center z-10">
         <img

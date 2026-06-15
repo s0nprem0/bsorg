@@ -117,6 +117,7 @@
     "campusId": 1,
     "type": "Academic",
     "category": "Imus Campus",
+    "programId": "Bachelor of Science in Hospitality Management",
     "metadata": {
       "accredited": true
     },
@@ -229,7 +230,7 @@
       "foundedYear": 2011
     },
     "content": {
-      "shortDescription": "\ud835\udc6f\ud835\udc90\ud835\udc8f\ud835\udc90\ud835\udc93\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc6c\ud835\udc99\ud835\udc84\ud835\udc86\ud835\udc8d\ud835\udc8d\ud835\udc86\ud835\udc8f\ud835\udc84\ud835\udc86, \ud835\udc70\ud835\udc8f\ud835\udc94\ud835\udc91\ud835\udc8a\ud835\udc93\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc95\ud835\udc89\ud835\udc86 \ud835\udc80\ud835\udc90\ud835\udc96\ud835\udc95\ud835\udc89"
+      "shortDescription": "Honoring Excellence, Inspiring the Youth"
     },
     "assets": {
       "logoUrl": "/campuses/imus/cihs-imus.jpg"
@@ -337,8 +338,12 @@
     "acronym": "OMS",
     "status": "Active",
     "campusId": 1,
-    "type": "Non-Academic",
+    "type": "Academic",
+    "programId": "Bachelor of Science in Business Administration - Major in Operations Management",
     "category": "Imus Campus",
+    "content": {
+      "shortDescription": "The official student organization for Operations Management students at Cavite State University - Imus Campus."
+    },
     "metadata": {
       "accredited": true
     },
@@ -359,8 +364,8 @@
     "acronym": "JMA - IMUS",
     "status": "Active",
     "campusId": 1,
-    "category": "Imus Campus",
     "type": "Academic",
+    "programId": "Bachelor of Science in Business Administration - Major in Marketing Management",
     "metadata": {
       "accredited": true
     },

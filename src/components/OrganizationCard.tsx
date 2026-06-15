@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
+import { cn, getSocialEntries } from '@/lib/utils';
 import { ContactIcon } from '@/components/ui/ContactIcon';
 import Tooltip from '@/components/ui/Tooltip';
 import type { Organization } from '@/lib/orgIndex';
@@ -47,14 +47,7 @@ export default function OrganizationCard({
 
   const hasLogo = !!org.assets?.logoUrl && !imageError;
 
-  const socialEntries = useMemo(
-    () =>
-      org.contact?.social
-        ? Object.entries(org.contact.social).filter(([, val]) => val)
-        : [],
-    [org.contact]
-  );
-
+  const socialEntries = getSocialEntries(org.contact);
   const typeStyle = TYPE_STYLES[org.type];
 
   return (

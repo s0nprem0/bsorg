@@ -23,7 +23,7 @@
   },
   {
     "id": "phismets",
-    "slug": "phismet",
+    "slug": "phismets",
     "name": "Philippine Society of Medical Technology Students - CVSU Chapter",
     "acronym": "PHISMETS",
     "programId": "Bachelor of Science in Medical Technology",
@@ -54,6 +54,7 @@
     "type": "Academic",
     "category": "College of Nursing",
     "campusId": 0,
+    "programId": "Bachelor of Science in Midwifery",
     "metadata": {
       "tags": ["midwifery"],
       "foundedYear": 2023

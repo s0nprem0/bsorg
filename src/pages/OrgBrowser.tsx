@@ -9,7 +9,7 @@ import SEO from '@/components/SEO';
 import OrgFilterBar from '@/components/sections/OrgFilterBar';
 import OrgFilterChips from '@/components/sections/OrgFilterChips';
 
-import { SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 import { abbreviateProgram } from '@/data/programs';
 import { CAMPUSES } from '@/data/campuses';
 import { Button } from '@/components/ui/shadcn/button';
@@ -34,7 +34,7 @@ export default function OrgBrowser() {
     setLocalQuery(prev => (prev !== state.query ? state.query : prev));
   }, [state.query]);
 
-  const debouncedQuery = useDebounce(localQuery, 300);
+  const debouncedQuery = useDebounce(localQuery, ORG_BROWSER.DEBOUNCE_DELAY);
   useEffect(() => {
     if (debouncedQuery !== state.query) {
       dispatch('q', debouncedQuery);

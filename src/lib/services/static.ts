@@ -8,6 +8,4 @@ function wrap<T>(fn: () => T): Promise<T> {
 export const StaticOrgService: OrgService = {
   getAll: () => wrap(() => orgRegistry.getAll()),
   getBySlug: slug => wrap(() => orgRegistry.getBySlug(slug)),
-  getAcademicOrgs: () => wrap(() => orgRegistry.getAcademicOrgs()),
-  getNonAcademicOrgs: () => wrap(() => orgRegistry.getNonAcademicOrgs()),
 };

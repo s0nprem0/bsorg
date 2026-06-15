@@ -15,8 +15,8 @@ export default function Home() {
     const uniqueCategories = new Set(allOrgs.map(o => o.category).filter(Boolean));
     return {
       total: allOrgs.length,
-      academic: allOrgs.filter(org => org.type === 'Academic').length,
-      nonAcademic: allOrgs.filter(org => org.type !== 'Academic').length,
+      academic: allOrgs.filter(org => org.type === 'Academic' || org.type === 'Student Council').length,
+      nonAcademic: allOrgs.filter(org => org.type !== 'Academic' && org.type !== 'Student Council').length,
       campuses: uniqueCampuses.size,
       categories: uniqueCategories.size,
     };

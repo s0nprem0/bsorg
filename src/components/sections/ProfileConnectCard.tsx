@@ -49,7 +49,7 @@ export default function ProfileConnectCard({
   socialEntries,
 }: {
   org: Organization;
-  socialEntries: [string, string | boolean][];
+  socialEntries: [string, string][];
 }) {
   return (
     <Card className="animate-fade-in-up animate-delay-200 bg-card border-none shadow-md">

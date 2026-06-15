@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Users } from 'lucide-react';
-
 import SEO from '@/components/SEO';
 import { useOrg, useOrgs } from '@/hooks/useOrgService';
+import { getSocialEntries } from '@/lib/utils';
 import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import OrgGrid from '@/components/layout/OrgGrid';
@@ -49,9 +49,7 @@ export default function OrganizationProfile() {
   if (error) return <ErrorState message={error.message} />;
   if (!org) return <NotFoundState />;
 
-  const socialEntries = org.contact?.social
-    ? Object.entries(org.contact.social).filter(([, val]) => val)
-    : [];
+  const socialEntries = getSocialEntries(org.contact);
 
   return (
     <>
@@ -87,7 +85,7 @@ export default function OrganizationProfile() {
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent" />
               </div>
             </div>
           )}

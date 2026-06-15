@@ -108,8 +108,7 @@ class OrgRegistry {
   private static instance: OrgRegistry;
   private slugMap: Map<string, Organization> = new Map();
   private allOrgs: Organization[] = [];
-  private academicOrgs: Organization[] = [];
-  private nonAcademicOrgs: Organization[] = [];
+
 
   private constructor() {
     const activeData = validatedOrgs.filter(org => org.status !== 'Inactive');
@@ -121,12 +120,6 @@ class OrgRegistry {
     };
 
     this.allOrgs = [...activeData].sort(sortPriority);
-    this.academicOrgs = activeData
-      .filter(org => org.type === 'Academic' || org.type === 'Student Council')
-      .sort(sortPriority);
-    this.nonAcademicOrgs = activeData
-      .filter(org => org.type !== 'Academic' && org.type !== 'Student Council')
-      .sort(sortPriority);
 
     this.allOrgs.forEach(org => {
       if (org?.slug) {
@@ -144,12 +137,6 @@ class OrgRegistry {
 
   public getAll(): Organization[] {
     return this.allOrgs;
-  }
-  public getAcademicOrgs(): Organization[] {
-    return this.academicOrgs;
-  }
-  public getNonAcademicOrgs(): Organization[] {
-    return this.nonAcademicOrgs;
   }
   public getBySlug(slug: string): Organization | undefined {
     if (!slug) return undefined;

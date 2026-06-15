@@ -64,7 +64,7 @@ All routes are lazy-loaded via `React.lazy()` + `<Suspense fallback={<PageLoader
 ### Data Flow
 
 1. **Content layer** — 14 JSON files in `contents/` (8 college orgs, 3 non-academic, 3 campus-specific)
-2. **Validation** — `src/lib/orgIndex.ts`: `import.meta.glob` loads all JSON eagerly; Zod schema validates each org; `orgRegistry` singleton exposes `getAll()`, `getBySlug()`, `getAcademicOrgs()`, `getNonAcademicOrgs()`
+2. **Validation** — `src/lib/orgIndex.ts`: `import.meta.glob` loads all JSON eagerly; Zod schema validates each org; `orgRegistry` singleton exposes `getAll()`, `getBySlug()`
 3. **Service abstraction** — `src/lib/services/*`:
    - `types.ts`: `OrgService` interface (async — returns `Promise`)
    - `static.ts`: `StaticOrgService` — wraps `orgRegistry` in `Promise.resolve()`
@@ -94,7 +94,7 @@ App (BrowserRouter)
 
 ### Data Files
 
-~86 organizations across 14 JSON files:
+~88 organizations across 14 JSON files:
 
 | File | Count | Category |
 |------|-------|----------|
@@ -109,7 +109,7 @@ App (BrowserRouter)
 | `contents/nonacadorgs/orgs.json` | ~11 | Non-Academic |
 | `contents/nonacadorgs/pag.json` | 3 | Performing Arts |
 | `contents/nonacadorgs/spu.json` | 5 | Student Publications |
-| `contents/campuses/imus.json` | 12 | Campus-specific |
+| `contents/campuses/imus.json` | 14 | Campus-specific |
 | `contents/campuses/naic.json` | 1 | Campus-specific |
 | `contents/campuses/tmc.json` | 3 | Campus-specific |
 
@@ -121,11 +121,11 @@ Static assets in `public/` (hero.png, org.svg, campus/college images).
 src/
   components/
     ErrorBoundary.tsx, OrganizationCard.tsx, SEO.tsx
-    layout/   (CategoryPageTemplate, Footer, Navbar, OrgGrid)
-    sections/ (Hero, RelatedOrganizations)
-    ui/       (Breadcrumbs, ContactIcon, ScrollToTop, SearchInput, Section)
-    ui/shadcn/ (avatar, badge, breadcrumb, button, card, dialog, input, select, separator, sheet)
-  data/       (campuses.ts, orgBrowser.ts)
+    layout/   (Footer, Navbar, OrgGrid)
+    sections/ (BrowseByCampus, BrowseCategories, CTASection, FeaturedGrid, Hero, OrgFilterBar, OrgFilterChips, ProfileAboutCard, ProfileCampusCard, ProfileConnectCard, ProfileGallery, ProfileIdentityCard, ProfileMissionVision, ProfileStates, RelatedOrganizations)
+    ui/       (Breadcrumbs, ContactIcon, ScrollToTop, SearchInput, Section, Tooltip)
+    ui/shadcn/ (avatar, badge, badge-variants, breadcrumb, button, button-variants, card, dialog, input, select, separator, sheet)
+  data/       (campuses.ts, orgBrowser.ts, programs.ts)
   hooks/      (useDebounce, useOrgBrowser, useOrgService, useTheme)
   lib/        (errorReporter, orgIndex, utils)
   lib/services/ (api.ts, static.ts, types.ts)

@@ -4,7 +4,9 @@ import { errorReporter } from '@/lib/errorReporter';
 import type { OrgService } from './types';
 
 function getBaseUrl(): string {
-  return import.meta.env.VITE_ORG_API_URL || 'http://localhost:3001/api';
+  const url = import.meta.env.VITE_ORG_API_URL;
+  if (!url) throw new Error('VITE_ORG_API_URL is not set');
+  return url;
 }
 
 let cache: Organization[] | null = null;
@@ -23,7 +25,7 @@ async function loadAll(): Promise<Organization[]> {
       }
       const data = await res.json();
       const orgs = orgValidationSchema.array().parse(data);
-      cache = orgs.map(o => ({ ...o, campusId: o.campusId ?? 0 }));
+      cache = orgs;
       return cache;
     } catch (error) {
       cachePromise = null;
@@ -40,13 +42,7 @@ async function loadBySlug(slug: string): Promise<Organization | undefined> {
   return all.find(o => o.slug.toLowerCase() === slug.toLowerCase());
 }
 
-function isAcademic(org: Organization): boolean {
-  return org.type === 'Academic' || org.type === 'Student Council';
-}
-
 export const ApiOrgService: OrgService = {
   getAll: () => loadAll(),
   getBySlug: slug => loadBySlug(slug),
-  getAcademicOrgs: async () => (await loadAll()).filter(isAcademic),
-  getNonAcademicOrgs: async () => (await loadAll()).filter(o => !isAcademic(o)),
 };

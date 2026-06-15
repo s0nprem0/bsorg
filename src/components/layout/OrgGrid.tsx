@@ -3,20 +3,21 @@ import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 import { cn } from '@/lib/utils';
 
-export interface OrgGridProps {
+interface OrgGridProps {
   organizations: Organization[];
   columns?: 1 | 2 | 3 | 4;
   className?: string;
 }
 
+const COLUMN_CLASSES: Record<number, string> = {
+  1: 'grid-cols-1',
+  2: 'grid-cols-1 sm:grid-cols-2',
+  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
+};
+
 export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; count?: number }) {
-  const columnClasses =
-    {
-      1: 'grid-cols-1',
-      2: 'grid-cols-1 sm:grid-cols-2',
-      3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
-    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
+  const columnClasses = COLUMN_CLASSES[columns] ?? COLUMN_CLASSES[4];
 
   return (
     <div className={cn('grid gap-6 auto-rows-fr', columnClasses)}>
@@ -52,13 +53,7 @@ export default function OrgGrid({
 }: OrgGridProps) {
   if (!organizations?.length) return null;
 
-  const columnClasses =
-    {
-      1: 'grid-cols-1',
-      2: 'grid-cols-1 sm:grid-cols-2',
-      3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-      4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
-    }[columns] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4';
+  const columnClasses = COLUMN_CLASSES[columns] ?? COLUMN_CLASSES[4];
 
   return (
     <div className={cn('grid gap-6 auto-rows-fr', columnClasses, className)}>

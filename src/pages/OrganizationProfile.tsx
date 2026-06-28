@@ -60,7 +60,7 @@ export default function OrganizationProfile() {
       />
 
       <div className="min-h-screen bg-background pb-20">
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
 
           <div className="animate-fade-in-up flex items-center gap-3">
             <Button variant="ghost" size="sm" onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/org'); }} className="gap-1.5 shrink-0 text-muted-foreground hover:text-foreground">
@@ -125,7 +125,7 @@ export default function OrganizationProfile() {
           <div className="animate-fade-in-up animate-delay-500">
             <RelatedOrganizations currentOrg={org} />
           </div>
-        </main>
+        </section>
       </div>
     </>
   );

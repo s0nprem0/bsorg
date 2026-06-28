@@ -17,8 +17,10 @@ async function loadAll(): Promise<Organization[]> {
   if (cachePromise) return cachePromise;
 
   cachePromise = (async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
-      const res = await fetch(`${getBaseUrl()}/orgs`);
+      const res = await fetch(`${getBaseUrl()}/orgs`, { signal: controller.signal });
       if (!res.ok) {
         const body = await res.text().catch(() => '');
         throw new Error(`API error: ${res.status}${body ? ` — ${body.slice(0, 200)}` : ''}`);
@@ -31,6 +33,8 @@ async function loadAll(): Promise<Organization[]> {
       cachePromise = null;
       errorReporter.capture(error, { source: 'ApiOrgService' });
       throw error;
+    } finally {
+      clearTimeout(timeout);
     }
   })();
 

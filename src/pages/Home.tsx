@@ -25,14 +25,14 @@ export default function Home() {
   return (
     <>
       <SEO title="Home" />
-      <main className="grow bg-background">
+      <section className="grow bg-background">
         <Hero />
         <FeaturedGrid allOrgs={allOrgs} loading={loading} error={error} stats={stats} />
         <BrowseCategories academic={stats.academic} nonAcademic={stats.nonAcademic}>
           <BrowseByCampus allOrgs={allOrgs} />
         </BrowseCategories>
         <CTASection />
-      </main>
+      </section>
     </>
   );
 }

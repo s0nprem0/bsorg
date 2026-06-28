@@ -108,100 +108,96 @@ export default function FeaturedGrid({
           <p className="text-muted-foreground font-semibold">No organizations registered yet</p>
           <p className="mt-2 text-sm text-muted-foreground">Check back soon for upcoming student groups.</p>
         </div>
-      ) : (
-        <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
-          {(() => {
-            const [f0, f1, f2, f3, f4, f5] = featuredOrgs;
-            return (
-              <>
-                {f0 ? (
-                  <div className="lg:col-span-2 lg:row-span-2">
-                    <OrganizationCard org={f0} campusName={getCampusName(f0.campusId)} large />
+      ) : (() => {
+        const [f0, f1, f2, f3, f4, f5] = featuredOrgs;
+        return (
+          <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
+            {f0 ? (
+              <div className="lg:col-span-2 lg:row-span-2">
+                <OrganizationCard org={f0} campusName={getCampusName(f0.campusId)} large />
+              </div>
+            ) : (
+              <div className="lg:col-span-2 lg:row-span-2"><GridPlaceholder /></div>
+            )}
+            {f1 ? (
+              <div><OrganizationCard org={f1} campusName={getCampusName(f1.campusId)} /></div>
+            ) : (
+              <div className="hidden lg:block"><GridPlaceholder /></div>
+            )}
+
+            <Card className="relative flex flex-col justify-between overflow-hidden lg:col-span-1 lg:row-span-2 bg-card border-none shadow-md group">
+              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-accent" />
+              <CardHeader className="pb-2 relative z-10">
+                <CardTitle className="text-xs font-bold font-mono tracking-widest text-primary uppercase">
+                  Platform Stats
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col h-full justify-between pb-6 relative z-10">
+                <div>
+                  <div className="mt-2 text-7xl font-extrabold tracking-tighter text-accent drop-shadow-sm">
+                    {stats.total}
                   </div>
-                ) : (
-                  <div className="lg:col-span-2 lg:row-span-2"><GridPlaceholder /></div>
-                )}
-                {f1 ? (
-                  <div><OrganizationCard org={f1} campusName={getCampusName(f1.campusId)} /></div>
-                ) : (
-                  <div className="hidden lg:block"><GridPlaceholder /></div>
-                )}
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed font-medium">
+                    Active student organizations currently registered across the university network.
+                  </p>
+                </div>
+                <div className="mt-8 space-y-3 pt-6 border-t border-border/50">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-info font-medium">Academic</span>
+                    <span className="font-mono font-bold text-info bg-info/20 px-2 py-0.5 rounded-md">
+                      {stats.academic}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-warning font-medium">Non-Academic</span>
+                    <span className="font-mono font-bold text-warning bg-warning/20 px-2 py-0.5 rounded-md">
+                      {stats.nonAcademic}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-success font-medium flex items-center gap-1">
+                      <MapPin className="h-3.5 w-3.5" /> Campuses
+                    </span>
+                    <span className="font-mono font-bold text-success bg-success/10 px-2 py-0.5 rounded-md">
+                      {stats.campuses}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground font-medium flex items-center gap-1">
+                      <LayoutGrid className="h-3.5 w-3.5" /> Categories
+                    </span>
+                    <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
+                      {stats.categories}
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                <Card className="relative flex flex-col justify-between overflow-hidden lg:col-span-1 lg:row-span-2 bg-card border-none shadow-md group">
-                  <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-accent" />
-                  <CardHeader className="pb-2 relative z-10">
-                    <CardTitle className="text-xs font-bold font-mono tracking-widest text-primary uppercase">
-                      Platform Stats
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex flex-col h-full justify-between pb-6 relative z-10">
-                    <div>
-                      <div className="mt-2 text-7xl font-extrabold tracking-tighter text-accent drop-shadow-sm">
-                        {stats.total}
-                      </div>
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed font-medium">
-                        Active student organizations currently registered across the university network.
-                      </p>
-                    </div>
-                    <div className="mt-8 space-y-3 pt-6 border-t border-border/50">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-info font-medium">Academic</span>
-                        <span className="font-mono font-bold text-info bg-info/20 px-2 py-0.5 rounded-md">
-                          {stats.academic}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-warning font-medium">Non-Academic</span>
-                        <span className="font-mono font-bold text-warning bg-warning/20 px-2 py-0.5 rounded-md">
-                          {stats.nonAcademic}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-success font-medium flex items-center gap-1">
-                          <MapPin className="h-3.5 w-3.5" /> Campuses
-                        </span>
-                        <span className="font-mono font-bold text-success bg-success/10 px-2 py-0.5 rounded-md">
-                          {stats.campuses}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground font-medium flex items-center gap-1">
-                          <LayoutGrid className="h-3.5 w-3.5" /> Categories
-                        </span>
-                        <span className="font-mono font-bold text-foreground bg-surface-2 px-2 py-0.5 rounded-md">
-                          {stats.categories}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {f2 ? (
-                  <div><OrganizationCard org={f2} campusName={getCampusName(f2.campusId)} /></div>
-                ) : (
-                  <div className="hidden lg:block"><GridPlaceholder /></div>
-                )}
-                {f3 ? (
-                  <div><OrganizationCard org={f3} campusName={getCampusName(f3.campusId)} /></div>
-                ) : (
-                  <div className="hidden lg:block"><GridPlaceholder /></div>
-                )}
-                {f4 ? (
-                  <div className="lg:col-span-2"><OrganizationCard org={f4} campusName={getCampusName(f4.campusId)} /></div>
-                ) : (
-                  <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
-                )}
-                {f5 ? (
-                  <div className="lg:col-span-2"><OrganizationCard org={f5} campusName={getCampusName(f5.campusId)} /></div>
-                ) : (
-                  <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
-                )}
-              </>
-            );
-          })()}
-        </div>
-      )}
+            {f2 ? (
+              <div><OrganizationCard org={f2} campusName={getCampusName(f2.campusId)} /></div>
+            ) : (
+              <div className="hidden lg:block"><GridPlaceholder /></div>
+            )}
+            {f3 ? (
+              <div><OrganizationCard org={f3} campusName={getCampusName(f3.campusId)} /></div>
+            ) : (
+              <div className="hidden lg:block"><GridPlaceholder /></div>
+            )}
+            {f4 ? (
+              <div className="lg:col-span-2"><OrganizationCard org={f4} campusName={getCampusName(f4.campusId)} /></div>
+            ) : (
+              <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
+            )}
+            {f5 ? (
+              <div className="lg:col-span-2"><OrganizationCard org={f5} campusName={getCampusName(f5.campusId)} /></div>
+            ) : (
+              <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
+            )}
+          </div>
+        );
+      })()}
     </section>
   );
 }

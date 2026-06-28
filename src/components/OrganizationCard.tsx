@@ -176,7 +176,7 @@ export default function OrganizationCard({
               >
                 +{socialEntries.length - 4}
               </Button>
-              <div className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100 z-50">
+              <div className="pointer-events-none absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-0 transition-opacity duration-150 group-hover/overflow:opacity-100 z-50">
                 <div className="flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground p-1.5 pl-2 shadow-sm">
                   {socialEntries.slice(4).map(([network, url]) => (
                     <a

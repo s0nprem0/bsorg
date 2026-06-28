@@ -23,10 +23,6 @@ export default function Navbar() {
 
   const { theme, toggleTheme } = useTheme();
 
-  const navLinks = [
-    { label: 'Browse', href: '/org', end: true },
-  ];
-
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 border-b ${
@@ -60,18 +56,15 @@ export default function Navbar() {
               >
                 Overview
               </NavLink>
-              {navLinks.map(link => (
-                <NavLink
-                  key={link.href}
-                  to={link.href}
-                  end={Boolean(link.end)}
-                  className={({ isActive }) =>
-                    `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
-                  }
+              <NavLink
+                to="/org"
+                end
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
+                }
               >
-                {link.label}
+                Browse
               </NavLink>
-            ))}
           </div>
         </div>
 
@@ -121,18 +114,15 @@ export default function Navbar() {
                 Overview
               </NavLink>
 
-              {navLinks.map(link => (
-                <NavLink
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `text-base font-medium transition-colors ${isActive ? 'text-accent' : 'text-muted-foreground hover:text-accent'}`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
+              <NavLink
+                to="/org"
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  `text-base font-medium transition-colors ${isActive ? 'text-accent' : 'text-muted-foreground hover:text-accent'}`
+                }
+              >
+                Browse
+              </NavLink>
 
               <div className="pt-4 border-t space-y-3">
                 <Button

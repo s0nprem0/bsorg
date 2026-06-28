@@ -26,9 +26,7 @@ class ErrorReporter {
     };
 
     if (import.meta.env.PROD) {
-      // Send to monitoring service (e.g. Sentry)
-      // Sentry.captureException(error, { extra: context });
-      console.warn('[ErrorReporter]', payload.message);
+      console.error('[ErrorReporter]', payload.message);
     } else {
       console.group('[ErrorReporter]');
       console.error('Message:', payload.message);

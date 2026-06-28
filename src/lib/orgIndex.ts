@@ -93,10 +93,7 @@ const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(
       const rawArray = z.array(orgValidationSchema).parse(data);
 
       // Type assertions are no longer needed; Zod handles the typing safely
-      return rawArray.map(raw => ({
-        ...raw,
-        campusId: raw.campusId ?? 0,
-      }));
+      return rawArray;
     } catch (error) {
       errorReporter.capture(error, { source: 'orgIndex', filePath: path });
       return [];

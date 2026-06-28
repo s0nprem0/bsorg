@@ -59,6 +59,7 @@ export function useOrgs(): {
 
   useEffect(() => {
     if (storeLoaded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- safe: runs once on mount
       setLoading(false);
       if (storeInitError) setError(storeInitError);
       return;

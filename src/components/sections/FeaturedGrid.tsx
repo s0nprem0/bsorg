@@ -127,7 +127,7 @@ export default function FeaturedGrid({
 
             <Card className="relative flex flex-col justify-between overflow-hidden lg:col-span-1 lg:row-span-2 bg-card border-none shadow-md group">
               <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-accent" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-primary/50" />
               <CardHeader className="pb-2 relative z-10">
                 <CardTitle className="text-xs font-bold font-mono tracking-widest text-primary uppercase">
                   Platform Stats
@@ -135,7 +135,7 @@ export default function FeaturedGrid({
               </CardHeader>
               <CardContent className="flex flex-col h-full justify-between pb-6 relative z-10">
                 <div>
-                  <div className="mt-2 text-7xl font-extrabold tracking-tighter text-accent drop-shadow-sm">
+                  <div className="mt-2 text-7xl font-extrabold tracking-tighter text-primary drop-shadow-sm">
                     {stats.total}
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed font-medium">

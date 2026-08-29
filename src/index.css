@@ -60,6 +60,14 @@
   /* Red */
   --red-500: #ef4444;
 
+  /* Violet */
+  --violet-200: #ddd6fe;
+  --violet-300: #c4b5fd;
+  --violet-400: #a78bfa;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --violet-700: #6d28d9;
+
   /*
   |--------------------------------------------------------------------------
   | Semantic Tokens
@@ -69,7 +77,7 @@
   --background: var(--black);
   --foreground: var(--zinc-50);
 
-  --card: rgba(255, 255, 255, 0.03);
+  --card: rgba(255, 255, 255, 0.05);
   --card-foreground: var(--zinc-50);
 
   --popover: var(--zinc-950);
@@ -80,9 +88,6 @@
 
   --secondary: var(--cyan-500);
   --secondary-foreground: var(--white);
-
-  --accent: var(--yellow-500);
-  --accent-foreground: var(--black);
 
   --muted: var(--zinc-900);
   --muted-foreground: var(--zinc-400);
@@ -95,7 +100,7 @@
 
   --ring: var(--emerald-500);
 
-  --success: var(--emerald-500);
+  --success: #2dd4bf;
   --success-foreground: var(--black);
 
   --warning: var(--yellow-500);
@@ -103,6 +108,9 @@
 
   --info: var(--cyan-500);
   --info-foreground: var(--black);
+
+  --perf: var(--violet-400);
+  --perf-foreground: var(--black);
 
   --radius: 1rem;
 
@@ -143,34 +151,34 @@
   --popover: var(--white);
   --popover-foreground: var(--zinc-950);
 
-  --primary: var(--emerald-600);
+  --primary: #0b7a50;
   --primary-foreground: var(--white);
 
-  --secondary: var(--cyan-600);
+  --secondary: var(--cyan-700);
   --secondary-foreground: var(--white);
-
-  --accent: var(--yellow-600);
-  --accent-foreground: var(--black);
 
   --muted: var(--zinc-200);
   --muted-foreground: var(--zinc-600);
 
-  --destructive: var(--red-500);
+  --destructive: #dc2626;
   --destructive-foreground: var(--white);
 
   --border: rgba(0, 0, 0, 0.08);
   --input: rgba(0, 0, 0, 0.08);
 
-  --ring: var(--emerald-600);
+  --ring: #0b7a50;
 
-  --success: var(--emerald-600);
+  --success: #0f766e;
   --success-foreground: var(--white);
 
-  --warning: var(--yellow-600);
-  --warning-foreground: var(--black);
+  --warning: #a16207;
+  --warning-foreground: var(--white);
 
-  --info: var(--cyan-600);
+  --info: var(--cyan-700);
   --info-foreground: var(--white);
+
+  --perf: var(--violet-600);
+  --perf-foreground: var(--white);
 
   --surface-1: var(--white);
   --surface-2: var(--zinc-100);
@@ -209,9 +217,6 @@
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
 
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
 
@@ -231,6 +236,9 @@
 
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
+
+  --color-perf: var(--perf);
+  --color-perf-foreground: var(--perf-foreground);
 
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);

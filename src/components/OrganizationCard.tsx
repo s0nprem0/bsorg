@@ -19,7 +19,7 @@ const TYPE_STYLES: Record<string, string> = {
   'Non-Academic': 'bg-warning/10 text-warning border-warning/25',
   'Student Council': 'bg-info/10 text-info border-info/25',
   'Student Publication Units': 'bg-success/10 text-success border-success/25',
-  'Performing Arts Group': 'bg-accent/10 text-accent border-accent/25',
+  'Performing Arts Group': 'bg-perf/10 text-perf border-perf/25',
 };
 
 const TYPE_LABELS: Record<string, string> = {

@@ -51,7 +51,7 @@ export default function Navbar() {
               to="/"
               end
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
+                  `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
                 }
               >
                 Overview
@@ -60,7 +60,7 @@ export default function Navbar() {
                 to="/org"
                 end
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-muted-foreground'}`
+                  `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
                 }
               >
                 Browse
@@ -109,7 +109,7 @@ export default function Navbar() {
                 to="/"
                 end
                 onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-muted-foreground hover:text-accent"
+                className="text-base font-medium text-muted-foreground hover:text-primary"
               >
                 Overview
               </NavLink>
@@ -118,7 +118,7 @@ export default function Navbar() {
                 to="/org"
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `text-base font-medium transition-colors ${isActive ? 'text-accent' : 'text-muted-foreground hover:text-accent'}`
+                  `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`
                 }
               >
                 Browse

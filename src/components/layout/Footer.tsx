@@ -33,7 +33,7 @@ const Footer = () => {
           {/* Brand & Mission */}
           <div className="flex flex-col gap-4 md:col-span-2 pr-8">
             <Link to="/" className="inline-flex w-fit items-center gap-2">
-              <span className="text-2xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
+              <span className="text-2xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/70">
                 BetterOSAS
               </span>
             </Link>

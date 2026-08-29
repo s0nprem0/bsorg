@@ -23,7 +23,7 @@ const categories: {
     icon: Users,
     href: '/org?type=Non-Academic',
     count: null,
-    accent: 'from-accent/20 to-accent/5 border-accent/20',
+    accent: 'from-primary/20 to-primary/5 border-primary/20',
   },
   {
     title: 'All Organizations',
@@ -31,7 +31,7 @@ const categories: {
     icon: LayoutGrid,
     href: '/org',
     count: null,
-    accent: 'from-primary/10 to-accent/10 border-primary/20',
+    accent: 'from-primary/10 to-primary/10 border-primary/20',
   },
 ];
 

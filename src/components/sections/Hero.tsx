@@ -29,7 +29,7 @@ export default function Hero() {
 
         <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl">
           Find the heartbeat of <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/70">
             Cavite State University
           </span>
         </h1>

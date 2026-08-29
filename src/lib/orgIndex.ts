@@ -11,6 +11,23 @@ export const orgTypeSchema = z.enum([
   'Performing Arts Group',
 ]);
 
+export const ORG_CATEGORIES = [
+  'College of Agriculture, Food, Environment and Natural Resources',
+  'College of Arts and Sciences',
+  'College of Criminal Justice',
+  'College of Economics, Management and Development Studies',
+  'College of Engineering and Information Technology',
+  'College of Nursing',
+  'College of Sports, Physical Education, Arts and Recreation',
+  'College of Tourism and Hospitality Management',
+  'Imus Campus',
+  'Naic Campus',
+  'Performing Arts Group',
+  'Student Publication Units',
+  'Trece Martires Campus',
+  'University-Wide',
+] as const;
+
 export const orgCategorySchema = z.enum([
   'College of Agriculture, Food, Environment and Natural Resources',
   'College of Arts and Sciences',

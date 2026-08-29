@@ -41,12 +41,13 @@ export default function OrgBrowser() {
     }
   }, [debouncedQuery, dispatch, state.query]);
 
-  const hasActiveFilters = !!state.query || state.orgType !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC || !!state.campusId;
+  const hasActiveFilters = !!state.query || state.orgType !== 'All' || state.category !== 'All' || state.program !== 'All' || state.sortBy !== SORT_OPTIONS.ASC || !!state.campusId;
 
   const clearAllFilters = useCallback(() => {
     setLocalQuery('');
     dispatch('q', null);
     dispatch('type', null);
+    dispatch('category', null);
     dispatch('program', null);
     dispatch('sort', null);
     dispatch('campusId', null);
@@ -55,6 +56,7 @@ export default function OrgBrowser() {
   const filterChips: { label: string; key: string }[] = [];
   if (state.query) filterChips.push({ label: `"${state.query}"`, key: 'q' });
   if (state.orgType !== 'All') filterChips.push({ label: state.orgType, key: 'type' });
+  if (state.category !== 'All') filterChips.push({ label: state.category, key: 'category' });
   if (state.program !== 'All') filterChips.push({ label: abbreviateProgram(state.program), key: 'program' });
   if (state.sortBy !== SORT_OPTIONS.ASC) {
     const sortLabels: Record<string, string> = {
@@ -116,22 +118,24 @@ export default function OrgBrowser() {
             setLocalQuery={setLocalQuery}
             orgType={state.orgType}
             onTypeChange={value => dispatch('type', value)}
+            category={state.category}
+            onCategoryChange={value => dispatch('category', value)}
             program={state.program}
             onProgramChange={value => dispatch('program', value)}
             sortBy={state.sortBy}
             onSortChange={value => dispatch('sort', value as SortOption)}
+            campusId={state.campusId}
+            onCampusChange={value => dispatch('campusId', value === 'All' ? null : value)}
             programs={programs}
           />
 
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground font-medium">
-              Showing{' '}
-              <span className="font-bold text-foreground bg-muted/60 px-1.5 py-0.5 rounded">
-                {visibleOrgs.length}
+              {filteredCount}{' '}
+              <span className="text-foreground font-bold">
+                {filteredCount === 1 ? 'organization' : 'organizations'}
               </span>{' '}
-              of{' '}
-              <span className="font-bold text-foreground bg-muted/60 px-1.5 py-0.5 rounded">{filteredCount}</span>{' '}
-              organizations
+              found
             </p>
 
             {hasActiveFilters && (

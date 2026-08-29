@@ -7,7 +7,6 @@ import type { Organization } from '@/lib/orgIndex';
 import {
   Card,
   CardHeader,
-  CardTitle,
   CardDescription,
   CardFooter,
 } from '@/components/ui/shadcn/card';
@@ -42,9 +41,6 @@ export default function OrganizationCard({
   const [imageError, setImageError] = useState(false);
 
   const acronym = org.acronym || org.name.substring(0, 2).toUpperCase();
-  const acronymClass =
-    acronym.length > 6 ? 'text-sm sm:text-base' : large ? 'text-4xl' : 'text-xl';
-
   const hasLogo = !!org.assets?.logoUrl && !imageError;
 
   const socialEntries = getSocialEntries(org.contact);
@@ -53,54 +49,41 @@ export default function OrganizationCard({
   return (
     <Card
       className={cn(
-        'group relative flex h-full w-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg bg-card text-card-foreground cursor-pointer',
-        large ? 'min-h-72' : 'min-h-52'
+        'group relative flex h-full w-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg bg-card text-card-foreground',
+        large ? 'min-h-56' : 'min-h-48'
       )}
     >
-      {/* Banner with overlapping logo */}
-      <div
-        className={cn(
-          'relative w-full shrink-0 border-b border-border bg-muted/50',
-          large ? 'h-24' : 'h-16'
-        )}
-      >
-        <figure
-          className={cn(
-            'absolute left-4 sm:left-5 flex shrink-0 items-center justify-center bg-muted overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-105',
-            large ? '-bottom-10 h-20 w-20' : '-bottom-8 h-20 w-20'
-          )}
-        >
-          {org.assets?.logoUrl && !imageError ? (
-            <img
-              src={org.assets.logoUrl}
-              alt={`${org.name} Official Logo`}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-contain p-1.5"
-              onError={() => setImageError(true)}
-            />
-          ) : null}
-
-          <div
-            className={cn(
-              'flex h-full w-full items-center justify-center font-bold tracking-tighter overflow-hidden truncate px-1',
-              hasLogo ? 'hidden' : 'flex bg-secondary text-secondary-foreground',
-              acronymClass
+      <CardHeader className={cn('relative flex-none pb-2', large ? 'p-4 sm:p-5' : 'p-3 sm:p-4')}>
+        <div className="flex items-start gap-3">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden bg-secondary text-secondary-foreground">
+            {hasLogo ? (
+              <img
+                src={org.assets?.logoUrl}
+                alt={`${org.name} Official Logo`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-contain p-1"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <span className={cn('font-bold tracking-tighter truncate px-1', acronym.length > 6 ? 'text-xs' : 'text-lg')}>
+                {acronym}
+              </span>
             )}
-          >
-            {acronym}
           </div>
-        </figure>
-      </div>
 
-      {/* Spacer for overlapping logo */}
-      <div
-        className={cn('w-full shrink-0', large ? 'h-12' : 'h-10')}
-        aria-hidden="true"
-      />
+          <Link
+            to={`/org/${org.slug}`}
+            className="min-w-0 flex-1 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-0"
+            aria-label={`View ${org.name}`}
+          >
+            <h3 className={cn('font-bold leading-tight text-foreground transition-colors group-hover:text-primary', large ? 'text-xl sm:text-2xl' : 'text-lg')}>
+              {org.name}
+            </h3>
+          </Link>
+        </div>
 
-      <CardHeader className={cn('flex-none', large ? 'p-4 sm:p-5' : 'p-3 sm:p-4')}>
-        <div className="flex flex-wrap items-center gap-1.5 mb-2">
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {typeStyle && (
             <Badge variant="outline" className={cn(typeStyle, 'text-xs uppercase tracking-wider')}>
               {TYPE_LABELS[org.type] || org.type}
@@ -125,27 +108,15 @@ export default function OrganizationCard({
             </Tooltip>
           )}
         </div>
-
-        <CardTitle className={cn(
-          'font-bold leading-tight transition-colors group-hover:text-primary',
-          large ? 'text-xl sm:text-2xl' : 'text-lg'
-        )}>
-          <Link
-            to={`/org/${org.slug}`}
-            className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-0"
-          >
-            {org.name}
-          </Link>
-        </CardTitle>
-
-        <CardDescription className="mt-1.5 line-clamp-3 text-sm leading-relaxed">
-          {org.content?.shortDescription ||
-            org.content?.about ||
-            'No description available.'}
-        </CardDescription>
       </CardHeader>
 
-      <CardFooter className="relative z-20 mt-auto flex items-center justify-between border-t border-border/40 bg-card/50 p-3 sm:p-4">
+      <CardDescription className={cn('flex-none px-3 sm:px-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground', large ? 'px-4 sm:px-5' : 'px-3 sm:px-4')}>
+        {org.content?.shortDescription ||
+          org.content?.about ||
+          'No description available.'}
+      </CardDescription>
+
+      <CardFooter className="relative z-10 mt-auto flex items-center justify-between border-t border-border/40 bg-card/50 p-3 sm:p-4">
         <div className="flex items-center gap-1">
           {socialEntries.slice(0, 4).map(([network, url]) => (
             <Button
@@ -196,9 +167,6 @@ export default function OrganizationCard({
           )}
         </div>
 
-        <span className="text-xs font-semibold text-primary flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          View Profile <span aria-hidden="true">&rarr;</span>
-        </span>
       </CardFooter>
     </Card>
   );

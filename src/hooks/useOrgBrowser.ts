@@ -13,6 +13,7 @@ export function useOrgBrowser() {
   // 1. Derive state purely from URL
   const query = searchParams.get('q') || '';
   const orgType = (searchParams.get('type') as 'All' | OrgType) || 'All';
+  const category = searchParams.get('category') || 'All';
   const program = searchParams.get('program') || 'All';
   const campusIdParam = searchParams.get('campusId');
 
@@ -40,14 +41,15 @@ export function useOrgBrowser() {
     [setSearchParams]
   );
 
-  // 3. Orgs filtered by type + campus only (used for programs list too)
+  // 3. Orgs filtered by type + category + campus only (used for programs list too)
   const typeCampusOrgs = useMemo(
     () => allOrgs.filter(org => {
       if (orgType !== 'All' && org.type !== orgType) return false;
+      if (category !== 'All' && org.category !== category) return false;
       if (campusIdParam && org.campusId !== Number(campusIdParam)) return false;
       return true;
     }),
-    [allOrgs, orgType, campusIdParam]
+    [allOrgs, orgType, category, campusIdParam]
   );
 
   // 4. Programs derived from type+campus-filtered orgs
@@ -104,7 +106,7 @@ export function useOrgBrowser() {
   }, [currentPage, totalPages, setFilter]);
 
   return {
-    state: { query, orgType, sortBy, program, campusId: campusIdParam || null },
+    state: { query, orgType, category, sortBy, program, campusId: campusIdParam || null },
     dispatch: setFilter,
     visibleOrgs,
     hasMore: currentPage < totalPages,

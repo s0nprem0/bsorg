@@ -12,8 +12,6 @@ import ProfileIdentityCard from '@/components/sections/ProfileIdentityCard';
 import ProfileCampusCard from '@/components/sections/ProfileCampusCard';
 import ProfileConnectCard from '@/components/sections/ProfileConnectCard';
 import ProfileAboutCard from '@/components/sections/ProfileAboutCard';
-import ProfileMissionVision from '@/components/sections/ProfileMissionVision';
-import ProfileGallery from '@/components/sections/ProfileGallery';
 import { LoadingSkeleton, ErrorState, NotFoundState } from '@/components/sections/ProfileStates';
 
 import {
@@ -99,8 +97,6 @@ export default function OrganizationProfile() {
             </div>
 
             <ProfileAboutCard org={org} />
-            <ProfileMissionVision org={org} />
-            <ProfileGallery org={org} />
           </div>
 
           {subOrgs.length > 0 && (

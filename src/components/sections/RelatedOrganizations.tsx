@@ -24,7 +24,7 @@ export default function RelatedOrganizations({
 
     // Scoring system to find the best matches
     const scoredOrgs = allOrgs
-      .filter(org => org.id !== currentOrg.id) // Exclude current org
+      .filter(org => org.slug !== currentOrg.slug) // Exclude current org
       .map(org => {
         let score = 0;
 

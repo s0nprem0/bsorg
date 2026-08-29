@@ -1,6 +1,5 @@
 [
   {
-    "id": "b20d8ca0-36df-48cf-9ffd-f003d32f83bb",
     "slug": "cemds-sc",
     "name": "CEMDS Student Council",
     "status": "Active",
@@ -27,7 +26,6 @@
     }
   },
   {
-    "id": "bd48ff97-9fd4-4863-ba1a-6ec70ee7aeb7",
     "slug": "sfe",
     "name": "Society of Future Economists",
     "acronym": "SFE",
@@ -61,7 +59,6 @@
     ]
   },
   {
-    "id": "3e434c19-dd1e-419f-a50c-42a8166e0980",
     "slug": "issa",
     "name": "International Studies Students Association",
     "acronym": "ISSA",
@@ -94,7 +91,6 @@
     ]
   },
   {
-    "id": "99c1da23-4a64-4f20-839c-3293f9e51ed1",
     "slug": "cddm",
     "name": "Chief Delegates of Development Management",
     "acronym": "CDDM",
@@ -127,7 +123,6 @@
     ]
   },
   {
-    "id": "4abf6ac5-6daa-4957-bbdd-970429b9572a",
     "slug": "pasoa",
     "name": "Philippine Association of Students in Office Administration - CvSU Chapter",
     "acronym": "PASOA",
@@ -160,7 +155,6 @@
     ]
   },
   {
-    "id": "4fa829cf-a1a2-40f3-9762-9f53a64c381c",
     "slug": "jpia",
     "name": "Junior Philippine Institute of Accountants - CvSU Chapter",
     "acronym": "JPIA",
@@ -193,7 +187,6 @@
     ]
   },
   {
-    "id": "e0ad619f-1c34-45e0-9f95-c3b49f8245bb",
     "slug": "jfinex",
     "name": "Junior Financial Executives - CvSU Chapter",
     "acronym": "JFINEX",
@@ -228,7 +221,6 @@
     ]
   },
   {
-    "id": "9094efc5-0867-4f77-a16b-fac24f96e69c",
     "slug": "jpmap",
     "name": "Junior Philippine Marketing Association - CvSU Chapter",
     "acronym": "JPMAP",
@@ -261,7 +253,6 @@
     ]
   },
   {
-    "id": "598a782c-23ed-42b6-a134-7b34e5c711ac",
     "slug": "jma",
     "name": "Junior Philippine Management Association - CvSU Chapter",
     "acronym": "JMA",
@@ -295,7 +286,6 @@
     ]
   },
   {
-    "id": "c7ae7c1e-b1ae-44bf-944c-ffd2a5fcf6b6",
     "slug": "joma",
     "name": "Junior Operations Management Association - CvSU Chapter",
     "acronym": "JOMA",

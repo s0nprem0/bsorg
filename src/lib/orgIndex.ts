@@ -11,15 +11,31 @@ export const orgTypeSchema = z.enum([
   'Performing Arts Group',
 ]);
 
+export const orgCategorySchema = z.enum([
+  'College of Agriculture, Food, Environment and Natural Resources',
+  'College of Arts and Sciences',
+  'College of Criminal Justice',
+  'College of Economics, Management and Development Studies',
+  'College of Engineering and Information Technology',
+  'College of Nursing',
+  'College of Sports, Physical Education, Arts and Recreation',
+  'College of Tourism and Hospitality Management',
+  'Imus Campus',
+  'Naic Campus',
+  'Performing Arts Group',
+  'Student Publication Units',
+  'Trece Martires Campus',
+  'University-Wide',
+]);
+
 export const orgValidationSchema = z.object({
-  id: z.string(),
   slug: z.string(),
   name: z.string(),
   acronym: z.string().optional(),
   status: orgStatusSchema,
   type: orgTypeSchema,
   campusId: z.number(),
-  category: z.string(),
+  category: orgCategorySchema,
   programId: z.string().optional(),
   parentSlug: z.array(z.string()).optional(),
   metadata: z

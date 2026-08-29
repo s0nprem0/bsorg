@@ -1,6 +1,5 @@
 [
   {
-    "id": "7dbc6feb-8f75-4b9b-9dd9-8f8f404870bb",
     "slug": "cthm-sc",
     "name": "CTHM Student Council",
     "status": "Active",
@@ -27,7 +26,6 @@
     }
   },
   {
-    "id": "04c5b3be-8501-4081-bdb0-1a9a880d6a1e",
     "slug": "tourista",
     "name": "Tourism Students Association",
     "acronym": "TOURISTA",
@@ -60,7 +58,6 @@
     ]
   },
   {
-    "id": "e2939a54-d8d3-42da-972c-d249ddde731a",
     "slug": "charms",
     "name": "Circle of Hotel and Restaurant Management Students",
     "acronym": "CHARMS",

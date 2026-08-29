@@ -1,6 +1,5 @@
 [
   {
-    "id": "d1fa05a4-bdfe-4ef8-8d46-11eed5737f71",
     "slug": "cspear-sc",
     "name": "CSPEAR Student Council",
     "status": "Active",
@@ -27,7 +26,6 @@
     }
   },
   {
-    "id": "7d58143a-02cf-4a01-80af-d3674bfb9515",
     "slug": "scped",
     "name": "Student Congress of Physical Education - CvSu Main Campus",
     "acronym": "SCPED",
@@ -60,7 +58,6 @@
     ]
   },
   {
-    "id": "2821dda7-e61b-48f4-821b-8957b6f817f7",
     "slug": "gs",
     "name": "Gerero's Spear",
     "acronym": "GS",
@@ -93,7 +90,6 @@
     ]
   },
   {
-    "id": "sascom",
     "slug": "SASCoM",
     "name": "Student Alliance of Sports Coaching and Management",
     "acronym": "SASCoM",

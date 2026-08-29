@@ -1,6 +1,5 @@
 [
   {
-    "id": "d2692d72-f9e5-4f11-964e-d864e760becd",
     "slug": "chorale-ensemble",
     "name": "CvSU Chorale Ensemble",
     "status": "Active",
@@ -29,7 +28,6 @@
     }
   },
   {
-    "id": "2e8d51b1-5b4d-414f-9338-9304b4bfba57",
     "slug": "ccdt",
     "name": "CvSU Cultural Dance Troupe",
     "status": "Active",
@@ -59,7 +57,6 @@
     }
   },
   {
-    "id": "aa7f4e3c-8663-4f30-a96b-81cecba3561c",
     "slug": "stars",
     "name": "Student Artisté Society",
     "status": "Active",

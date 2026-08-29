@@ -1,6 +1,5 @@
 [
   {
-    "id": "0e9e45d5-b540-77fe-a18c-95c5ac6a61b4",
     "slug": "litl-13",
     "name": "League of Information Technology Leaders",
     "acronym": "LITL",
@@ -24,7 +23,6 @@
     }
   },
   {
-    "id": "d9f1b3c2-6b7a-4f2a-9e1b-8c3d6a5b7c9d",
     "slug": "lyhr-13",
     "name": "League of Young Hoteliers and Restaurateurs",
     "acronym": "LYHR",
@@ -50,7 +48,6 @@
     }
   },
   {
-    "id": "isip13",
     "slug": "isip-13",
     "name": "Integrated Society of Inclusive Psychology",
     "acronym": "ISIP",

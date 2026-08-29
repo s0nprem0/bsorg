@@ -1,11 +1,10 @@
 [
   {
-    "id": "0bb446fd-4332-4477-a784-2fc3ff4867f5",
     "slug": "ufy-sc",
     "name": "University First Year Student Council",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -29,12 +28,11 @@
     }
   },
   {
-    "id": "fe906166-f4c7-49a0-8f5d-f880ebfd527d",
     "slug": "sinagtala",
     "name": "Sinagtala Multimedia Arts Organization",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -60,13 +58,12 @@
     }
   },
   {
-    "id": "63169dfc-1ac1-4c1a-8ef1-ec8b31d36901",
     "slug": "kasama",
     "name": "Kabsuhenyong Samahan ng Manggagawa Manlilikha at Manininda",
     "acronym": "KASAMA",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -90,13 +87,12 @@
     }
   },
   {
-    "id": "17bdb21b-4087-419d-812a-6f10ec9cf6ed",
     "slug": "likhain",
     "name": "Lipon ng Kagalingang Hanay ng mga Artistikong Indibidwal",
     "acronym": "LIKHAIN",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -120,13 +116,12 @@
     }
   },
   {
-    "id": "4a6f2c47-92c7-4175-a5bc-b159c272561b",
     "slug": "mym",
     "name": "Mind Your Mind",
     "acronym": "MYM",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -151,12 +146,11 @@
     }
   },
   {
-    "id": "ad44224f-3551-47aa-b4e1-dbee7bfe290b",
     "slug": "musikeros",
     "name": "CvSU Musikeros",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -180,13 +174,12 @@
     }
   },
   {
-    "id": "9aefd134-33f1-41be-a8ea-b33dc80ccc0d",
     "slug": "awsbg-spade",
     "name": "AWS Student Builder Group - Spade",
     "acronym": "AWSBG",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -210,13 +203,12 @@
     }
   },
   {
-    "id": "50d587b4-38ba-4f9a-9c5e-dccb6d7d3709",
     "slug": "cos",
     "name": "CvSU Otaku Society",
     "acronym": "COS",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [
@@ -240,7 +232,6 @@
     }
   },
   {
-    "id": "549b96df-1b2a-4ef9-900f-98df2ad13ccb",
     "slug": "asclepsoc",
     "name": "Cavite State University - The Asclepian Society",
     "acronym": "ASCLEPSOC",
@@ -271,7 +262,6 @@
     }
   },
   {
-    "id": "bb9e78de-79aa-4e1f-b1a7-fb5e2d21e88c",
     "slug": "cerat",
     "name": "Cavite State University Emergency Response and Airsoft Team",
     "acronym": "CERAT",
@@ -301,13 +291,12 @@
     }
   },
   {
-    "id": "rcy-alalay",
     "slug": "rcyalalay",
     "name": "Red Cross Youth - ALALAY",
     "acronym": "RCS - ALALAY",
     "status": "Active",
     "type": "Non-Academic",
-    "category": "Main Campus",
+    "category": "University-Wide",
     "campusId": 0,
     "metadata": {
       "tags": [

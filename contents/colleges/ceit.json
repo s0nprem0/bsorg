@@ -1,6 +1,5 @@
 [
   {
-    "id": "ceit-sc",
     "slug": "ceit-sc",
     "name": "CEIT Student Council",
     "acronym": "CEIT-SC",
@@ -10,7 +9,10 @@
     "campusId": 0,
     "metadata": {
       "accredited": true,
-      "tags": ["Academic", "College of Engineering and Information Technology"]
+      "tags": [
+        "Academic",
+        "College of Engineering and Information Technology"
+      ]
     },
     "assets": {
       "logoUrl": "/colleges/ceit/ceit-sc_blk.svg",
@@ -25,7 +27,6 @@
     }
   },
   {
-    "id": "csso",
     "slug": "csso",
     "name": "Computer Science Student Organization",
     "acronym": "CSSO",
@@ -53,10 +54,11 @@
         "facebook": "https://www.facebook.com/CSSO2016"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "6c2dac09-ce2f-4821-a4cf-cf5c1bcb7f53",
     "slug": "elits",
     "name": "Elite League of Information Technology Students",
     "acronym": "ELITS",
@@ -84,10 +86,11 @@
         "facebook": "https://www.facebook.com/CvSUELITS"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "coess-main",
     "slug": "coess",
     "name": "Computer Engineering Students Society - ICPEP Students Edition",
     "acronym": "COESS",
@@ -115,10 +118,11 @@
         "facebook": "https://www.facebook.com/CvSUCpE"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "uapsa-main",
     "slug": "uapsa",
     "name": "United Architects of the Philippines Student Auxiliary - CvSU Chapter",
     "acronym": "UAPSA",
@@ -147,10 +151,11 @@
         "instagram": "https://www.instagram.com/uapsa_cvsu"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "c89ec9fe-e51a-4434-b3b7-3dfe76c67410",
     "slug": "piie",
     "name": "Philippine Institute of Industrial Engineers - CvSU Chapter",
     "acronym": "PIIE",
@@ -179,10 +184,11 @@
         "instagram": "https://www.instagram.com/piie.cvsusc/"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "3a2df459-b70e-4689-850b-e955764f437b",
     "slug": "iiee",
     "name": "Institute of Integrated Electrical Engineers - CvSU Chapter",
     "acronym": "IIEE",
@@ -210,10 +216,11 @@
         "facebook": "https://www.facebook.com/iieecsccvsumain"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "1e1eb757-1592-410c-b4ca-32354303793d",
     "slug": "psabe",
     "name": "Philippine Society of Agricultural and Biosystems Engineers - CvSU Chapter",
     "acronym": "PSABE",
@@ -240,10 +247,11 @@
         "facebook": "https://www.facebook.com/psabeppgcvsuchapter"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "e090184b-8b15-4135-8f2f-114dff3067c7",
     "slug": "jiecep",
     "name": "Junior Institute of Electronics Engineers of the Philippines - CvSU Chapter",
     "acronym": "JIECEP",
@@ -271,10 +279,11 @@
         "facebook": "https://www.facebook.com/cvsuece"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "e71ba4f3-012a-42cc-a48f-85456bc7f2bb",
     "slug": "class",
     "name": "CvSU League of Automotive Superb Students",
     "acronym": "CLASS",
@@ -302,10 +311,11 @@
         "facebook": "https://www.facebook.com/CLASS.CVSU"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "2d8cb4ff-057b-4032-9502-3e47ff76b6a6",
     "slug": "sites",
     "name": "Society of Industrial Technology Electrical Students",
     "acronym": "SITES",
@@ -333,10 +343,11 @@
         "facebook": "https://www.facebook.com/cvsu.elex.sites"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "e8409d97-b8f0-45d5-b2df-1c124686a7e1",
     "slug": "pice",
     "name": "Philippine Institute of Civil Engineers - CvSU Chapter",
     "acronym": "PICE",
@@ -364,10 +375,11 @@
         "facebook": "https://www.facebook.com/picecvsustudentchapter"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   },
   {
-    "id": "ad77ecff-baad-4cfb-806e-495d8bdc3189",
     "slug": "etso",
     "name": "Electrical Technology Students Organization",
     "acronym": "ETSO",
@@ -394,6 +406,8 @@
         "facebook": "https://www.facebook.com/profile.php?id=100072488476712"
       }
     },
-    "parentSlug": ["ceit-sc"]
+    "parentSlug": [
+      "ceit-sc"
+    ]
   }
 ]

@@ -1,6 +1,5 @@
 [
   {
-    "id": "72da738a-8b3b-4d6e-975b-f1fc46535c2d",
     "slug": "cas-sc",
     "name": "CAS Student Council",
     "status": "Active",
@@ -28,7 +27,6 @@
     }
   },
   {
-    "id": "43151383-d953-47ca-9d39-8f5174742e1f",
     "slug": "samakom",
     "name": "Samahan ng mga Mag-aaral sa Komunikasyon",
     "acronym": "SAMAKOM",
@@ -63,7 +61,6 @@
     ]
   },
   {
-    "id": "cf4c4b88-ef4c-4761-a3f3-e777f63fcb0c",
     "slug": "pragmaticus",
     "name": "PRAGMATICUS",
     "acronym": "PRAGMATICUS",
@@ -98,7 +95,6 @@
     ]
   },
   {
-    "id": "4cf9da7b-da83-486d-995b-b87a8be62eda",
     "slug": "utopia",
     "name": "CvSU Political Science Society",
     "acronym": "UTOPIA",
@@ -131,7 +127,6 @@
     ]
   },
   {
-    "id": "30fa40f7-dc26-4e72-9343-6628d1206a43",
     "slug": "journalism-guild",
     "name": "Journalism Guild",
     "status": "Active",
@@ -162,7 +157,6 @@
     ]
   },
   {
-    "id": "5d6fec42-f1ba-4ebe-a58e-8599681f29c2",
     "slug": "radicands",
     "name": "CvSU Cluster of Applied Mathematics Students",
     "acronym": "RADICANDS",
@@ -195,7 +189,6 @@
     ]
   },
   {
-    "id": "ec193ab7-f168-4219-b563-4b736c214487",
     "slug": "mitochondrion-society",
     "name": "Mitochondrion Society",
     "status": "Active",
@@ -226,7 +219,6 @@
     ]
   },
   {
-    "id": "f09b2539-5e56-434e-8d56-c35edfef3f6b",
     "slug": "development-communication-society",
     "name": "Development Communication Society",
     "status": "Active",
@@ -257,7 +249,6 @@
     ]
   },
   {
-    "id": "1f0ed2ff-7d66-49c4-a01d-2af63bbb4762",
     "slug": "psychology-circle",
     "name": "Psychology Circle",
     "status": "Active",
@@ -290,7 +281,6 @@
     ]
   },
   {
-    "id": "df1add6c-877f-435d-80fa-d2bad757fb67",
     "slug": "jswap-cvsu",
     "name": "Junior Social Workers' Association of the Philippines - CvSU Chapter",
     "status": "Active",

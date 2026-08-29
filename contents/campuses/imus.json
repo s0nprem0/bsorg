@@ -1,6 +1,5 @@
 [
   {
-    "id": "csg-imus",
     "slug": "csg-imus",
     "name": "Central Student Government - Imus Campus",
     "acronym": "CSG Imus",
@@ -22,7 +21,6 @@
     }
   },
   {
-    "id": "bits-imus",
     "slug": "bits-imus",
     "name": "Builders of Innovative Technologist Society",
     "acronym": "BITS",
@@ -35,7 +33,7 @@
       "accredited": true
     },
     "content": {
-      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Information Technology of Cavite State University \u2013 Imus Campus."
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Information Technology of Cavite State University – Imus Campus."
     },
     "assets": {
       "logoUrl": "/campuses/imus/bits-imus.jpg"
@@ -51,7 +49,6 @@
     ]
   },
   {
-    "id": "bas-imus",
     "slug": "bas-imus",
     "name": "Business Administration Society",
     "acronym": "BAS Imus",
@@ -64,7 +61,7 @@
       "accredited": true
     },
     "content": {
-      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Business Administration of Cavite State University \u2013 Imus Campus."
+      "shortDescription": "The Official Student Academic Organization for the Bachelor of Science in Business Administration of Cavite State University – Imus Campus."
     },
     "assets": {
       "logoUrl": "/campuses/imus/bas-imus.jpg"
@@ -80,7 +77,6 @@
     ]
   },
   {
-    "id": "edge-imus",
     "slug": "edge-imus",
     "name": "Educators' Guild for Excellence",
     "acronym": "EdGE",
@@ -109,7 +105,6 @@
     ]
   },
   {
-    "id": "chats-imus",
     "slug": "chats-imus",
     "name": "Circle of Hospitality and Tourism Students",
     "acronym": "CHATS",
@@ -138,7 +133,6 @@
     ]
   },
   {
-    "id": "csc-imus",
     "slug": "csc-imus",
     "name": "Computer Science Clique",
     "acronym": "CSC",
@@ -164,7 +158,6 @@
     ]
   },
   {
-    "id": "cyle-imus",
     "slug": "cyle-imus",
     "name": "Cavite Youth Leaders for Entrepreneurship",
     "acronym": "CYLE",
@@ -190,7 +183,6 @@
     ]
   },
   {
-    "id": "cavcomm-imus",
     "slug": "cavcomm-imus",
     "name": "Cavite Communicators",
     "acronym": "CavComm",
@@ -217,7 +209,6 @@
     ]
   },
   {
-    "id": "cihs-imus",
     "slug": "cihs-imus",
     "name": "Honor Society",
     "acronym": "CIHS",
@@ -243,7 +234,6 @@
     }
   },
   {
-    "id": "yopa-imus",
     "slug": "yopa-imus",
     "name": "Young Office Processional Advocates",
     "acronym": "YOPA",
@@ -269,7 +259,6 @@
     ]
   },
   {
-    "id": "sinag-tala-imus",
     "slug": "sinag-tala-imus",
     "name": "Sinag-Tala Performing Arts Group",
     "acronym": "STPAG",
@@ -302,7 +291,6 @@
     }
   },
   {
-    "id": "sms-imus",
     "slug": "sms-imus",
     "name": "Samahan ng mga Magaaral ng Sikolohiya",
     "acronym": "SMS",
@@ -332,7 +320,6 @@
     ]
   },
   {
-    "id": "oms-imus",
     "slug": "oms-imus",
     "name": "Operations Management Society",
     "acronym": "OMS",
@@ -358,7 +345,6 @@
     }
   },
   {
-    "id": "jma-imus",
     "slug": "jma-imus",
     "name": "Junior Marketing Association",
     "acronym": "JMA - IMUS",
@@ -380,6 +366,7 @@
     },
     "parentSlug": [
       "bas-imus"
-    ]
+    ],
+    "category": "Imus Campus"
   }
 ]

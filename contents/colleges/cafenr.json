@@ -1,6 +1,5 @@
 [
   {
-    "id": "489921de-9ede-4415-aa6e-7e7afb71c167",
     "slug": "cafenr-sc",
     "name": "CAFENR Student Council",
     "status": "Active",
@@ -28,7 +27,6 @@
     }
   },
   {
-    "id": "8d07c5c7-1c10-4988-b7c0-5666d6546c0b",
     "slug": "mcss",
     "name": "Matayuyon Crop Science Society",
     "acronym": "MCSS",
@@ -62,7 +60,6 @@
     ]
   },
   {
-    "id": "69bd6a6e-fbf2-44c8-94a3-a9729d42adb1",
     "slug": "paddocksoc",
     "name": "Paddock Society",
     "status": "Active",
@@ -93,7 +90,6 @@
     ]
   },
   {
-    "id": "b12a77dc-44f3-40a2-8aa2-1458e1bb4005",
     "slug": "salinlahi",
     "name": "CvSU Environmental Science Students Association",
     "acronym": "SALINLAHI",
@@ -126,7 +122,6 @@
     ]
   },
   {
-    "id": "0d347d3e-2a95-456b-a0c2-1d29eba89343",
     "slug": "punlaan-community",
     "name": "Punlaan Community",
     "status": "Active",
@@ -157,7 +152,6 @@
     ]
   },
   {
-    "id": "fcf9727f-a633-4ea8-85fc-1290d4bd7b31",
     "slug": "paft",
     "name": "Cavite State University Chapter - formerly D'Glycans",
     "acronym": "PAFT",

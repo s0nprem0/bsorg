@@ -1,6 +1,5 @@
 [
   {
-    "id": "con-sc",
     "slug": "con-sc",
     "name": "CON Student Council",
     "status": "Active",
@@ -8,7 +7,10 @@
     "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
-      "tags": ["Academic", "College of Nursing"]
+      "tags": [
+        "Academic",
+        "College of Nursing"
+      ]
     },
     "assets": {
       "logoUrl": "/colleges/con/con-sc.jpg"
@@ -22,7 +24,6 @@
     }
   },
   {
-    "id": "phismets",
     "slug": "phismets",
     "name": "Philippine Society of Medical Technology Students - CVSU Chapter",
     "acronym": "PHISMETS",
@@ -32,7 +33,10 @@
     "category": "College of Nursing",
     "campusId": 0,
     "metadata": {
-      "tags": ["medtech", "con"]
+      "tags": [
+        "medtech",
+        "con"
+      ]
     },
     "assets": {
       "logoUrl": "/colleges/con/phismet.jpg"
@@ -43,10 +47,11 @@
         "facebook": "https://www.facebook.com/PHISMETS.CvSU"
       }
     },
-    "parentSlug": ["con-sc"]
+    "parentSlug": [
+      "con-sc"
+    ]
   },
   {
-    "id": "ismap",
     "slug": "ismap",
     "name": "Integrated Student Midwives Association of the Philippines",
     "acronym": "ISMAP",
@@ -56,7 +61,9 @@
     "campusId": 0,
     "programId": "Bachelor of Science in Midwifery",
     "metadata": {
-      "tags": ["midwifery"],
+      "tags": [
+        "midwifery"
+      ],
       "foundedYear": 2023
     },
     "assets": {
@@ -68,6 +75,8 @@
         "facebook": "https://www.facebook.com/ISMAPCvSU"
       }
     },
-    "parentSlug": ["con-sc"]
+    "parentSlug": [
+      "con-sc"
+    ]
   }
 ]

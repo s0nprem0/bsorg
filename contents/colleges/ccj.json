@@ -1,6 +1,5 @@
 [
   {
-    "id": "c697ac99-316f-499e-9398-0351d3533bc4",
     "slug": "ccj-sc",
     "name": "CCJ Student Council",
     "status": "Active",
@@ -27,7 +26,6 @@
     }
   },
   {
-    "id": "a750f423-d86c-4967-9567-836b4c6c0b3e",
     "slug": "isss",
     "name": "International Security Service Society",
     "acronym": "ISSS",
@@ -60,7 +58,6 @@
     ]
   },
   {
-    "id": "d7d89838-53d4-4134-ac51-d234658c8bc3",
     "slug": "crisoc",
     "name": "CCJ-Criminology Society",
     "acronym": "CRISOC",

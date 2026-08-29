@@ -1,6 +1,5 @@
 [
   {
-    "id": "07a754f3-9696-4b74-b095-2f66ab757baf",
     "slug": "the-gazette",
     "name": "The Gazette",
     "status": "Active",
@@ -30,7 +29,6 @@
     }
   },
   {
-    "id": "6e00ac2f-2e75-440c-be7b-027e7b84ecbe",
     "slug": "ghgp",
     "name": "The Green Horizon Group of Publications",
     "status": "Active",
@@ -59,7 +57,6 @@
     }
   },
   {
-    "id": "465db898-9443-4aed-a2ec-1c3dacf001e8",
     "slug": "the-flare",
     "name": "The Flare",
     "acronym": "The Flare",
@@ -90,7 +87,6 @@
     }
   },
   {
-    "id": "2dc55e26-12f3-4083-963d-b1db5af7ee2e",
     "slug": "the-cornerstone",
     "name": "The Cornerstone",
     "status": "Active",
@@ -118,7 +114,6 @@
     }
   },
   {
-    "id": "cac499ce-48ab-4a61-ae91-7af32bda7763",
     "slug": "the-oracle",
     "name": "The Oracle",
     "status": "Active",

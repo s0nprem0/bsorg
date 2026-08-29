@@ -59,7 +59,7 @@ export default function OrgGrid({
     <div className={cn('grid gap-6 auto-rows-fr', columnClasses, className)}>
       {organizations.map((org, i) => (
         <div
-          key={org.id}
+          key={org.slug}
           className="animate-fade-in-up h-full"
           style={{ animationDelay: `${Math.min(i, 20) * 60}ms` }}
         >

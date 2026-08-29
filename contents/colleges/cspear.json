@@ -35,7 +35,7 @@
     "type": "Academic",
     "category": "College of Sports, Physical Education, Arts and Recreation",
     "campusId": 0,
-    "programId": "Bachelor of Science in Physical Education",
+    "programId": "BPED",
     "metadata": {
       "tags": [
         "SCPED",
@@ -68,7 +68,7 @@
     "type": "Academic",
     "category": "College of Sports, Physical Education, Arts and Recreation",
     "campusId": 0,
-    "programId": "Bachelor of Science in Exercise and Sports Science",
+    "programId": "BSESS",
     "metadata": {
       "tags": [
         "GS",
@@ -91,5 +91,35 @@
     "parentSlug": [
       "cspear-sc"
     ]
+  },
+  {
+    "id": "sascom",
+    "slug": "SASCoM",
+    "name": "Student Alliance of Sports Coaching and Management",
+    "acronym": "SASCoM",
+    "status": "Active",
+    "type": "Academic",
+    "category": "College of Sports, Physical Education, Arts and Recreation",
+    "campusId": 0,
+    "programId": "BSESS-SM",
+    "metadata": {
+      "tags": [
+        "SASCoM",
+        "Academic",
+        "College of Sports, Physical Education, Arts and Recreation"
+      ]
+    },
+    "content": {
+      "shortDescription": "tba",
+      "assets": {
+        "logoUrl": "/colleges/cspear/sascom.png"
+      },
+      "contact": {
+        "email": "cspear.sascom@gmail.com",
+        "social": {
+          "facebook": "https://www.facebook.com/cspearsascom"
+        }
+      }
+    }
   }
 ]

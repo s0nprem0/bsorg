@@ -62,7 +62,6 @@ export default function OrgBrowser() {
     const sortLabels: Record<string, string> = {
       [SORT_OPTIONS.ASC]: 'A-Z',
       [SORT_OPTIONS.DESC]: 'Z-A',
-      [SORT_OPTIONS.NEWEST]: 'Newest',
     };
     filterChips.push({ label: sortLabels[state.sortBy] || state.sortBy, key: 'sort' });
   }
@@ -187,7 +186,7 @@ export default function OrgBrowser() {
             </div>
           ) : (
             <>
-              <OrgGrid organizations={visibleOrgs} columns={4} />
+              <OrgGrid organizations={visibleOrgs} />
               {hasMore ? (
                 <div
                   ref={loadMoreRef}

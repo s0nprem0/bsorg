@@ -2,8 +2,6 @@
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -12,61 +10,27 @@
   --zinc-50: #fafafa;
   --zinc-100: #f4f4f5;
   --zinc-200: #e4e4e7;
-  --zinc-300: #d4d4d8;
   --zinc-400: #a1a1aa;
-  --zinc-500: #71717a;
   --zinc-600: #52525b;
-  --zinc-700: #3f3f46;
-  --zinc-800: #27272a;
   --zinc-900: #18181b;
   --zinc-950: #09090b;
 
   /* Emerald (mint-green) */
-  --emerald-50: #ecfff5;
-  --emerald-100: #d2ffe8;
-  --emerald-200: #a4ffd1;
-  --emerald-300: #6ff7b2;
-  --emerald-400: #3dfca2;
   --emerald-500: #22e58b;
-  --emerald-600: #18c972;
-  --emerald-700: #13a85f;
-  --emerald-800: #117048;
-  --emerald-900: #0b3d27;
 
   /* Cyan */
-  --cyan-50: #ecfeff;
-  --cyan-100: #cffafe;
-  --cyan-200: #a5f3fc;
-  --cyan-300: #67e8f9;
-  --cyan-400: #22d3ee;
   --cyan-500: #06b6d4;
-  --cyan-600: #0891b2;
   --cyan-700: #0e7490;
-  --cyan-800: #155e75;
-  --cyan-900: #083344;
 
   /* Yellow */
-  --yellow-50: #fffceb;
-  --yellow-100: #fff7c2;
-  --yellow-200: #ffef88;
-  --yellow-300: #ffe14d;
-  --yellow-400: #ffd60a;
-  --yellow-500: #facc15;
-  --yellow-600: #eab308;
-  --yellow-700: #ca8a04;
-  --yellow-800: #a16207;
-  --yellow-900: #713f12;
+  --yellow-500: #eab308;
 
   /* Red */
   --red-500: #ef4444;
 
   /* Violet */
-  --violet-200: #ddd6fe;
-  --violet-300: #c4b5fd;
   --violet-400: #a78bfa;
-  --violet-500: #8b5cf6;
   --violet-600: #7c3aed;
-  --violet-700: #6d28d9;
 
   /*
   |--------------------------------------------------------------------------
@@ -252,19 +216,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.5);
   --radius-2xl: calc(var(--radius) * 2);
-}
-
-/*
-|--------------------------------------------------------------------------
-| Custom Utilities
-|--------------------------------------------------------------------------
-*/
-
-@utility scrollbar-none {
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 /*

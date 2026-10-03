@@ -62,8 +62,7 @@ export default function RelatedOrganizations({
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        {/* Reusing our OrgGrid, but limiting to 4 columns to fit the bento style */}
-        <OrgGrid organizations={relatedOrgs} columns={4} />
+        <OrgGrid organizations={relatedOrgs} />
       </CardContent>
     </Card>
   );

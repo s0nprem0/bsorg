@@ -79,13 +79,7 @@ export function useOrgBrowser() {
 
     result.sort((a, b) => {
       if (sortBy === SORT_OPTIONS.ASC) return a.name.localeCompare(b.name);
-      if (sortBy === SORT_OPTIONS.DESC) return b.name.localeCompare(a.name);
-      if (sortBy === SORT_OPTIONS.NEWEST) {
-        const yearA = a.metadata?.foundedYear || 0;
-        const yearB = b.metadata?.foundedYear || 0;
-        return yearB - yearA;
-      }
-      return 0;
+      return b.name.localeCompare(a.name);
     });
 
     return result;

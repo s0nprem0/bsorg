@@ -1,26 +1,10 @@
 import OrganizationCard from '@/components/OrganizationCard';
 import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
-import { cn } from '@/lib/utils';
 
-interface OrgGridProps {
-  organizations: Organization[];
-  columns?: 1 | 2 | 3 | 4;
-  className?: string;
-}
-
-const COLUMN_CLASSES: Record<number, string> = {
-  1: 'grid-cols-1',
-  2: 'grid-cols-1 sm:grid-cols-2',
-  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4',
-};
-
-export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; count?: number }) {
-  const columnClasses = COLUMN_CLASSES[columns] ?? COLUMN_CLASSES[4];
-
+export function GridSkeleton({ count = 8 }: { count?: number }) {
   return (
-    <div className={cn('grid gap-6 auto-rows-fr', columnClasses)}>
+    <div className="grid grid-cols-1 gap-6 auto-rows-fr sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
@@ -46,27 +30,18 @@ export function GridSkeleton({ columns = 4, count = 8 }: { columns?: number; cou
   );
 }
 
-export default function OrgGrid({
-  organizations,
-  columns = 4,
-  className,
-}: OrgGridProps) {
+export default function OrgGrid({ organizations }: { organizations: Organization[] }) {
   if (!organizations?.length) return null;
 
-  const columnClasses = COLUMN_CLASSES[columns] ?? COLUMN_CLASSES[4];
-
   return (
-    <div className={cn('grid gap-6 auto-rows-fr', columnClasses, className)}>
+    <div className="grid grid-cols-1 gap-6 auto-rows-fr sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       {organizations.map((org, i) => (
         <div
           key={org.slug}
           className="animate-fade-in-up h-full"
           style={{ animationDelay: `${Math.min(i, 20) * 60}ms` }}
         >
-          <OrganizationCard
-            org={org}
-            campusName={getCampusName(org.campusId)}
-          />
+          <OrganizationCard org={org} campusName={getCampusName(org.campusId)} />
         </div>
       ))}
     </div>

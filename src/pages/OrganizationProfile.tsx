@@ -112,7 +112,7 @@ export default function OrganizationProfile() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <OrgGrid organizations={subOrgs} columns={4} />
+                  <OrgGrid organizations={subOrgs} />
                 </CardContent>
               </Card>
             </section>

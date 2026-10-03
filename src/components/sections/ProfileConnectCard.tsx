@@ -4,11 +4,14 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/shadcn
 import { Button } from '@/components/ui/shadcn/button';
 import type { Organization } from '@/lib/orgIndex';
 
+// Brand colours on hover. X and TikTok are both near-black, which is
+// invisible against the dark theme's bg-secondary, so they use their
+// accessible text colours on a lifted surface instead.
 const brandStyles: Record<string, string> = {
   facebook: 'hover:bg-[#1877F2] hover:text-white',
   instagram: 'hover:bg-linear-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white',
-  x: 'hover:bg-black hover:text-white',
-  tiktok: 'hover:bg-black hover:text-white',
+  x: 'hover:bg-zinc-100 hover:text-zinc-950',
+  tiktok: 'hover:bg-zinc-100 hover:text-zinc-950',
   youtube: 'hover:bg-[#FF0000] hover:text-white',
   linkedin: 'hover:bg-[#0A66C2] hover:text-white',
   email: 'hover:bg-primary hover:text-primary-foreground',

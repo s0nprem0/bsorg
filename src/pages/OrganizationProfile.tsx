@@ -4,7 +4,7 @@ import { ArrowLeft, Users } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { getOrgBySlug, organizations } from '@/lib/orgIndex';
 import { getSocialEntries } from '@/lib/utils';
-import { CAMPUSES } from '@/data/campuses';
+import { getCampusName } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import OrgGrid from '@/components/layout/OrgGrid';
 import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
@@ -26,21 +26,25 @@ export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const org = getOrgBySlug(slug);
-  const campus = CAMPUSES.find(c => c.id === org?.campusId);
+  const campusName = getCampusName(org?.campusId) ?? 'N/A';
 
+  // Exact slug match. Array.includes() does substring matching, so a future
+  // slug that happens to sit inside another (e.g. "cas" in "cas-sc") would
+  // silently list unrelated orgs as sub-organizations.
   const subOrgs = useMemo(
-    () => (slug ? organizations.filter(o => o.parentSlug?.includes(slug)) : []),
+    () =>
+      slug
+        ? organizations.filter(o => o.parentSlug?.some(p => p === slug))
+        : [],
     [slug]
   );
-  const parentOrgs = useMemo(
-    () => {
-      const slugs = org?.parentSlug;
-      return slugs?.length
-        ? organizations.filter(o => slugs.some(p => o.slug.toLowerCase() === p.toLowerCase()))
-        : [];
-    },
-    [org]
-  );
+
+  const parentOrgs = useMemo(() => {
+    const slugs = org?.parentSlug;
+    if (!slugs?.length) return [];
+    const wanted = new Set(slugs.map(p => p.toLowerCase()));
+    return organizations.filter(o => wanted.has(o.slug.toLowerCase()));
+  }, [org]);
 
   if (!org) return <NotFoundState />;
 
@@ -89,7 +93,7 @@ export default function OrganizationProfile() {
             <ProfileIdentityCard org={org} />
 
             <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-5 lg:gap-6">
-              <ProfileCampusCard org={org} campusName={campus?.name || 'N/A'} parentOrgs={parentOrgs} />
+              <ProfileCampusCard org={org} campusName={campusName} parentOrgs={parentOrgs} />
               <ProfileConnectCard org={org} socialEntries={socialEntries} />
             </div>
 

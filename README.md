@@ -36,49 +36,49 @@ bun dev              # http://localhost:5173
 ```txt
 src/
   components/
-    layout/       Navbar, Footer, OrgGrid, CategoryPageTemplate
-    sections/     Hero, RelatedOrganizations
-    ui/           Breadcrumbs, ContactIcon, ScrollToTop, SearchInput, Section
-    ui/shadcn/    avatar, badge, button, card, dialog, input, select, sheet, ...
-  data/           campuses.ts, orgBrowser.ts (constants)
-  hooks/          useDebounce, useOrgBrowser, useOrgService, useTheme
-  lib/            errorReporter, orgIndex (Zod schema + registry), utils (cn, normalize)
-  lib/services/   types.ts, static.ts, api.ts (swappable data layer)
+    layout/       Navbar, Footer, OrgGrid
+    sections/     Hero, FeaturedGrid, BrowseCategories, BrowseByCampus, CTASection,
+                  OrgFilterBar, OrgFilterChips, Profile*, RelatedOrganizations
+    ui/           Breadcrumbs, ContactIcon, ScrollToTop, SearchInput, Section, Tooltip
+    ui/shadcn/    avatar, badge, button, card, input, select, separator, sheet, ...
+  data/           campuses.ts, orgBrowser.ts, programs.ts (constants)
+  hooks/          useDebounce, useOrgBrowser, useTheme
+  lib/            errorReporter, orgIndex (Zod schema + access), utils (cn, normalize)
   pages/          Home, OrgBrowser, OrganizationProfile, NotFound
 contents/         JSON data files (colleges, nonacadorgs, campuses)
 public/           Static assets (hero.png, org logos, campus images)
 ```
 
-## Configuration
-
-| Env Var | Default | Purpose |
-|---------|---------|---------|
-| `VITE_ORG_API_URL` | (unset) | When set, fetches org data from API instead of bundled JSON |
-
 ## Architecture
 
 ### Data Flow
 
-1. **Content** — 14 JSON files in `contents/` (~86 organizations total)
-2. **Schema** — Zod validation in `src/lib/orgIndex.ts` (single source of truth)
-3. **Service** — Abstract `OrgService` interface with two implementations:
-   - `StaticOrgService`: wraps bundled JSON (default)
-   - `ApiOrgService`: fetches from `{VITE_ORG_API_URL}/orgs` with caching
-4. **Hooks** — `useOrgs()` and `useOrg(slug)` return `{ orgs, loading, error }`
-5. **Consumers** — Components use `useOrgs()` via `useOrgBrowser` or directly
+1. **Content** — 14 JSON files in `contents/`, 89 organizations total
+2. **Validation + access** — `src/lib/orgIndex.ts` is the single seam:
+   - `import.meta.glob` loads all JSON eagerly at build time
+   - the Zod schema validates each file; a malformed one is dropped whole
+   - exports `organizations` (active orgs, main campus first, then alphabetical)
+   - exports `getOrgBySlug(slug)` (case-insensitive)
+3. **Consumers** — components import `organizations` directly, or go through
+   `useOrgBrowser()` for URL-driven filtering
+
+Data is synchronous, so there is no `loading` state anywhere. If a backend is ever needed,
+`organizations` and `getOrgBySlug` are the only two things that have to change.
 
 ### Routing
 
 | Path | Page |
 |------|------|
-| `/` | Home (hero, featured orgs, stats, categories) |
+| `/` | Home (hero, featured orgs, stats, browse by type and campus) |
 | `/org` | OrgBrowser (search, filter, sort, infinite scroll) |
-| `/org/:slug` | OrganizationProfile (banner, bento grid, gallery, related orgs) |
+| `/org/:slug` | OrganizationProfile (banner, bento grid, related orgs) |
 | `*` | 404 |
 
 ### Key Patterns
 
 - **URL-driven filters**: search params as source of truth; debounced input (300ms)
+- **Data-derived options**: campus and program filter lists come from the org data, so
+  no option can ever lead to an empty page
 - **Dark-first theme**: toggled via `useTheme` hook, persisted to localStorage
 - **Error handling**: single `<ErrorBoundary>` wrapping all routes + `errorReporter` singleton
 - **Lazy loading**: all pages via `React.lazy()` + `Suspense`

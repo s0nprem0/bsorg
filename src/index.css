@@ -1,3 +1,4 @@
+@import '@fontsource-variable/inter';
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
@@ -51,7 +52,9 @@
   --primary-foreground: var(--black);
 
   --secondary: var(--cyan-500);
-  --secondary-foreground: var(--white);
+  /* cyan-500 is light enough that white text on it only reaches 2.4:1.
+     Black reaches 8.6:1 on the same fill. */
+  --secondary-foreground: var(--black);
 
   --muted: var(--zinc-900);
   --muted-foreground: var(--zinc-400);
@@ -59,8 +62,12 @@
   --destructive: var(--red-500);
   --destructive-foreground: var(--white);
 
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
+  /* --input is a control boundary: the edge is what identifies the field, so
+     WCAG 1.4.11 applies and 0.38 clears 3:1 on pure black (3.39:1).
+     --border is a decorative card edge, which 1.4.11 does not cover; 0.22
+     gives cards visible definition without turning every one into an outline. */
+  --border: rgba(255, 255, 255, 0.22);
+  --input: rgba(255, 255, 255, 0.38);
 
   --ring: var(--emerald-500);
 
@@ -102,7 +109,7 @@
   |--------------------------------------------------------------------------
   */
 
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', sans-serif;
 }
 
 .light {
@@ -115,7 +122,9 @@
   --popover: var(--white);
   --popover-foreground: var(--zinc-950);
 
-  --primary: #0b7a50;
+  /* #0b7a50 fell to 4.04:1 behind its own /20 tint. Darkening keeps every
+     tint usage above 4.5:1 and lifts the solid button to 6.20:1. */
+  --primary: #0a6f4a;
   --primary-foreground: var(--white);
 
   --secondary: var(--cyan-700);
@@ -127,15 +136,17 @@
   --destructive: #dc2626;
   --destructive-foreground: var(--white);
 
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.18);
+  --input: rgba(0, 0, 0, 0.46);
 
   --ring: #0b7a50;
 
   --success: #0f766e;
   --success-foreground: var(--white);
 
-  --warning: #a16207;
+  /* #a16207 only reaches 4.27:1 on a warning-tinted surface, which is under
+     the 4.5:1 body-text threshold. Darkening to amber-800 clears it. */
+  --warning: #854d0e;
   --warning-foreground: var(--white);
 
   --info: var(--cyan-700);

@@ -2,7 +2,7 @@
   {
     "slug": "chorale-ensemble",
     "name": "CvSU Chorale Ensemble",
-    "status": "Active",
+    "active": true,
     "type": "Performing Arts Group",
     "category": "Performing Arts Group",
     "campusId": 0,
@@ -30,7 +30,7 @@
   {
     "slug": "ccdt",
     "name": "CvSU Cultural Dance Troupe",
-    "status": "Active",
+    "active": true,
     "type": "Performing Arts Group",
     "category": "Performing Arts Group",
     "campusId": 0,
@@ -59,7 +59,7 @@
   {
     "slug": "stars",
     "name": "Student Artisté Society",
-    "status": "Active",
+    "active": true,
     "type": "Performing Arts Group",
     "category": "Performing Arts Group",
     "campusId": 0,

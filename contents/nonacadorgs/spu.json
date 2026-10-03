@@ -2,7 +2,7 @@
   {
     "slug": "the-gazette",
     "name": "The Gazette",
-    "status": "Active",
+    "active": true,
     "type": "Student Publication Units",
     "category": "Student Publication Units",
     "campusId": 0,
@@ -31,7 +31,7 @@
   {
     "slug": "ghgp",
     "name": "The Green Horizon Group of Publications",
-    "status": "Active",
+    "active": true,
     "type": "Student Publication Units",
     "category": "Student Publication Units",
     "campusId": 8,
@@ -60,7 +60,7 @@
     "slug": "the-flare",
     "name": "The Flare",
     "acronym": "The Flare",
-    "status": "Active",
+    "active": true,
     "type": "Student Publication Units",
     "category": "Student Publication Units",
     "campusId": 1,
@@ -89,7 +89,7 @@
   {
     "slug": "the-cornerstone",
     "name": "The Cornerstone",
-    "status": "Active",
+    "active": true,
     "type": "Student Publication Units",
     "category": "Student Publication Units",
     "campusId": 2,
@@ -116,7 +116,7 @@
   {
     "slug": "the-oracle",
     "name": "The Oracle",
-    "status": "Active",
+    "active": true,
     "type": "Student Publication Units",
     "category": "Student Publication Units",
     "campusId": 5,

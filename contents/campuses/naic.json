@@ -3,7 +3,7 @@
     "slug": "csso-naic",
     "name": "Computer Science Student Organization - CSSO Naic",
     "acronym": "CSSO Naic",
-    "status": "Active",
+    "active": true,
     "campusId": 7,
     "type": "Academic",
     "category": "Naic Campus",

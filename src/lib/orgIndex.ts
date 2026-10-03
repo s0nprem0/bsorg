@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { errorReporter } from './errorReporter';
 
 // 1. Single Source of Truth: Zod Schema
-export const orgStatusSchema = z.enum(['Active', 'Inactive', 'Probationary']);
 export const orgTypeSchema = z.enum([
   'Academic',
   'Non-Academic',
@@ -49,7 +48,7 @@ export const orgValidationSchema = z.object({
   slug: z.string(),
   name: z.string(),
   acronym: z.string().optional(),
-  status: orgStatusSchema,
+  active: z.boolean().default(true),
   type: orgTypeSchema,
   campusId: z.number(),
   category: orgCategorySchema,
@@ -66,8 +65,6 @@ export const orgValidationSchema = z.object({
     .object({
       shortDescription: z.string().optional(),
       about: z.string().optional(),
-      mission: z.string().optional(),
-      vision: z.string().optional(),
     })
     .optional()
     .default({}),
@@ -75,14 +72,12 @@ export const orgValidationSchema = z.object({
     .object({
       logoUrl: z.string().optional(),
       bannerUrl: z.string().optional(),
-      galleryUrls: z.array(z.string()).optional(),
     })
     .default({}),
   contact: z
     .object({
       email: z.email().optional(),
       website: z.url().optional(),
-      officeLocation: z.string().optional(),
       social: z
         .object({
           facebook: z.url().optional(),
@@ -95,17 +90,10 @@ export const orgValidationSchema = z.object({
         .optional(),
     })
     .default({}),
-  membership: z
-    .object({
-      isOpen: z.boolean(),
-      requirements: z.array(z.string()).optional(),
-    })
-    .optional(),
 });
 
 // Automatically infer TypeScript types from the schema
 export type Organization = z.infer<typeof orgValidationSchema>;
-export type OrgStatus = z.infer<typeof orgStatusSchema>;
 export type OrgType = z.infer<typeof orgTypeSchema>;
 
 // 2. Singleton Registry
@@ -141,7 +129,7 @@ class OrgRegistry {
 
 
   private constructor() {
-    const activeData = validatedOrgs.filter(org => org.status !== 'Inactive');
+    const activeData = validatedOrgs.filter(org => org.active);
 
     const sortPriority = (a: Organization, b: Organization) => {
       if (a.campusId === 0 && b.campusId !== 0) return -1;

@@ -9,7 +9,6 @@ export default function ProfileIdentityCard({ org }: { org: Organization }) {
 
   return (
     <Card
-      style={{ viewTransitionName: 'org-identity' }}
       className="animate-fade-in-up animate-delay-100 md:col-span-2 lg:col-span-2 relative overflow-hidden group border-none bg-card/50 backdrop-blur-sm shadow-lg"
     >
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]" />
@@ -32,11 +31,6 @@ export default function ProfileIdentityCard({ org }: { org: Organization }) {
             >
               {org.type}
             </Badge>
-            {org.status && org.status !== 'Active' && (
-              <Badge className="bg-warning text-warning-foreground border-none text-xs px-3 py-1">
-                {org.status}
-              </Badge>
-            )}
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight text-foreground flex flex-wrap items-center gap-3">
             {org.name}

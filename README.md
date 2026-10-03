@@ -17,19 +17,23 @@ Built to replace the rigid [official org page](https://cvsu.edu.ph/student-organ
 ## Getting Started
 
 ```sh
-bun install
-bun dev              # http://localhost:5173
+nub install
+nub run dev           # http://localhost:5173
 ```
+
+The toolchain is [nub](https://nubjs.com/), which runs scripts and binaries on stock
+Node. It manages `bun.lock` in place, so the lockfile format is unchanged.
 
 ### Scripts
 
 | Command | Description |
 |---------|-------------|
-| `bun dev` | Start dev server |
-| `bun run build` | TypeScript check + production build |
-| `bun run preview` | Preview production build |
-| `npx tsc --noEmit` | TypeScript check only |
-| `npx eslint src/` | Lint |
+| `nub install` | Install dependencies |
+| `nub run dev` | Start dev server |
+| `nub run build` | TypeScript check + production build |
+| `nub run preview` | Preview production build |
+| `nubx tsc --noEmit` | TypeScript check only |
+| `nubx eslint src/` | Lint |
 
 ## Project Structure
 

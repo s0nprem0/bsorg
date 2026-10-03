@@ -31,12 +31,17 @@ within the institution.
 
 ## Commands
 
+Toolchain is [nub](https://nubjs.com/) — a Node toolkit that runs scripts and
+binaries on stock Node. It reads and rewrites `bun.lock` in place, so the lockfile
+stays bun's; there is no nub-specific lockfile.
+
 ```sh
-bun dev            # Start dev server
-bun run build      # Production build (tsc -b && vite build)
-bun run preview    # Preview production build
-npx tsc --noEmit   # TypeScript check
-npx eslint src/    # Lint
+nub install        # Install dependencies
+nub run dev        # Start dev server
+nub run build      # Production build (tsc -b && vite build)
+nub run preview    # Preview production build
+nubx tsc --noEmit  # TypeScript check
+nubx eslint src/   # Lint
 ```
 
 ## Conventions

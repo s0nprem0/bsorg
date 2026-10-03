@@ -4,7 +4,6 @@ type SEOProps = {
   title?: string;
   description?: string;
   image?: string;
-  canonical?: string;
   type?: 'website' | 'article';
 };
 
@@ -14,14 +13,16 @@ export default function SEO({
   title,
   description = DEFAULT_DESC,
   image,
-  canonical,
   type = 'website',
 }: SEOProps) {
   const baseTitle = 'BetterOSAS';
   const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : canonical ?? siteUrl;
+
+  // Canonical + og:url use the path only, so a filtered /org?q=foo page
+  // does not advertise itself as a separate URL to crawlers.
+  const currentUrl = typeof window !== 'undefined' ? `${siteUrl}${window.location.pathname}` : siteUrl;
 
   const resolveImage = (src?: string) => {
     if (!src) return `${siteUrl}/hero.png`;
@@ -36,7 +37,7 @@ export default function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
 
-      <link rel="canonical" href={canonical ?? currentUrl} />
+      <link rel="canonical" href={currentUrl} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />

@@ -22,7 +22,7 @@ export default function Hero() {
         />
         <Badge
           variant="secondary"
-          className="mb-8 bg-primary/20 text-primary hover:bg-primary/30 border-none px-4 py-1.5 text-sm backdrop-blur-sm shadow-sm"
+          className="mb-8 bg-primary/15 text-primary hover:bg-primary/25 border-none px-4 py-1.5 text-sm backdrop-blur-sm shadow-sm"
         >
           Discover Your Community
         </Badge>

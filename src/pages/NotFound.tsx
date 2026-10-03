@@ -9,7 +9,7 @@ export default function NotFound() {
       <SEO title="Page Not Found" />
       <div className="min-h-[80vh] flex items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-9xl font-bold tracking-tighter text-muted-foreground/30 mb-6 select-none">
+          <h1 className="text-9xl font-bold tracking-tighter text-muted-foreground mb-6 select-none">
             404
           </h1>
           <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-3">

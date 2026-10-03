@@ -47,7 +47,7 @@ export default function BrowseCategories({
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <cat.icon className="h-6 w-6" />
                   </div>
-                  <span className="font-mono text-2xl font-bold text-muted-foreground/30">
+                  <span className="font-mono text-2xl font-bold text-muted-foreground">
                     {counts[cat.href] ?? 0}
                   </span>
                 </div>

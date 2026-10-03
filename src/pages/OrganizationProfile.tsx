@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Users } from 'lucide-react';
 import SEO from '@/components/SEO';
-import { useOrg, useOrgs } from '@/hooks/useOrgService';
+import { getOrgBySlug, organizations } from '@/lib/orgIndex';
 import { getSocialEntries } from '@/lib/utils';
 import { CAMPUSES } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
@@ -12,7 +12,7 @@ import ProfileIdentityCard from '@/components/sections/ProfileIdentityCard';
 import ProfileCampusCard from '@/components/sections/ProfileCampusCard';
 import ProfileConnectCard from '@/components/sections/ProfileConnectCard';
 import ProfileAboutCard from '@/components/sections/ProfileAboutCard';
-import { LoadingSkeleton, ErrorState, NotFoundState } from '@/components/sections/ProfileStates';
+import { NotFoundState } from '@/components/sections/ProfileStates';
 
 import {
   Card,
@@ -25,26 +25,23 @@ import { Button } from '@/components/ui/shadcn/button';
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { org, loading, error } = useOrg(slug);
-  const { orgs: allOrgs } = useOrgs();
+  const org = getOrgBySlug(slug);
   const campus = CAMPUSES.find(c => c.id === org?.campusId);
 
   const subOrgs = useMemo(
-    () => (slug ? allOrgs.filter(o => o.parentSlug?.includes(slug)) : []),
-    [allOrgs, slug]
+    () => (slug ? organizations.filter(o => o.parentSlug?.includes(slug)) : []),
+    [slug]
   );
   const parentOrgs = useMemo(
     () => {
       const slugs = org?.parentSlug;
       return slugs?.length
-        ? allOrgs.filter(o => slugs.some(p => o.slug.toLowerCase() === p.toLowerCase()))
+        ? organizations.filter(o => slugs.some(p => o.slug.toLowerCase() === p.toLowerCase()))
         : [];
     },
-    [allOrgs, org]
+    [org]
   );
 
-  if (loading) return <LoadingSkeleton />;
-  if (error) return <ErrorState message={error.message} />;
   if (!org) return <NotFoundState />;
 
   const socialEntries = getSocialEntries(org.contact);
@@ -119,7 +116,7 @@ export default function OrganizationProfile() {
           )}
 
           <div className="animate-fade-in-up animate-delay-500">
-            <RelatedOrganizations currentOrg={org} />
+            <RelatedOrganizations currentOrg={org} allOrgs={organizations} />
           </div>
         </section>
       </div>

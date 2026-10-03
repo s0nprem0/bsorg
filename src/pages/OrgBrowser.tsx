@@ -3,7 +3,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { Search, Loader2, X } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
-import OrgGrid, { GridSkeleton } from '@/components/layout/OrgGrid';
+import OrgGrid from '@/components/layout/OrgGrid';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import OrgFilterBar from '@/components/sections/OrgFilterBar';
@@ -23,8 +23,6 @@ export default function OrgBrowser() {
     loadMore,
     filteredCount,
     programs,
-    loading,
-    error,
   } = useOrgBrowser();
 
   const [localQuery, setLocalQuery] = useState(state.query);
@@ -154,14 +152,7 @@ export default function OrgBrowser() {
         </Section>
 
         <Section className="min-h-96">
-          {loading ? (
-            <GridSkeleton count={8} />
-          ) : error ? (
-            <div className="flex flex-col items-center justify-center py-24 rounded-2xl border-2 border-dashed border-destructive/50 bg-destructive/10 text-center">
-              <p className="text-lg font-semibold text-destructive">Failed to load organizations</p>
-              <p className="mt-1 text-sm text-muted-foreground">{error.message}</p>
-            </div>
-          ) : filteredCount === 0 ? (
+          {filteredCount === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 rounded-2xl border border-dashed border-border bg-muted/20 text-center">
               <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-muted/60">
                 <Search className="h-7 w-7 text-muted-foreground" />

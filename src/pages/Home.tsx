@@ -5,10 +5,10 @@ import FeaturedGrid from '@/components/sections/FeaturedGrid';
 import BrowseCategories from '@/components/sections/BrowseCategories';
 import BrowseByCampus from '@/components/sections/BrowseByCampus';
 import CTASection from '@/components/sections/CTASection';
-import { useOrgs } from '@/hooks/useOrgService';
+import { organizations } from '@/lib/orgIndex';
 
 export default function Home() {
-  const { orgs: allOrgs, loading, error } = useOrgs();
+  const allOrgs = organizations;
 
   const stats = useMemo(() => {
     const uniqueCampuses = new Set(allOrgs.map(o => o.campusId).filter(id => id !== undefined));
@@ -27,7 +27,7 @@ export default function Home() {
       <SEO title="Home" />
       <section className="grow bg-background">
         <Hero />
-        <FeaturedGrid allOrgs={allOrgs} loading={loading} error={error} stats={stats} />
+        <FeaturedGrid allOrgs={allOrgs} stats={stats} />
         <BrowseCategories academic={stats.academic} nonAcademic={stats.nonAcademic}>
           <BrowseByCampus allOrgs={allOrgs} />
         </BrowseCategories>

@@ -12,64 +12,47 @@ import { Button } from '@/components/ui/shadcn/button';
 import { getCampusName } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 
-const hashSeed = (value: string): number => {
-  let hash = 0;
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+// Deterministic per-day shuffle, so the featured set is stable within a day
+// but rotates daily. mulberry32 - one LCG, seeded from the date.
+function dailyShuffle<T>(items: T[], seedText: string): T[] {
+  let seed = 2166136261;
+  for (const char of seedText) {
+    seed = Math.imul(seed ^ char.charCodeAt(0), 16777619);
   }
-  return hash;
-};
-
-const seededRandom = (seed: number) => {
-  let current = seed || 1;
-  return () => {
-    current = (current * 1664525 + 1013904223) >>> 0;
-    return current / 4294967296;
+  const random = () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
-};
-
-const shuffleBySeed = <T,>(items: T[], seedText: string): T[] => {
-  const random = seededRandom(hashSeed(seedText));
   const shuffled = [...items];
-  for (let index = shuffled.length - 1; index > 0; index -= 1) {
-    const randomIndex = Math.floor(random() * (index + 1));
-    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
-};
-
-function GridPlaceholder() {
-  return <div className="h-full min-h-20 rounded-xl border border-dashed border-border bg-muted/20" />;
 }
 
-function FeaturedSkeleton() {
-  return (
-    <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
-      <div className="lg:col-span-2 lg:row-span-2 rounded-xl bg-muted/50 animate-pulse min-h-40" />
-      <div className="hidden lg:block rounded-xl bg-muted/50 animate-pulse min-h-32" />
-      <div className="lg:col-span-1 lg:row-span-2 rounded-xl bg-muted/50 animate-pulse min-h-60" />
-      <div className="hidden lg:block rounded-xl bg-muted/50 animate-pulse min-h-32" />
-      <div className="hidden lg:block rounded-xl bg-muted/50 animate-pulse min-h-32" />
-      <div className="lg:col-span-2 rounded-xl bg-muted/50 animate-pulse min-h-32" />
-      <div className="lg:col-span-2 rounded-xl bg-muted/50 animate-pulse min-h-32" />
-    </div>
-  );
-}
+// Bento placement for the 6 featured slots. Index 0 is the hero card; the
+// stats card sits between slots 1 and 2, so slot 1 is a single cell.
+const FEATURED_SLOTS = [
+  'lg:col-span-2 lg:row-span-2',
+  '',
+  '',
+  '',
+  'lg:col-span-2',
+  'lg:col-span-2',
+];
 
 export default function FeaturedGrid({
   allOrgs,
-  loading,
-  error,
   stats,
 }: {
   allOrgs: Organization[];
-  loading: boolean;
-  error: Error | null;
-  stats: { total: number; academic: number; nonAcademic: number; campuses: number; categories: number };
+  stats: Stats;
 }) {
   const featuredOrgs = useMemo<Organization[]>(
-    () =>
-      shuffleBySeed(allOrgs, new Date().toISOString().slice(0, 10)).slice(0, 6),
+    () => dailyShuffle(allOrgs, new Date().toISOString().slice(0, 10)).slice(0, 6),
     [allOrgs]
   );
 
@@ -96,35 +79,47 @@ export default function FeaturedGrid({
         </Button>
       </div>
 
-      {loading ? (
-        <FeaturedSkeleton />
-      ) : error ? (
-        <div className="rounded-xl border border-dashed border-destructive/50 bg-destructive/5 p-12 text-center">
-          <p className="text-destructive font-semibold">Failed to load organizations</p>
-          <p className="mt-2 text-sm text-muted-foreground">Please try refreshing the page.</p>
-        </div>
-      ) : allOrgs.length === 0 ? (
+      {featuredOrgs.length === 0 ? (
         <div className="rounded-xl border border-dashed border-border bg-muted/20 p-12 text-center">
           <p className="text-muted-foreground font-semibold">No organizations registered yet</p>
           <p className="mt-2 text-sm text-muted-foreground">Check back soon for upcoming student groups.</p>
         </div>
-      ) : (() => {
-        const [f0, f1, f2, f3, f4, f5] = featuredOrgs;
-        return (
-          <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
-            {f0 ? (
-              <div className="lg:col-span-2 lg:row-span-2">
-                <OrganizationCard org={f0} campusName={getCampusName(f0.campusId)} large />
-              </div>
-            ) : (
-              <div className="lg:col-span-2 lg:row-span-2"><GridPlaceholder /></div>
-            )}
-            {f1 ? (
-              <div><OrganizationCard org={f1} campusName={getCampusName(f1.campusId)} /></div>
-            ) : (
-              <div className="hidden lg:block"><GridPlaceholder /></div>
-            )}
+      ) : (
+        <div className="grid auto-rows-fr gap-4 sm:gap-6 lg:grid-cols-4 lg:grid-rows-3">
+          {featuredOrgs.slice(0, 2).map((org, index) => (
+            <div key={org.slug} className={FEATURED_SLOTS[index]}>
+              <OrganizationCard
+                org={org}
+                campusName={getCampusName(org.campusId)}
+                large={index === 0}
+              />
+            </div>
+          ))}
 
+          <StatsCard stats={stats} />
+
+          {featuredOrgs.slice(2).map((org, index) => (
+            <div key={org.slug} className={FEATURED_SLOTS[index + 2]}>
+              <OrganizationCard org={org} campusName={getCampusName(org.campusId)} />
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+interface Stats {
+  total: number;
+  academic: number;
+  nonAcademic: number;
+  campuses: number;
+  categories: number;
+}
+
+function StatsCard({ stats }: { stats: Stats }) {
+  return (
+    <>
             <Card className="relative flex flex-col justify-between overflow-hidden lg:col-span-1 lg:row-span-2 bg-card border-none shadow-md group">
               <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary to-primary/50" />
@@ -174,30 +169,6 @@ export default function FeaturedGrid({
                 </div>
               </CardContent>
             </Card>
-
-            {f2 ? (
-              <div><OrganizationCard org={f2} campusName={getCampusName(f2.campusId)} /></div>
-            ) : (
-              <div className="hidden lg:block"><GridPlaceholder /></div>
-            )}
-            {f3 ? (
-              <div><OrganizationCard org={f3} campusName={getCampusName(f3.campusId)} /></div>
-            ) : (
-              <div className="hidden lg:block"><GridPlaceholder /></div>
-            )}
-            {f4 ? (
-              <div className="lg:col-span-2"><OrganizationCard org={f4} campusName={getCampusName(f4.campusId)} /></div>
-            ) : (
-              <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
-            )}
-            {f5 ? (
-              <div className="lg:col-span-2"><OrganizationCard org={f5} campusName={getCampusName(f5.campusId)} /></div>
-            ) : (
-              <div className="hidden lg:block lg:col-span-2"><GridPlaceholder /></div>
-            )}
-          </div>
-        );
-      })()}
-    </section>
+    </>
   );
 }

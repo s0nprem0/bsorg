@@ -122,44 +122,22 @@ const validatedOrgs: Organization[] = Object.entries(rawModules).flatMap(
   }
 );
 
-class OrgRegistry {
-  private static instance: OrgRegistry;
-  private slugMap: Map<string, Organization> = new Map();
-  private allOrgs: Organization[] = [];
+// 4. Sort active orgs: main campus first, then alphabetical by name
+export const organizations: Organization[] = validatedOrgs
+  .filter(org => org.active)
+  .sort((a, b) => {
+    if (a.campusId === 0 && b.campusId !== 0) return -1;
+    if (a.campusId !== 0 && b.campusId === 0) return 1;
+    return a.name.localeCompare(b.name);
+  });
 
+const bySlug = new Map(
+  organizations.map(org => [org.slug.toLowerCase().trim(), org])
+);
 
-  private constructor() {
-    const activeData = validatedOrgs.filter(org => org.active);
-
-    const sortPriority = (a: Organization, b: Organization) => {
-      if (a.campusId === 0 && b.campusId !== 0) return -1;
-      if (a.campusId !== 0 && b.campusId === 0) return 1;
-      return a.name.localeCompare(b.name);
-    };
-
-    this.allOrgs = [...activeData].sort(sortPriority);
-
-    this.allOrgs.forEach(org => {
-      if (org?.slug) {
-        this.slugMap.set(org.slug.toLowerCase().trim(), org);
-      }
-    });
-  }
-
-  public static getInstance(): OrgRegistry {
-    if (!OrgRegistry.instance) {
-      OrgRegistry.instance = new OrgRegistry();
-    }
-    return OrgRegistry.instance;
-  }
-
-  public getAll(): Organization[] {
-    return this.allOrgs;
-  }
-  public getBySlug(slug: string): Organization | undefined {
-    if (!slug) return undefined;
-    return this.slugMap.get(slug.toLowerCase().trim());
-  }
+/** Case-insensitive slug lookup. This module is the single data seam - if a
+ *  backend ever lands, `organizations` and `getOrgBySlug` are the only two
+ *  things that need to change. */
+export function getOrgBySlug(slug: string | undefined): Organization | undefined {
+  return slug ? bySlug.get(slug.toLowerCase().trim()) : undefined;
 }
-
-export const orgRegistry = OrgRegistry.getInstance();

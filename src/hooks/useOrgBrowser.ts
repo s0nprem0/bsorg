@@ -1,13 +1,12 @@
 // src/hooks/useOrgBrowser.ts
 import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useOrgs } from '@/hooks/useOrgService';
 import { normalize } from '@/lib/utils';
-import type { OrgType } from '@/lib/orgIndex';
+import { organizations, type OrgType } from '@/lib/orgIndex';
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 export function useOrgBrowser() {
-  const { orgs: allOrgs, loading: dataLoading, error: dataError } = useOrgs();
+  const allOrgs = organizations;
   const [searchParams, setSearchParams] = useSearchParams();
 
   // 1. Derive state purely from URL
@@ -107,7 +106,5 @@ export function useOrgBrowser() {
     loadMore,
     filteredCount: filteredOrgs.length,
     programs,
-    loading: dataLoading,
-    error: dataError,
   };
 }

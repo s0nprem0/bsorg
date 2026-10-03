@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { Sparkles } from 'lucide-react';
-import { useOrgs } from '@/hooks/useOrgService';
 import type { Organization } from '@/lib/orgIndex';
 import OrgGrid from '@/components/layout/OrgGrid';
 import {
@@ -12,16 +11,16 @@ import {
 
 interface RelatedOrganizationsProps {
   currentOrg: Organization;
+  allOrgs: Organization[];
   limit?: number;
 }
 
 export default function RelatedOrganizations({
   currentOrg,
+  allOrgs,
   limit = 4,
 }: RelatedOrganizationsProps) {
-  const { orgs: allOrgs } = useOrgs();
   const relatedOrgs = useMemo(() => {
-
     // Scoring system to find the best matches
     const scoredOrgs = allOrgs
       .filter(org => org.slug !== currentOrg.slug) // Exclude current org

@@ -3,6 +3,7 @@ import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { normalize } from '@/lib/utils';
 import { organizations, type OrgType } from '@/lib/orgIndex';
+import { campusesWithOrgs } from '@/data/campuses';
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 export function useOrgBrowser() {
@@ -51,13 +52,16 @@ export function useOrgBrowser() {
     [allOrgs, orgType, category, campusIdParam]
   );
 
-  // 4. Programs derived from type+campus-filtered orgs
+  // 4. Programs + campuses derived from the type+category+campus-filtered orgs,
+  //    so each dropdown only ever offers values that return results.
   const programs = useMemo(() => {
     const uniquePrograms = new Set(
       typeCampusOrgs.map(o => o.programId).filter((id): id is string => !!id)
     );
     return ['All', ...Array.from(uniquePrograms).sort()];
   }, [typeCampusOrgs]);
+
+  const campuses = useMemo(() => campusesWithOrgs(allOrgs), [allOrgs]);
 
   // 5. Filter by program + query, then sort
   const filteredOrgs = useMemo(() => {
@@ -106,5 +110,6 @@ export function useOrgBrowser() {
     loadMore,
     filteredCount: filteredOrgs.length,
     programs,
+    campuses,
   };
 }

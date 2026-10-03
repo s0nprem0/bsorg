@@ -1,3 +1,5 @@
+import type { Organization } from '@/lib/orgIndex';
+
 export const CAMPUSES = [
   { id: 0, name: 'Main Campus', slug: 'main' },
   { id: 1, name: 'Imus Campus', slug: 'imus' },
@@ -15,4 +17,20 @@ export const CAMPUSES = [
 export function getCampusName(campusId?: number): string | undefined {
   if (campusId === undefined) return undefined;
   return CAMPUSES.find(campus => campus.id === campusId)?.name;
+}
+
+/** Campuses that actually have orgs, most populated first.
+ *
+ *  CAMPUSES lists all 11 in the university network, but 4 of them currently
+ *  hold no orgs. Filtering on those yields an empty page, so the browser and
+ *  the home page both derive their lists from the data instead. */
+export function campusesWithOrgs(orgs: Organization[]) {
+  const counts = new Map<number, number>();
+  for (const org of orgs) {
+    counts.set(org.campusId, (counts.get(org.campusId) ?? 0) + 1);
+  }
+
+  return CAMPUSES.filter(campus => counts.has(campus.id))
+    .map(campus => ({ ...campus, count: counts.get(campus.id)! }))
+    .sort((a, b) => b.count - a.count);
 }

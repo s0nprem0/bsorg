@@ -5,6 +5,7 @@ import FeaturedGrid from '@/components/sections/FeaturedGrid';
 import BrowseCategories from '@/components/sections/BrowseCategories';
 import BrowseByCampus from '@/components/sections/BrowseByCampus';
 import CTASection from '@/components/sections/CTASection';
+import Section from '@/components/ui/Section';
 import { organizations } from '@/lib/orgIndex';
 
 export default function Home() {
@@ -28,9 +29,15 @@ export default function Home() {
       <section className="grow bg-background">
         <Hero />
         <FeaturedGrid allOrgs={allOrgs} stats={stats} />
-        <BrowseCategories academic={stats.academic} nonAcademic={stats.nonAcademic}>
+        <BrowseCategories
+          counts={{
+            '/org?type=Academic': stats.academic,
+            '/org?type=Non-Academic': stats.nonAcademic,
+          }}
+        />
+        <Section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
           <BrowseByCampus allOrgs={allOrgs} />
-        </BrowseCategories>
+        </Section>
         <CTASection />
       </section>
     </>

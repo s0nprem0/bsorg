@@ -9,9 +9,9 @@ import SEO from '@/components/SEO';
 import OrgFilterBar from '@/components/sections/OrgFilterBar';
 import OrgFilterChips from '@/components/sections/OrgFilterChips';
 
-import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
+import { ORG_BROWSER, SORT_OPTIONS } from '@/data/orgBrowser';
 import { abbreviateProgram } from '@/data/programs';
-import { CAMPUSES } from '@/data/campuses';
+import { getCampusName } from '@/data/campuses';
 import { Button } from '@/components/ui/shadcn/button';
 
 export default function OrgBrowser() {
@@ -23,6 +23,7 @@ export default function OrgBrowser() {
     loadMore,
     filteredCount,
     programs,
+    campuses,
   } = useOrgBrowser();
 
   const [localQuery, setLocalQuery] = useState(state.query);
@@ -64,8 +65,10 @@ export default function OrgBrowser() {
     filterChips.push({ label: sortLabels[state.sortBy] || state.sortBy, key: 'sort' });
   }
   if (state.campusId) {
-    const name = CAMPUSES.find(c => c.id === Number(state.campusId))?.name || `Campus ${state.campusId}`;
-    filterChips.push({ label: name, key: 'campusId' });
+    filterChips.push({
+      label: getCampusName(Number(state.campusId)) ?? `Campus ${state.campusId}`,
+      key: 'campusId',
+    });
   }
 
   const removeFilter = useCallback(
@@ -111,19 +114,12 @@ export default function OrgBrowser() {
           </div>
 
           <OrgFilterBar
-            localQuery={localQuery}
-            setLocalQuery={setLocalQuery}
-            orgType={state.orgType}
-            onTypeChange={value => dispatch('type', value)}
-            category={state.category}
-            onCategoryChange={value => dispatch('category', value)}
-            program={state.program}
-            onProgramChange={value => dispatch('program', value)}
-            sortBy={state.sortBy}
-            onSortChange={value => dispatch('sort', value as SortOption)}
-            campusId={state.campusId}
-            onCampusChange={value => dispatch('campusId', value === 'All' ? null : value)}
+            query={localQuery}
+            onQueryChange={setLocalQuery}
+            state={state}
+            dispatch={dispatch}
             programs={programs}
+            campuses={campuses}
           />
 
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">

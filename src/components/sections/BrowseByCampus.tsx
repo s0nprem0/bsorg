@@ -1,32 +1,18 @@
 import { Link } from 'react-router-dom';
 import { Building2, ArrowRight } from 'lucide-react';
-import { CAMPUSES } from '@/data/campuses';
+import { campusesWithOrgs } from '@/data/campuses';
 import type { Organization } from '@/lib/orgIndex';
 
 export default function BrowseByCampus({ allOrgs }: { allOrgs: Organization[] }) {
-  const campusOrgs = Object.entries(
-    allOrgs.reduce<Record<number, number>>((acc, org) => {
-      if (org.campusId !== undefined) {
-        acc[org.campusId] = (acc[org.campusId] || 0) + 1;
-      }
-      return acc;
-    }, {})
-  )
-    .map(([id, count]) => {
-      const campus = CAMPUSES.find(c => c.id === Number(id));
-      return campus ? { ...campus, count } : null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => (b?.count ?? 0) - (a?.count ?? 0))
-    .slice(0, 4);
+  const campuses = campusesWithOrgs(allOrgs);
 
-  if (campusOrgs.length === 0) return null;
+  if (campuses.length === 0) return null;
 
   return (
-    <div className="mt-12">
+    <div>
       <h3 className="text-xl font-bold text-foreground mb-6">Browse by Campus</h3>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {campusOrgs.map(campus => campus && (
+        {campuses.map(campus => (
           <Link
             key={campus.id}
             to={`/org?campusId=${campus.id}`}

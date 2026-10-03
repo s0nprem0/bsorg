@@ -1,68 +1,68 @@
-// Extracted outside to prevent memory reallocation on every function call
-const DEGREE_ACRONYMS: Readonly<Record<string, string>> = {
-  'BA Communication': 'BA Comm',
-  'BA English Language Studies': 'BAELS',
-  'BA Journalism': 'BA Journ',
-  'BA Political Science': 'BAPS',
+// programId values are full degree names, e.g. "Bachelor of Science in Computer
+// Science". Almost all of them shorten cleanly by stripping the prefix and
+// initialising each word:
+//
+//   "Bachelor of Science in Computer Science" -> "BS Computer Science" -> "BSCS"
+//
+// This map holds only the degrees the rule gets wrong or can't express: real
+// acronyms that aren't spelled as initials (BSA, BSABE, BSCpE), abbreviations
+// with a space (BS Econ), and degrees carrying a major (BSBA-MM).
+const OVERRIDES: Readonly<Record<string, string>> = {
   'BS Accountancy': 'BSA',
   'BS Agricultural and Biosystems Engineering': 'BSABE',
-  'BS Applied Mathematics': 'BSAM',
   'BS Business Administration': 'BSBA',
-  'BS Business Administration - Major in Marketing Management': 'BSBA-MM',
-  'BS Business Administration - Major in Human Resource Management': 'BSBA-HRM',
-  'BS Business Administration - Major in Financial Management': 'BSBA-FM',
-  'BS Business Administration - Major in Operations Management': 'BSBA-OM',
-  'BS Computer Science': 'BSCS',
-  'BS Information Technology': 'BSIT',
-  'BS Civil Engineering': 'BSCE',
+  'BS Computer Engineering': 'BSCpE',
+  'BS Criminology': 'BSCrim',
+  'BS Development Management': 'BSDevComm',
+  'BS Economics': 'BS Econ',
+  'BS Entrepreneurship': 'BS Entrep',
+  // Both collapse to "BEE" without overrides, and the two are genuinely
+  // distinct acronyms on campus.
   'BS Electrical Engineering': 'BSEE',
   'BS Electronics Engineering': 'BSECE',
-  'BS Computer Engineering': 'BSCpE',
-  'BS Industrial Engineering': 'BSIE',
-  'BS Development Communication': 'BSDC',
-  'BS Development Management': 'BSDevComm',
-  'BS Industrial Security Management': 'BSISM',
-  'BS Industrial Technology - Major in Automotive Technology': 'BSINDT-AT',
-  'BS Industrial Technology - Major in Electrical Technology': 'BSINDT-ET',
-  'BS International Studies': 'BSIS',
-  'BS Office Administration': 'BSOA',
-  'BS Medical Technology': 'BSMT',
-  'BS Economics': 'BS Econ',
-  'BS Criminology': 'BSCrim',
-  'BS Hospitality Management': 'BSHM',
-  'BS Hotel and Restaurant Management': 'BSHRM',
-  'BS Tourism Management': 'BSTM',
-  'BS Social Work': 'BSSW',
+  'BS Physical Education': 'BPEd',
+  'BS Psychology': 'BS Psych',
   'BS Architecture': 'BS Arch',
   'BS Biology': 'BS Bio',
-  'BS Psychology': 'BS Psych',
-  'BS Entrepreneurship': 'BS Entrep',
-  'BS Physical Education': 'BPEd',
-  'BS Exercise and Sports Science': 'BSESS',
+  'BS Hospitality Management': 'BSHM',
+  'BS Hotel and Restaurant Management': 'BSHRM',
+  'BS Medical Technology': 'BSMT',
+  'BS Industrial Technology': 'BSINDT',
+  'BS Agriculture': 'BSAgri',
+  'BA Communication': 'BA Comm',
+
+  // Already abbreviations in the data, not degree names. Must be matched
+  // before the initializer runs, or they collapse to a single letter.
+  BPED: 'BPEd',
+  BSESS: 'BSESS',
+  'BSESS-SM': 'BSESS-SM',
+
+  'Bachelor of Science in Business Administration - Major in Marketing Management': 'BSBA-MM',
+  'Bachelor of Science in Business Administration - Major in Human Resource Management': 'BSBA-HRM',
+  'Bachelor of Science in Business Administration - Major in Financial Management': 'BSBA-FM',
+  'Bachelor of Science in Business Administration - Major in Operations Management': 'BSBA-OM',
+  'Bachelor of Science in Industrial Technology - Major in Automotive Technology': 'BSINDT-AT',
+  'Bachelor of Science in Industrial Technology - Major in Electrical Technology': 'BSINDT-ET',
+  'Bachelor of Science in Agriculture Major in Agribusiness': 'BSAgri-Agri',
+  'Bachelor of Science in Agriculture Major in Animal Science': 'BSAgri-ASci',
+  'Bachelor of Science in Agriculture Major in Crop Science': 'BSAgri-CSci',
 };
 
 export function abbreviateProgram(name: string): string {
   if (!name) return '';
 
-  // 1. Shorten "Bachelor of..." prefixes on the full string (using /i for case-insensitivity)
-  const normalized = name
+  const shortened = name
     .replace(/^Bachelor of Science in /i, 'BS ')
-    .replace(/^Bachelor of Arts in /i, 'BA ');
+    .replace(/^Bachelor of Arts in /i, 'BA ')
+    .trim();
 
-  // 2. Check for a direct acronym match (handles entries with majors baked in,
-  //    e.g. "BS Industrial Technology - Major in Automotive Technology" → "BSINDT-AT")
-  const directHit = DEGREE_ACRONYMS[normalized];
-  if (directHit) return directHit;
-
-  // 3. Separate the base degree from the major (if it exists)
-  const [baseDegreeRaw, majorRaw] = normalized.split(/ - [Mm]ajor in /);
-
-  const baseDegree = baseDegreeRaw.trim();
-  const major = majorRaw?.trim();
-
-  // 4. Map base degree to special acronym if it exists, otherwise fallback to the shortened form
-  const abbr = DEGREE_ACRONYMS[baseDegree] ?? baseDegree;
-
-  // 5. Re-attach the major if one was found
-  return major ? `${abbr} - ${major}` : abbr;
+  return (
+    OVERRIDES[name] ??
+    OVERRIDES[shortened] ??
+    shortened
+      .split(/\s+/)
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+  );
 }

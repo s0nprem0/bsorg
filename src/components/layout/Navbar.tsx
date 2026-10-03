@@ -10,6 +10,16 @@ import {
 } from '@/components/ui/shadcn/sheet';
 import { useTheme } from '@/hooks/useTheme';
 
+const NAV_LINKS = [
+  { to: '/', label: 'Overview', end: true },
+  { to: '/org', label: 'Browse', end: false },
+];
+
+const NAV_LINK_CLASS = (isActive: boolean) =>
+  `text-sm font-medium transition-colors hover:text-primary ${
+    isActive ? 'text-primary' : 'text-muted-foreground'
+  }`;
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,24 +57,16 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <NavLink
-              to="/"
-              end
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
-                }
-              >
-                Overview
-              </NavLink>
+            {NAV_LINKS.map(({ to, label, end }) => (
               <NavLink
-                to="/org"
-                end
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`
-                }
+                key={to}
+                to={to}
+                end={end}
+                className={({ isActive }) => NAV_LINK_CLASS(isActive)}
               >
-                Browse
+                {label}
               </NavLink>
+            ))}
           </div>
         </div>
 
@@ -83,12 +85,6 @@ export default function Navbar() {
               <Moon className="h-5 w-5" />
             )}
           </Button>
-          <Button
-            asChild
-            className="shadow-sm transition-all hover:scale-105 active:scale-95"
-          >
-            <Link to="/org">Explore Orgs</Link>
-          </Button>
         </div>
 
         {/* Mobile Navigation Sheet */}
@@ -105,24 +101,23 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-80 sm:w-96">
             <div className="flex flex-col gap-6 pt-10">
-              <NavLink
-                to="/"
-                end
-                onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-muted-foreground hover:text-primary"
-              >
-                Overview
-              </NavLink>
-
-              <NavLink
-                to="/org"
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`
-                }
-              >
-                Browse
-              </NavLink>
+              {NAV_LINKS.map(({ to, label, end }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={end}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) =>
+                    `text-base font-medium transition-colors ${
+                      isActive
+                        ? 'text-primary'
+                        : 'text-muted-foreground hover:text-primary'
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
 
               <div className="pt-4 border-t space-y-3">
                 <Button
@@ -139,13 +134,6 @@ export default function Navbar() {
                     <Moon className="mr-3 h-5 w-5" />
                   )}
                   {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                </Button>
-                <Button
-                  asChild
-                  className="w-full"
-                  onClick={() => setIsOpen(false)}
-                >
-<Link to="/org">Explore Orgs</Link>
                 </Button>
               </div>
             </div>

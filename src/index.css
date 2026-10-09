@@ -85,6 +85,10 @@
 
   --radius: 1rem;
 
+  /* Profile panels sit at Discord's tighter 8px. The app's own --radius stays
+     1rem for cards and grids; only the profile surface uses this. */
+  --radius-panel: 0.5rem;
+
   /*
   |--------------------------------------------------------------------------
   | Surfaces
@@ -225,6 +229,7 @@
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: calc(var(--radius) * 0.75);
   --radius-lg: var(--radius);
+  --radius-panel: var(--radius-panel);
   --radius-xl: calc(var(--radius) * 1.5);
   --radius-2xl: calc(var(--radius) * 2);
 }

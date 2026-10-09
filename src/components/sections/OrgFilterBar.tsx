@@ -1,6 +1,6 @@
 import { SearchInput } from '@/components/ui/SearchInput';
-import { ArrowDownUp, MapPin, LayoutGrid, GraduationCap } from 'lucide-react';
-import { SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
+import { ArrowDownUp, MapPin, LayoutGrid, GraduationCap, Shapes } from 'lucide-react';
+import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 import { abbreviateProgram } from '@/data/programs';
 import { ORG_CATEGORIES } from '@/lib/orgIndex';
 import {
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/shadcn/select';
 
 export interface FilterState {
+  orgType: string;
   category: string;
   program: string;
   sortBy: SortOption;
@@ -47,7 +48,28 @@ export default function OrgFilterBar({
         />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-3">
+        {/* Type is settable from the home and footer links, so it needs a
+            control here too, or it is a filter you can enter but not change. */}
+        <Select
+          value={state.orgType}
+          onValueChange={value => dispatch('type', value)}
+        >
+          <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
+            <div className="flex items-center gap-2 truncate">
+              <Shapes className="h-4 w-4 text-muted-foreground shrink-0" />
+              <SelectValue placeholder="All Types" />
+            </div>
+          </SelectTrigger>
+          <SelectContent className="max-h-72">
+            {ORG_BROWSER.ORG_TYPE_OPTIONS.map(type => (
+              <SelectItem key={type} value={type}>
+                {type === 'All' ? 'All Types' : type}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
         <Select
           value={state.category}
           onValueChange={value => dispatch('category', value)}

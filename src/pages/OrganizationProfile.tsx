@@ -1,32 +1,24 @@
 import { useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Users } from 'lucide-react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { getOrgBySlug, organizations } from '@/lib/orgIndex';
 import { getSocialEntries } from '@/lib/utils';
 import { getCampusName } from '@/data/campuses';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import OrgGrid from '@/components/layout/OrgGrid';
-import RelatedOrganizations from '@/components/sections/RelatedOrganizations';
-import ProfileIdentityCard from '@/components/sections/ProfileIdentityCard';
-import ProfileCampusCard from '@/components/sections/ProfileCampusCard';
-import ProfileConnectCard from '@/components/sections/ProfileConnectCard';
-import ProfileAboutCard from '@/components/sections/ProfileAboutCard';
+import ProfileHeader from '@/components/sections/ProfileHeader';
+import ProfileTabs from '@/components/sections/ProfileTabs';
+import { parseTab } from '@/components/sections/profileTab';
+import ProfileInfoRail from '@/components/sections/ProfileInfoRail';
+import ProfileOrgList from '@/components/sections/ProfileOrgList';
 import { NotFoundState } from '@/components/sections/ProfileStates';
-
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from '@/components/ui/shadcn/card';
-import { Button } from '@/components/ui/shadcn/button';
 
 export default function OrganizationProfile() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const org = getOrgBySlug(slug);
-  const campusName = getCampusName(org?.campusId) ?? 'N/A';
+  const campusName = getCampusName(org?.campusId);
 
   // Exact slug match. Array.includes() does substring matching, so a future
   // slug that happens to sit inside another (e.g. "cas" in "cas-sc") would
@@ -46,9 +38,37 @@ export default function OrganizationProfile() {
     return organizations.filter(o => wanted.has(o.slug.toLowerCase()));
   }, [org]);
 
+  /**
+   * Related orgs, scored on category / type / shared tags. Sub-organizations and
+   * the parent are excluded: they already appear on this page, and since they
+   * share a category they always scored highest, so the section used to
+   * re-list four orgs the visitor had just scrolled past.
+   */
+  const relatedOrgs = useMemo(() => {
+    if (!org) return [];
+    const exclude = new Set([org.slug, ...subOrgs.map(o => o.slug)]);
+
+    return organizations
+      .filter(o => !exclude.has(o.slug))
+      .map(o => {
+        let score = 0;
+        if (o.category === org.category) score += 5;
+        if (o.type === org.type) score += 3;
+        const own = org.metadata?.tags ?? [];
+        score += own.filter(t => (o.metadata?.tags ?? []).includes(t)).length * 2;
+        return { org: o, score };
+      })
+      .filter(r => r.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6)
+      .map(r => r.org);
+  }, [org, subOrgs]);
+
   if (!org) return <NotFoundState />;
 
+  const tab = parseTab(searchParams.get('tab'));
   const socialEntries = getSocialEntries(org.contact);
+  const about = org.content?.about ?? org.content?.shortDescription;
 
   return (
     <>
@@ -59,13 +79,18 @@ export default function OrganizationProfile() {
       />
 
       <div className="min-h-screen bg-background pb-20">
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8">
-
-          <div className="animate-fade-in-up flex items-center gap-3">
-            <Button variant="ghost" size="sm" onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/org'); }} className="gap-1.5 shrink-0 text-muted-foreground hover:text-foreground">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <nav className="animate-fade-in-up flex items-center gap-2 py-4">
+            <button
+              onClick={() => {
+                if (window.history.length > 1) navigate(-1);
+                else navigate('/org');
+              }}
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-panel text-muted-foreground transition-colors hover:bg-card hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            >
               <ArrowLeft size={16} />
-              <span className="hidden sm:inline">Back</span>
-            </Button>
+              <span className="sr-only">Back</span>
+            </button>
             <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },
@@ -73,56 +98,102 @@ export default function OrganizationProfile() {
                 { label: org.acronym || org.name },
               ]}
             />
+          </nav>
+
+          <ProfileHeader
+            org={org}
+            socialEntries={socialEntries}
+            subOrgCount={subOrgs.length}
+            campusName={campusName}
+          />
+
+          <div className="mt-5">
+            <ProfileTabs
+              counts={{ suborgs: subOrgs.length, similar: relatedOrgs.length }}
+            />
           </div>
 
-          {org.assets?.bannerUrl && (
-            <div className="animate-fade-in-up animate-delay-100 rounded-xl overflow-hidden">
-              <div className="relative aspect-[820/312]">
-                <img
-                  src={org.assets.bannerUrl}
-                  alt={`${org.name} banner`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="eager"
+          <div
+            role="tabpanel"
+            id={`panel-${tab}`}
+            aria-labelledby={`tab-${tab}`}
+            tabIndex={-1}
+            className="animate-fade-in-up pt-5 focus-visible:outline-none"
+          >
+            {tab === 'overview' && (
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
+                <div className="min-w-0 space-y-7">
+                  <section>
+                    <h2 className="px-2 pb-2 text-sm font-semibold text-foreground">
+                      About
+                    </h2>
+                    {about ? (
+                      <p className="rounded-panel bg-surface-2/60 p-4 text-sm leading-relaxed whitespace-pre-line text-muted-foreground">
+                        {about}
+                      </p>
+                    ) : (
+                      <p className="rounded-panel border border-border/50 border-dashed p-4 text-sm text-muted-foreground">
+                        This organization has not added a description yet.
+                      </p>
+                    )}
+                  </section>
+
+                  {/* The channel list is the memorable part, so it lives on the
+                      landing tab rather than behind a click. */}
+                  <ProfileOrgList
+                    orgs={subOrgs}
+                    title="Sub-Organizations"
+                    emptyMessage="No sub-organizations are listed under this organization."
+                  />
+
+                  <ProfileOrgList
+                    orgs={relatedOrgs}
+                    title="Similar Organizations"
+                  />
+                </div>
+
+                <ProfileInfoRail
+                  org={org}
+                  campusName={campusName}
+                  parentOrgs={parentOrgs}
+                  socialEntries={socialEntries}
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent" />
               </div>
-            </div>
-          )}
+            )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6">
-            <ProfileIdentityCard org={org} />
+            {tab === 'suborgs' && (
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
+                <ProfileOrgList
+                  orgs={subOrgs}
+                  title="Sub-Organizations"
+                  emptyMessage="No sub-organizations are listed under this organization."
+                />
+                <ProfileInfoRail
+                  org={org}
+                  campusName={campusName}
+                  parentOrgs={parentOrgs}
+                  socialEntries={socialEntries}
+                />
+              </div>
+            )}
 
-            <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-5 lg:gap-6">
-              <ProfileCampusCard org={org} campusName={campusName} parentOrgs={parentOrgs} />
-              <ProfileConnectCard org={org} socialEntries={socialEntries} />
-            </div>
-
-            <ProfileAboutCard org={org} />
+            {tab === 'similar' && (
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
+                <ProfileOrgList
+                  orgs={relatedOrgs}
+                  title="Similar Organizations"
+                  emptyMessage="No closely related organizations were found."
+                />
+                <ProfileInfoRail
+                  org={org}
+                  campusName={campusName}
+                  parentOrgs={parentOrgs}
+                  socialEntries={socialEntries}
+                />
+              </div>
+            )}
           </div>
-
-          {subOrgs.length > 0 && (
-            <section className="animate-fade-in-up animate-delay-400">
-              <Card className="bg-surface-1 border-none shadow-md overflow-hidden">
-                <CardHeader className="border-b border-border/50 pb-6 bg-surface-2/30">
-                  <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
-                    <Users className="text-primary h-5 w-5" />
-                    Sub-Organizations
-                    <span className="text-xs font-normal text-muted-foreground ml-auto">
-                      {subOrgs.length} {subOrgs.length === 1 ? 'org' : 'orgs'}
-                    </span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <OrgGrid organizations={subOrgs} />
-                </CardContent>
-              </Card>
-            </section>
-          )}
-
-          <div className="animate-fade-in-up animate-delay-500">
-            <RelatedOrganizations currentOrg={org} allOrgs={organizations} />
-          </div>
-        </section>
+        </div>
       </div>
     </>
   );

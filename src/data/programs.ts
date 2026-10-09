@@ -61,7 +61,10 @@ export function abbreviateProgram(name: string): string {
     OVERRIDES[shortened] ??
     shortened
       .split(/\s+/)
-      .map(word => word[0])
+      // The shortened form leads with a literal "BS"/"BA", which stands for two
+      // letters, so it contributes both. Taking one initial per token dropped
+      // the S and rendered "BS Information Technology" as "BIT".
+      .map((word, i) => (i === 0 && (word === 'BS' || word === 'BA') ? word : word[0]))
       .join('')
       .toUpperCase()
   );

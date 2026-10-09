@@ -1,47 +1,51 @@
 import { useMemo } from 'react';
 import SEO from '@/components/SEO';
-import Hero from '@/components/sections/Hero';
-import FeaturedGrid from '@/components/sections/FeaturedGrid';
-import BrowseCategories from '@/components/sections/BrowseCategories';
+import DirectoryHeader from '@/components/sections/DirectoryHeader';
+import CategoryRail from '@/components/sections/CategoryRail';
 import BrowseByCampus from '@/components/sections/BrowseByCampus';
-import CTASection from '@/components/sections/CTASection';
-import Section from '@/components/ui/Section';
+import FeaturedGrid from '@/components/sections/FeaturedGrid';
 import { organizations } from '@/lib/orgIndex';
+import { campusesWithOrgs } from '@/data/campuses';
 import { countByType } from '@/data/orgBrowser';
 
 export default function Home() {
   const allOrgs = organizations;
 
+  const campuses = useMemo(() => campusesWithOrgs(allOrgs).length, [allOrgs]);
+
   const stats = useMemo(() => {
-    const uniqueCampuses = new Set(allOrgs.map(o => o.campusId).filter(id => id !== undefined));
-    const uniqueCategories = new Set(allOrgs.map(o => o.category).filter(Boolean));
+    const categories = new Set(allOrgs.map(o => o.category).filter(Boolean));
     return {
-      total: allOrgs.length,
-      // Exact-match counts, so these agree with what /org?type=… returns.
       academic: countByType(allOrgs, 'Academic'),
-      nonAcademic: countByType(allOrgs, 'Non-Academic'),
-      campuses: uniqueCampuses.size,
-      categories: uniqueCategories.size,
+      councils: countByType(allOrgs, 'Student Council'),
+      other:
+        allOrgs.length -
+        countByType(allOrgs, 'Academic') -
+        countByType(allOrgs, 'Student Council'),
+      categories: categories.size,
     };
   }, [allOrgs]);
 
   return (
     <>
       <SEO title="Home" />
-      <section className="grow bg-background">
-        <Hero />
-        <FeaturedGrid allOrgs={allOrgs} stats={stats} />
-        <BrowseCategories
-          counts={{
-            '/org?type=Academic': stats.academic,
-            '/org?type=Non-Academic': stats.nonAcademic,
-          }}
-        />
-        <Section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
+      <div className="mx-auto w-full max-w-6xl px-4 pb-20 sm:px-6">
+        <DirectoryHeader total={allOrgs.length} campuses={campuses} />
+
+        <div className="mt-6 space-y-8">
+          <CategoryRail allOrgs={allOrgs} />
           <BrowseByCampus allOrgs={allOrgs} />
-        </Section>
-        <CTASection />
-      </section>
+          <FeaturedGrid allOrgs={allOrgs} />
+        </div>
+
+        {/* Stats as a single quiet line rather than a card that spent four hues
+            on four numbers. */}
+        <p className="mt-10 border-t border-border/60 pt-4 text-xs text-muted-foreground">
+          {allOrgs.length} organizations · {stats.academic} academic ·{' '}
+          {stats.councils} student councils · {stats.other} other ·{' '}
+          {stats.categories} categories
+        </p>
+      </div>
     </>
   );
 }

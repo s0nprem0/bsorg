@@ -2,28 +2,15 @@ import { useState } from 'react';
 import { BadgeCheck, Mail, Globe, MapPin, Users } from 'lucide-react';
 import { ContactIcon } from '@/components/ui/ContactIcon';
 import { abbreviateProgram } from '@/data/programs';
+import { categoryHue } from '@/data/categoryHue';
 import type { Organization } from '@/lib/orgIndex';
 
 type SocialEntry = [string, string];
 
-/** Discord's server banner is wide and short, and the icon hangs below its
- *  bottom-left corner rather than sitting inside a panel of its own. */
 /** Discord's server icon hangs below the banner's bottom-left corner. Only the
  *  icon overlaps — the name sits below the edge, because a photo banner can be
  *  bright enough to swallow white text. */
 const AVATAR = 'h-20 w-20 -mt-10 shrink-0 sm:h-24 sm:w-24 sm:-mt-12';
-
-/** Stable hue per category, so every org in a college shares a banner tint and
- *  the 14 categories stay distinguishable. Hashed from the category rather than
- *  the slug: hashing the slug would give sibling orgs clashing hues. Low
- *  saturation and lightness keep it a backdrop, never competing with the logo. */
-function categoryHue(category: string): number {
-  let hash = 0;
-  for (let i = 0; i < category.length; i++) {
-    hash = (hash * 31 + category.charCodeAt(i)) % 360;
-  }
-  return hash;
-}
 
 function BannerArt({ org }: { org: Organization }) {
   const [failed, setFailed] = useState(false);

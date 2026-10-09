@@ -1,39 +1,30 @@
-import { Link } from 'react-router-dom';
-import { Building2, ArrowRight } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 import { campusesWithOrgs } from '@/data/campuses';
+import DirectoryRow from '@/components/ui/DirectoryRow';
 import type { Organization } from '@/lib/orgIndex';
 
+/** Only campuses that actually hold orgs are listed. Four of the eleven in the
+ *  university network have none, and linking to them would land on an empty
+ *  result page. */
 export default function BrowseByCampus({ allOrgs }: { allOrgs: Organization[] }) {
   const campuses = campusesWithOrgs(allOrgs);
 
   if (campuses.length === 0) return null;
 
   return (
-    <div>
-      <h3 className="text-xl font-bold text-foreground mb-6">Browse by Campus</h3>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section>
+      <h2 className="px-2 pb-2 text-sm font-semibold">Campuses</h2>
+      <div className="-mx-1 grid gap-x-2 sm:grid-cols-2">
         {campuses.map(campus => (
-          <Link
+          <DirectoryRow
             key={campus.id}
             to={`/org?campusId=${campus.id}`}
-            aria-label={`Browse ${campus.name} organizations`}
-            className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-sm"
-          >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <Building2 className="h-5 w-5" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="font-semibold text-foreground text-sm truncate group-hover:text-primary transition-colors">
-                {campus.name}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {campus.count} organization{campus.count !== 1 ? 's' : ''}
-              </p>
-            </div>
-            <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5" />
-          </Link>
+            label={campus.name}
+            meta={`${campus.count}`}
+            leading={<Building2 size={15} className="text-muted-foreground" />}
+          />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

@@ -136,7 +136,7 @@ export default function OrgFilterBar({
           onValueChange={value => dispatch('sort', value as SortOption)}
         >
           <SelectTrigger className="h-11 bg-muted/50 shadow-sm">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 truncate">
               <ArrowDownUp className="h-4 w-4 text-muted-foreground shrink-0" />
               <SelectValue placeholder="Sort by" />
             </div>
@@ -144,6 +144,7 @@ export default function OrgFilterBar({
           <SelectContent>
             <SelectItem value={SORT_OPTIONS.ASC}>A-Z (Alphabetical)</SelectItem>
             <SelectItem value={SORT_OPTIONS.DESC}>Z-A (Reverse)</SelectItem>
+            <SelectItem value={SORT_OPTIONS.CAMPUS}>By campus</SelectItem>
           </SelectContent>
         </Select>
       </div>

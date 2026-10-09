@@ -1,9 +1,11 @@
 import { useRef, useCallback, useState, useEffect } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
-import { Search, Loader2, X } from 'lucide-react';
+import { Search, Loader2, X, LayoutGrid, Rows3 } from 'lucide-react';
 
 import { useOrgBrowser } from '@/hooks/useOrgBrowser';
+import { useViewMode } from '@/hooks/useViewMode';
 import OrgGrid from '@/components/layout/OrgGrid';
+import OrgRow from '@/components/layout/OrgRow';
 import Section from '@/components/ui/Section';
 import SEO from '@/components/SEO';
 import OrgFilterBar from '@/components/sections/OrgFilterBar';
@@ -61,6 +63,7 @@ export default function OrgBrowser() {
     const sortLabels: Record<string, string> = {
       [SORT_OPTIONS.ASC]: 'A-Z',
       [SORT_OPTIONS.DESC]: 'Z-A',
+      [SORT_OPTIONS.CAMPUS]: 'By campus',
     };
     filterChips.push({ label: sortLabels[state.sortBy] || state.sortBy, key: 'sort' });
   }
@@ -78,6 +81,8 @@ export default function OrgBrowser() {
     },
     [dispatch]
   );
+
+  const { view, setView } = useViewMode();
 
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useCallback(
@@ -102,14 +107,14 @@ export default function OrgBrowser() {
         description="Discover and explore student organizations across campus."
       />
 
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6">
+      <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6">
         <Section className="py-0">
-          <div className="mb-10">
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-              Organization Browser
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Browse organizations
             </h1>
-            <p className="text-lg text-muted-foreground mt-3">
-              Discover and explore student organizations across campus.
+            <p className="mt-1 text-sm text-muted-foreground">
+              Search and filter across the Cavite State University network.
             </p>
           </div>
 
@@ -131,17 +136,42 @@ export default function OrgBrowser() {
               found
             </p>
 
-            {hasActiveFilters && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearAllFilters}
-                className="h-8 text-xs text-muted-foreground hover:text-foreground"
+            <div className="flex items-center gap-2">
+              {hasActiveFilters && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearAllFilters}
+                  className="h-8 text-xs text-muted-foreground hover:text-foreground"
+                >
+                  <X className="mr-1 h-3.5 w-3.5" />
+                  Clear all filters
+                </Button>
+              )}
+
+              {/* Toggle group: arrow keys move between the two buttons, which
+                  is what a radiogroup of view options should do. */}
+              <div
+                role="group"
+                aria-label="Result layout"
+                className="flex items-center gap-0.5 rounded-panel border border-border/60 p-0.5"
               >
-                <X className="mr-1 h-3.5 w-3.5" />
-                Clear all filters
-              </Button>
-            )}
+                <ViewButton
+                  active={view === 'grid'}
+                  label="Grid view"
+                  onClick={() => setView('grid')}
+                >
+                  <LayoutGrid size={14} />
+                </ViewButton>
+                <ViewButton
+                  active={view === 'list'}
+                  label="List view"
+                  onClick={() => setView('list')}
+                >
+                  <Rows3 size={14} />
+                </ViewButton>
+              </div>
+            </div>
           </div>
 
           <OrgFilterChips chips={filterChips} onRemove={removeFilter} />
@@ -173,7 +203,24 @@ export default function OrgBrowser() {
             </div>
           ) : (
             <>
-              <OrgGrid organizations={visibleOrgs} />
+              {view === 'grid' ? (
+                <OrgGrid organizations={visibleOrgs} />
+              ) : (
+                <div className="-mx-1 space-y-0.5">
+                  {visibleOrgs.map(org => (
+                    <OrgRow
+                      key={org.slug}
+                      org={org}
+                      secondary={org.content?.shortDescription || org.content?.about}
+                      meta={
+                        org.programId
+                          ? abbreviateProgram(org.programId)
+                          : getCampusName(org.campusId)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
               {hasMore ? (
                 <div
                   ref={loadMoreRef}
@@ -191,5 +238,34 @@ export default function OrgBrowser() {
         </Section>
       </div>
     </>
+  );
+}
+
+function ViewButton({
+  active,
+  label,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      title={label}
+      className={`flex h-7 w-7 items-center justify-center rounded-[6px] transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
+        active
+          ? 'bg-primary/15 text-primary'
+          : 'text-muted-foreground hover:text-foreground'
+      }`}
+    >
+      {children}
+      <span className="sr-only">{label}</span>
+    </button>
   );
 }

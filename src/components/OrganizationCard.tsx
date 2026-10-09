@@ -89,10 +89,13 @@ export default function OrganizationCard({
               {TYPE_LABELS[org.type] || org.type}
             </Badge>
           )}
+          {/* Neutral on purpose. Campus used to be bg-primary/10, the same
+              emerald as the Academic type badge directly above it, so two
+              different meanings rendered identically. Hue now means type only. */}
           {campusName && (
             <Badge
               variant="secondary"
-              className="text-xs uppercase tracking-wider bg-primary/10 text-primary hover:bg-primary/20 border-none"
+              className="text-xs uppercase tracking-wider bg-muted text-muted-foreground hover:bg-muted border-none"
             >
               {campusName}
             </Badge>
@@ -110,11 +113,18 @@ export default function OrganizationCard({
         </div>
       </CardHeader>
 
-      <CardDescription className={cn('flex-none px-3 sm:px-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground', large ? 'px-4 sm:px-5' : 'px-3 sm:px-4')}>
-        {org.content?.shortDescription ||
-          org.content?.about ||
-          'No description available.'}
-      </CardDescription>
+      {/* 13 orgs ship no description. Omitting the paragraph lets the card
+          collapse rather than repeating a placeholder sentence 13 times. */}
+      {(org.content?.shortDescription || org.content?.about) && (
+        <CardDescription
+          className={cn(
+            'flex-none px-3 sm:px-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground',
+            large ? 'px-4 sm:px-5' : 'px-3 sm:px-4'
+          )}
+        >
+          {org.content.shortDescription || org.content.about}
+        </CardDescription>
+      )}
 
       <CardFooter className="relative z-10 mt-auto flex items-center justify-between border-t border-border/40 bg-card/50 p-3 sm:p-4">
         <div className="flex items-center gap-1">

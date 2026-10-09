@@ -16,6 +16,7 @@ export const ORG_BROWSER = {
 export const SORT_OPTIONS = {
   ASC: 'A-Z',
   DESC: 'Z-A',
+  CAMPUS: 'Campus',
 } as const;
 
 export type SortOption = (typeof SORT_OPTIONS)[keyof typeof SORT_OPTIONS];

@@ -3,7 +3,7 @@ import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { normalize } from '@/lib/utils';
 import { organizations, type OrgType } from '@/lib/orgIndex';
-import { campusesWithOrgs } from '@/data/campuses';
+import { campusesWithOrgs, getCampusName } from '@/data/campuses';
 import { ORG_BROWSER, SORT_OPTIONS, type SortOption } from '@/data/orgBrowser';
 
 export function useOrgBrowser() {
@@ -81,6 +81,15 @@ export function useOrgBrowser() {
     });
 
     result.sort((a, b) => {
+      if (sortBy === SORT_OPTIONS.CAMPUS) {
+        // Campus, then name within it. organizations is already ordered main
+        // campus first, but a stable tiebreak on name keeps each campus block
+        // readable rather than preserving input order.
+        const byCampus = (getCampusName(a.campusId) ?? '').localeCompare(
+          getCampusName(b.campusId) ?? ''
+        );
+        return byCampus || a.name.localeCompare(b.name);
+      }
       if (sortBy === SORT_OPTIONS.ASC) return a.name.localeCompare(b.name);
       return b.name.localeCompare(a.name);
     });

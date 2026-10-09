@@ -30,13 +30,11 @@ const TYPE_LABELS: Record<string, string> = {
 interface OrganizationCardProps {
   org: Organization;
   campusName?: string;
-  large?: boolean;
 }
 
 export default function OrganizationCard({
   org,
   campusName,
-  large = false,
 }: OrganizationCardProps) {
   const [imageError, setImageError] = useState(false);
 
@@ -49,11 +47,14 @@ export default function OrganizationCard({
   return (
     <Card
       className={cn(
-        'group relative flex h-full w-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg bg-card text-card-foreground',
-        large ? 'min-h-56' : 'min-h-48'
+        // No min-height. The old min-h-48 with a mt-auto footer left a void in
+        // the middle of every card whose description was short or absent, which
+        // is 13 of them. Rows in the grid still share a height via auto-rows-fr.
+        // No lift, no shadow: the border tint is the whole hover affordance.
+        'group relative flex h-full w-full flex-col overflow-hidden rounded-panel bg-card text-card-foreground shadow-none transition-colors hover:border-primary/50'
       )}
     >
-      <CardHeader className={cn('relative flex-none pb-2', large ? 'p-4 sm:p-5' : 'p-3 sm:p-4')}>
+      <CardHeader className="relative flex-none p-3 pb-2 sm:p-3.5 sm:pb-2">
         <div className="flex items-start gap-3">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden bg-secondary text-secondary-foreground">
             {hasLogo ? (
@@ -77,7 +78,7 @@ export default function OrganizationCard({
             className="min-w-0 flex-1 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-0"
             aria-label={`View ${org.name}`}
           >
-            <h3 className={cn('font-bold leading-tight text-foreground transition-colors group-hover:text-primary', large ? 'text-xl sm:text-2xl' : 'text-lg')}>
+            <h3 className="text-lg leading-tight font-bold text-foreground transition-colors group-hover:text-primary">
               {org.name}
             </h3>
           </Link>
@@ -117,16 +118,13 @@ export default function OrganizationCard({
           collapse rather than repeating a placeholder sentence 13 times. */}
       {(org.content?.shortDescription || org.content?.about) && (
         <CardDescription
-          className={cn(
-            'flex-none px-3 sm:px-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground',
-            large ? 'px-4 sm:px-5' : 'px-3 sm:px-4'
-          )}
+          className="line-clamp-3 flex-none px-3 text-sm leading-relaxed text-muted-foreground sm:px-3.5"
         >
           {org.content.shortDescription || org.content.about}
         </CardDescription>
       )}
 
-      <CardFooter className="relative z-10 mt-auto flex items-center justify-between border-t border-border/40 bg-card/50 p-3 sm:p-4">
+      <CardFooter className="relative z-10 mt-auto flex items-center justify-between border-t border-border/40 bg-card/40 p-2.5 sm:px-3.5">
         <div className="flex items-center gap-1">
           {socialEntries.slice(0, 4).map(([network, url]) => (
             <Button

@@ -1,13 +1,25 @@
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/shadcn/card';
+import Tooltip from '@/components/ui/Tooltip';
+import { abbreviateProgram } from '@/data/programs';
 import type { Organization } from '@/lib/orgIndex';
 
-function DetailRow({ label, value }: { label: string; value: string }) {
+function DetailRow({
+  label,
+  value,
+  title,
+}: {
+  label: string;
+  value: string;
+  title?: string;
+}) {
   return (
     <div>
       <p className="text-xs uppercase tracking-wider text-muted-foreground mb-0.5">{label}</p>
-      <p className="font-semibold text-foreground text-sm">{value}</p>
+      <p className="font-semibold text-foreground text-sm">
+        {title ? <Tooltip label={title}><span>{value}</span></Tooltip> : value}
+      </p>
     </div>
   );
 }
@@ -30,7 +42,13 @@ export default function ProfileCampusCard({
       </CardHeader>
       <CardContent className="space-y-4 mt-1">
         <DetailRow label="Location" value={campusName || 'N/A'} />
-        {org.programId && <DetailRow label="Program" value={org.programId} />}
+        {org.programId && (
+          <DetailRow
+            label="Program"
+            value={abbreviateProgram(org.programId)}
+            title={org.programId}
+          />
+        )}
         {org.metadata?.foundedYear && (
           <DetailRow label="Founded" value={String(org.metadata.foundedYear)} />
         )}
